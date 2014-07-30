@@ -8,7 +8,7 @@ class Menu {
         self::$_controller = $controller;
         $items = array(
             array('label' => '<i class="icon-dashboard"></i> Dashboard', 'url' => Yii::app()->homeUrl),
-//            array('label' => '<i class="icon-briefcase"></i> Cuentas', 'url' => array('/crm/cuenta/admin'), 'access' => 'action_cuenta_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'cuenta')),
+            array('label' => '<i class="icon-briefcase"></i> Clientes', 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
 //            array('label' => '<i class="icon-group"></i> Contactos', 'url' => array('/crm/contacto/admin'), 'access' => 'action_contacto_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'contacto')),
 //            array('label' => '<i class="icon-rocket"></i> Campañas', 'url' => array('/campanias/campania/admin'),'access'=>'action_campania_admin', 'active_rules' => array('module' => 'campanias')),
 //            array('label' => '<i class="icon-tags"></i> Oportunidades', 'url' => array('/oportunidades/oportunidad/admin'), 'access' => 'action_oportunidad_admin', 'active_rules' => array('module' => 'oportunidades')),
@@ -38,12 +38,12 @@ class Menu {
         $items = array(
             array('label' => '<i class="icon-mail-reply"></i>  Regresar a la App', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-user"></i>  Usuarios', 'url' => Yii::app()->user->ui->userManagementAdminUrl, 'access' => 'Cruge.ui.*', 'active_rules' => array('module' => 'cruge')),
-//            array('label' => '<i class="icon-book"></i>  Catálogos', 'url' => '#', 'items' => array(
-//                    array('label' => 'Industrias', 'url' => array('/crm/industria/admin'), 'access' => 'action_industria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'industria')),
-//                    array('label' => 'Etapas de Oportunidad', 'url' => array('/oportunidades/oportunidadEtapa/admin'), 'access' => 'action_oportunidadEtapa_admin', 'active_rules' => array('module' => 'oportunidades', 'controller' => 'oportunidadEtapa')),
-//                    array('label' => 'Etapas de Cobranza', 'url' => array('/cobranzas/cobranzaEtapa/admin'), 'access' => 'action_cobranzaEtapa_admin', 'active_rules' => array('module' => 'cobranzas', 'controller' => 'cobranzaEtapa')),
-//                    array('label' => 'Etapas de Tarea', 'url' => array('/tareas/tareaEtapa/admin'), 'access' => 'action_tareaEtapa_admin', 'active_rules' => array('module' => 'tareas', 'controller' => 'tareaEtapa')),
-//                )),
+            array('label' => '<i class="icon-book"></i>  Catálogos', 'url' => '#', 'items' => array(
+                    array('label' => 'Provincia', 'url' => array('/crm/provincia/admin'), 'access' => 'action_provincia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'provincia')),
+                    array('label' => 'Cantones', 'url' => array('/crm/canton/admin'), 'access' => 'action_canton_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'canton')),
+                    array('label' => 'Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
+                    array('label' => 'Barrio', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
+                )),
         );
 
         return self::generateMenu($items);

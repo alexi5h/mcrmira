@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.17)
-# Date: 2014-07-29 21:06:33
+# Date: 2014-07-29 21:25:44
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
@@ -230,11 +230,11 @@ CREATE TABLE `direccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Structure for table "entidad_bacaria"
+# Structure for table "entidad_bancaria"
 #
 
-DROP TABLE IF EXISTS `entidad_bacaria`;
-CREATE TABLE `entidad_bacaria` (
+DROP TABLE IF EXISTS `entidad_bancaria`;
+CREATE TABLE `entidad_bancaria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `direccion_id` int(11) NOT NULL,
