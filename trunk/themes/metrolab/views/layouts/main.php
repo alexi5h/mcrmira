@@ -44,7 +44,7 @@
                     <!--END SIDEBAR TOGGLE-->
                     <!-- BEGIN LOGO -->
                     <a class="brand" href="<?php echo Yii::app()->homeUrl ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/logo.png" alt="Rio Mira" />
+                        <!--<img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/logo.png" alt="Rio Mira" />-->
                     </a>
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
