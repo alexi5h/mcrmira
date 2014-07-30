@@ -3,13 +3,12 @@
 /**
  * Description of Util
  *
- * @author Santiago Benítez <sbenitez@tradesystem.com.ec>
+ * 
  */
 class Util {
 
     /**
      * fucnion para el guardado de multiples registrsos
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * @param type $inserValues
      * @param type $tableName
      * @return type
@@ -35,7 +34,6 @@ class Util {
 
     /**
      * Retorna la lista de usuarios con el mismo rol
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * @param type $Rol
      * @return array
      */

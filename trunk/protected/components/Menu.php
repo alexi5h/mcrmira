@@ -157,10 +157,7 @@ class Menu {
 //        return $current;
 //    }
 
-    /*     * manejo de activos en el menu 
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
-     */
-
+  
     private static function getActive2($active_rules) {
         $current = false;
         //MODULE

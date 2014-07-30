@@ -1,10 +1,5 @@
 <?php
 
-/*
- * @author Alex Yepez <ayepez@tradesystem.com.ec>
- * clase para el manejo de constantes de producción para todo el proyecto 
- */
-
 class Constants {
 
     //constantes
@@ -54,10 +49,7 @@ class Constants {
         1 => array('id' => 1, 'nombre' => self::SMS_MEDIO_SOAP),
     );
 
-    /**
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
-     * Costantes de lotificación 
-     */
+ 
     /* ACCIONES */
     //tamaño del lote para envío de email 
     const BATCH_ACTION_EMAIL = 1000;
