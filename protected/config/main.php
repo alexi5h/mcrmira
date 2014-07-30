@@ -14,7 +14,7 @@ return array(
         'bootstrap',
         'log',
     ),
-    'defaultController' => 'crm/persona/admin',
+    'defaultController' => 'crm/dashboard/index',
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -129,7 +129,7 @@ return array(
         ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
-            'errorAction' => 'persona/admn',
+            'errorAction' => '/crm/dashboard/error',
         ),
         'log' => array(
             'class' => 'CLogRouter',
