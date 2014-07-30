@@ -14,15 +14,21 @@ return array(
         'bootstrap',
         'log',
     ),
+    'defaultController' => 'crm/persona/admin',
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
         'application.components.*',
+//        AweCrud
         'ext.AweCrud.components.*', // AweCrud components
+//        cruge
         'application.modules.cruge.components.*',
         'application.modules.cruge.extensions.crugemailer.*',
+        //crm
+        'application.modules.crm.models.*',
     ),
     'modules' => array(
+        'crm',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
@@ -123,7 +129,7 @@ return array(
         ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
-            'errorAction' => 'site/error',
+            'errorAction' => 'persona/admn',
         ),
         'log' => array(
             'class' => 'CLogRouter',
@@ -150,8 +156,8 @@ return array(
         ),
         'crugemailer' => array(
             'class' => 'application.modules.cruge.components.CrugeMailer',
-            'mailfrom' => 'info_sistemas@tradesystem.com.ec',
-            'subjectprefix' => 'TruuloCRM - ',
+            'mailfrom' => 'armand1live@gmail.com',
+            'subjectprefix' => 'UTN - ',
             'debug' => true,
         ),
         'format' => array(
