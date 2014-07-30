@@ -32,7 +32,6 @@ class CantonController extends AweController {
      */
     public function actionCreate() {
         $model = new Canton;
-
         $this->performAjaxValidation($model, 'canton-form');
 
         if (isset($_POST['Canton'])) {
