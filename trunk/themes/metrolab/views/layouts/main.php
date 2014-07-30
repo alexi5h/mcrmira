@@ -19,7 +19,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jquery.selectBox.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/kanban.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/custom-fixes.css" />
-        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl; ?>/css/reports.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl;   ?>/css/reports.css" />-->
 
         <script>
             var baseUrl = "<?php print Yii::app()->baseUrl . '/'; ?>";
@@ -166,7 +166,7 @@
 
         <!-- BEGIN FOOTER -->
         <div id="footer">
-            <?php echo date('Y') ?> &copy; Tradesystem
+            <?php echo date('Y') ?> &copy; Universidad T&eacute;cnica del Norte
         </div>
         <!-- END FOOTER -->
 
@@ -175,12 +175,12 @@
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.nicescroll.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.selectBox.js" type="text/javascript"></script>
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl; ?>/js/_alerta.js" type="text/javascript"></script>-->
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;   ?>/js/_alerta.js" type="text/javascript"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mask.min.js" type="text/javascript"></script>
         <!--scroll infinito-->
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl; ?>/js/jquery-ias.min.js" type="text/javascript"></script>--> 
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;   ?>/js/jquery-ias.min.js" type="text/javascript"></script>--> 
 
-<!--//        common script for all pages-->
+        <!--//        common script for all pages-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/common-scripts.js"></script>
 
         <!-- END JAVASCRIPTS -->   
