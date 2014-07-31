@@ -21,7 +21,7 @@ $this->menu = array(
     <div class="widget-body">
 
         <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
+        $this->widget('ext.bootstrap.widgets.TbGridView', array(
             'id' => 'canton-grid',
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
