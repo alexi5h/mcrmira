@@ -1,4 +1,5 @@
 <?php
+Util::tsRegisterAssetJs('_form.js');
 /** @var BarrioController $this */
 /** @var Barrio $model */
 /** @var AweActiveForm $form */
@@ -22,34 +23,35 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
 
-        <?php echo $form->textFieldRow($model, 'parroquia_id') ?>
         <?php
         $model_provincia = Provincia::model()->findAll();
-        if (!empty($model_provincia)) {
-            echo $form->select2Row($model, 'provincia_id', array(
-                'asDropDownList' => true,
-                'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
-//                    'empty' => array(0 => '- Ninguna -'),
-//                    'class' => 'span6',
-                'options' => array(
-                    'placeholder' => '-- Seleccione --',
-                )
-            ));
-        }
+        echo $form->select2Row($model, 'provincia_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
+        ));
         ?>
         <?php
-        $model_canton = Provincia::model()->findAll();
-        if (!empty($model_canton)) {
-            echo $form->select2Row($model, 'canton_id', array(
-                'asDropDownList' => true,
-                'data' => CHtml::listData($model_canton, 'id', 'nombre'),
-//                    'empty' => array(0 => '- Ninguna -'),
-//                    'class' => 'span6',
-                'options' => array(
-                    'placeholder' => '-- Selecione Provincia --',
-                )
-            ));
-        }
+        $model_canton = Canton::model()->findAll();
+        echo $form->select2Row($model, 'canton_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_canton, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Selecione Provincia --',
+            )
+        ));
+        ?>
+        <?php
+        $model_parroquia = Parroquia::model()->findAll();
+        echo $form->select2Row($model, 'parroquia_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_parroquia, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Selecione Provincia --',
+            )
+        ));
         ?>
 
         <div class="form-actions">
