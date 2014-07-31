@@ -23,7 +23,7 @@ $this->menu = array(
         <?php
         $this->widget('bootstrap.widgets.TbGridView', array(
             'id' => 'barrio-grid',
-            'type' => 'striped bordered hover advance',
+            'type' => 'table striped bordered hover advance',
             'dataProvider' => $model->search(),
             'columns' => array(
                 'nombre',
