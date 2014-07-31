@@ -16,7 +16,7 @@
  */
 abstract class BaseParroquia extends AweActiveRecord {
 
-    public static function model($className=__CLASS__) {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
@@ -31,9 +31,9 @@ abstract class BaseParroquia extends AweActiveRecord {
     public function rules() {
         return array(
             array('nombre, canton_id', 'required'),
-            array('canton_id', 'numerical', 'integerOnly'=>true),
-            array('nombre', 'length', 'max'=>32),
-            array('id, nombre, canton_id', 'safe', 'on'=>'search'),
+            array('canton_id', 'numerical', 'integerOnly' => true),
+            array('nombre', 'length', 'max' => 32),
+            array('id, nombre, canton_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -47,9 +47,9 @@ abstract class BaseParroquia extends AweActiveRecord {
      */
     public function attributeLabels() {
         return array(
-                'id' => Yii::t('app', 'ID'),
-                'nombre' => Yii::t('app', 'Nombre'),
-                'canton_id' => Yii::t('app', 'Canton'),
+            'id' => Yii::t('app', 'ID'),
+            'nombre' => Yii::t('app', 'Nombre'),
+            'canton_id' => Yii::t('app', 'Canton'),
         );
     }
 
@@ -67,6 +67,7 @@ abstract class BaseParroquia extends AweActiveRecord {
 
     public function behaviors() {
         return array_merge(array(
-        ), parent::behaviors());
+                ), parent::behaviors());
     }
+
 }

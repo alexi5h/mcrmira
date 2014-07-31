@@ -15,7 +15,7 @@
  */
 abstract class BaseProvincia extends AweActiveRecord {
 
-    public static function model($className=__CLASS__) {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
@@ -30,8 +30,8 @@ abstract class BaseProvincia extends AweActiveRecord {
     public function rules() {
         return array(
             array('nombre', 'required'),
-            array('nombre', 'length', 'max'=>21),
-            array('id, nombre', 'safe', 'on'=>'search'),
+            array('nombre', 'length', 'max' => 21),
+            array('id, nombre', 'safe', 'on' => 'search'),
         );
     }
 
@@ -45,8 +45,8 @@ abstract class BaseProvincia extends AweActiveRecord {
      */
     public function attributeLabels() {
         return array(
-                'id' => Yii::t('app', 'ID'),
-                'nombre' => Yii::t('app', 'Nombre'),
+            'id' => Yii::t('app', 'ID'),
+            'nombre' => Yii::t('app', 'Nombre'),
         );
     }
 
@@ -63,6 +63,7 @@ abstract class BaseProvincia extends AweActiveRecord {
 
     public function behaviors() {
         return array_merge(array(
-        ), parent::behaviors());
+                ), parent::behaviors());
     }
+
 }
