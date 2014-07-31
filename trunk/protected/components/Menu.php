@@ -43,6 +43,8 @@ class Menu {
                     array('label' => 'Cantones', 'url' => array('/crm/canton/admin'), 'access' => 'action_canton_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'canton')),
                     array('label' => 'Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
                     array('label' => 'Barrio', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
+                    array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
+                    array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
                 )),
         );
 
@@ -157,7 +159,7 @@ class Menu {
 //        return $current;
 //    }
 
-  
+
     private static function getActive2($active_rules) {
         $current = false;
         //MODULE
