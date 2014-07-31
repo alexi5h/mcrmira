@@ -29,15 +29,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         $model_provincia = Provincia::model()->findAll();
 
         echo $form->select2Row($model, 'provincia_id', array(
-        'asDropDownList' => true,
-        'data' => !empty($model_provincia)?CHtml::listData($model_provincia, 'id', 'nombre'):array(0 => '- Selecione -'),
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
 //                    'empty' => array(0 => '- Ninguna -'),
 //                    'class' => 'span6',
-        'options' => array(
-        'placeholder' => 'PROVINCIA',
-        )
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
         ));
-
         ?>
         <div class="form-actions">
             <?php

@@ -77,7 +77,14 @@ class ParroquiaController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            $parroquia = $this->loadModel($id);
+            $barrios = $parroquia->barrios;
+            if (count($barrios) == 0) {
+                echo '<div class = "alert alert-success"><button data-dismiss = "alert" class = "close" type = "button">×</button>Borrado Exitosamente.</div>';
+                $parroquia->delete();
+            } else if (count($barrios) >= 1) {
+                echo '<div class = "alert alert-error"><button data-dismiss = "alert" class = "close" type = "button">×</button>Imposible eliminar la parroquia, varios barrios dependen de ésta.</div>';
+            }
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
