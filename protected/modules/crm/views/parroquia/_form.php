@@ -1,4 +1,6 @@
 <?php
+Util::tsRegisterAssetJs('_form.js');
+
 /** @var ParroquiaController $this */
 /** @var Parroquia $model */
 /** @var AweActiveForm $form */
@@ -6,7 +8,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'parroquia-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
         ));
 ?>
@@ -19,25 +21,37 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         </span>
     </div>
     <div class="widget-body">
-
-
-
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 32)) ?>
-        <!--@TODO: borrar comentarios-->
-        <?php // echo $form->textFieldRow($model, 'canton_id') ?>
         <?php
-        $model_canton = Canton::model()->findAll();
-        if (!empty($model_canton)) {
-            echo $form->select2Row($model, 'canton_id', array(
-                'asDropDownList' => true,
-                'data' => CHtml::listData($model_canton, 'id', 'nombre'),
-//                    'empty' => array(0 => '- Ninguna -'),
-//                    'class' => 'span6',
-                'options' => array(
-                    'placeholder' => 'CANTON',
-                )
+        if ($model->isNewRecord) {
+            $model_provincia = Provincia::model()->findAll();
+            $model_canton = new Canton;
+        } else {
+            $model->provincia_id = $model->canton->provincia->id;
+            $model_provincia = Provincia::model()->findAll();
+            $model_canton = Canton::model()->findAll(array(
+                "condition" => "provincia_id =:provincia_id ",
+                "order" => "nombre",
+                "params" => array(':provincia_id' => $model->canton->provincia->id,)
             ));
         }
+
+        echo $form->select2Row($model, 'provincia_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
+        ));
+        ?>
+        <?php
+        echo $form->select2Row($model, 'canton_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_canton, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Selecione Provincia --',
+            )
+        ));
         ?>
         <div class="form-actions">
             <?php

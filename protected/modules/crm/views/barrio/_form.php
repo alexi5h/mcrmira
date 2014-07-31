@@ -29,7 +29,20 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             $model_canton = new Canton;
             $model_parroquia = new Parroquia;
         } else {
-            
+            $model->provincia_id = $model->parroquia->canton->provincia->id;
+            $model->canton_id = $model->parroquia->canton->id;
+            $model_provincia = Provincia::model()->findAll();
+            $model_canton = Canton::model()->findAll(array(
+                "condition" => "provincia_id =:provincia_id ",
+                "order" => "nombre",
+                "params" => array(':provincia_id' => $model->parroquia->canton->provincia->id,)
+            ));
+            $model_parroquia = Parroquia::model()->findAll(
+                    array(
+                        "condition" => "canton_id =:canton_id",
+                        "order" => "nombre",
+                        "params" => array(':canton_id' => $model->parroquia->canton->id,)
+            ));
         }
 
         echo $form->select2Row($model, 'provincia_id', array(

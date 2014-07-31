@@ -32,6 +32,10 @@ $this->menu = array(
                     'value'=>'$data->canton'
                     ),
                 array(
+                    'name' => 'provincia',
+                    'value'=>'$data->canton->provincia'
+                    ),
+                array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
                     'afterDelete' => 'function(link,success,data){ 

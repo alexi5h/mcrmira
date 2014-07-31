@@ -42,7 +42,7 @@ class Barrio extends BaseBarrio {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(
             'provincia_id' => Yii::t('app', 'Provincia'),
-            'canton_id' => Yii::t('app', 'Cantón'),
+            'canton_id' => Yii::t('app', 'Canton'),
         ));
     }
 
