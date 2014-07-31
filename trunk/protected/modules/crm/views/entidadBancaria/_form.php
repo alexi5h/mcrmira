@@ -23,7 +23,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             
                                         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
                                 
-                                        <?php echo $form->textFieldRow($model, 'direccion_id') ?>
+                                        <?php echo $form->dropDownListRow($model, 'direccion_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn())) ?>
                                                         <div class="form-actions">
                         <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

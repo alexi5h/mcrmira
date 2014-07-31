@@ -20,7 +20,11 @@ $this->menu=array(
 	'data' => $model,
 	'attributes' => array(
                   'nombre',
-             'direccion_id',
+             array(
+			'name' => 'direccion_id',
+			'value'=>($model->direccion !== null) ? CHtml::link($model->direccion, array('/direccion/view', 'id' => $model->direccion->id)).' ' : null,
+			'type' => 'html',
+		),
 	),
 )); ?>
 </fieldset>

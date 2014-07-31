@@ -7,12 +7,13 @@
  * property or method in class "EntidadBancaria".
  *
  * Columns in table "entidad_bancaria" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "entidad_bancaria" available as properties of the model.
  *
  * @property integer $id
  * @property string $nombre
  * @property integer $direccion_id
  *
+ * @property Direccion $direccion
  */
 abstract class BaseEntidadBancaria extends AweActiveRecord {
 
@@ -39,6 +40,7 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'direccion' => array(self::BELONGS_TO, 'Direccion', 'direccion_id'),
         );
     }
 
@@ -50,6 +52,7 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
                 'direccion_id' => Yii::t('app', 'Direccion'),
+                'direccion' => null,
         );
     }
 
