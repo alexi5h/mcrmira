@@ -7,12 +7,14 @@
  * property or method in class "Canton".
  *
  * Columns in table "canton" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "canton" available as properties of the model.
  *
  * @property integer $id
  * @property string $nombre
  * @property integer $provincia_id
  *
+ * @property Provincia $provincia
+ * @property Parroquia[] $parroquias
  */
 abstract class BaseCanton extends AweActiveRecord {
 
@@ -39,6 +41,8 @@ abstract class BaseCanton extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'provincia' => array(self::BELONGS_TO, 'Provincia', 'provincia_id'),
+            'parroquias' => array(self::HAS_MANY, 'Parroquia', 'canton_id'),
         );
     }
 
@@ -50,6 +54,8 @@ abstract class BaseCanton extends AweActiveRecord {
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
                 'provincia_id' => Yii::t('app', 'Provincia'),
+                'provincia' => null,
+                'parroquias' => null,
         );
     }
 

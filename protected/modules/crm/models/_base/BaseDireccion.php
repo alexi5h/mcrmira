@@ -7,7 +7,7 @@
  * property or method in class "Direccion".
  *
  * Columns in table "direccion" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "direccion" available as properties of the model.
  *
  * @property integer $id
  * @property string $calle_1
@@ -18,6 +18,12 @@
  * @property integer $barrio_id
  * @property integer $parroquia_id
  *
+ * @property Barrio $barrio
+ * @property Parroquia $parroquia
+ * @property EntidadBacaria[] $entidadBacarias
+ * @property Persona[] $personas
+ * @property Persona[] $personas1
+ * @property Sucursal[] $sucursals
  */
 abstract class BaseDireccion extends AweActiveRecord {
 
@@ -49,6 +55,12 @@ abstract class BaseDireccion extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'barrio' => array(self::BELONGS_TO, 'Barrio', 'barrio_id'),
+            'parroquia' => array(self::BELONGS_TO, 'Parroquia', 'parroquia_id'),
+            'entidadBacarias' => array(self::HAS_MANY, 'EntidadBacaria', 'direccion_id'),
+            'personas' => array(self::HAS_MANY, 'Persona', 'direccion_domicilio_id'),
+            'personas1' => array(self::HAS_MANY, 'Persona', 'direccion_negocio_id'),
+            'sucursals' => array(self::HAS_MANY, 'Sucursal', 'direccion_id'),
         );
     }
 
@@ -65,6 +77,12 @@ abstract class BaseDireccion extends AweActiveRecord {
                 'tipo' => Yii::t('app', 'Tipo'),
                 'barrio_id' => Yii::t('app', 'Barrio'),
                 'parroquia_id' => Yii::t('app', 'Parroquia'),
+                'barrio' => null,
+                'parroquia' => null,
+                'entidadBacarias' => null,
+                'personas' => null,
+                'personas1' => null,
+                'sucursals' => null,
         );
     }
 
