@@ -18,11 +18,27 @@ class Barrio extends BaseBarrio {
         return Yii::t('app', 'Barrio|Barrios', $n);
     }
 
-    public function relations() {
-        return array_merge(parent::relations(), array(
-            'parroquia' => array(self::BELONGS_TO, 'Parroquia', 'parroquia_id'),
-                )
-        );
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('provincia_id,canton_id', 'required'),
+            array('provincia_id', 'numerical',
+                'integerOnly' => true,
+                'min' => 1,
+                'tooSmall' => 'Elija una provincia por favor.',
+            ),
+            array('canton_id', 'numerical',
+                'integerOnly' => true,
+                'min' => 1,
+                'tooSmall' => 'Elija un canton por favor.',
+            ),
+        ));
+    }
+
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), array(
+            'provincia_id' => Yii::t('app', 'Provincia'),
+            'canton_id' => Yii::t('app', 'Cantón'),
+        ));
     }
 
 }

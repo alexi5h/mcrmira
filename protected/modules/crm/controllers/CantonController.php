@@ -99,6 +99,30 @@ class CantonController extends AweController {
         ));
     }
 
+    public function actionAjaxGetCantonByProvincia() {
+        if (Yii::app()->request->isAjaxRequest) {
+//            die(var_dump($_POST));
+            if (isset($_POST['provincia_id']) && $_POST['provincia_id'] > 0) {
+                $data = Canton::model()->findAll(array(
+                    "condition" => "provincia_id =:provincia_id ",
+                    "order" => "nombre",
+                    "params" => array(':provincia_id' => $_POST['provincia_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Cantones -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una provincia -', true);
+            }
+        }
+    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.

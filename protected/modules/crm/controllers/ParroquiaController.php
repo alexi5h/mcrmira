@@ -100,6 +100,30 @@ class ParroquiaController extends AweController {
         ));
     }
 
+    public function actionAjaxGetParroquiaByCanton() {
+        if (Yii::app()->request->isAjaxRequest) {
+//            die(var_dump($_POST));
+            if (isset($_POST['canton_id']) && $_POST['canton_id'] > 0) {
+                $data = Parroquia::model()->findAll(array(
+                    "condition" => "canton_id =:canton_id ",
+                    "order" => "nombre",
+                    "params" => array(':canton_id' => $_POST['canton_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Parroquias -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un canton -', true);
+            }
+        }
+    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
