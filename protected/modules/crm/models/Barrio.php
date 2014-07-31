@@ -34,7 +34,7 @@ class Barrio extends BaseBarrio {
             array('parroquia_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,
-                'tooSmall' => 'Elija un canton por favor.',
+                'tooSmall' => 'Elija un parroquia por favor.',
             ),
         ));
     }
