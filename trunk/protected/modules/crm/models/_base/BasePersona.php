@@ -7,7 +7,7 @@
  * property or method in class "Persona".
  *
  * Columns in table "persona" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "persona" available as properties of the model.
  *
  * @property integer $id
  * @property string $primer_nombre
@@ -32,6 +32,10 @@
  * @property string $ruc
  * @property string $tipo
  *
+ * @property PersonaEtapa $clienteEstado
+ * @property Sucursal $sucursal
+ * @property Direccion $direccionDomicilio
+ * @property Direccion $direccionNegocio
  */
 abstract class BasePersona extends AweActiveRecord {
 
@@ -69,6 +73,10 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'clienteEstado' => array(self::BELONGS_TO, 'PersonaEtapa', 'cliente_estado_id'),
+            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
+            'direccionDomicilio' => array(self::BELONGS_TO, 'Direccion', 'direccion_domicilio_id'),
+            'direccionNegocio' => array(self::BELONGS_TO, 'Direccion', 'direccion_negocio_id'),
         );
     }
 
@@ -99,6 +107,10 @@ abstract class BasePersona extends AweActiveRecord {
                 'direccion_negocio_id' => Yii::t('app', 'Direccion Negocio'),
                 'ruc' => Yii::t('app', 'Ruc'),
                 'tipo' => Yii::t('app', 'Tipo'),
+                'clienteEstado' => null,
+                'sucursal' => null,
+                'direccionDomicilio' => null,
+                'direccionNegocio' => null,
         );
     }
 

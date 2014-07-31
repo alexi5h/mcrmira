@@ -7,13 +7,14 @@
  * property or method in class "PersonaEtapa".
  *
  * Columns in table "persona_etapa" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "persona_etapa" available as properties of the model.
  *
  * @property integer $id
  * @property string $nombre
  * @property integer $peso
  * @property string $estado
  *
+ * @property Persona[] $personas
  */
 abstract class BasePersonaEtapa extends AweActiveRecord {
 
@@ -43,6 +44,7 @@ abstract class BasePersonaEtapa extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'personas' => array(self::HAS_MANY, 'Persona', 'cliente_estado_id'),
         );
     }
 
@@ -55,6 +57,7 @@ abstract class BasePersonaEtapa extends AweActiveRecord {
                 'nombre' => Yii::t('app', 'Nombre'),
                 'peso' => Yii::t('app', 'Peso'),
                 'estado' => Yii::t('app', 'Estado'),
+                'personas' => null,
         );
     }
 

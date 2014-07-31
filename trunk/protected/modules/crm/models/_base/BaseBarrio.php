@@ -7,12 +7,14 @@
  * property or method in class "Barrio".
  *
  * Columns in table "barrio" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "barrio" available as properties of the model.
  *
  * @property integer $id
  * @property string $nombre
  * @property integer $parroquia_id
  *
+ * @property Parroquia $parroquia
+ * @property Direccion[] $direccions
  */
 abstract class BaseBarrio extends AweActiveRecord {
 
@@ -39,6 +41,8 @@ abstract class BaseBarrio extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'parroquia' => array(self::BELONGS_TO, 'Parroquia', 'parroquia_id'),
+            'direccions' => array(self::HAS_MANY, 'Direccion', 'barrio_id'),
         );
     }
 
@@ -50,6 +54,8 @@ abstract class BaseBarrio extends AweActiveRecord {
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
                 'parroquia_id' => Yii::t('app', 'Parroquia'),
+                'parroquia' => null,
+                'direccions' => null,
         );
     }
 

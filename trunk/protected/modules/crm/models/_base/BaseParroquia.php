@@ -7,16 +7,19 @@
  * property or method in class "Parroquia".
  *
  * Columns in table "parroquia" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "parroquia" available as properties of the model.
  *
  * @property integer $id
  * @property string $nombre
  * @property integer $canton_id
  *
+ * @property Barrio[] $barrios
+ * @property Direccion[] $direccions
+ * @property Canton $canton
  */
 abstract class BaseParroquia extends AweActiveRecord {
 
-    public static function model($className = __CLASS__) {
+    public static function model($className=__CLASS__) {
         return parent::model($className);
     }
 
@@ -31,14 +34,17 @@ abstract class BaseParroquia extends AweActiveRecord {
     public function rules() {
         return array(
             array('nombre, canton_id', 'required'),
-            array('canton_id', 'numerical', 'integerOnly' => true),
-            array('nombre', 'length', 'max' => 32),
-            array('id, nombre, canton_id', 'safe', 'on' => 'search'),
+            array('canton_id', 'numerical', 'integerOnly'=>true),
+            array('nombre', 'length', 'max'=>32),
+            array('id, nombre, canton_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
+            'barrios' => array(self::HAS_MANY, 'Barrio', 'parroquia_id'),
+            'direccions' => array(self::HAS_MANY, 'Direccion', 'parroquia_id'),
+            'canton' => array(self::BELONGS_TO, 'Canton', 'canton_id'),
         );
     }
 
@@ -47,9 +53,12 @@ abstract class BaseParroquia extends AweActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'id' => Yii::t('app', 'ID'),
-            'nombre' => Yii::t('app', 'Nombre'),
-            'canton_id' => Yii::t('app', 'Canton'),
+                'id' => Yii::t('app', 'ID'),
+                'nombre' => Yii::t('app', 'Nombre'),
+                'canton_id' => Yii::t('app', 'Canton'),
+                'barrios' => null,
+                'direccions' => null,
+                'canton' => null,
         );
     }
 
@@ -67,7 +76,6 @@ abstract class BaseParroquia extends AweActiveRecord {
 
     public function behaviors() {
         return array_merge(array(
-                ), parent::behaviors());
+        ), parent::behaviors());
     }
-
 }
