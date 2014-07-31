@@ -1,7 +1,5 @@
 $(function() {
-    /**
-     * carga de ciudades
-     */
+
     $("#Barrio_provincia_id").change(function() {
         AjaxListaCantones("Barrio_provincia_id", "Barrio_canton_id");
     });
