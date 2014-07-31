@@ -7,7 +7,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'barrio-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
         ));
 ?>
@@ -24,7 +24,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
 
         <?php
-        $model_provincia = Provincia::model()->findAll();
+        if ($model->isNewRecord) {
+            $model_provincia = Provincia::model()->findAll();
+            $model_canton = new Canton;
+            $model_parroquia = new Parroquia;
+        } else {
+            
+        }
+
         echo $form->select2Row($model, 'provincia_id', array(
             'asDropDownList' => true,
             'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
@@ -34,7 +41,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
         <?php
-        $model_canton = Canton::model()->findAll();
         echo $form->select2Row($model, 'canton_id', array(
             'asDropDownList' => true,
             'data' => CHtml::listData($model_canton, 'id', 'nombre'),
@@ -44,7 +50,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
         <?php
-        $model_parroquia = Parroquia::model()->findAll();
         echo $form->select2Row($model, 'parroquia_id', array(
             'asDropDownList' => true,
             'data' => CHtml::listData($model_parroquia, 'id', 'nombre'),
