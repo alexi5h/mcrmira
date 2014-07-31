@@ -22,7 +22,7 @@ $this->menu = array(
 
         <?php
         $this->widget('ext.yiiSortableModel.widgets.SortableCGridView', array(
-            'id' => 'incidencia-estado-grid',
+            'id' => 'persona-etapa-grid',
             'orderField' => 'peso',
             'idField' => 'id',
             'orderUrl' => 'reordenar',
@@ -51,7 +51,6 @@ $this->menu = array(
                             'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
                             'options' => array('title' => 'Actualizar'),
                             'imageUrl' => false,
-                            'visible' => 'Util::checkAccess(array("action_incidenciaEstado_update"))'
                         ),
                         'delete' => array(
                             'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
