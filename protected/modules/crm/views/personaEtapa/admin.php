@@ -35,7 +35,7 @@ $this->menu = array(
                     'type' => 'html',
                     'value' => '"<i class=\'icon-move\'></i> ".$data->nombre',
                 ),
-                'peso',
+//                'peso',
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
