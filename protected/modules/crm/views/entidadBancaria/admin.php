@@ -27,7 +27,11 @@ $this->menu = array(
         'dataProvider' => $model->search(),
         'columns' => array(
                     'nombre',
-                        'direccion_id',
+                        array(
+                    'name' => 'direccion_id',
+                    'value' => 'isset($data->direccion) ? $data->direccion : null',
+                    'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
+                ),
                     array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
