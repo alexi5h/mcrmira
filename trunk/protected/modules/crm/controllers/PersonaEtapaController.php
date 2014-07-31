@@ -32,11 +32,11 @@ class PersonaEtapaController extends AweController {
      */
     public function actionCreate() {
         $model = new PersonaEtapa;
-
+        $model->estado = PersonaEtapa::ESTADO_ACTIVO;
         $this->performAjaxValidation($model, 'persona-etapa-form');
-
         if (isset($_POST['PersonaEtapa'])) {
             $model->attributes = $_POST['PersonaEtapa'];
+            $model->peso = PersonaEtapa::model()->getPesoMaximo() + 1;
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -77,7 +77,14 @@ class PersonaEtapaController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            $etapa = $this->loadModel($id);
+            if (count($etapa->personas) == 0) {
+                $etapa->estado = PersonaEtapa::ESTADO_INACTIVO;
+                $etapa->save();
+                echo '<div class = "alert alert-success"><button data-dismiss = "alert" class = "close" type = "button">×</button>Estado borrada satisfactoriamente.</div>';
+            } else if (count($etapa->personas) > 0) {
+                echo '<div class = "alert alert-error"><button data-dismiss = "alert" class = "close" type = "button">×</button>No puede borrar este estado por que hay varias incidencias que dependen de él. </div>';
+            }
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
@@ -100,6 +107,25 @@ class PersonaEtapaController extends AweController {
         ));
     }
 
+    /*     * ************************************funciones Ajax******************************************* */
+
+//    /**
+//     * Acción usada en vista kanban, en el cual actualiza el estado de la incidencia.
+//     * @author Armando Maldonado 
+//     * @param type $id_data
+//     * @param type $id_estado
+//     */
+//    public function actionAjaxUpdateEstado($id_data = null, $id_estado = null) {
+//        $FechaHoraActualizacion = Util::FechaActual();
+//        Incidencia::model()->updateByPk($id_data, array('estado_id' => $id_estado,
+//            'usuario_actualizacion_id' => Yii::app()->user->id,
+//            'fecha_actualizacion' => $FechaHoraActualizacion));
+//        $Estados = IncidenciaEstado::model()->estadoRoles();
+//        $mensajeActividad = "actualizó el estado a " . $Estados[$id_estado];
+//        $model = Incidencia::model()->findByPk($id_data);
+//        Actividad::registrarActividad($model, Actividad::TIPO_UPDATE, Yii::app()->user->id, $mensajeActividad);
+//    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
@@ -120,6 +146,82 @@ class PersonaEtapaController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'persona-etapa-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    /**
+     * Reordena cada ves que una IncidenciaEstado fue cambiado de posicion en sortable del admin
+     * @autor Armando Maldonado
+     */
+    public function actionReordenar() {
+
+        $model = new PersonaEtapa('search');
+        if (isset($_POST)) {
+            $id_sortable = $_POST['dragged_item_id']; // valor del item que se esta arrastrando
+            $id_reemplazo = $_POST['replacement_item_id']; // valor del contenedor destino o en item al cual se le esta reemplazando
+            $peso_sortable = PersonaEtapa::model()->findByPk($id_sortable)->peso;
+            $peso_reemplazo = PersonaEtapa::model()->findByPk($id_reemplazo)->peso;
+
+            $this->sortable($id_sortable, $peso_sortable, $id_reemplazo, $peso_reemplazo);
+            $this->render('admin', array(
+                'model' => $model,
+            ));
+        }
+    }
+
+    /**
+     * Calcula y cambia de peso cada ves que en item se actualiza mediante widgetsortable view admin
+     * @param type $id_sortable
+     * @param type $peso_sortable
+     * @param type $id_reemplazo
+     * @param type $peso_reemplazo
+     */
+    public function sortable($id_sortable, $peso_sortable, $id_reemplazo, $peso_reemplazo) {
+        $modelEtap = PersonaEtapa::model()->getPersonaEtapa();
+        $bandera = FALSE;
+        if ($peso_sortable > $peso_reemplazo) {
+            foreach ($modelEtap as $etap) {
+                if ($etap['id'] == $id_reemplazo || $bandera) {
+                    $etap['peso'] = $etap['peso'] + 1;
+                    PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $etap['peso']));
+                    if ($etap['id'] == $id_sortable) {
+                        PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $peso_reemplazo));
+                        $bandera = false;
+                    } else {
+                        $bandera = TRUE;
+                    }
+                }
+            }
+        } else if ($peso_sortable < $peso_reemplazo) {
+            $bandera2 = false;
+            foreach ($modelEtap as $etap) {
+                if ($etap['id'] == $id_sortable) {
+                    PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $peso_reemplazo));
+                    $bandera2 = TRUE;
+                } else if ($bandera2) {
+                    if ($etap['id'] == $id_reemplazo) {
+                        $etap['peso'] = $etap['peso'] - 1;
+                        PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $etap['peso']));
+                        $bandera2 = FALSE;
+                    } else {
+                        $etap['peso'] = $etap['peso'] - 1;
+                        PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $etap['peso']));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Reordena los pesos despues que una IncidenciaEstado se elimina 
+     * @author Armando Maldonado
+     */
+    public function ReordenarPesoDeleted() {
+        $modelEtap = PersonaEtapa::model()->getPersonaEtapa();
+        $peso = 1;
+        foreach ($modelEtap as $etap) {
+            PersonaEtapa::model()->updateByPk($etap['id'], array('peso' => $peso));
+            $peso++;
         }
     }
 
