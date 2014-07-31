@@ -6,28 +6,28 @@ var Script = function() {
      * @author Alex Yepez Chavez
      * validacion de formularios para bloquear botones de accion
      */
-//    $("form").submit(function(e) {
-////        alert($('form button.btn-success').attr('class'));
-//        if (verificarValidacionModal("form"))
-//        {
-//            if (primero)
-//            {
-//                var botonSubmit = $('form button.btn-success');
-//                $(botonSubmit).attr("disabled", true);
-//                $(botonSubmit).html('<i class="icon-loading"></i> Espere...');
-//                $(botonSubmit).attr("disabled", true);
-//                $('form a').attr("disabled", true);
-//                $('form a').attr("onclick", "true");
-//            }
-//            else
-//            {
-//                primero = true;
-//            }
-//
-//        }
-//
-//        return;
-//    });
+    $("form").submit(function(e) {
+//        alert($('form button.btn-success').attr('class'));
+        if (verificarValidacionModal("form"))
+        {
+            if (primero)
+            {
+                var botonSubmit = $('form button.btn-success');
+                $(botonSubmit).attr("disabled", true);
+                $(botonSubmit).html('<i class="icon-loading"></i> Espere...');
+                $(botonSubmit).attr("disabled", true);
+                $('form a').attr("disabled", true);
+                $('form a').attr("onclick", "true");
+            }
+            else
+            {
+                primero = true;
+            }
+
+        }
+
+        return;
+    });
 
 //    sidebar dropdown menu
 
@@ -122,8 +122,8 @@ var Script = function() {
             buttons.removeClass('flotante');
         }
     }
-    
-    
+
+
 
 }();
 
@@ -285,7 +285,7 @@ function AjaxGuardarModal(verificador, Formulario, callBack)
             success: function(data) {
                 if (data.success) {
                     $("#mainModal").modal("hide");
-                    callBack(listaActualizar,data);
+                    callBack(listaActualizar, data);
 
                 } else {
 
@@ -378,17 +378,17 @@ function maskAttributes() {
     //continuar cargando formatos para input
 }
 
-function rotateCoin(degree,speed,orientation) {
-    $('#moneda').css({ WebkitTransform: 'rotateY('+degree+'deg)'});
-    $('#moneda').css({ '-o-transform': 'rotateY('+degree+'deg)'});
-    $('#moneda').css({ '-transform': 'rotateY('+degree+'deg)'});
-    $('#moneda').css({ '-moz-transform': 'rotateY('+degree+'deg)'});
-    $('#moneda').css({ '-moz-transition': speed+'s'});
-    $('#moneda').css({ '-moz-transform-style': 'preserve-3d'});
-    $('#moneda').css({ '-webkit-transition': speed+'s'});
-    $('#moneda').css({ '-webkit-transform-style': 'preserve-3d'});
-    $('#moneda').css({ '-o-transition': speed+'s'});
-    $('#moneda').css({ '-o-transition-style': 'preserve-3d'});
-    $('#moneda').css({ '-transition': speed+'s'});
-    $('#moneda').css({ '-transform-style': 'preserve-3d'});
+function rotateCoin(degree, speed, orientation) {
+    $('#moneda').css({WebkitTransform: 'rotateY(' + degree + 'deg)'});
+    $('#moneda').css({'-o-transform': 'rotateY(' + degree + 'deg)'});
+    $('#moneda').css({'-transform': 'rotateY(' + degree + 'deg)'});
+    $('#moneda').css({'-moz-transform': 'rotateY(' + degree + 'deg)'});
+    $('#moneda').css({'-moz-transition': speed + 's'});
+    $('#moneda').css({'-moz-transform-style': 'preserve-3d'});
+    $('#moneda').css({'-webkit-transition': speed + 's'});
+    $('#moneda').css({'-webkit-transform-style': 'preserve-3d'});
+    $('#moneda').css({'-o-transition': speed + 's'});
+    $('#moneda').css({'-o-transition-style': 'preserve-3d'});
+    $('#moneda').css({'-transition': speed + 's'});
+    $('#moneda').css({'-transform-style': 'preserve-3d'});
 }
