@@ -23,8 +23,22 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
 
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
-
-        <?php echo $form->textFieldRow($model, 'provincia_id') ?>
+        <!--@TODO: borrar comentarios-->
+        <?php // echo $form->textFieldRow($model, 'provincia_id') ?>
+        <?php
+        $model_provincia = Provincia::model()->findAll();
+        if (!empty($model_provincia)) {
+            echo $form->select2Row($model, 'provincia_id', array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
+//                    'empty' => array(0 => '- Ninguna -'),
+//                    'class' => 'span6',
+                'options' => array(
+                    'placeholder' => 'PROVINCIA',
+                )
+            ));
+        }
+        ?>
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
