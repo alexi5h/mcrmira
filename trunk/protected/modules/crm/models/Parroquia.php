@@ -16,5 +16,14 @@ class Parroquia extends BaseParroquia
     {
         return Yii::t('app', 'Parroquia|Parroquias', $n);
     }
+    
+     public function relations() {
+        return array_merge(parent::relations(),
+                array(
+                    'canton'=>array(self::BELONGS_TO,'Canton','canton_id'),
+                )
+        );
+    }
+
 
 }
