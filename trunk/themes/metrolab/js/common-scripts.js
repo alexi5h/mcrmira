@@ -6,28 +6,28 @@ var Script = function() {
      * @author Alex Yepez Chavez
      * validacion de formularios para bloquear botones de accion
      */
-    $("form").submit(function(e) {
-//        alert($('form button.btn-success').attr('class'));
-        if (verificarValidacionModal("form"))
-        {
-            if (primero)
-            {
-                var botonSubmit = $('form button.btn-success');
-                $(botonSubmit).attr("disabled", true);
-                $(botonSubmit).html('<i class="icon-loading"></i> Espere...');
-                $(botonSubmit).attr("disabled", true);
-                $('form a').attr("disabled", true);
-                $('form a').attr("onclick", "true");
-            }
-            else
-            {
-                primero = true;
-            }
-
-        }
-
-        return;
-    });
+//    $("form").submit(function(e) {
+////        alert($('form button.btn-success').attr('class'));
+//        if (verificarValidacionModal("form"))
+//        {
+//            if (primero)
+//            {
+//                var botonSubmit = $('form button.btn-success');
+//                $(botonSubmit).attr("disabled", true);
+//                $(botonSubmit).html('<i class="icon-loading"></i> Espere...');
+//                $(botonSubmit).attr("disabled", true);
+//                $('form a').attr("disabled", true);
+//                $('form a').attr("onclick", "true");
+//            }
+//            else
+//            {
+//                primero = true;
+//            }
+//
+//        }
+//
+//        return;
+//    });
 
 //    sidebar dropdown menu
 
