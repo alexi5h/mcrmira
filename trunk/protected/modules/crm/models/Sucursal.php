@@ -4,6 +4,8 @@ Yii::import('crm.models._base.BaseSucursal');
 
 class Sucursal extends BaseSucursal
 {
+    public $provincia_id;
+    public $canton_id;
     /**
      * @return Sucursal
      */
@@ -15,6 +17,15 @@ class Sucursal extends BaseSucursal
     public static function label($n = 1)
     {
         return Yii::t('app', 'Sucursal|Sucursals', $n);
+    }
+       public function rules() {
+        return array(
+            array('direccion_id,provincia_id,canton_id,nombre', 'required'),
+            array('direccion_id', 'numerical', 'integerOnly'=>true),
+            array('nombre', 'length', 'max'=>45),
+            array('nombre', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, nombre, direccion_id', 'safe', 'on'=>'search'),
+        );
     }
 
 }
