@@ -100,6 +100,31 @@ class BarrioController extends AweController {
         ));
     }
 
+    public function actionajaxGetBarrioByParroquia() {
+         
+        if (Yii::app()->request->isAjaxRequest) {
+//         die(var_dump($_POST));  
+            if (isset($_POST['parroquia_id']) && $_POST['parroquia_id'] > 0) {
+                $data = Barrio::model()->findAll(array(
+                    "condition" => "parroquia_id =:parroquia_id ",
+                    "order" => "nombre",
+                    "params" => array(':parroquia_id' => $_POST['parroquia_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Barrios -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un barrio -', true);
+            }
+        }
+    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.

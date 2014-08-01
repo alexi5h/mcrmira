@@ -31,14 +31,26 @@ class SucursalController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+
         $model = new Sucursal;
+        $model->direccion = new Direccion;
+
 
         $this->performAjaxValidation($model, 'sucursal-form');
 
         if (isset($_POST['Sucursal'])) {
+
             $model->attributes = $_POST['Sucursal'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $model->direccion->attributes = $_POST['Direccion'];
+            $model->direccion->tipo = 'S';
+
+            if ($model->direccion->save()) {
+
+                $model->direccion_id = $model->direccion->id;
+
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
@@ -55,12 +67,22 @@ class SucursalController extends AweController {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
+
         $this->performAjaxValidation($model, 'sucursal-form');
 
         if (isset($_POST['Sucursal'])) {
+            $model->direccion = Direccion::model()->findByPk($model->direccion_id);
+
             $model->attributes = $_POST['Sucursal'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $model->direccion->attributes = $_POST['Direccion'];
+            $model->direccion->tipo = 'S';
+            if ($model->direccion->save()) {
+
+                $model->direccion_id = $model->direccion->id;
+                if ($model->save()) {
+
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
