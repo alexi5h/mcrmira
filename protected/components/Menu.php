@@ -38,7 +38,7 @@ class Menu {
         $items = array(
             array('label' => '<i class="icon-mail-reply"></i>  Regresar a la App', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-user"></i>  Usuarios', 'url' => Yii::app()->user->ui->userManagementAdminUrl, 'access' => 'Cruge.ui.*', 'active_rules' => array('module' => 'cruge')),
-            array('label' => '<i class="icon-book"></i>  Catálogos', 'url' => '#', 'items' => array(
+            array('label' => '<i class="icon-book"></i>  Catalogos', 'url' => '#', 'items' => array(
                     array('label' => 'Provincia', 'url' => array('/crm/provincia/admin'), 'access' => 'action_provincia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'provincia')),
                     array('label' => 'Cantones', 'url' => array('/crm/canton/admin'), 'access' => 'action_canton_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'canton')),
                     array('label' => 'Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
