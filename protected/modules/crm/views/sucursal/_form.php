@@ -7,8 +7,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'sucursal-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
-    'enableClientValidation' => false,
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
+    'enableClientValidation' => true,
         ));
 ?>
 
@@ -105,6 +105,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                                 )
                         );
                         ?>
+                        <?php echo $form->error($model, 'provincia_id'); ?>
                     </div>
                     <div class="span4">
                         <?php
@@ -136,7 +137,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                                 )
                         );
                         ?>
-
+                        <?php echo $form->error($model, 'canton_id'); ?>
                         <?php // echo $form->textField($model->direccion, 'parroquia_id', array('maxlength' => 32, 'class' => 'span5', 'placeholder' => 'Parroquia')) ?>
                         <?php // echo $form->textField($model->direccion, 'barrio_id', array('maxlength' => 32, 'class' => 'span5', 'placeholder' => 'Barrio')) ?>
                     </div>
@@ -176,7 +177,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                                 )
                         );
                         ?>
-                        <?php echo $form->error($model, 'parroquia_id'); ?>
+                        <?php echo $form->error($model->direccion, 'parroquia_id'); ?>
                     </div>
                     <div class="span4">
                         <?php
@@ -209,7 +210,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                                 )
                         );
                         ?>
-                        <?php echo $form->error($model, 'barrio_id'); ?>
+                        <?php echo $form->error($model->direccion, 'barrio_id'); ?>
                     </div>
                 </div>
             </div>
