@@ -37,6 +37,7 @@ class SucursalController extends AweController {
 
 
         $this->performAjaxValidation($model, 'sucursal-form');
+        $this->performAjaxValidation($model->direccion, 'sucursal-form');
 
         if (isset($_POST['Sucursal'])) {
 
