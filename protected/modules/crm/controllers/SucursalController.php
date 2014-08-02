@@ -34,23 +34,21 @@ class SucursalController extends AweController {
 
         $model = new Sucursal;
         $modelDireccion = new Direccion;
+        $modelDireccion->tipo = Direccion::TIPO_SUCURSAL;
+        $model->estado = Sucursal::ESTADO_ACTIVO;
         $this->performAjaxValidation(array($model, $modelDireccion));
-//        $this->performAjaxValidation($model, 'sucursal-form');
         if (isset($_POST['Sucursal'])) {
             $model->attributes = $_POST['Sucursal'];
             $modelDireccion->attributes = $_POST['Direccion'];
-            $modelDireccion->tipo = 'S';
-//            $valido = $model->validate() && $modelDireccion->validate();
-//            if ($valido) {
-            if ($model->direccion->save()) {
+            if ($modelDireccion->barrio_id == 0)
+                $modelDireccion->barrio_id = null;
 
-                $model->direccion_id = $model->direccion->id;
-
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
                 if ($model->save()) {
                     $this->redirect(array('admin'));
                 }
             }
-//            }
         }
 
         $this->render('create', array(
@@ -66,21 +64,17 @@ class SucursalController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
-
-        $this->performAjaxValidation($model, 'sucursal-form');
-
+        $modelDireccion = $model->direccion;
+        $this->performAjaxValidation(array($model, $modelDireccion));
         if (isset($_POST['Sucursal'])) {
-            $model->direccion = Direccion::model()->findByPk($model->direccion_id);
-
             $model->attributes = $_POST['Sucursal'];
-            $model->direccion->attributes = $_POST['Direccion'];
-            $model->direccion->tipo = 'S';
-            if ($model->direccion->save()) {
+            $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->barrio_id == 0)
+                $modelDireccion->barrio_id = null;
 
-                $model->direccion_id = $model->direccion->id;
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
                 if ($model->save()) {
-
                     $this->redirect(array('admin'));
                 }
             }
@@ -88,6 +82,7 @@ class SucursalController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
         ));
     }
 

@@ -7,13 +7,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'sucursal-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,
-        'afterValidate' => 'js:function(form, data, hasError){ $("#contenedor > div :not(.error)").addClass("success")}'
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+        'validateOnChange' => false,
+        'afterValidate' => 'js:function(form, data, hasError){ $("#contenedor > div :not(.error)").addClass("success");return true;}'
     ),
     'enableClientValidation' => false,
-//    'htmlOptions' => array(
-//        
-//    )
         ));
 ?>
 
@@ -22,15 +21,44 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . Sucursal::label(1); ?></h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
-            <!--a href="javascript:;" class="icon-remove"></a-->
         </span>
     </div>
     <div class="widget-body">
 
         <?php echo $form->errorSummary(array($model, $modelDireccion)) ?>
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
-
-        <?php // echo $form->textFieldRow($model, 'direccion_id')  ?>
+        <?php
+        if ($model->isNewRecord) {
+            $lista_provincia = CHtml::listData(Provincia::model()->findAll(), 'id', 'nombre');
+            $lista_canton = null;
+            $lista_parroquia = null;
+            $lista_barrio = null;
+        } else {
+            $modelDireccion->provincia_id = $modelDireccion->parroquia->canton->provincia->id;
+            $modelDireccion->canton_id = $modelDireccion->parroquia->canton->id;
+            $lista_provincia = CHtml::listData(Provincia::model()->findAll(), 'id', 'nombre');
+            $lista_canton = CHtml::listData(Canton::model()->findAll(array(
+                                "condition" => "provincia_id =:provincia_id ",
+                                "order" => "nombre",
+                                "params" => array(':provincia_id' => $modelDireccion->parroquia->canton->provincia->id,)
+                            )), 'id', 'nombre');
+            $lista_parroquia = CHtml::listData(Parroquia::model()->findAll(
+                                    array(
+                                        "condition" => "canton_id =:canton_id",
+                                        "order" => "nombre",
+                                        "params" => array(':canton_id' => $modelDireccion->parroquia->canton->id,)
+                            )), 'id', 'nombre');
+            $lista_barrio = null;
+            if ($modelDireccion->parroquia_id) {
+                $lista_barrio = CHtml::listData(Barrio::model()->findAll(
+                                        array(
+                                            "condition" => "parroquia_id =:parroquia_id",
+                                            "order" => "nombre",
+                                            "params" => array(':parroquia_id' => $modelDireccion->parroquia_id,)
+                                )), 'id', 'nombre');
+            }
+        }
+        ?>
         <div id="contenedor">
             <div class="control-group ">
                 <label class="control-label"><?php echo $form->labelEx($model, 'direccion_id') ?></label>
@@ -51,7 +79,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             <div class="controls controls-row">
                 <div class=" control-group span4">
                     <?php
-                    $lista_provincia = CHtml::listData(Provincia::model()->findAll(), 'id', 'nombre');
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,
@@ -70,7 +97,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 </div>
                 <div class=" control-group span4">
                     <?php
-                    $lista_canton = null;
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,
@@ -92,7 +118,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             <div class="controls controls-row">
                 <div class="control-group span4">
                     <?php
-                    $lista_parroquia = null;
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,
@@ -111,7 +136,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 </div>
                 <div class="control-group  success span4">
                     <?php
-                    $lista_barrio = null;
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,

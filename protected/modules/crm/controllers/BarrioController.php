@@ -101,7 +101,7 @@ class BarrioController extends AweController {
     }
 
     public function actionajaxGetBarrioByParroquia() {
-         
+
         if (Yii::app()->request->isAjaxRequest) {
 //         die(var_dump($_POST));  
             if (isset($_POST['parroquia_id']) && $_POST['parroquia_id'] > 0) {
