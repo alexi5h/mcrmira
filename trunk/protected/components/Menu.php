@@ -10,8 +10,8 @@ class Menu {
             array('label' => '<i class="icon-dashboard"></i> Dashboard', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-briefcase"></i> Clientes', 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
             array('label' => '<i class="icon-book"></i>  Pagos', 'url' => '#', 'items' => array(
-                array('label' => '<i class="icon-briefcase"></i> Pagos Mes', 'url' => array('/pago/pagoMes/admin'), 'access' => 'action_PagoMes_admin', 'active_rules' => array('module' => 'pago', 'controller' => 'pagoMes')),
-                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pago/deposito/admin'), 'access' => 'action_Deposito_admin', 'active_rules' => array('module' => 'pago', 'controller' => 'deposito')),
+                array('label' => '<i class="icon-briefcase"></i> Pagos Mes', 'url' => array('/pagos/pagoMes/admin'), 'access' => 'action_PagoMes_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pagoMes')),
+                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_Deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),
             )),
 //            array('label' => '<i class="icon-group"></i> Contactos', 'url' => array('/crm/contacto/admin'), 'access' => 'action_contacto_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'contacto')),
 //            array('label' => '<i class="icon-rocket"></i> Campañas', 'url' => array('/campanias/campania/admin'),'access'=>'action_campania_admin', 'active_rules' => array('module' => 'campanias')),
