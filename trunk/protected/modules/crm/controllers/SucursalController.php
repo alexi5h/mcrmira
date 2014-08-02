@@ -33,18 +33,15 @@ class SucursalController extends AweController {
     public function actionCreate() {
 
         $model = new Sucursal;
-        $model->direccion = new Direccion;
-
-
-        $this->performAjaxValidation($model, 'sucursal-form');
-        $this->performAjaxValidation($model->direccion, 'sucursal-form');
-
+        $modelDireccion = new Direccion;
+        $this->performAjaxValidation(array($model, $modelDireccion));
+//        $this->performAjaxValidation($model, 'sucursal-form');
         if (isset($_POST['Sucursal'])) {
-
             $model->attributes = $_POST['Sucursal'];
-            $model->direccion->attributes = $_POST['Direccion'];
-            $model->direccion->tipo = 'S';
-
+            $modelDireccion->attributes = $_POST['Direccion'];
+            $modelDireccion->tipo = 'S';
+//            $valido = $model->validate() && $modelDireccion->validate();
+//            if ($valido) {
             if ($model->direccion->save()) {
 
                 $model->direccion_id = $model->direccion->id;
@@ -53,10 +50,12 @@ class SucursalController extends AweController {
                     $this->redirect(array('admin'));
                 }
             }
+//            }
         }
 
         $this->render('create', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
         ));
     }
 
