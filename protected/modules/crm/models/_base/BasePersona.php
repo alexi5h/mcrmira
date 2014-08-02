@@ -15,27 +15,27 @@
  * @property string $apellido_paterno
  * @property string $apellido_materno
  * @property string $cedula
+ * @property string $ruc
  * @property string $telefono
  * @property string $celular
  * @property string $email
  * @property string $descripcion
+ * @property string $tipo
  * @property string $estado
  * @property string $fecha_creacion
  * @property string $fecha_actualizacion
  * @property integer $usuario_creacion_id
  * @property integer $usuario_actualizacion_id
- * @property integer $cliente_estado_id
  * @property integer $aprobado
  * @property integer $sucursal_id
+ * @property integer $persona_etapa_id
  * @property integer $direccion_domicilio_id
  * @property integer $direccion_negocio_id
- * @property string $ruc
- * @property string $tipo
  *
- * @property PersonaEtapa $clienteEstado
  * @property Sucursal $sucursal
  * @property Direccion $direccionDomicilio
  * @property Direccion $direccionNegocio
+ * @property PersonaEtapa $personaEtapa
  */
 abstract class BasePersona extends AweActiveRecord {
 
@@ -53,30 +53,30 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id', 'required'),
-            array('usuario_creacion_id, usuario_actualizacion_id, cliente_estado_id, aprobado, sucursal_id, direccion_domicilio_id, direccion_negocio_id', 'numerical', 'integerOnly'=>true),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id', 'required'),
+            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
             array('apellido_paterno, apellido_materno', 'length', 'max'=>30),
+            array('ruc', 'length', 'max'=>13),
             array('telefono, celular', 'length', 'max'=>24),
             array('email', 'length', 'max'=>255),
-            array('estado', 'length', 'max'=>8),
-            array('ruc', 'length', 'max'=>13),
             array('tipo', 'length', 'max'=>7),
+            array('estado', 'length', 'max'=>8),
             array('descripcion, fecha_actualizacion', 'safe'),
-            array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
             array('tipo', 'in', 'range' => array('CLIENTE','GARANTE')), // enum,
-            array('segundo_nombre, apellido_materno, telefono, celular, email, descripcion, estado, fecha_actualizacion, usuario_actualizacion_id, cliente_estado_id, aprobado, sucursal_id, direccion_domicilio_id, direccion_negocio_id, ruc, tipo', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, telefono, celular, email, descripcion, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, cliente_estado_id, aprobado, sucursal_id, direccion_domicilio_id, direccion_negocio_id, ruc, tipo', 'safe', 'on'=>'search'),
+            array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
+            array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'clienteEstado' => array(self::BELONGS_TO, 'PersonaEtapa', 'cliente_estado_id'),
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
             'direccionDomicilio' => array(self::BELONGS_TO, 'Direccion', 'direccion_domicilio_id'),
             'direccionNegocio' => array(self::BELONGS_TO, 'Direccion', 'direccion_negocio_id'),
+            'personaEtapa' => array(self::BELONGS_TO, 'PersonaEtapa', 'persona_etapa_id'),
         );
     }
 
@@ -91,26 +91,26 @@ abstract class BasePersona extends AweActiveRecord {
                 'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
                 'apellido_materno' => Yii::t('app', 'Apellido Materno'),
                 'cedula' => Yii::t('app', 'Cedula'),
+                'ruc' => Yii::t('app', 'Ruc'),
                 'telefono' => Yii::t('app', 'Telefono'),
                 'celular' => Yii::t('app', 'Celular'),
                 'email' => Yii::t('app', 'Email'),
                 'descripcion' => Yii::t('app', 'Descripcion'),
+                'tipo' => Yii::t('app', 'Tipo'),
                 'estado' => Yii::t('app', 'Estado'),
                 'fecha_creacion' => Yii::t('app', 'Fecha Creacion'),
                 'fecha_actualizacion' => Yii::t('app', 'Fecha Actualizacion'),
                 'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
                 'usuario_actualizacion_id' => Yii::t('app', 'Usuario Actualizacion'),
-                'cliente_estado_id' => Yii::t('app', 'Cliente Estado'),
                 'aprobado' => Yii::t('app', 'Aprobado'),
                 'sucursal_id' => Yii::t('app', 'Sucursal'),
+                'persona_etapa_id' => Yii::t('app', 'Persona Etapa'),
                 'direccion_domicilio_id' => Yii::t('app', 'Direccion Domicilio'),
                 'direccion_negocio_id' => Yii::t('app', 'Direccion Negocio'),
-                'ruc' => Yii::t('app', 'Ruc'),
-                'tipo' => Yii::t('app', 'Tipo'),
-                'clienteEstado' => null,
                 'sucursal' => null,
                 'direccionDomicilio' => null,
                 'direccionNegocio' => null,
+                'personaEtapa' => null,
         );
     }
 
@@ -123,22 +123,22 @@ abstract class BasePersona extends AweActiveRecord {
         $criteria->compare('apellido_paterno', $this->apellido_paterno, true);
         $criteria->compare('apellido_materno', $this->apellido_materno, true);
         $criteria->compare('cedula', $this->cedula, true);
+        $criteria->compare('ruc', $this->ruc, true);
         $criteria->compare('telefono', $this->telefono, true);
         $criteria->compare('celular', $this->celular, true);
         $criteria->compare('email', $this->email, true);
         $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('fecha_creacion', $this->fecha_creacion, true);
         $criteria->compare('fecha_actualizacion', $this->fecha_actualizacion, true);
         $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
         $criteria->compare('usuario_actualizacion_id', $this->usuario_actualizacion_id);
-        $criteria->compare('cliente_estado_id', $this->cliente_estado_id);
         $criteria->compare('aprobado', $this->aprobado);
         $criteria->compare('sucursal_id', $this->sucursal_id);
+        $criteria->compare('persona_etapa_id', $this->persona_etapa_id);
         $criteria->compare('direccion_domicilio_id', $this->direccion_domicilio_id);
         $criteria->compare('direccion_negocio_id', $this->direccion_negocio_id);
-        $criteria->compare('ruc', $this->ruc, true);
-        $criteria->compare('tipo', $this->tipo, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
