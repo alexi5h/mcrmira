@@ -29,6 +29,7 @@ return array(
     ),
     'modules' => array(
         'crm',
+        'pago',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
@@ -121,10 +122,10 @@ return array(
         ),
         // uncomment the following to use a MySQL database
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=mcrmira',
+            'connectionString' => 'mysql:host=localhost:3308;dbname=mcrmira',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
