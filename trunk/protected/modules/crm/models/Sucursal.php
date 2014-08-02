@@ -4,8 +4,8 @@ Yii::import('crm.models._base.BaseSucursal');
 
 class Sucursal extends BaseSucursal {
 
-    public $provincia_id;
-    public $canton_id;
+    const ESTADO_ACTIVO = 'ACTIVO';
+    const ESTADO_INACTIVO = 'INACTIVO';
 
     /**
      * @return Sucursal
@@ -20,21 +20,12 @@ class Sucursal extends BaseSucursal {
 
     public function rules() {
         return array(
-            array('nombre', 'required'),
-//            array('provincia_id', 'numerical',
-//                'integerOnly' => true,
-//                'min' => 1,
-//                'tooSmall' => 'No hay Provincias.',
-//            ),
-//            array('canton_id', 'numerical',
-//                'integerOnly' => true,
-//                'min' => 1,
-//                'tooSmall' => 'No hay Cantones.',
-//            ),
-//            array('direccion_id', 'numerical', 'integerOnly' => true),
+            array('nombre, estado', 'required'),
+            array('direccion_id', 'numerical', 'integerOnly' => true),
             array('nombre', 'length', 'max' => 45),
-            array('nombre', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, nombre, direccion_id', 'safe', 'on' => 'search'),
+            array('estado', 'length', 'max' => 8),
+            array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
+            array('id, nombre, direccion_id, estado', 'safe', 'on' => 'search'),
         );
     }
 

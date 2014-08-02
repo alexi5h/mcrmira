@@ -1,12 +1,12 @@
 $(function() {
 
-    $("#Sucursal_provincia_id").change(function() {
+    $("#Direccion_provincia_id").change(function() {
 
-        AjaxListaCantones("Sucursal_provincia_id", "Sucursal_canton_id");
+        AjaxListaCantones("Direccion_provincia_id", "Direccion_canton_id");
     });
-    $("#Sucursal_canton_id").change(function() {
+    $("#Direccion_canton_id").change(function() {
 
-        AjaxListaParroquias("Sucursal_canton_id", "Direccion_parroquia_id");
+        AjaxListaParroquias("Direccion_canton_id", "Direccion_parroquia_id");
     });
     $("#Direccion_parroquia_id").change(function() {        
         AjaxListaBarrios("Direccion_parroquia_id", "Direccion_barrio_id");

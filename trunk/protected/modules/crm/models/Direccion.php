@@ -6,6 +6,9 @@ class Direccion extends BaseDireccion {
 
     public $provincia_id;
     public $canton_id;
+    const TIPO_SUCURSAL='S';
+    const TIPO_CLIENTE='C';
+    const TIPO_ENTIDAD_BANCARIA='E';
 
     /**
      * @return Direccion
