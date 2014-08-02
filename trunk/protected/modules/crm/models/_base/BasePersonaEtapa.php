@@ -44,7 +44,7 @@ abstract class BasePersonaEtapa extends AweActiveRecord {
 
     public function relations() {
         return array(
-            'personas' => array(self::HAS_MANY, 'Persona', 'cliente_estado_id'),
+            'personas' => array(self::HAS_MANY, 'Persona', 'persona_etapa_id'),
         );
     }
 
