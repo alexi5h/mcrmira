@@ -12,6 +12,7 @@
  * @property integer $id
  * @property string $nombre
  * @property integer $direccion_id
+ * @property string $estado
  *
  * @property Direccion $direccion
  */
@@ -31,10 +32,12 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('nombre, direccion_id', 'required'),
+            array('nombre, direccion_id, estado', 'required'),
             array('direccion_id', 'numerical', 'integerOnly'=>true),
             array('nombre', 'length', 'max'=>45),
-            array('id, nombre, direccion_id', 'safe', 'on'=>'search'),
+            array('estado', 'length', 'max'=>8),
+            array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
+            array('id, nombre, direccion_id, estado', 'safe', 'on'=>'search'),
         );
     }
 
@@ -52,6 +55,7 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
                 'direccion_id' => Yii::t('app', 'Direccion'),
+                'estado' => Yii::t('app', 'Estado'),
                 'direccion' => null,
         );
     }
@@ -62,6 +66,7 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('nombre', $this->nombre, true);
         $criteria->compare('direccion_id', $this->direccion_id);
+        $criteria->compare('estado', $this->estado, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
