@@ -94,8 +94,11 @@ class SucursalController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+//            $this->loadModel($id)->delete();
 
+            $model = $this->loadModel($id);
+            $model->estado = Sucursal::ESTADO_INACTIVO;
+            $model->save();
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

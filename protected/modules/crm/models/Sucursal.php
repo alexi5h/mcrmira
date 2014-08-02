@@ -29,4 +29,15 @@ class Sucursal extends BaseSucursal {
         );
     }
 
+    public function scopes() {
+        return array(
+            'activos' => array(
+                'condition' => 't.estado = :estado',
+                'params' => array(
+                    ':estado' => self::ESTADO_ACTIVO,
+                ),
+            ),
+        );
+    }
+
 }
