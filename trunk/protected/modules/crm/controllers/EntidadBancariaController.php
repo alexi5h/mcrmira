@@ -32,18 +32,28 @@ class EntidadBancariaController extends AweController {
      */
     public function actionCreate() {
         $model = new EntidadBancaria;
-
-        $this->performAjaxValidation($model, 'entidad-bancaria-form');
+        $modelDireccion = new Direccion;
+        $modelDireccion->tipo = Direccion::TIPO_SUCURSAL;
+        $model->estado = EntidadBancaria::ESTADO_ACTIVO;
+        $this->performAjaxValidation(array($model, $modelDireccion));
 
         if (isset($_POST['EntidadBancaria'])) {
             $model->attributes = $_POST['EntidadBancaria'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->barrio_id == 0)
+                $modelDireccion->barrio_id = null;
+
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
         $this->render('create', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
         ));
     }
 
@@ -54,18 +64,26 @@ class EntidadBancariaController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
-        $this->performAjaxValidation($model, 'entidad-bancaria-form');
+        $modelDireccion = $model->direccion;
+        $this->performAjaxValidation(array($model, $modelDireccion));
 
         if (isset($_POST['EntidadBancaria'])) {
             $model->attributes = $_POST['EntidadBancaria'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->barrio_id == 0)
+                $modelDireccion->barrio_id = null;
+
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
         $this->render('update', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
         ));
     }
 
@@ -77,7 +95,11 @@ class EntidadBancariaController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+//            $this->loadModel($id)->delete();
+
+            $model = $this->loadModel($id);
+            $model->estado = EntidadBancaria::ESTADO_INACTIVO;
+            $model->save();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))

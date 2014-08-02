@@ -24,7 +24,7 @@ $this->menu = array(
         $this->widget('bootstrap.widgets.TbGridView',array(
         'id' => 'entidad-bancaria-grid',
         'type' => 'striped bordered hover advance',
-        'dataProvider' => $model->search(),
+        'dataProvider' => $model->activos()->search(),
         'columns' => array(
                     'nombre',
                         array(
