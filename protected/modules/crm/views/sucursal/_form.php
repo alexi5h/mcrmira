@@ -78,19 +78,10 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                             ));
                         }
 
-//                    echo $form->select2Row($model, 'provincia_id', array(
-//                        'asDropDownList' => true,
-//                        'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
-//                        'options' => array(
-//                            'placeholder' => '-- Seleccione Provincia --',
-//                        )
-//                    ));
-//                        var_dump($model->provincia_id);
                         $lista_provincia = !$model->provincia_id ? array(0 => '- Provincia -') + CHtml::listData(Provincia::model()->findAll(), 'id', 'nombre') : array(0 => '- Provincia -') +
                                 CHtml::listData(
                                         Provincia::model()->findAll(
                                         ), 'id', 'nombre');
-
                         $this->widget(
                                 'bootstrap.widgets.TbSelect2', array(
                             'asDropDownList' => TRUE,
@@ -109,14 +100,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     </div>
                     <div class="span4">
                         <?php
-//                    echo $form->select2Row($model, 'canton_id', array(
-//                        'asDropDownList' => true,
-//                        'data' => CHtml::listData($model_canton, 'id', 'nombre'),
-//                        'options' => array(
-//                            'placeholder' => '-- Selecione Canton --',
-//                        )
-//                    ));
-
                         $lista_canton = !$model->canton_id ? array(0 => '- Ninguno -') : array(0 => '- canton -') + CHtml::listData(
                                         Canton::model()->findAll(array(
                                             "condition" => "provincia_id =:provincia_id ",
@@ -138,8 +121,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                         );
                         ?>
                         <?php echo $form->error($model, 'canton_id'); ?>
-                        <?php // echo $form->textField($model->direccion, 'parroquia_id', array('maxlength' => 32, 'class' => 'span5', 'placeholder' => 'Parroquia')) ?>
-                        <?php // echo $form->textField($model->direccion, 'barrio_id', array('maxlength' => 32, 'class' => 'span5', 'placeholder' => 'Barrio')) ?>
                     </div>
                 </div>
             </div>
@@ -147,15 +128,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 <div class="controls controls-row">
                     <div class="span4">
                         <?php
-//                    echo $form->select2Row($model->direccion, 'parroquia_id', array(
-//                        'asDropDownList' => true,
-//                        'data' => CHtml::listData($model_parroquia, 'id', 'nombre'),
-//                        'options' => array(
-//                            'placeholder' => '-- Selecione Parroquia --',
-//                        )
-//                    ));
-
-
                         $lista_parroquia = !$model->direccion->parroquia_id ? array(0 => '- Ninguno -') : array(0 => '- Barrio -') + CHtml::listData(
                                         Parroquia::model()->findAll(
                                                 array(
@@ -181,14 +153,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     </div>
                     <div class="span4">
                         <?php
-//                    echo $form->select2Row($model->direccion, 'barrio_id', array(
-//                        'asDropDownList' => true,
-//                        'data' => CHtml::listData($model_barrio, 'id', 'nombre'),
-//                        'options' => array(
-//                            'placeholder' => '-- Selecione Barrio --',
-//                        )
-//                    ));
-
                         $lista_barrio = !$model->direccion->barrio_id ? array(0 => '- Ninguno -') : array(0 => '- Barrio -') + CHtml::listData(
                                         Barrio::model()->findAll(
                                                 array(
