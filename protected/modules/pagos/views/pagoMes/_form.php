@@ -34,9 +34,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 $model, 'fecha', array(
             'options' => array(
                 'language' => 'es',
-            ),
-            'htmlOptions' => array(
-                'hint' => 'Click inside! This is a super cool date field.',
             )
                 ), array(
             'prepend' => '<i class="icon-calendar"></i>'
