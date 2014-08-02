@@ -6,7 +6,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'persona-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
         ));
 ?>
@@ -44,7 +44,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'usuario_actualizacion_id') ?>
 
-        <?php echo $form->textFieldRow($model, 'cliente_estado_id') ?>
+        <?php echo $form->textFieldRow($model, 'persona_etapa_id') ?>
 
         <?php echo $form->textFieldRow($model, 'aprobado') ?>
 
