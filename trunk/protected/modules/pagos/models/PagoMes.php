@@ -4,8 +4,9 @@ Yii::import('pagos.models._base.BasePagoMes');
 
 class PagoMes extends BasePagoMes {
 
-    const ESTADO_DEUDA= 'DEUDA';
-    const ESTADO_PAGADO= 'PAGADO';
+    const ESTADO_DEUDA = 'DEUDA';
+    const ESTADO_PAGADO = 'PAGADO';
+
     /**
      * @return PagoMes
      */
@@ -17,10 +18,23 @@ class PagoMes extends BasePagoMes {
         return Yii::t('app', 'PagoMes|PagoMes', $n);
     }
 
-    public static function fechaMes($id_cliente) {
-        $mes = date("m")+0;
-        $meses=Util::obtenerMeses();
-        $año = date("Y");
-        return "C_" . $id_cliente . "_" . $meses[$mes-1] . "_" . $año;
+    public function de_cliente($id_cliente) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'cliente_id = :cliente_id',
+                    'params' => array(
+                        ':cliente_id' => $id_cliente
+                    ),
+                )
+        );
+        return $this;
     }
+
+    public static function fechaMes($id_cliente) {
+        $mes = date("m") + 0;
+        $meses = Util::obtenerMeses();
+        $año = date("Y");
+        return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
+    }
+
 }

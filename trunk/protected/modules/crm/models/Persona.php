@@ -11,6 +11,9 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
 
+    private $nombre_formato;
+    private $nombre_corto;
+
     /**
      * @return Persona
      */
@@ -20,6 +23,13 @@ class Persona extends BasePersona {
 
     public static function label($n = 1) {
         return Yii::t('app', 'Persona|Personas', $n);
+    }
+
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), array(
+            'nombre_formato' => Yii::t('app', 'Nombre Completo'),
+                )
+        );
     }
 
     public function scopes() {
@@ -43,6 +53,19 @@ class Persona extends BasePersona {
                 )
         );
         return $this;
+    }
+
+    public function getNombre_formato() {
+        $return = $this->primer_nombre;
+        $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
+        $return = $return . ' ' . $this->apellido_paterno;
+        $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
+        return $return;
+    }
+
+    public function getNombre_corto() {
+        $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
+        return $return;
     }
 
 }
