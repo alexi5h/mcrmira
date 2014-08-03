@@ -19,71 +19,65 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
+        <div style='overflow:auto'> 
 
-        <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
-            'id' => 'persona-grid',
-            'type' => 'striped bordered hover advance',
-            'dataProvider' => $model->de_tipo(Persona::TIPO_CLIENTE)->activos()->search(),
-            'columns' => array(
-                'primer_nombre',
-                'segundo_nombre',
-                'apellido_paterno',
-                'apellido_materno',
-                'cedula',
-                'telefono',
-                /*
-                  'celular',
-                  'email',
-                  array(
-                  'name' => 'estado',
-                  'filter' => array('ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO',),
-                  ),
-                  'fecha_creacion',
-                  'fecha_actualizacion',
-                  'usuario_creacion_id',
-                  'usuario_actualizacion_id',
-                  'cliente_estado_id',
-                  'aprobado',
-                  'sucursal_id',
-                  'direccion_domicilio_id',
-                  'direccion_negocio_id',
-                  'ruc',
-                  array(
-                  'name' => 'tipo',
-                  'filter' => array('CLIENTE'=>'CLIENTE','GARANTE'=>'GARANTE',),
-                  ),
-                 */
-                array(
-                    'class' => 'CButtonColumn',
-                    'template' => '{update} {delete}',
-                    'afterDelete' => 'function(link,success,data){ 
+            <?php
+            $this->widget('ext.bootstrap.widgets.TbGridView', array(
+                'id' => 'persona-grid',
+                'type' => 'striped bordered hover advance',
+                'dataProvider' => $model->de_tipo(Persona::TIPO_CLIENTE)->activos()->search(),
+                'columns' => array(
+                    array(
+                        'name' => 'nombre_formato',
+                        'value' => 'CHtml::link($data->nombre_formato, Yii::app()->createUrl("crm/persona/view",array("id"=>$data->id)))',
+                        'type' => 'raw',
+                    ),
+                    'cedula',
+                    'ruc',
+                    'telefono',
+                    'celular',
+                    'email',
+                    array(
+                        'name' => 'persona_etapa_id',
+                        'value' => '$data->personaEtapa',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'name' => 'sucursal_id',
+                        'value' => '$data->sucursal',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'class' => 'CButtonColumn',
+                        'template' => '{update} {delete}',
+                        'afterDelete' => 'function(link,success,data){ 
                     if(success) {
                          $("#flashMsg").empty();
                          $("#flashMsg").css("display","");
                          $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
                     }
                     }',
-                    'buttons' => array(
-                        'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                        'buttons' => array(
+                            'update' => array(
+                                'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+                                'options' => array('title' => 'Actualizar'),
+                                'imageUrl' => false,
+                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                            ),
+                            'delete' => array(
+                                'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+                                'options' => array('title' => 'Eliminar'),
+                                'imageUrl' => false,
+                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+                            ),
                         ),
-                        'delete' => array(
-                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-                            'options' => array('title' => 'Eliminar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-                        ),
+                        'htmlOptions' => array(
+                            'width' => '80px'
+                        )
                     ),
-                    'htmlOptions' => array(
-                        'width' => '80px'
-                    )
                 ),
-            ),
-        ));
-        ?>
+            ));
+            ?>
+        </div>
     </div>
 </div>
