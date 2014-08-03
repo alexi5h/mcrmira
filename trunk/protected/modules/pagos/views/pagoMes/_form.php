@@ -25,7 +25,17 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'descripcion', array('maxlength' => 100)) ?>
 
-        <?php echo $form->textFieldRow($model, 'cliente_id') ?>
+        <?php
+        echo $form->textFieldRow($model, 'cliente_id')
+//        $model_cliente = Persona::model()->findAll();
+//        echo $form->select2Row($model, 'cliente_id', array(
+//            'asDropDownList' => true,
+//            'data' => CHtml::listData($model_cliente, 'id', 'apelido_paterno'.'apellido_materno'.'primer_nombre'.'segundo_nombre'),
+//            'options' => array(
+//                'placeholder' => '-- Seleccione --',
+//            )
+//        ));
+        ?>
 
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 5)) ?>
 
@@ -35,13 +45,11 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'options' => array(
                 'language' => 'es',
             )
-                ), array(
-            'prepend' => '<i class="icon-calendar"></i>'
                 )
         );
         ?>
 
-        <?php echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',)) ?>
+        <!--echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',))-->
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
