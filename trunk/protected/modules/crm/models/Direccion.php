@@ -6,9 +6,12 @@ class Direccion extends BaseDireccion {
 
     public $provincia_id;
     public $canton_id;
-    const TIPO_SUCURSAL='S';
-    const TIPO_CLIENTE='C';
-    const TIPO_ENTIDAD_BANCARIA='E';
+
+    const TIPO_SUCURSAL = 'S';
+    const TIPO_CLIENTE = 'C';
+    const TIPO_ENTIDAD_BANCARIA = 'E';
+
+    private $direccion_completa;
 
     /**
      * @return Direccion
@@ -23,8 +26,26 @@ class Direccion extends BaseDireccion {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('provincia_id,canton_id,parroquia_id', 'required','on'=>'register'),
+            array('provincia_id,canton_id,parroquia_id', 'required', 'on' => 'register'),
         ));
+    }
+
+    public function getDireccion_completa() {
+        if (!$this->direccion_completa)
+            $this->direccion_completa = ($this->parroquia ? $this->parroquia->canton->provincia . " - " . $this->parroquia->canton . " - " . $this->parroquia : "") .
+                    ($this->barrio ? " - " . $this->barrio : "" ) .
+                    ($this->calle_1 && $this->calle_2 ?
+                            " - " . $this->calle_1 . " - " . $this->calle_2 :
+                            ($this->calle_1 ? " - " . $this->calle_1 :
+                                    ($this->calle_2 ? " - " . $this->calle_2 : "")
+                            )
+                    );
+        return $this->direccion_completa;
+    }
+
+    public function setDireccion_completa($nombre_completo) {
+        $this->direccion_completa = $nombre_completo;
+        return $this->direccion_completa;
     }
 
 }

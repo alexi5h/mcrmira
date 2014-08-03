@@ -98,8 +98,14 @@ class EntidadBancariaController extends AweController {
 //            $this->loadModel($id)->delete();
 
             $model = $this->loadModel($id);
-            $model->estado = EntidadBancaria::ESTADO_INACTIVO;
-            $model->save();
+            $depositos = $model->depositos;
+            if (count($depositos) == 0) {
+                echo '<div class = "alert alert-success"><button data-dismiss = "alert" class = "close" type = "button">×</button>Borrado Exitosamente.</div>';
+                $model->estado = EntidadBancaria::ESTADO_INACTIVO;
+                $model->save();
+            } else if (count($depositos) >= 1) {
+                echo '<div class = "alert alert-error"><button data-dismiss = "alert" class = "close" type = "button">×</button>Imposible eliminar la Entidad Bancaria, varios depositos dependen de ésta.</div>';
+            }
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))

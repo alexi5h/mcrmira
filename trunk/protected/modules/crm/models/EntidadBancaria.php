@@ -1,11 +1,13 @@
 <?php
 
 Yii::import('crm.models._base.BaseEntidadBancaria');
+Yii::import('pagos.models.Deposito');
 
 class EntidadBancaria extends BaseEntidadBancaria {
 
     const ESTADO_ACTIVO = 'ACTIVO';
     const ESTADO_INACTIVO = 'INACTIVO';
+
 
     /**
      * @return EntidadBancaria
@@ -29,6 +31,19 @@ class EntidadBancaria extends BaseEntidadBancaria {
         );
     }
 
+    public function search() {
+        $criteria = new CDbCriteria;
+        
+        $criteria->compare('id', $this->id);
+        $criteria->compare('nombre', $this->nombre, true);
+        $criteria->compare('direccion_id', $this->direccion_id);
+        $criteria->compare('estado', $this->estado, true);        
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     public function scopes() {
         return array(
             'activos' => array(
@@ -37,6 +52,13 @@ class EntidadBancaria extends BaseEntidadBancaria {
                     ':estado' => self::ESTADO_ACTIVO,
                 ),
             ),
+        );
+    }
+
+    public function relations() {
+        return array(
+            'direccion' => array(self::BELONGS_TO, 'Direccion', 'direccion_id'),
+            'depositos' => array(self::HAS_MANY, 'Deposito', 'entidad_bancaria_id'),
         );
     }
 

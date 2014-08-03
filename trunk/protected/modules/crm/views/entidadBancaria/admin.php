@@ -2,7 +2,7 @@
 /** @var EntidadBancariaController $this */
 /** @var EntidadBancaria $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'), 
+    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -20,19 +20,19 @@ $this->menu = array(
     </div>
     <div class="widget-body">
 
-            <?php 
-        $this->widget('bootstrap.widgets.TbGridView',array(
-        'id' => 'entidad-bancaria-grid',
-        'type' => 'striped bordered hover advance',
-        'dataProvider' => $model->activos()->search(),
-        'columns' => array(
-                    'nombre',
-                        array(
+        <?php
+        $this->widget('bootstrap.widgets.TbGridView', array(
+            'id' => 'entidad-bancaria-grid',
+            'type' => 'striped bordered hover advance',
+            'dataProvider' => $model->activos()->search(),
+            'columns' => array(
+                'nombre',
+                array(
                     'name' => 'direccion_id',
-                    'value' => 'isset($data->direccion) ? $data->direccion : null',
+                    'value' => '$data->direccion->direccion_completa ? $data->direccion->direccion_completa : null',
                     'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
                 ),
-                    array(
+                array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
                     'afterDelete' => 'function(link,success,data){ 
@@ -47,20 +47,21 @@ $this->menu = array(
                             'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
                             'options' => array('title' => 'Actualizar'),
                             'imageUrl' => false,
-                             //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                         ),
                         'delete' => array(
                             'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
                             'options' => array('title' => 'Eliminar'),
                             'imageUrl' => false,
-                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
                         ),
                     ),
                     'htmlOptions' => array(
                         'width' => '80px'
                     )
                 ),
-        ),
-        )); ?>
+            ),
+        ));
+        ?>
     </div>
 </div>
