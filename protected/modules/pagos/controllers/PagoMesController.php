@@ -40,17 +40,20 @@ class PagoMesController extends AweController {
             $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
             $model->estado = PagoMes::ESTADO_DEUDA;
             
-            $model_persona = new Persona('search');
+            $model_persona = new Persona();
             $model_persona->unsetAttributes();
-            $model_persona->id = $model->cliente_id;
-            if (isset($_GET['Persona'])) {
-                $model_persona->attributes = $_GET['Persona'];
-            }
-            
-            if($model_persona->estado=='ACTIVO'){
-                if ($model->save()) {
+            $model_persona=  Persona::model()->findByAttributes(array('id'=>$model->cliente_id));
+            $model->cantidad=$model_persona->id;
+//            $model_persona->id = $model->cliente_id;
+//            if (isset($_GET['Persona'])) {
+//                $model_persona->attributes = $_GET['Persona'];
+//            }
+//            
+//            if($model_persona->estado=='ACTIVO'){
+//                
+//            }
+            if ($model->save()) {
                 $this->redirect(array('admin'));
-            }
             }
             
         }
