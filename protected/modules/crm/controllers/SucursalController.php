@@ -33,7 +33,7 @@ class SucursalController extends AweController {
     public function actionCreate() {
 
         $model = new Sucursal;
-        $modelDireccion = new Direccion;
+        $modelDireccion = new Direccion('register');
         $modelDireccion->tipo = Direccion::TIPO_SUCURSAL;
         $model->estado = Sucursal::ESTADO_ACTIVO;
         $this->performAjaxValidation(array($model, $modelDireccion));

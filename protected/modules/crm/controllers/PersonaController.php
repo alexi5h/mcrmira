@@ -32,11 +32,29 @@ class PersonaController extends AweController {
      */
     public function actionCreate() {
         $model = new Persona;
-
-        $this->performAjaxValidation($model, 'persona-form');
-
+        $modelDireccion1 = new Direccion;
+        $modelDireccion2 = new Direccion;
+        $model->usuario_creacion_id = Yii::app()->user->id;
+        $model->fecha_creacion = Util::FechaActual();
+        $model->estado = Persona::ESTADO_ACTIVO;
+        $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
+            $model->usuario_creacion_id = Yii::app()->user->id;
+            $modelDireccion1->attributes = $_POST['Direccion1'];
+            $modelDireccion2->attributes = $_POST['Direccion2'];
+            if (implode('', array_values($modelDireccion1->attributes)) != '') {
+                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
+                if ($modelDireccion1->save(false)) {
+                    $model->direccion_domicilio_id = $modelDireccion1->id;
+                }
+            }
+            if (implode('', array_values($modelDireccion2->attributes)) != '') {
+                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
+                if ($modelDireccion2->save(false)) {
+                    $model->direccion_negocio_id = $modelDireccion2->id;
+                }
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -44,6 +62,8 @@ class PersonaController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'modelDireccion1' => $modelDireccion1,
+            'modelDireccion2' => $modelDireccion2,
         ));
     }
 
@@ -54,18 +74,43 @@ class PersonaController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $modelDireccion1 = $model->direccionDomicilio ? $model->direccionDomicilio : new Direccion;
+        $modelDireccion2 = $model->direccionNegocio ? $model->direccionNegocio : new Direccion;
+        $model->usuario_actualizacion_id = Yii::app()->user->id;
+        $model->fecha_actualizacion = Util::FechaActual();
 
-        $this->performAjaxValidation($model, 'persona-form');
-
+        $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
+            $model->usuario_creacion_id = Yii::app()->user->id;
+            $modelDireccion1->attributes = $_POST['Direccion1'];
+            $modelDireccion2->attributes = $_POST['Direccion2'];
+            if (implode('', array_values($modelDireccion1->attributes)) != '') {
+                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
+                if ($modelDireccion1->barrio_id == 0) {
+                    $modelDireccion1->barrio_id = null;
+                }
+                if ($modelDireccion1->save(false)) {
+                    $model->direccion_domicilio_id = $modelDireccion1->id;
+                }
+            }
+            if (implode('', array_values($modelDireccion2->attributes)) != '') {
+                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
+                if ($modelDireccion2->barrio_id == 0) {
+                    $modelDireccion2->barrio_id = null;
+                }
+                if ($modelDireccion2->save(false)) {
+                    $model->direccion_negocio_id = $modelDireccion2->id;
+                }
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
         }
-
         $this->render('update', array(
             'model' => $model,
+            'modelDireccion1' => $modelDireccion1,
+            'modelDireccion2' => $modelDireccion2,
         ));
     }
 

@@ -23,7 +23,7 @@ class Direccion extends BaseDireccion {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('provincia_id,canton_id,parroquia', 'required'),
+            array('provincia_id,canton_id,parroquia_id', 'required','on'=>'register'),
         ));
     }
 

@@ -32,7 +32,7 @@ class EntidadBancariaController extends AweController {
      */
     public function actionCreate() {
         $model = new EntidadBancaria;
-        $modelDireccion = new Direccion;
+        $modelDireccion = new Direccion('register');
         $modelDireccion->tipo = Direccion::TIPO_SUCURSAL;
         $model->estado = EntidadBancaria::ESTADO_ACTIVO;
         $this->performAjaxValidation(array($model, $modelDireccion));
