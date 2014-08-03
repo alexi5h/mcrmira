@@ -20,7 +20,7 @@
  *
  * @property Barrio $barrio
  * @property Parroquia $parroquia
- * @property EntidadBacaria[] $entidadBacarias
+ * @property EntidadBancaria[] $entidadBancarias
  * @property Persona[] $personas
  * @property Persona[] $personas1
  * @property Sucursal[] $sucursals
@@ -41,14 +41,14 @@ abstract class BaseDireccion extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('tipo, parroquia_id', 'required'),
+            array('tipo', 'required'),
             array('barrio_id, parroquia_id', 'numerical', 'integerOnly'=>true),
             array('calle_1, calle_2', 'length', 'max'=>128),
             array('numero', 'length', 'max'=>8),
             array('tipo', 'length', 'max'=>1),
             array('referencia', 'safe'),
             array('tipo', 'in', 'range' => array('C','S','E')), // enum,
-            array('calle_1, calle_2, numero, referencia, barrio_id', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('calle_1, calle_2, numero, referencia, barrio_id, parroquia_id', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, calle_1, calle_2, numero, referencia, tipo, barrio_id, parroquia_id', 'safe', 'on'=>'search'),
         );
     }
@@ -57,7 +57,7 @@ abstract class BaseDireccion extends AweActiveRecord {
         return array(
             'barrio' => array(self::BELONGS_TO, 'Barrio', 'barrio_id'),
             'parroquia' => array(self::BELONGS_TO, 'Parroquia', 'parroquia_id'),
-            'entidadBacarias' => array(self::HAS_MANY, 'EntidadBacaria', 'direccion_id'),
+            'entidadBancarias' => array(self::HAS_MANY, 'EntidadBancaria', 'direccion_id'),
             'personas' => array(self::HAS_MANY, 'Persona', 'direccion_domicilio_id'),
             'personas1' => array(self::HAS_MANY, 'Persona', 'direccion_negocio_id'),
             'sucursals' => array(self::HAS_MANY, 'Sucursal', 'direccion_id'),
@@ -79,7 +79,7 @@ abstract class BaseDireccion extends AweActiveRecord {
                 'parroquia_id' => Yii::t('app', 'Parroquia'),
                 'barrio' => null,
                 'parroquia' => null,
-                'entidadBacarias' => null,
+                'entidadBancarias' => null,
                 'personas' => null,
                 'personas1' => null,
                 'sucursals' => null,

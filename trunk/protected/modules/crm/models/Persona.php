@@ -4,8 +4,12 @@ Yii::import('crm.models._base.BasePersona');
 
 class Persona extends BasePersona {
 
+    //estado: ACTIVO,INACTIVO
     const ESTADO_ACTIVO = 'ACTIVO';
     const ESTADO_INACTIVO = 'INACTIVO';
+    //tipo: CLIENTE,GARANTE
+    const TIPO_CLIENTE = 'CLIENTE';
+    const TIPO_GARANTE = 'GARANTE';
 
     /**
      * @return Persona
