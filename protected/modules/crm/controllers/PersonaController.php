@@ -36,6 +36,7 @@ class PersonaController extends AweController {
         $modelDireccion2 = new Direccion;
         $model->usuario_creacion_id = Yii::app()->user->id;
         $model->fecha_creacion = Util::FechaActual();
+        $model->tipo = Persona::TIPO_CLIENTE;
         $model->estado = Persona::ESTADO_ACTIVO;
         $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
@@ -122,7 +123,7 @@ class PersonaController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            Persona::model()->updateByPk($id, array('estado' => Persona::ESTADO_INACTIVO));
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))

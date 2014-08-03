@@ -22,4 +22,27 @@ class Persona extends BasePersona {
         return Yii::t('app', 'Persona|Personas', $n);
     }
 
+    public function scopes() {
+        return array(
+            'activos' => array(
+                'condition' => 't.estado = :estado',
+                'params' => array(
+                    ':estado' => self::ESTADO_ACTIVO,
+                ),
+            ),
+        );
+    }
+
+    public function de_tipo($tipo) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'tipo = :tipo',
+                    'params' => array(
+                        ':tipo' => $tipo
+                    ),
+                )
+        );
+        return $this;
+    }
+
 }
