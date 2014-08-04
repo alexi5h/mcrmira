@@ -6,14 +6,14 @@ $this->menu = array(
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
-echo PagoMes::fechaMes(7);
+echo Pago::fechaMes(7);
 ?>
 <div id="flashMsg"  class="flash-messages">
 
 </div> 
 <div class="widget blue">
     <div class="widget-title">
-        <h4> <i class="icon-fire-extinguisher"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo PagoMes::label(2) ?> </h4>
+        <h4> <i class="icon-fire-extinguisher"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo Pago::label(2) ?> </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->

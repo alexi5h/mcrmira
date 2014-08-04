@@ -17,9 +17,9 @@
  * @property integer $sucursal_comprobante_id
  * @property string $cod_comprobante_su
  * @property string $fecha_comprobante_su
- * @property integer $pago_mes_id
+ * @property integer $pago_id
  *
- * @property PagoMes $pagoMes
+ * @property Pago $pago
  */
 abstract class BaseDeposito extends AweActiveRecord {
 
@@ -37,18 +37,18 @@ abstract class BaseDeposito extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('cantidad, entidad_bancaria_id, pago_mes_id', 'required'),
-            array('entidad_bancaria_id, sucursal_comprobante_id, pago_mes_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, entidad_bancaria_id, pago_id', 'required'),
+            array('entidad_bancaria_id, sucursal_comprobante_id, pago_id', 'numerical', 'integerOnly'=>true),
             array('cantidad, cod_comprobante_entidad, cod_comprobante_su', 'length', 'max'=>45),
             array('fecha_comprobante_entidad, fecha_comprobante_su', 'safe'),
             array('cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, pago_mes_id', 'safe', 'on'=>'search'),
+            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, pago_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'pagoMes' => array(self::BELONGS_TO, 'PagoMes', 'pago_mes_id'),
+            'pago' => array(self::BELONGS_TO, 'Pago', 'pago_id'),
         );
     }
 
@@ -65,8 +65,8 @@ abstract class BaseDeposito extends AweActiveRecord {
                 'sucursal_comprobante_id' => Yii::t('app', 'Sucursal Comprobante'),
                 'cod_comprobante_su' => Yii::t('app', 'Cod Comprobante Su'),
                 'fecha_comprobante_su' => Yii::t('app', 'Fecha Comprobante Su'),
-                'pago_mes_id' => Yii::t('app', 'Pago Mes'),
-                'pagoMes' => null,
+                'pago_id' => Yii::t('app', 'Pago'),
+                'pago' => null,
         );
     }
 
@@ -81,7 +81,7 @@ abstract class BaseDeposito extends AweActiveRecord {
         $criteria->compare('sucursal_comprobante_id', $this->sucursal_comprobante_id);
         $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
         $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
-        $criteria->compare('pago_mes_id', $this->pago_mes_id);
+        $criteria->compare('pago_id', $this->pago_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

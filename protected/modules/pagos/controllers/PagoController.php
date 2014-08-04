@@ -1,6 +1,6 @@
 <?php
 
-class PagoMesController extends AweController {
+class PagoController extends AweController {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -31,14 +31,14 @@ class PagoMesController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new PagoMes;
+        $model = new Pago;
 
-        $this->performAjaxValidation($model, 'pago-mes-form');
+        $this->performAjaxValidation($model, 'pago-form');
 
-        if (isset($_POST['PagoMes'])) {
-            $model->attributes = $_POST['PagoMes'];
+        if (isset($_POST['Pago'])) {
+            $model->attributes = $_POST['Pago'];
             $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
-            $model->estado = PagoMes::ESTADO_DEUDA;
+            $model->estado = Pago::ESTADO_DEUDA;
             
             $model_persona = new Persona();
             $model_persona->unsetAttributes();
@@ -71,10 +71,10 @@ class PagoMesController extends AweController {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        $this->performAjaxValidation($model, 'pago-mes-form');
+        $this->performAjaxValidation($model, 'pago-form');
 
-        if (isset($_POST['PagoMes'])) {
-            $model->attributes = $_POST['PagoMes'];
+        if (isset($_POST['Pago'])) {
+            $model->attributes = $_POST['Pago'];
 
             if ($model->save()) {
                 $this->redirect(array('admin'));
@@ -107,10 +107,10 @@ class PagoMesController extends AweController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new PagoMes('search');
+        $model = new Pago('search');
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['PagoMes']))
-            $model->attributes = $_GET['PagoMes'];
+        if (isset($_GET['Pago']))
+            $model->attributes = $_GET['Pago'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -123,7 +123,7 @@ class PagoMesController extends AweController {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id, $modelClass = __CLASS__) {
-        $model = PagoMes::model()->findByPk($id);
+        $model = Pago::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -134,7 +134,7 @@ class PagoMesController extends AweController {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model, $form = null) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'pago-mes-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'pago-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
