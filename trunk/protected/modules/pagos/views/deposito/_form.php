@@ -51,9 +51,19 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 )
         );
         ?>
+        
+        <?php
+        $pago = Pago::model()->findAll();
+
+        if (!empty($pago)) {
+            $pago = array(null => '-- Seleccione --') + CHtml::listData($pago, 'id', 'fecha');
+        } else {
+            $pago = array(null => '-- Ninguno --');
+        }
+        ?>
 
             <?php //echo $form->dropDownListRow($model, 'pago_mes_id', array('' => ' -- Seleccione -- ') + CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn())) ?>
-        <?php echo $form->dropDownListRow($model, 'pago_mes_id', array('' => ' -- Seleccione -- ') + CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn()), array('class' => 'span3')) ?>
+        <?php echo $form->dropDownListRow($model, 'pago_id', $pago, array('class' => 'span3')) ?>
         
         <div class="form-actions">
             <?php
