@@ -41,6 +41,8 @@ class DepositoController extends AweController {
         if(isset($_POST['Deposito']))
 		{
 			$model->attributes = $_POST['Deposito'];
+                        $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad);
+                        $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su);
 			if($model->save()) {
                 $this->redirect(array('admin'));
             }

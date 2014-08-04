@@ -34,8 +34,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'options' => array(
                 'language' => 'es',
             )
-                ), array(
-            'prepend' => '<i class="icon-calendar"></i>'
                 )
         );
         ?>
@@ -50,13 +48,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'options' => array(
                 'language' => 'es',
             )
-                ), array(
-            'prepend' => '<i class="icon-calendar"></i>'
                 )
         );
         ?>
 
-            <?php echo $form->dropDownListRow($model, 'pago_mes_id', array('' => ' -- Seleccione -- ') + CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn())) ?>
+            <?php //echo $form->dropDownListRow($model, 'pago_mes_id', array('' => ' -- Seleccione -- ') + CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn())) ?>
+        <?php echo $form->dropDownListRow($model, 'pago_mes_id', array('' => ' -- Seleccione -- ') + CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn()), array('class' => 'span3')) ?>
+        
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
