@@ -20,7 +20,6 @@ $this->menu = array(
     </div>
     <div class="widget-body">
         <div style='overflow:auto'> 
-
             <?php
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
                 'id' => 'persona-grid',

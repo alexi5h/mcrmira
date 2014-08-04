@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('pagos.models._base.BasePagoMes');
+Yii::import('pagos.models._base.BasePago');
 
-class PagoMes extends BasePagoMes {
+class Pago extends BasePago {
 
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
@@ -15,7 +15,7 @@ class PagoMes extends BasePagoMes {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'PagoMes|PagoMes', $n);
+        return Yii::t('app', 'Pago|Pago', $n);
     }
 
     public function de_cliente($id_cliente) {

@@ -1,10 +1,10 @@
 <?php
-/** @var PagoMesController $this */
-/** @var PagoMes $model */
+/** @var PagoController $this */
+/** @var Pago $model */
 /** @var AweActiveForm $form */
 $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
-    'id' => 'pago-mes-form',
+    'id' => 'pago-form',
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
     'enableClientValidation' => false,
@@ -12,7 +12,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 ?>
 <div class="widget blue">
     <div class="widget-title">
-        <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . PagoMes::label(1); ?></h4>
+        <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . Pago::label(1); ?></h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->
