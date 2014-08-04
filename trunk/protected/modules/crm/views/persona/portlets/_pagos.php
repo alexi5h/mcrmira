@@ -1,6 +1,6 @@
 <?php
 // Obtener contactos activos
-$pagos = PagoMes::model()->de_cliente($model->id)->findAll();
+$pagos = Pago::model()->de_cliente($model->id)->findAll();
 ?>
 
 <div class="widget red">

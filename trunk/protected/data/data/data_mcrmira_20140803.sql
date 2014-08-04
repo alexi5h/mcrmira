@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.17)
-# Date: 2014-08-03 20:22:56
+# Date: 2014-08-03 20:55:38
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
@@ -94,6 +94,7 @@ INSERT INTO `parroquia` (`id`,`nombre`,`canton_id`) VALUES (1,'Atuntaqui',1),(2,
 # Data for table "direccion"
 #
 
+INSERT INTO `direccion` (`id`,`calle_1`,`calle_2`,`numero`,`referencia`,`tipo`,`barrio_id`,`parroquia_id`) VALUES (1,'Calle 1','Calle 2','123456',NULL,'S',NULL,15);
 
 #
 # Data for table "entidad_bancaria"
@@ -104,8 +105,10 @@ INSERT INTO `parroquia` (`id`,`nombre`,`canton_id`) VALUES (1,'Atuntaqui',1),(2,
 # Data for table "sucursal"
 #
 
+INSERT INTO `sucursal` (`id`,`nombre`,`direccion_id`,`estado`) VALUES (1,'Mira',1,'ACTIVO');
 
 #
 # Data for table "persona"
 #
 
+INSERT INTO `persona` (`id`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`cedula`,`ruc`,`telefono`,`celular`,`email`,`descripcion`,`tipo`,`estado`,`fecha_creacion`,`fecha_actualizacion`,`usuario_creacion_id`,`usuario_actualizacion_id`,`aprobado`,`sucursal_id`,`persona_etapa_id`,`direccion_domicilio_id`,`direccion_negocio_id`) VALUES (1,'Armando',NULL,'Maldonado','Conejo','1003508155','1003508155001','2690794','0989563134','armand1live@gmail.com',NULL,'CLIENTE','ACTIVO','2014-08-03 20:38:59',NULL,1,NULL,NULL,1,1,NULL,NULL);
