@@ -31,10 +31,9 @@ $this->menu = array(
                         'cod_comprobante_entidad',
                         'fecha_comprobante_entidad',
                         'sucursal_comprobante_id',
-                        'cod_comprobante_su',
-                            /*
+                        'cod_comprobante_su',    
                         'fecha_comprobante_su',
-                        array(
+                        /*array(
                     'name' => 'pago_mes_id',
                     'value' => 'isset($data->pagoMes) ? $data->pagoMes : null',
                     'filter' => CHtml::listData(PagoMes::model()->findAll(), 'id', PagoMes::representingColumn()),

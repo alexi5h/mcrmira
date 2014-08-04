@@ -26,11 +26,12 @@ $this->menu=array(
              'sucursal_comprobante_id',
              'cod_comprobante_su',
              'fecha_comprobante_su',
-             array(
-			'name' => 'pago_mes_id',
-			'value'=>($model->pagoMes !== null) ? CHtml::link($model->pagoMes, array('/pagoMes/view', 'id' => $model->pagoMes->id)).' ' : null,
-			'type' => 'html',
-		),
+            'pago_mes_id',
+//             array(
+//			'name' => 'pago_mes_id',
+//			'value'=>($model->pagoMes !== null) ? CHtml::link($model->pagoMes, array('/pagoMes/view', 'id' => $model->pagoMes->id)).' ' : null,
+//			'type' => 'html',
+//		),
 	),
 )); ?>
 </fieldset>
