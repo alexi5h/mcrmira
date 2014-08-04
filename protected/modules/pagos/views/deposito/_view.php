@@ -92,13 +92,13 @@
 
         <?php endif; ?>
                 
-        <?php if (!empty($data->pagoMes->descripcion)): ?>
+        <?php if (!empty($data->pago->descripcion)): ?>
         <div class="field">
             <div class="field_name">
-                <b><?php echo CHtml::encode($data->getAttributeLabel('pago_mes_id')); ?>:</b>
+                <b><?php echo CHtml::encode($data->getAttributeLabel('pago_id')); ?>:</b>
             </div>
             <div class="field_value">
-                <?php echo CHtml::encode($data->pagoMes->descripcion); ?>
+                <?php echo CHtml::encode($data->pago->descripcion); ?>
             </div>
         </div>
 
