@@ -26,9 +26,19 @@
 //                'usuario_actualizacion_id',
 //                'cliente_estado_id',
 //                'aprobado',
-                'sucursal_id',
-                'direccion_domicilio_id',
-                'direccion_negocio_id',
+                array(
+                        'name' => 'sucursal_id',
+                        'value' => $model->sucursal,
+                        'type' => 'raw',
+                    ),
+                array(
+                    'name' => 'direccion_domicilio_id',
+                    'value' => $model->direccionDomicilio ? $model->direccionDomicilio->direccion_completa : null,
+                    ),
+                array(
+                    'name' => 'direccion_negocio_id',
+                    'value' => $model->direccionNegocio ? $model->direccionNegocio->direccion_completa : null,
+                    ),
                 'descripcion',
 //                'tipo',
             ),
