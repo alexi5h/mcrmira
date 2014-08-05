@@ -67,7 +67,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'asDropDownList' => true,
             'data' => CHtml::listData($model_parroquia, 'id', 'nombre'),
             'options' => array(
-                'placeholder' => '-- Selecione Provincia --',
+                'placeholder' => '-- Selecione Cantón --',
             )
         ));
         ?>

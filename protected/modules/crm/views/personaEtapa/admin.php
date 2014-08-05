@@ -2,7 +2,7 @@
 /** @var PersonaEtapaController $this */
 /** @var PersonaEtapa $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create').' '.PersonaEtapa::label(1), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -12,7 +12,7 @@ $this->menu = array(
 </div> 
 <div class="widget blue">
     <div class="widget-title">
-        <h4> <i class="icon-fire-extinguisher"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo PersonaEtapa::label(2) ?> </h4>
+        <h4> <i class="icon-tasks"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo PersonaEtapa::label(2) ?> </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->

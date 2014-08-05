@@ -54,7 +54,7 @@ abstract class BaseEntidadBancaria extends AweActiveRecord {
         return array(
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
-                'direccion_id' => Yii::t('app', 'Direccion'),
+                'direccion_id' => Yii::t('app', 'Dirección'),
                 'estado' => Yii::t('app', 'Estado'),
                 'direccion' => null,
         );

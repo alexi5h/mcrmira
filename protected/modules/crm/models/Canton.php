@@ -12,7 +12,7 @@ class Canton extends BaseCanton {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'Canton|Cantons', $n);
+        return Yii::t('app', 'Cantón|Cantones', $n);
     }
 
     public function rules() {

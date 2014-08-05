@@ -17,7 +17,7 @@ class EntidadBancaria extends BaseEntidadBancaria {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'EntidadBancaria|EntidadBancarias', $n);
+        return Yii::t('app', 'Entidad Bancaria|Entidades Bancarias', $n);
     }
 
     public function rules() {
