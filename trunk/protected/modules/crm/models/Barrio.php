@@ -29,7 +29,7 @@ class Barrio extends BaseBarrio {
             array('canton_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,
-                'tooSmall' => 'Elija un canton por favor.',
+                'tooSmall' => 'Elija un cantón por favor.',
             ),
             array('parroquia_id', 'numerical',
                 'integerOnly' => true,
@@ -42,7 +42,7 @@ class Barrio extends BaseBarrio {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(
             'provincia_id' => Yii::t('app', 'Provincia'),
-            'canton_id' => Yii::t('app', 'Canton'),
+            'canton_id' => Yii::t('app', 'Cantón'),
         ));
     }
 

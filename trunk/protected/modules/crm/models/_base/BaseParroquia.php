@@ -55,7 +55,7 @@ abstract class BaseParroquia extends AweActiveRecord {
         return array(
             'id' => Yii::t('app', 'ID'),
             'nombre' => Yii::t('app', 'Nombre'),
-            'canton_id' => Yii::t('app', 'Canton'),
+            'canton_id' => Yii::t('app', 'Cantón'),
             'barrios' => null,
             'direccions' => null,
             'canton' => null,
