@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.17)
-# Date: 2014-08-04 20:32:20
+# Date: 2014-08-04 23:10:33
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
@@ -180,12 +180,12 @@ CREATE TABLE `pago` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(50) NOT NULL,
   `cliente_id` int(11) NOT NULL,
-  `cantidad` decimal(5,2) NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
   `fecha` datetime NOT NULL,
   `estado` enum('DEUDA','PAGADO') NOT NULL,
   `tipo` enum('AHORRO','PRIMER_PAGO') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "deposito"
@@ -194,7 +194,7 @@ CREATE TABLE `pago` (
 DROP TABLE IF EXISTS `deposito`;
 CREATE TABLE `deposito` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad` varchar(45) NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
   `entidad_bancaria_id` int(11) NOT NULL,
   `cod_comprobante_entidad` varchar(45) DEFAULT NULL,
   `fecha_comprobante_entidad` datetime DEFAULT NULL,
@@ -361,4 +361,4 @@ CREATE TABLE `persona` (
   CONSTRAINT `fk_cliente_direccion2` FOREIGN KEY (`direccion_negocio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_sucursal1` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_persona_persona_etapa1` FOREIGN KEY (`persona_etapa_id`) REFERENCES `persona_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
