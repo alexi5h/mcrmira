@@ -5,7 +5,7 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
 
 <div class="widget red">
     <div class="widget-title">
-        <h4><i class="icon-tasks"></i> Pago</h4>
+        <h4><i class="icon-tasks"></i> Pagos</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <a href="javascript:;" class="icon-remove"></a>
@@ -26,7 +26,7 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
                             'value' => 'Util::FormatDate($data->fecha,"M")',
                             'type' => 'raw',
                         ),
-                        'cantidad'
+                        'cantidad'=>'Cantidad'
 //                            array(
 //                                'class' => 'CButtonColumn',
 //                                'template' => '{update} {delete}',
