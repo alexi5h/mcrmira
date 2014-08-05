@@ -19,6 +19,12 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
+        <?php
+        $this->widget('ext.search.TruuloModuleSearch', array(
+            'model' => $model,
+            'grid_id' => 'persona-grid',
+        ));
+        ?>
         <div style='overflow:auto'> 
             <?php
             $this->widget('ext.bootstrap.widgets.TbGridView', array(

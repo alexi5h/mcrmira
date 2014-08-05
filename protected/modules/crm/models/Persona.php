@@ -11,6 +11,7 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
 
+    public static $origen = '';
     private $nombre_formato;
     private $nombre_corto;
 
@@ -30,6 +31,52 @@ class Persona extends BasePersona {
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
                 )
         );
+    }
+
+    public function searchParams() {
+        return array(
+            'nombre_formato',
+            'cedula',
+            'telefono',
+            'celular',
+            'email',
+            'sucursal_id',
+            'persona_etapa_id',
+        );
+    }
+
+    public function search() {
+        $criteria = new CDbCriteria;
+        $criteria->with = array('sucursal', 'personaEtapa');
+
+
+//        $criteria->compare('t.id', $this->id, true, 'OR');
+//        $criteria->compare('primer_nombre', $this->primer_nombre, true,'OR');
+//        $criteria->compare('segundo_nombre', $this->segundo_nombre, true,'OR');
+//        $criteria->compare('apellido_paterno', $this->apellido_paterno, true,'OR');
+//        $criteria->compare('apellido_materno', $this->apellido_materno, true,'OR');
+        $criteria->compare('CONCAT(t.primer_nombre,IFNULL(CONCAT(" ",t.segundo_nombre),""),CONCAT(" ",t.apellido_paterno),""),IFNULL(CONCAT(" ",t.apellido_materno),""))', $this->nombre_formato, true, 'OR');
+        $criteria->compare('t.cedula', $this->cedula, true, 'OR');
+//        $criteria->compare('ruc', $this->ruc, true);
+        $criteria->compare('t.telefono', $this->telefono, true, 'OR');
+        $criteria->compare('t.celular', $this->celular, true, 'OR');
+        $criteria->compare('t.email', $this->email, true, 'OR');
+//        $criteria->compare('descripcion', $this->descripcion, true,'OR');
+//        $criteria->compare('tipo', $this->tipo, true,'OR');
+//        $criteria->compare('estado', $this->estado, true,'OR');
+//        $criteria->compare('fecha_creacion', $this->fecha_creacion, true,'OR');
+//        $criteria->compare('fecha_actualizacion', $this->fecha_actualizacion, true,'OR');
+//        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+//        $criteria->compare('usuario_actualizacion_id', $this->usuario_actualizacion_id);
+//        $criteria->compare('aprobado', $this->aprobado);
+        $criteria->compare('sucursal.nombre', $this->sucursal_id, true, 'OR');
+        $criteria->compare('personaEtapa.nombre', $this->persona_etapa_id, true, 'OR');
+//        $criteria->compare('direccion_domicilio_id', $this->direccion_domicilio_id);
+//        $criteria->compare('direccion_negocio_id', $this->direccion_negocio_id);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     public function scopes() {
@@ -67,4 +114,20 @@ class Persona extends BasePersona {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
     }
+
+
+    public function cambioEstado($orig) {
+        static::$origen = $orig;
+        return $orig;
+    }
+
+    public function mostrarOrigen() {
+        return static::$origen;
+    }
+
+    public function getOrigen() {
+        return static::$origen;
+    }
+
+
 }

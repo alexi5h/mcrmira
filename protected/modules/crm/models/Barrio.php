@@ -46,4 +46,25 @@ class Barrio extends BaseBarrio {
         ));
     }
 
+    public function searchParams() {
+        return array(
+//            'id', 
+            'nombre',
+            'provincia_id',
+        );
+    }
+
+    public function search() {
+        $criteria = new CDbCriteria;
+
+
+        $criteria->compare('t.id', $this->id, true, 'OR');
+        $criteria->compare('t.nombre', $this->nombre, true, 'OR');
+        $criteria->compare('parroquia.nombre', $this->parroquia_id, true, 'OR');
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
 }

@@ -99,6 +99,10 @@ class ParroquiaController extends AweController {
     public function actionAdmin() {
         $model = new Parroquia('search');
         $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET['search'])) {
+            $model->attributes = $this->assignParams($_GET['search']);
+        }
         if (isset($_GET['Parroquia']))
             $model->attributes = $_GET['Parroquia'];
 
@@ -106,6 +110,22 @@ class ParroquiaController extends AweController {
             'model' => $model,
         ));
     }
+
+    public function assignParams($params) {
+        $result = array();
+        if ($params['filters'][0] == 'all') {
+            foreach (Parroquia::model()->searchParams() as $param) {
+                $result[$param] = $params['value'];
+            }
+        } else {
+            foreach ($params['filters'] as $param) {
+                $result[$param] = $params['value'];
+            }
+        }
+        return $result;
+    }
+
+    /*     * *********AJAX************ */
 
     public function actionAjaxGetParroquiaByCanton() {
         if (Yii::app()->request->isAjaxRequest) {
