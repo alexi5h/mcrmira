@@ -14,7 +14,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'enableClientValidation' => false,
         ));
 ?>
-<?php echo Persona::model()->mostrarOrigen()."abc"?>
 <div class="widget blue">
     <div class="widget-title">
         <h4><i class="icon-plus"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . Persona::label(1); ?></h4>
