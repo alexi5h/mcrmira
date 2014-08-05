@@ -11,7 +11,6 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
 
-    public static $origen = '';
     private $nombre_formato;
     private $nombre_corto;
 
@@ -114,20 +113,4 @@ class Persona extends BasePersona {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
     }
-
-
-    public function cambioEstado($orig) {
-        static::$origen = $orig;
-        return $orig;
-    }
-
-    public function mostrarOrigen() {
-        return static::$origen;
-    }
-
-    public function getOrigen() {
-        return static::$origen;
-    }
-
-
 }
