@@ -97,6 +97,10 @@ class CantonController extends AweController {
     public function actionAdmin() {
         $model = new Canton('search');
         $model->unsetAttributes(); // clear any default values
+        
+        if (isset($_GET['search'])) {
+            $model->attributes = $this->assignParams($_GET['search']);
+        }
         if (isset($_GET['Canton']))
             $model->attributes = $_GET['Canton'];
 
@@ -127,6 +131,20 @@ class CantonController extends AweController {
                 echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una provincia -', true);
             }
         }
+    }
+
+    public function assignParams($params) {
+        $result = array();
+        if ($params['filters'][0] == 'all') {
+            foreach (Canton::model()->searchParams() as $param) {
+                $result[$param] = $params['value'];
+            }
+        } else {
+            foreach ($params['filters'] as $param) {
+                $result[$param] = $params['value'];
+            }
+        }
+        return $result;
     }
 
     /**

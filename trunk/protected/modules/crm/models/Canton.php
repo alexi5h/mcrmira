@@ -29,11 +29,33 @@ class Canton extends BaseCanton {
         );
     }
 
-    public function relations() {
-        return array_merge(parent::relations(), array(
-            'provincia' => array(self::BELONGS_TO, 'Provincia', 'provincia_id'),
-                )
+    public function searchParams() {
+        return array(
+//            'id', 
+            'nombre',
+            'provincia_id',
         );
     }
 
+    public function search() {
+        $criteria = new CDbCriteria;
+        $criteria->with=array('provincia');
+
+        $criteria->compare('t.id', $this->id, true, 'OR');
+        $criteria->compare('t.nombre', $this->nombre, true, 'OR');
+//        $criteria->compare('provincia_id', $this->provincia_id, true, 'OR');
+        $criteria->compare('provincia.nombre', $this->provincia_id, true, 'OR');
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+//@TODO borrar esta demas 
+//    public function relations() {
+//        return array_merge(parent::relations(), array(
+//            'provincia' => array(self::BELONGS_TO, 'Provincia', 'provincia_id'),
+//                )
+//        );
+//    }
 }

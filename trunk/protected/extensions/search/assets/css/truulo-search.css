@@ -1,0 +1,45 @@
+/*icon loading*/
+/*.icon-loading-search {
+    background: url('../images/loading.gif') !important;
+    display: inline-block !important;
+    height: 12px;
+    width: 12px;
+}*/
+.truulo-search {
+    display: inline-block;
+    font-size: 0;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.truulo-search input {
+    margin: 0;
+}
+
+.truulo-search-options {
+    border: 1px solid #DDDDDD;
+    position: absolute;
+    background: #fff;
+    font-size: 12px;
+    list-style: none;
+    margin: 0;
+    display: none;
+    -moz-box-shadow: 0 1px 1px #888;
+    -webkit-box-shadow: 0 1px 1px #888;
+    box-shadow: 0 1px 1px #888;
+    z-index: 10;
+}
+
+.truulo-search-options li {
+    padding: 3px 15px 3px 10px;
+}
+
+.truulo-search-options li input {
+    margin-right: 3px;
+}
+
+.truulo-search .btn:first-child  {
+    border: 1px solid #DDDDDD;
+    border-radius: 0;
+}

@@ -151,12 +151,30 @@ class PersonaController extends AweController {
     public function actionAdmin() {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
+
+        if (isset($_GET['search'])) {
+            $model->attributes = $this->assignParams($_GET['search']);
+        }
         if (isset($_GET['Persona']))
             $model->attributes = $_GET['Persona'];
 
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function assignParams($params) {
+        $result = array();
+        if ($params['filters'][0] == 'all') {
+            foreach (Persona::model()->searchParams() as $param) {
+                $result[$param] = $params['value'];
+            }
+        } else {
+            foreach ($params['filters'] as $param) {
+                $result[$param] = $params['value'];
+            }
+        }
+        return $result;
     }
 
     /**

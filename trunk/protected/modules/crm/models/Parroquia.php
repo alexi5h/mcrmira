@@ -45,4 +45,26 @@ class Parroquia extends BaseParroquia {
         ));
     }
 
+    public function searchParams() {
+        return array(
+//            'id', 
+            'nombre',            
+            'canton_id',
+        );
+    }
+
+    public function search() {
+        $criteria = new CDbCriteria;
+        $criteria->with=array('canton');
+
+        $criteria->compare('t.id', $this->id, true,'OR');
+        $criteria->compare('t.nombre', $this->nombre, true,'OR');
+        $criteria->compare('canton.nombre', $this->canton_id, true,'OR');
+        
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
 }

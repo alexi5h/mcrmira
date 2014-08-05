@@ -92,6 +92,10 @@ class BarrioController extends AweController {
     public function actionAdmin() {
         $model = new Barrio('search');
         $model->unsetAttributes(); // clear any default values
+        
+        if (isset($_GET['search'])) {
+            $model->attributes = $this->assignParams($_GET['search']);
+        }
         if (isset($_GET['Barrio']))
             $model->attributes = $_GET['Barrio'];
 
@@ -99,6 +103,22 @@ class BarrioController extends AweController {
             'model' => $model,
         ));
     }
+
+    public function assignParams($params) {
+        $result = array();
+        if ($params['filters'][0] == 'all') {
+            foreach (Barrio::model()->searchParams() as $param) {
+                $result[$param] = $params['value'];
+            }
+        } else {
+            foreach ($params['filters'] as $param) {
+                $result[$param] = $params['value'];
+            }
+        }
+        return $result;
+    }
+
+    /*     * ************AJAX**************** */
 
     public function actionajaxGetBarrioByParroquia() {
 
