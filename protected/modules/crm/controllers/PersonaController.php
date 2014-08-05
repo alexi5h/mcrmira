@@ -104,9 +104,16 @@ class PersonaController extends AweController {
                     $model->direccion_negocio_id = $modelDireccion2->id;
                 }
             }
+            $temp=Persona::model()->mostrarOrigen();
             if ($model->save()) {
-                $this->redirect(array('admin'));
+                if($temp=='form'){
+                    $this->redirect(array('view','id'=>$model->id));
+                }else{
+                    //$this->redirect(array('view','id'=>$model->id));
+                    $this->redirect(array('admin'));
+                }
             }
+            
         }
         $this->render('update', array(
             'model' => $model,

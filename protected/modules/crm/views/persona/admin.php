@@ -32,7 +32,7 @@ $this->menu = array(
                         'type' => 'raw',
                     ),
                     'cedula',
-                    'ruc',
+                    //'ruc',
                     'telefono',
                     'celular',
                     'email',
