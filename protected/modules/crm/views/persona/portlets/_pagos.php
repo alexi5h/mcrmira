@@ -1,5 +1,5 @@
 <?php
-// Obtener contactos activos
+// Obtener pagos del cliente
 $pagos = Pago::model()->de_cliente($model->id)->findAll();
 ?>
 
@@ -8,7 +8,7 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
         <h4><i class="icon-tasks"></i> Pagos</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
-            <a href="javascript:;" class="icon-remove"></a>
+            <!--<a href="javascript:;" class="icon-remove"></a>-->
         </span>
     </div>
     <div class="widget-body">
@@ -33,29 +33,25 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
                             'value' => '$data->cantidad',
                             'type' => 'raw',
                         ),
-//                            array(
-//                                'class' => 'CButtonColumn',
-//                                'template' => '{update} {delete}',
-//                                'buttons' => array(
-//                                    'update' => array(
-//                                        'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-//                                        'options' => array('title' => 'Actualizar'),
-////                                        'url' => 'Yii::app()->createUrl("tareas/tarea/update", array("id"=>$data->id))',
-//                                        'imageUrl' => false,
-////                                        'visible' => 'Util::checkAccess(array("action_tarea_update"))'
-//                                    ),
-//                                    'delete' => array(
-//                                        'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-//                                        'options' => array('title' => 'Eliminar'),
-////                                        'url' => 'Yii::app()->createUrl("tareas/tarea/delete", array("id"=>$data->id))',
-//                                        'imageUrl' => false,
-////                                        'visible' => 'Util::checkAccess(array("action_tarea_delete"))',
-//                                    ),
-//                                ),
-//                                'htmlOptions' => array(
-//                                    'width' => '140px'
-//                                )
-//                            ),
+                        array(
+                            'header'=>'Estado',
+                            'name' => 'estado',
+                            'value' => '$data->estado',
+                            'type' => 'raw',
+                        ),
+                            array(
+                                'class' => 'CButtonColumn',
+                                'template' => '{update}',
+                                'buttons' => array(
+                                    'update' => array(
+                                        'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
+                                        'options' => array('title' => 'Actualizar'),
+                                        'url' => 'Yii::app()->createUrl("tareas/tarea/update", array("id"=>$data->id))',
+                                        'imageUrl' => false,
+//                                        'visible' => 'Util::checkAccess(array("action_tarea_update"))'
+                                    ),
+                                ),
+                            ),
                     ),
                 ));
                 ?>

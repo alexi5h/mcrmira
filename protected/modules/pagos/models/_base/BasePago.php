@@ -38,7 +38,7 @@ abstract class BasePago extends AweActiveRecord {
             array('descripcion, cliente_id, cantidad, fecha, estado, tipo', 'required'),
             array('cliente_id', 'numerical', 'integerOnly'=>true),
             array('descripcion', 'length', 'max'=>50),
-            array('cantidad', 'length', 'max'=>5),
+            array('cantidad', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
