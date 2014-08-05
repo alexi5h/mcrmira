@@ -27,7 +27,7 @@ class PersonaEtapa extends BasePersonaEtapa {
                 ),
             ),
             'orden' => array(
-                't.order' => 't.peso ASC',
+                'order' => 't.peso ASC',
             ),
         );
     }
