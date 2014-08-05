@@ -39,7 +39,7 @@
  */
 abstract class BasePersona extends AweActiveRecord {
 
-    public static function model($className=__CLASS__) {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
@@ -54,21 +54,92 @@ abstract class BasePersona extends AweActiveRecord {
     public function rules() {
         return array(
             array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id', 'required'),
-            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'numerical', 'integerOnly'=>true),
+            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, cedula, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
-            array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
-            array('apellido_paterno, apellido_materno', 'length', 'max'=>30),
-            array('ruc', 'length', 'max'=>13),
-            array('telefono, celular', 'length', 'max'=>24),
-            array('email', 'length', 'max'=>255),
-            array('tipo', 'length', 'max'=>7),
-            array('estado', 'length', 'max'=>8),
+            array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
+            array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
+            array('telefono, celular', 'length', 'max' => 10),
+            array('email', 'length', 'max' => 255),
+            array('tipo', 'length', 'max' => 7),
+            array('estado', 'length', 'max' => 8),
             array('descripcion, fecha_actualizacion', 'safe'),
-            array('tipo', 'in', 'range' => array('CLIENTE','GARANTE')), // enum,
-            array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
+            array('tipo', 'in', 'range' => array('CLIENTE', 'GARANTE')), // enum,
+            array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
             array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on'=>'search'),
+            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
+            array('cedula', 'validarCedula'),
+            array('ruc', 'validarRuc'),
         );
+    }
+
+    public function validarCedula($attribute, $params) {
+        $ncedula = $this->attributes['cedula'];
+        $c = substr($ncedula, 0, 2);
+        if (strlen($ncedula) == '10') {
+            if ($c >= '1' && $c <= '24') {//Pertenece a alguna provincia
+                if ($ncedula[2] < 6) {//3er dígito menor a 6
+                    //Comprobar último dígito
+                    $n = array(9);
+                    $cont = 2;
+                    $suma = 0;
+                    for ($j = 0; $j < 9; $j++) {
+                        if ($ncedula[$j] * $cont >= 10) {
+                            $n[$j] = ($ncedula[$j] * $cont) - 9;
+                        } else {
+                            $n[$j] = $ncedula[$j] * $cont;
+                        }
+                        if ($cont == 1) {
+                            $cont = 2;
+                        } else {
+                            $cont = 1;
+                        }
+                        $suma+=$n[$j];
+                    }
+                    $suma = $suma . '';
+                    $last_digit;
+                    if ($suma < 10) {
+                        $last_digit = 10 - $suma;
+                    } else {
+                        if ($suma[1] == 0) {
+                            $last_digit = 0;
+                        } else {
+                            $temp = ($suma[0] + 1) * 10;
+                            $last_digit = $temp - $suma;
+                        }
+                    }
+                    if ($last_digit == $ncedula[9]) {
+                        
+                    } else {
+                        $this->addError($attribute, 'Número de cédula no válido (el último dígito no es correcto)!');
+                    }
+                } else {
+                    $this->addError($attribute, 'Número de cédula no válido (el 3er dígito debe ser menor a 6)');
+                }
+            } else {
+                $this->addError($attribute, 'Número de cédula no válido (verifique los primeros 2 dígitos)');
+            }
+        } else {
+            $this->addError($attribute, 'Cédula tiene un largo incorrecto (debe ser de 10 caracteres)');
+        }
+    }
+
+    public function validarRuc($attribute, $params) {
+        $nruc = $this->attributes['ruc'];
+        $ncedula = $this->attributes['cedula'];
+        $ced = substr($nruc, 0, 10);
+        $f = substr($nruc, 10, 3);
+        if (strlen($nruc) == 13) {
+            if ($ncedula == $ced) {
+                if($f=='001'){
+                }else{
+                    $this->addError($attribute, 'RUC no válido (últimos 3 dígitos deben ser 001)');
+                }
+            } else {
+                $this->addError($attribute, 'RUC no válido (el número no coincide con su cédula)');
+            }
+        } else {
+            $this->addError($attribute, 'RUC tiene un largo incorrecto (debe ser de 13 caracteres)');
+        }
     }
 
     public function relations() {
@@ -85,32 +156,32 @@ abstract class BasePersona extends AweActiveRecord {
      */
     public function attributeLabels() {
         return array(
-                'id' => Yii::t('app', 'ID'),
-                'primer_nombre' => Yii::t('app', 'Primer Nombre'),
-                'segundo_nombre' => Yii::t('app', 'Segundo Nombre'),
-                'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
-                'apellido_materno' => Yii::t('app', 'Apellido Materno'),
-                'cedula' => Yii::t('app', 'Cédula'),
-                'ruc' => Yii::t('app', 'RUC'),
-                'telefono' => Yii::t('app', 'Teléfono'),
-                'celular' => Yii::t('app', 'Celular'),
-                'email' => Yii::t('app', 'E-mail'),
-                'descripcion' => Yii::t('app', 'Descripción'),
-                'tipo' => Yii::t('app', 'Tipo'),
-                'estado' => Yii::t('app', 'Estado'),
-                'fecha_creacion' => Yii::t('app', 'Fecha Creación'),
-                'fecha_actualizacion' => Yii::t('app', 'Fecha Actualización'),
-                'usuario_creacion_id' => Yii::t('app', 'Usuario Creación'),
-                'usuario_actualizacion_id' => Yii::t('app', 'Usuario Actualización'),
-                'aprobado' => Yii::t('app', 'Aprobado'),
-                'sucursal_id' => Yii::t('app', 'Sucursal'),
-                'persona_etapa_id' => Yii::t('app', 'Etapa'),
-                'direccion_domicilio_id' => Yii::t('app', 'Dirección Domicilio'),
-                'direccion_negocio_id' => Yii::t('app', 'Dirección Negocio'),
-                'sucursal' => null,
-                'direccionDomicilio' => null,
-                'direccionNegocio' => null,
-                'personaEtapa' => null,
+            'id' => Yii::t('app', 'ID'),
+            'primer_nombre' => Yii::t('app', 'Primer Nombre'),
+            'segundo_nombre' => Yii::t('app', 'Segundo Nombre'),
+            'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
+            'apellido_materno' => Yii::t('app', 'Apellido Materno'),
+            'cedula' => Yii::t('app', 'Cédula'),
+            'ruc' => Yii::t('app', 'RUC'),
+            'telefono' => Yii::t('app', 'Teléfono'),
+            'celular' => Yii::t('app', 'Celular'),
+            'email' => Yii::t('app', 'E-mail'),
+            'descripcion' => Yii::t('app', 'Descripción'),
+            'tipo' => Yii::t('app', 'Tipo'),
+            'estado' => Yii::t('app', 'Estado'),
+            'fecha_creacion' => Yii::t('app', 'Fecha Creación'),
+            'fecha_actualizacion' => Yii::t('app', 'Fecha Actualización'),
+            'usuario_creacion_id' => Yii::t('app', 'Usuario Creación'),
+            'usuario_actualizacion_id' => Yii::t('app', 'Usuario Actualización'),
+            'aprobado' => Yii::t('app', 'Aprobado'),
+            'sucursal_id' => Yii::t('app', 'Sucursal'),
+            'persona_etapa_id' => Yii::t('app', 'Etapa'),
+            'direccion_domicilio_id' => Yii::t('app', 'Dirección Domicilio'),
+            'direccion_negocio_id' => Yii::t('app', 'Dirección Negocio'),
+            'sucursal' => null,
+            'direccionDomicilio' => null,
+            'direccionNegocio' => null,
+            'personaEtapa' => null,
         );
     }
 
@@ -153,6 +224,7 @@ abstract class BasePersona extends AweActiveRecord {
                 'updateAttribute' => 'fecha_actualizacion',
                 'timestampExpression' => new CDbExpression('NOW()'),
             )
-        ), parent::behaviors());
+                ), parent::behaviors());
     }
+
 }
