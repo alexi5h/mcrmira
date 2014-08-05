@@ -33,7 +33,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'apellido_materno', array('maxlength' => 30, 'class' => 'span6')) ?>
 
-        <?php echo $form->textFieldRow($model, 'cedula', array('maxlength' => 20, 'class' => 'span4')) ?>
+        <?php echo $form->textFieldRow($model, 'cedula', array('maxlength' => 10, 'class' => 'span4')) ?>
 
         <?php echo $form->textFieldRow($model, 'ruc', array('maxlength' => 13, 'class' => 'span4')) ?>
 
