@@ -45,8 +45,8 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
                                 'buttons' => array(
                                     'update' => array(
                                         'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
-                                        'options' => array('title' => 'Actualizar'),
-                                        'url' => 'Yii::app()->createUrl("tareas/tarea/update", array("id"=>$data->id))',
+                                        'options' => array('title' => 'Realizar deposito'),
+//                                        'url' => 'Yii::app()->createUrl("tareas/tarea/update", array("id"=>$data->id))',
                                         'imageUrl' => false,
 //                                        'visible' => 'Util::checkAccess(array("action_tarea_update"))'
                                     ),
