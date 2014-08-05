@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.17)
-# Date: 2014-08-03 18:32:58
+# Date: 2014-08-04 20:32:20
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
@@ -89,7 +89,7 @@ CREATE TABLE `cruge_session` (
   `ipaddressout` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idsession`),
   KEY `crugesession_iduser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "cruge_system"
@@ -150,8 +150,8 @@ CREATE TABLE `cruge_fieldvalue` (
   PRIMARY KEY (`idfieldvalue`),
   KEY `fk_cruge_fieldvalue_cruge_user1` (`iduser`),
   KEY `fk_cruge_fieldvalue_cruge_field1` (`idfield`),
-  CONSTRAINT `fk_cruge_fieldvalue_cruge_user1` FOREIGN KEY (`iduser`) REFERENCES `cruge_user` (`iduser`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cruge_fieldvalue_cruge_field1` FOREIGN KEY (`idfield`) REFERENCES `cruge_field` (`idfield`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_cruge_fieldvalue_cruge_field1` FOREIGN KEY (`idfield`) REFERENCES `cruge_field` (`idfield`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cruge_fieldvalue_cruge_user1` FOREIGN KEY (`iduser`) REFERENCES `cruge_user` (`iduser`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
@@ -177,7 +177,7 @@ CREATE TABLE `cruge_authassignment` (
 
 DROP TABLE IF EXISTS `pago`;
 CREATE TABLE `pago` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(50) NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `cantidad` decimal(5,2) NOT NULL,
@@ -218,7 +218,7 @@ CREATE TABLE `persona_etapa` (
   `peso` int(3) DEFAULT NULL,
   `estado` enum('ACTIVO','INACTIVO') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "provincia"
@@ -229,7 +229,7 @@ CREATE TABLE `provincia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(21) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "canton"
@@ -243,7 +243,7 @@ CREATE TABLE `canton` (
   PRIMARY KEY (`id`),
   KEY `fk_canton_provincia1_idx` (`provincia_id`),
   CONSTRAINT `fk_canton_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "parroquia"
@@ -257,7 +257,7 @@ CREATE TABLE `parroquia` (
   PRIMARY KEY (`id`),
   KEY `fk_parroquia_canton1_idx` (`canton_id`),
   CONSTRAINT `fk_parroquia_canton1` FOREIGN KEY (`canton_id`) REFERENCES `canton` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "barrio"
@@ -292,7 +292,7 @@ CREATE TABLE `direccion` (
   KEY `fk_direccion_parroquia1_idx` (`parroquia_id`),
   CONSTRAINT `fk_direccion_barrio1` FOREIGN KEY (`barrio_id`) REFERENCES `barrio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_parroquia1` FOREIGN KEY (`parroquia_id`) REFERENCES `parroquia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "entidad_bancaria"
@@ -307,7 +307,7 @@ CREATE TABLE `entidad_bancaria` (
   PRIMARY KEY (`id`),
   KEY `fk_entidad_bacaria_direccion1_idx` (`direccion_id`),
   CONSTRAINT `fk_entidad_bacaria_direccion1` FOREIGN KEY (`direccion_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "sucursal"
@@ -322,7 +322,7 @@ CREATE TABLE `sucursal` (
   PRIMARY KEY (`id`),
   KEY `fk_sucursal_direccion1_idx` (`direccion_id`),
   CONSTRAINT `fk_sucursal_direccion1` FOREIGN KEY (`direccion_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "persona"
@@ -357,8 +357,8 @@ CREATE TABLE `persona` (
   KEY `fk_cliente_direccion1_idx` (`direccion_domicilio_id`),
   KEY `fk_cliente_direccion2_idx` (`direccion_negocio_id`),
   KEY `fk_persona_persona_etapa1_idx` (`persona_etapa_id`),
-  CONSTRAINT `fk_cliente_sucursal1` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_direccion1` FOREIGN KEY (`direccion_domicilio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_direccion2` FOREIGN KEY (`direccion_negocio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cliente_sucursal1` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_persona_persona_etapa1` FOREIGN KEY (`persona_etapa_id`) REFERENCES `persona_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
