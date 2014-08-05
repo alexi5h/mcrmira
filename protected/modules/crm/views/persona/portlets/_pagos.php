@@ -23,10 +23,16 @@ $pagos = Pago::model()->de_cliente($model->id)->findAll();
                     'columns' => array(
                         array(
                             'header' => 'Mes',
+                            'name'=>'fecha',
                             'value' => 'Util::FormatDate($data->fecha,"M")',
                             'type' => 'raw',
                         ),
-                        'cantidad'=>'Cantidad'
+                        array(
+                            'header'=>'Cantidad',
+                            'name' => 'cantidad',
+                            'value' => '$data->cantidad',
+                            'type' => 'raw',
+                        ),
 //                            array(
 //                                'class' => 'CButtonColumn',
 //                                'template' => '{update} {delete}',
