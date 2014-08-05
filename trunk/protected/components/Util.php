@@ -48,7 +48,6 @@ class Util {
     }
 
     /**
-     * @author Miguel Alba <malba@tradesystem.com.ec>
      * @param type $rolUser
      * @param type $rolPermitido
      * @return boolean
@@ -78,7 +77,6 @@ class Util {
     }
 
     /**
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * @param type $user_id 'id del usuario'
      * @return string $rol
      */
@@ -92,7 +90,6 @@ class Util {
     }
 
     /**
-     * @author Pablo Arciniega <parciniega@tradesystem.com.ec>
      * retona texto truncado en caso de que sea demasiado largo
      * @param string $texto
      * @param int $caracteresPermitidos
@@ -107,7 +104,6 @@ class Util {
     }
 
     /**
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * @param array $elementos 
      * altera el valor en forma acendente desde 0 de una determinada columna
      * @return array $NewArray nuevo array con la columna 'id' con valores desde 0 a $elementos.length
@@ -146,7 +142,6 @@ class Util {
     }
 
     /**
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * retona la fecha actual del sistema
      * @return string
      */
@@ -158,7 +153,6 @@ class Util {
     }
 
     /**
-     * @author Alex Yepez <ayepez@tradesystem.com.ec>
      * @param type $fechaAt
      * @param type $tipo
      * @return string
@@ -223,7 +217,6 @@ class Util {
 
     /**
      * Revisa si el usuario tiene acceso dependiendo de las operaciones que se envien
-     * @author Santiago Benítez
      * @param array $operations
      * @return boolean resultado
      */
@@ -255,7 +248,6 @@ class Util {
      * @param type $button
      * @param type $data
      * @return type
-     * @author Ivan Naranjo <inaranjo@tradesystem.com.ec>
      */
     public static function getGridViewId($options, $data) {
         foreach ($options as &$option) {
@@ -270,7 +262,6 @@ class Util {
     /**
      * // regresa la cadena sin subguiones("_"), y los convierte en espacios, ademas de poner letra capital
      * @param type $nomre
-     * @author Ivan Naranjo <inaranjo@tradesystem.com.ec>
      */
     public static function setName($nombre) {
         $nombre = str_replace('_', " ", $nombre);
@@ -278,12 +269,11 @@ class Util {
     }
 
     /**
-     * recive 2 fechas, 1)el tiempo de creacion. 2)El tiempo que toma en resolverse una incidencia y devuelve
+     * recibe 2 fechas, 1)el tiempo de creacion. 2)El tiempo que toma en resolverse una incidencia y devuelve
      * el tiempo restante para resolverla en horas 
      * @param type $fCreacion
      * @param type $tIncidencia
      * @return type
-     * @author Ivan Naranjo <inaranjo@tradesystem.com.ec>
      */
     //TODO: Borrar en caso que ya no se utilice
     public static function semaforoUtil($fCreacion, $tIncidencia) {
@@ -304,7 +294,6 @@ class Util {
      * @param type $fCreacion
      * @param type $tIncidencia
      * @return type
-     * @author Ivan Naranjo <inaranjo@tradesystem.com.ec>
      */
     public static function semaforo($fGestion) {
         $tiempoDias = (strtotime($fGestion) - strtotime(date("Y-m-d H:i:s"))) / 86400;
@@ -332,7 +321,6 @@ class Util {
 
     /**
      * Retorna los años cercanos al año actual
-     * @author Santiago Benítez <sbenitez@tradesystem.com.ec>
      * @param type $yearsMin
      * @param type $yearsMax
      * @return array
@@ -348,7 +336,6 @@ class Util {
 
     /**
      * exporta una tabla a pdf
-     * @author Esteban Preciado <epreciado@tradesystem.com.ec>
      * @param type $pag_render
      * @param array $options
      * @param type $boolean
@@ -447,7 +434,6 @@ class Util {
 
     /**
      * Transforma un arreglo de objetos ActiveRecord para que se desplieguen en un select de HTML
-     * @author Santiago Benítez
      * @param type $arrayOptions
      * @return String $options
      */
@@ -462,7 +448,6 @@ class Util {
 
     /**
      * Traduce la fecha actual a español
-     * @author  Santiago Benítez
      * @return type
      */
     public static function traducirFechaActual() {
@@ -586,7 +571,6 @@ class Util {
 
     /**
      * Enlista los templates disponibles que tenemos en Mandrill
-     * @author  Diego Echeverria <decheverria@tradesystem.com.ec>
      * @return type array()
      */
     public static function getTemplatesMandrill() {
@@ -601,5 +585,4 @@ class Util {
     }
 
 }
-
 ?>
