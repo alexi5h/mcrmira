@@ -45,6 +45,6 @@
         ));
         ?>
         <?php echo Chtml::link('<i class="icon-edit-sign"></i> Actualizar', array('update', 'id' => $model->id), array('class' => 'btn')) ?>
-        <?php echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('update', 'id' => $model->id), array('class' => 'btn')) ?>
+        <?php echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('kanban', 'id' => $model->id), array('class' => 'btn')) ?>
     </div>
 </div>

@@ -101,6 +101,18 @@ class Persona extends BasePersona {
         return $this;
     }
 
+    public function de_etapa($etapa_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'persona_etapa_id = :persona_etapa_id',
+                    'params' => array(
+                        ':persona_etapa_id' => $etapa_id
+                    ),
+                )
+        );
+        return $this;
+    }
+
     public function getNombre_formato() {
         $return = $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
@@ -113,4 +125,5 @@ class Persona extends BasePersona {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
     }
+
 }

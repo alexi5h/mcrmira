@@ -66,7 +66,7 @@ class PersonaController extends AweController {
                 $pago->tipo = Pago::TIPO_PRIMIER_PAGO;
                 if ($pago->save()) {
                     $this->redirect(array('admin'));
-                } 
+                }
             }
         }
 
@@ -161,6 +161,28 @@ class PersonaController extends AweController {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    /**
+     * Realiza en render de la vista Kanban
+     * @author Armando Maldonado
+     */
+    public function actionKanban($id) {
+        $etapas= PersonaEtapa::model()->activos()->orden()->findAll();
+        
+//        die(var_dump($incidencia_estados));
+//        $result = array();
+//        if (Yii::app()->request->isAjaxRequest) {
+//            $result['success'] = true;
+//            $result['html'] = $this->renderPartial('_kanban', array('incidencia_estados' => $incidencia_estados), TRUE, false);
+//            echo json_encode($result);
+//        } 
+//        else
+        {
+            $this->render('kanban', array(
+                'etapas' => $etapas,
+            ));
+        }
     }
 
     public function assignParams($params) {
