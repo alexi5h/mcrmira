@@ -35,8 +35,8 @@ abstract class BasePago extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('id, descripcion, cliente_id, cantidad, fecha, estado, tipo', 'required'),
-            array('id, cliente_id', 'numerical', 'integerOnly'=>true),
+            array('descripcion, cliente_id, cantidad, fecha, estado, tipo', 'required'),
+            array('cliente_id', 'numerical', 'integerOnly'=>true),
             array('descripcion', 'length', 'max'=>50),
             array('cantidad', 'length', 'max'=>5),
             array('estado', 'length', 'max'=>6),
