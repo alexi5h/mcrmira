@@ -57,6 +57,14 @@ class PersonaController extends AweController {
                 }
             }
             if ($model->save()) {
+                $pago = new Pago();
+                $pago->descripcion = 'Pago por ingreso a la mancomunidad';
+                $pago->cliente_id = $model->id;
+                $pago->cantidad = Pago::VALOR_REGISTRO;
+                $pago->fecha = Util::FechaActual();
+                $pago->estado = Pago::ESTADO_DEUDA;
+                $pago->tipo = Pago::ESTADO_DEUDA;
+                $pago->save();
                 $this->redirect(array('admin'));
             }
         }
@@ -73,7 +81,7 @@ class PersonaController extends AweController {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id, $r=null) {
         $model = $this->loadModel($id);
         $modelDireccion1 = $model->direccionDomicilio ? $model->direccionDomicilio : new Direccion;
         $modelDireccion2 = $model->direccionNegocio ? $model->direccionNegocio : new Direccion;
@@ -105,14 +113,12 @@ class PersonaController extends AweController {
                 }
             }
             if ($model->save()) {
-//                if($temp=='form'){
-//                    $this->redirect(array('view','id'=>$model->id));
-//                }else{
-                    //$this->redirect(array('view','id'=>$model->id));
+                if ($r!=null) {
                     $this->redirect(array('admin'));
-//                }
+                } else {
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
             }
-            
         }
         $this->render('update', array(
             'model' => $model,

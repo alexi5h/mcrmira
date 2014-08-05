@@ -60,6 +60,7 @@ $this->menu = array(
                             'update' => array(
                                 'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
                                 'options' => array('title' => 'Actualizar'),
+                                'url' => 'Yii::app()->createUrl("/crm/persona/update/id/".$data->id."/r/0")',
                                 'imageUrl' => false,
                             //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                             ),

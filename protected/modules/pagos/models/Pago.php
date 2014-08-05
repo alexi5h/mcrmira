@@ -3,9 +3,14 @@
 Yii::import('pagos.models._base.BasePago');
 
 class Pago extends BasePago {
-
+//    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
+//    tipo:AHORRO,PRIMER_PAGO
+    const TIPO_AHORRO='AHORRO';
+    const TIPO_PRIMIER_PAGO='PRIMER_PAGO';
+    //Valor a pagar por registro en la mancomunidad
+    const VALOR_REGISTRO = 70;
 
     /**
      * @return PagoMes
