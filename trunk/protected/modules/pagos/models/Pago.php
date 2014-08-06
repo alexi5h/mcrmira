@@ -20,7 +20,7 @@ class Pago extends BasePago {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'Pago|Pago', $n);
+        return Yii::t('app', 'Pago|Pagos', $n);
     }
 
     public function de_cliente($id_cliente) {

@@ -2,7 +2,7 @@
 /** @var PagoMesController $this */
 /** @var PagoMes $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create').' '.Pago::label(1), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -34,6 +34,7 @@ echo Pago::fechaMes(7);
                     'name' => 'estado',
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                 ),
+                'tipo',
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
