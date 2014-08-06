@@ -29,7 +29,7 @@ $this->menu = array(
                 'nombre',
                 array(
                     'name' => 'direccion_id',
-                    'value' => '$data->direccion->direccion_completa ? $data->direccion->direccion_completa : null',
+                    'value' => '$data->direccion ? $data->direccion->direccion_completa : null',
                     'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
                 ),
                 array(
