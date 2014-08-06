@@ -23,7 +23,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php //echo $form->textFieldRow($model, 'id') ?>
 
-        
+
 
         <?php
         $model_cliente = Persona::model()->activos()->findAll();
@@ -36,7 +36,10 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 5)) ?>
+        <?php
+        if (!$model->isNewRecord)
+            echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 5));
+        ?>
 
         <?php
         if (!$model->isNewRecord)
@@ -57,7 +60,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->dropDownListRow($model, 'tipo', array('AHORRO' => 'AHORRO', 'PRIMER_PAGO' => 'PRIMER PAGO')) ?>
 
         <?php echo $form->textFieldRow($model, 'descripcion', array('maxlength' => 100)) ?>
-        
+
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
