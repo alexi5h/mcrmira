@@ -31,6 +31,15 @@ class Persona extends BasePersona {
                 )
         );
     }
+    
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('cedula', 'ext.Validations.CampoCedula'),
+            array('ruc', 'ext.Validations.CampoRucCedula','compareAttribute'=>'cedula','operator'=>'=='),
+            array('ruc', 'ext.Validations.CampoRuc'),
+                )
+        );
+    }
 
     public function searchParams() {
         return array(
