@@ -37,21 +37,18 @@ class PagoController extends AweController {
 
         if (isset($_POST['Pago'])) {
             $model->attributes = $_POST['Pago'];
-            $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
+            $model->fecha = Util::FechaActual(); //Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
             $model->estado = Pago::ESTADO_DEUDA;
-            $model->tipo='AHORRO';
-            
+
             $model_persona = new Persona();
             $model_persona->unsetAttributes();
-            $model_persona=  Persona::model()->findByAttributes(array('id'=>$model->cliente_id));
-            
-            if($model_persona->estado=='ACTIVO'){
+            $model_persona = Persona::model()->findByAttributes(array('id' => $model->cliente_id));
+
+            if ($model_persona->estado == 'ACTIVO') {
                 if ($model->save()) {
-                $this->redirect(array('admin'));
+                    $this->redirect(array('admin'));
+                }
             }
-            }
-            
-            
         }
 
         $this->render('create', array(
@@ -71,6 +68,7 @@ class PagoController extends AweController {
 
         if (isset($_POST['Pago'])) {
             $model->attributes = $_POST['Pago'];
+            $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
 
             if ($model->save()) {
                 $this->redirect(array('admin'));
