@@ -46,12 +46,16 @@ class PersonaController extends AweController {
             $modelDireccion2->attributes = $_POST['Direccion2'];
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
                 $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id == 0);
+                $modelDireccion1->barrio_id = ($modelDireccion1->barrio_id == 0) ? null : ($modelDireccion1->barrio_id == 0);
                 if ($modelDireccion1->save(false)) {
                     $model->direccion_domicilio_id = $modelDireccion1->id;
                 }
             }
             if (implode('', array_values($modelDireccion2->attributes)) != '') {
                 $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion2->parroquia_id = ($modelDireccion2->parroquia_id == 0) ? null : ($modelDireccion2->parroquia_id == 0);
+                $modelDireccion2->barrio_id = ($modelDireccion2->barrio_id == 0) ? null : ($modelDireccion2->barrio_id == 0);
                 if ($modelDireccion2->save(false)) {
                     $model->direccion_negocio_id = $modelDireccion2->id;
                 }
@@ -168,8 +172,8 @@ class PersonaController extends AweController {
      * @author Armando Maldonado
      */
     public function actionKanban($id) {
-        $etapas= PersonaEtapa::model()->activos()->orden()->findAll();
-        
+        $etapas = PersonaEtapa::model()->activos()->orden()->findAll();
+
 //        die(var_dump($incidencia_estados));
 //        $result = array();
 //        if (Yii::app()->request->isAjaxRequest) {

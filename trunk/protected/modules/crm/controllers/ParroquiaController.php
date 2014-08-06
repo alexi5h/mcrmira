@@ -137,15 +137,15 @@ class ParroquiaController extends AweController {
                 ));
                 if ($data) {
                     $data = CHtml::listData($data, 'id', 'nombre');
-                    echo CHtml::tag('option', array('value' => null, 'id' => 'p'), '- Parroquias -', true);
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Parroquias -', true);
                     foreach ($data as $value => $name) {
                         echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
                     }
                 } else {
-                    echo CHtml::tag('option', array('value' => null), '- No existen opciones -', true);
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
                 }
             } else {
-                echo CHtml::tag('option', array('value' => null, 'id' => 'p'), '- Seleccione un canton -', true);
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un canton -', true);
             }
         }
     }
