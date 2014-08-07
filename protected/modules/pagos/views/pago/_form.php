@@ -36,10 +36,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php
-        if (!$model->isNewRecord)
-            echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 5));
-        ?>
+        <?php echo $form->textFieldRow($model, 'cantidad') ?>
 
         <?php
         if (!$model->isNewRecord)

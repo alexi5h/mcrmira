@@ -22,6 +22,13 @@ class Pago extends BasePago {
     public static function label($n = 1) {
         return Yii::t('app', 'Pago|Pagos', $n);
     }
+    
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('cantidad', 'numerical', 'min'=>1, 'tooSmall'=>'La cantidad debe ser mayor a 0'),
+                )
+        );
+    }
 
     public function de_cliente($id_cliente) {
         $this->getDbCriteria()->mergeWith(
