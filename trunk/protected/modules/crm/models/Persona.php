@@ -11,7 +11,7 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
 
-    public $nombre_formato;
+    private $nombre_formato;
     private $nombre_corto;
 
     /**
@@ -142,7 +142,13 @@ class Persona extends BasePersona {
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
         $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
-        return $return;
+        $this->nombre_formato = $return;
+        return $this->nombre_formato;
+    }
+
+    public function setNombre_formato($nombre_formato) {
+        $this->nombre_formato = $nombre_formato;
+        return $this->nombre_formato;
     }
 
     public function getNombre_corto() {
