@@ -34,7 +34,7 @@ $this->menu = array(
                 'columns' => array(
                     array(
                         'name' => 'nombre_formato',
-                        'value' => 'CHtml::link($data->getNombre_formato(), Yii::app()->createUrl("crm/persona/view",array("id"=>$data->id)))',
+                        'value' => 'CHtml::link($data->nombre_formato, Yii::app()->createUrl("crm/persona/view",array("id"=>$data->id)))',
                         'type' => 'raw',
                     ),
                     'cedula',
