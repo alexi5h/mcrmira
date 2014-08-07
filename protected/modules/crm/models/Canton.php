@@ -31,7 +31,6 @@ class Canton extends BaseCanton {
 
     public function searchParams() {
         return array(
-//            'id', 
             'nombre',
             'provincia_id',
         );
@@ -39,7 +38,7 @@ class Canton extends BaseCanton {
 
     public function search() {
         $criteria = new CDbCriteria;
-        $criteria->with=array('provincia');
+        $criteria->with = array('provincia');
 
         $criteria->compare('t.id', $this->id, true, 'OR');
         $criteria->compare('t.nombre', $this->nombre, true, 'OR');
@@ -51,11 +50,4 @@ class Canton extends BaseCanton {
         ));
     }
 
-//@TODO borrar esta demas 
-//    public function relations() {
-//        return array_merge(parent::relations(), array(
-//            'provincia' => array(self::BELONGS_TO, 'Provincia', 'provincia_id'),
-//                )
-//        );
-//    }
 }
