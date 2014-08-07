@@ -2,8 +2,7 @@
 /** @var ParroquiaController $this */
 /** @var Parroquia $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create').' '.Parroquia::label(1), 'icon' => 'plus', 'url' => array('create'),
-    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
+    array('label' => Yii::t('AweCrud.app', 'Create') . ' ' . Parroquia::label(1), 'icon' => 'plus', 'url' => array('create'),
     ),
 );
 ?>

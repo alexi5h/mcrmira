@@ -11,7 +11,7 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
 
-    private $nombre_formato;
+    public $nombre_formato;
     private $nombre_corto;
 
     /**
@@ -31,13 +31,28 @@ class Persona extends BasePersona {
                 )
         );
     }
-    
+
     public function rules() {
-        return array_merge(parent::rules(), array(
+        return array(
             array('cedula', 'ext.Validations.CampoCedula'),
-            array('ruc', 'ext.Validations.CampoRucCedula','compareAttribute'=>'cedula','operator'=>'=='),
+            array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
-                )
+            array('nombre_formato', 'safe', 'on' => 'search'),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id', 'required'),
+            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, cedula, ruc', 'numerical', 'integerOnly' => true),
+            array('email', 'email'),
+            array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
+            array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
+            array('telefono, celular', 'length', 'max' => 10),
+            array('email', 'length', 'max' => 255),
+            array('tipo', 'length', 'max' => 7),
+            array('estado', 'length', 'max' => 8),
+            array('descripcion, fecha_actualizacion', 'safe'),
+            array('tipo', 'in', 'range' => array('CLIENTE', 'GARANTE')), // enum,
+            array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
+            array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
+//                )
         );
     }
 
@@ -63,7 +78,7 @@ class Persona extends BasePersona {
 //        $criteria->compare('segundo_nombre', $this->segundo_nombre, true,'OR');
 //        $criteria->compare('apellido_paterno', $this->apellido_paterno, true,'OR');
 //        $criteria->compare('apellido_materno', $this->apellido_materno, true,'OR');
-        $criteria->compare('CONCAT(t.primer_nombre,IFNULL(CONCAT(" ",t.segundo_nombre),""),CONCAT(" ",t.apellido_paterno),""),IFNULL(CONCAT(" ",t.apellido_materno),""))', $this->nombre_formato, true, 'OR');
+        $criteria->compare('CONCAT(t.primer_nombre, IFNULL(CONCAT(" ",t.segundo_nombre),""), CONCAT(" ",t.apellido_paterno), IFNULL(CONCAT(" ",t.apellido_materno),""))', $this->nombre_formato, true, 'OR');
         $criteria->compare('t.cedula', $this->cedula, true, 'OR');
 //        $criteria->compare('ruc', $this->ruc, true);
         $criteria->compare('t.telefono', $this->telefono, true, 'OR');

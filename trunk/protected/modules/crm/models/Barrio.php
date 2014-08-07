@@ -36,6 +36,7 @@ class Barrio extends BaseBarrio {
                 'min' => 1,
                 'tooSmall' => 'Elija un parroquia por favor.',
             ),
+            array('provincia_id,canton_id', 'safe', 'on' => 'search'),
         ));
     }
 
@@ -50,17 +51,22 @@ class Barrio extends BaseBarrio {
         return array(
 //            'id', 
             'nombre',
+            'parroquia_id',
+            'canton_id',
             'provincia_id',
         );
     }
 
     public function search() {
         $criteria = new CDbCriteria;
-
-
+        $criteria->join = ' INNER JOIN parroquia pa ON pa.id=t.parroquia_id';
+        $criteria->join .= ' INNER JOIN canton c ON c.id=pa.canton_id';
+        $criteria->join .= ' INNER JOIN provincia p ON p.id=c.provincia_id';
         $criteria->compare('t.id', $this->id, true, 'OR');
         $criteria->compare('t.nombre', $this->nombre, true, 'OR');
-        $criteria->compare('parroquia.nombre', $this->parroquia_id, true, 'OR');
+        $criteria->compare('p.nombre', $this->provincia_id, true, 'OR');
+        $criteria->compare('c.nombre', $this->canton_id, true, 'OR');
+        $criteria->compare('pa.nombre', $this->parroquia_id, true, 'OR');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -42,25 +42,28 @@ class Parroquia extends BaseParroquia {
                 'min' => 1,
                 'tooSmall' => 'Elija un canton por favor.',
             ),
+            array('provincia_id', 'safe', 'on' => 'search'),
         ));
     }
 
     public function searchParams() {
         return array(
 //            'id', 
-            'nombre',            
+            'nombre',
             'canton_id',
+            'provincia_id',
         );
     }
 
     public function search() {
         $criteria = new CDbCriteria;
-        $criteria->with=array('canton');
+        $criteria->join = ' INNER JOIN canton c ON c.id=t.canton_id';
+        $criteria->join .= ' INNER JOIN provincia p ON p.id=c.provincia_id';
+        $criteria->compare('t.id', $this->id, true, 'OR');
+        $criteria->compare('t.nombre', $this->nombre, true, 'OR');
+        $criteria->compare('c.nombre', $this->canton_id, true, 'OR');
+        $criteria->compare('p.nombre', $this->provincia_id, true, 'OR');
 
-        $criteria->compare('t.id', $this->id, true,'OR');
-        $criteria->compare('t.nombre', $this->nombre, true,'OR');
-        $criteria->compare('canton.nombre', $this->canton_id, true,'OR');
-        
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
