@@ -44,7 +44,7 @@ class PersonaController extends AweController {
             $model->usuario_creacion_id = Yii::app()->user->id;
             $modelDireccion1->attributes = $_POST['Direccion1'];
             $modelDireccion2->attributes = $_POST['Direccion2'];
-            $modelDireccion2->aprobado = 0;
+            $model->aprobado = 0;
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
                 $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id == 0);
