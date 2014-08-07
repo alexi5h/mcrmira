@@ -4,8 +4,7 @@ Util::tsRegisterAssetJs('kanban.js');
 //$this->pageTitle = Incidencia::label(2);
 
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus',  'url' => array('create')),
-    array('label' => Yii::t('AweCrud.app', 'lista'), 'icon' => 'list-alt',  'url' => array('admin')),
+    array('label' => Yii::t('AweCrud.app', 'Atras'), 'icon' => 'icon-arrow-left', 'url' => array('view', 'id' => $id)),
 );
 ?>
 <div class="row-fluid">
@@ -16,7 +15,7 @@ $this->menu = array(
         <div class="widget-body">
 
             <div id="KambanIncidencia" class="kanban-container clearfix">
-                <?php $this->renderPartial('_kanban', array('etapas' => $etapas)); ?>
+                <?php $this->renderPartial('_kanban', array('etapas' => $etapas, 'id' => $id)); ?>
             </div>
 
         </div>

@@ -7,7 +7,7 @@ $(function() {
         resizeKanban();
     });
     ParametrosArrastrables();
-    
+
 
 });
 function resizeKanban() {
@@ -29,7 +29,6 @@ function resizeKanban() {
     });
 }
 /**
- * @author  Alex Yepez 
  * agrega la accion sortable a los oportunidades 
  */
 function ParametrosArrastrables()
@@ -39,15 +38,15 @@ function ParametrosArrastrables()
         connectWith: "ul",
         receive: function(event, ui) {
             resizeKanban();
-            var url = baseUrl + '/incidencias/incidencia/ajaxUpdateEstado';
+            var url = baseUrl + 'crm/persona/ajaxUpdateEtapa';
             enviarDatos(ui.item.attr('data-id'), $(this).attr("cont-id"), url);
+            $('#wrapper-testToggleButtonB>div').css('left', "-50%");
         }
     });
 }
 
 /**
  * Envia datos a la accion ajaxUpdateEstado, para actualizar en estado_id de la Incidencia
- * @autor Armando Maldonado
  * @param {type} id_data
  * @param {type} id_estado
  * @param {type} url
@@ -57,11 +56,14 @@ function enviarDatos(id_data, id_estado, url)
 {
     $.ajax({
         type: 'GET',
-        url: url + '/id_data/' + id_data + '/id_estado/' + id_estado,
+        url: url + '/id_data/' + id_data + '/id_etapa/' + id_estado,
     });
 }
+function actualizarAprobado(id_cliente, value)
+{
+    $.post(baseUrl + 'crm/persona/ajaxAprobado', {cliente_id: id_cliente, value: value});
+}
 /**
- * @author Alex Yepez <ayepez@tradesystem.com.ec>
  * @param {type} lista
  * Actualiza el panel kanban
  */
@@ -75,14 +77,13 @@ function ActualizarInformacion(lista)
     });
 }
 /**
- * @author Alex Yepez <ayepez@tradesystem.com.ec>
  * @param {type} Formulario
  * guarda los _form_modal por ajax para contacto, tarea, oportunidad, evento y cobranza
  */
 function AjaxAtualizacionInformacion(Formulario)
 {
     BloquearBotonesModal(Formulario);
-    AjaxGestionModal(Formulario,function(list){
+    AjaxGestionModal(Formulario, function(list) {
         ActualizarInformacion(list);
     });
 }
