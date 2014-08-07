@@ -35,10 +35,10 @@ class Direccion extends BaseDireccion {
             $calle1=  $this->calle_1 ? $this->calle_1 : '';
             $numero= $this->numero ? $this->numero : 's/n';
             $calle2= $this->calle_2 ? $this->calle_2 : '';
-            $calle1y2= $calle1=='' ? ($calle2=='' ? '' : $calle2) : ($calle2=='' ? $calle1.' '.$numero : $calle1.' '.$numero.' y '.$calle2);
-            $referencia= $this->referencia ? ', '.$this->referencia : '';
-            $barrio=  $this->barrio ? ', '.$this->barrio : '';
-            $parroquiaCantonProvincia=  $this->parroquia ? ' - '.$this->parroquia.' - '.$this->parroquia->canton.' - '.$this->parroquia->canton->provincia : '';
+            $calle1y2= $calle1=='' ? ($calle2=='' ? '' : $calle2.', ') : ($calle2=='' ? $calle1.' '.$numero.', ' : $calle1.' '.$numero.' y '.$calle2.', ');
+            $referencia= $this->referencia ? $this->referencia.', ' : '';
+            $barrio=  $this->barrio ? $this->barrio.' - ' : '';
+            $parroquiaCantonProvincia=  $this->parroquia ? $this->parroquia.' - '.$this->parroquia->canton.' - '.$this->parroquia->canton->provincia : '';
             
             $this->direccion_completa=$calle1y2.$referencia.$barrio.$parroquiaCantonProvincia;
             return $this->direccion_completa;

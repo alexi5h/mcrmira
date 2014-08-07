@@ -39,7 +39,6 @@ class PagoController extends AweController {
             $model->attributes = $_POST['Pago'];
             $model->fecha = Util::FechaActual(); //Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
             $model->estado = Pago::ESTADO_DEUDA;
-            $model->cantidad = 0;
 
             $model_persona = new Persona();
             $model_persona->unsetAttributes();
