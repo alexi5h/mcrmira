@@ -44,6 +44,7 @@ class PersonaController extends AweController {
             $model->usuario_creacion_id = Yii::app()->user->id;
             $modelDireccion1->attributes = $_POST['Direccion1'];
             $modelDireccion2->attributes = $_POST['Direccion2'];
+            $modelDireccion2->aprobado = 0;
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
                 $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id == 0);
@@ -173,7 +174,6 @@ class PersonaController extends AweController {
      */
     public function actionKanban($id) {
         $etapas = PersonaEtapa::model()->activos()->orden()->findAll();
-
 //        die(var_dump($incidencia_estados));
 //        $result = array();
 //        if (Yii::app()->request->isAjaxRequest) {
@@ -185,7 +185,32 @@ class PersonaController extends AweController {
         {
             $this->render('kanban', array(
                 'etapas' => $etapas,
+                'id' => $id,
             ));
+        }
+    }
+
+    public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            Persona::model()->updateByPk($id_data, array('persona_etapa_id' => $id_etapa,
+                'usuario_actualizacion_id' => Yii::app()->user->id,
+                'fecha_actualizacion' => Util::FechaActual(),
+                'aprobado' => 0
+                    )
+            );
+        }
+    }
+
+    public function actionAjaxAprobado() {
+        if (Yii::app()->request->isAjaxRequest) {
+            $id = $_POST['cliente_id'];
+            $value = (boolean) $_POST['value'];
+            Persona::model()->updateByPk($id, array(
+                'usuario_actualizacion_id' => Yii::app()->user->id,
+                'fecha_actualizacion' => Util::FechaActual(),
+                'aprobado' => $value
+                    )
+            );
         }
     }
 

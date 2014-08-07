@@ -1,27 +1,41 @@
+<script>
+    var $cliente_id =<?php echo $id ?>;
+</script>
 <div style="min-width: <?php echo count($etapas) * 278 ?>px" class="clearfix">
     <?php foreach ($etapas as $etapa): ?>
         <div class="kanban-stage">
             <div class="kanban-title"><?php echo $etapa->nombre; ?></div>
             <ul class="kanban-body" cont-id="<?php echo $etapa->id; ?>">
                 <?php
-                foreach (Persona::model()->activos()->de_etapa($etapa->id)->findAll() as $incidencia):
+                if (in_array($id, array_map('AweHtml::getPrimaryKey', $etapa->personas))) :
                     ?>
-                    <li class="kanban-item" data-id="<?php echo $incidencia->id ?>">
-                        <div class="kanban-item-title"><?php
-                            echo CHtml::link($incidencia->primer_nombre, "", array("id" => $incidencia->id, "onClick" => "viewModal('incidencias/incidencia/view/id/" . $incidencia->id . "')"));
-                            ?></div>
-                        <!-- Contacto -->
-                        <div><label>Responsable:</label> <?php echo $incidencia->nombre_formato; // echo $oportunidad['monto'];           ?></div>
-                        <!-- fecha estima de solucion -->
-                        <?php // if ($incidencia->fecha_est_resolucion): ?>
-                        <!--<div>-->
-                            <!--<label>Fecha Estimada:</label> <?php // echo "<span class=\"label label-mini " . Util::nicetimeColor($incidencia->fecha_est_resolucion) . " \">" . Util::nicetime($incidencia->fecha_est_resolucion) . "</span>"  ?></div>-->
-                        <?php // endif; ?>
-                        <div>
-
+                    <?php $cliente = Persona::model()->findByPk($id); ?>
+                    <li class="kanban-item" data-id="<?php echo $cliente->id ?>">
+                        <div class="kanban-item-title">
+                            <?php
+                            echo CHtml::link($cliente->nombre_formato, "");
+//                            echo CHtml::link($cliente->nombre_formato, "", array("id" => $cliente->id, "onClick" => "viewModal('incidencias/incidencia/view/id/" . $cliente->id . "')"));
+                            ?>
+                        </div>
+                        <div><label>C&eacute;dula: </label> <?php echo $cliente->cedula; ?></div>
+                        <div><label>Sucursal: </label> <?php echo $cliente->sucursal; ?></div>
+                        <div >
+                            <?php
+                            $this->widget(
+                                    'ext.bootstrap.widgets.TbToggleButton', array(
+                                'name' => 'testToggleButtonB',
+                                'enabledLabel' => 'Aprobado',
+                                'disabledLabel' => 'En espera...',
+                                'value' => $cliente->aprobado,
+                                'onChange' => 'js:function($el, status, e){ actualizarAprobado($cliente_id,status);}',
+                                'width' => 200,
+                                'enabledStyle' => 'success',
+                                    )
+                            );
+                            ?>
                         </div>
                     </li>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
         </div>
     <?php endforeach; ?>
