@@ -31,57 +31,33 @@ class DepositoController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate($id_pago = null) {
-        $result = array();
-        $model = new Deposito;
-        if ($id_pago) {
-            $model->pago_id = $id_pago;
-        }
 
-
-        $this->performAjaxValidation($model, 'deposito-form');
 
         //petición del formulario por ajax renderPartial
-
-
         if (Yii::app()->request->isAjaxRequest) {
+            $result = array();
+            $model = new Deposito;
+            $model->pago_id = $id_pago;
+            $this->performAjaxValidation($model, 'deposito-form');
             $validadorPartial = false;
-
             if (isset($_POST['Deposito'])) {
-
                 $model->attributes = $_POST['Deposito'];
                 $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad ? $model->fecha_comprobante_entidad : Util::FechaActual());
                 $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su ? $model->fecha_comprobante_su : Util::FechaActual());
                 $result['success'] = $model->save();
-
                 if (!$result['success']) {
                     $result['mensage'] = "Error al actualizar la fecha de la oportunidad";
                 }
                 $validadorPartial = TRUE;
-
                 echo json_encode($result);
             }
-
             if (!$validadorPartial) {
-                 $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy",Util::FechaActual());
-                $model->fecha_comprobante_su =Yii::app()->dateFormatter->format("dd/MM/yyyy",  Util::FechaActual());
+                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
+                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);
             }
-        } else {
-            if (isset($_POST['Deposito'])) {
-                $model->attributes = $_POST['Deposito'];
-                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad);
-                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su);
-                if ($model->save()) {
-                    $this->redirect(array('admin'));
-                }
-            }
-
-
-            $this->render('create', array(
-                'model' => $model,
-            ));
         }
     }
 
