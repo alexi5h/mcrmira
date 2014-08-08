@@ -3,7 +3,6 @@ var Script = function() {
 //bandera para saltar la proÃ§imera accion al validar los formularios
     var primero = false;
     /**
-     * @author Alex Yepez Chavez
      * validacion de formularios para bloquear botones de accion
      */
     $("form").submit(function(e) {
@@ -161,7 +160,6 @@ function viewModal(url, CallBack)
     });
 }
 /**
- * @author Alex Yepez Chavez
  * @param {cadena} $form
  * @argument name descriptionpermite evaluar el formulario de un modal, para su posterior actualizaciÃ³n 
  * o registro por medio de ajax.
@@ -191,7 +189,6 @@ function AjaxGestionModal($form, CallBack) {
     });
 }
 /**
- * @author Alex Yepez Chavez
  * @param {cadena} $form
  * @param {arreglo} listas
  * @argument  permite validar y guardar el formulario de un modal
@@ -224,7 +221,6 @@ function AjaxAccionModal($form, CallBack) {
 }
 /**
  * 
- * @author Alex Yepez
  * @param {cadena} name description
  * @returns {Boolean}
  * ValidaciÃ³n de los control-group de un elemento contenedor,
@@ -265,7 +261,6 @@ function verificarValidacionModal($contenedor)
 
 
 /**
- * @author Alex Yepez Chavez
  * @param {Cadena} Formulario
  * Guarda el contenido de los modales de entidades
  */
@@ -300,7 +295,6 @@ function AjaxGuardarModal(verificador, Formulario, callBack)
 
 }
 /**
- * @author Alex Yepez Chavez
  * @param {cadena} Formulario
  * Guarda el contenido de los modales de las acciones
  */
@@ -361,11 +355,10 @@ function AjaxUpdateElement(url, elemento, callBack)
         }
     });
 }
-///**
-// * Carga de formatos a input en formularios
-// * @autor Armando Maldonado <amaldonado@tradesystem.com.ec>
-// * @returns {undefined}
-// */
+/**
+ * Carga de formatos a input en formularios
+ * @returns {undefined}
+ */
 function maskAttributes() {
     $('input.telefono').mask('000-000000');
     $('input.celular').mask('0000000000');
