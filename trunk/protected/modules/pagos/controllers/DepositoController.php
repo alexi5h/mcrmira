@@ -52,10 +52,10 @@ class DepositoController extends AweController {
 
 
             if (isset($_POST['Deposito'])) {
-                
-                $model->attributes = $_POST['Deposito'];              
-                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad);
-                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su);
+
+                $model->attributes = $_POST['Deposito'];
+                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad ? $model->fecha_comprobante_entidad : Util::FechaActual());
+                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su ? $model->fecha_comprobante_su : Util::FechaActual());
                 $result['success'] = $model->save();
 
                 if (!$result['success']) {
@@ -67,6 +67,8 @@ class DepositoController extends AweController {
             }
 
             if (!$validadorPartial) {
+                 $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy",Util::FechaActual());
+                $model->fecha_comprobante_su =Yii::app()->dateFormatter->format("dd/MM/yyyy",  Util::FechaActual());
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);
