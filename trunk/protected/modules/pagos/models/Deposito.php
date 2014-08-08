@@ -29,11 +29,23 @@ class Deposito extends BaseDeposito {
 //        $criteria->compare('t.pago_id', $this->pago_id, true);
         $criteria->compare('t.pago_id', $id_pago, true);
 //        $criteria->compare('p.id', $id_pago, true);
-        
+
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function totalDepositosByPago($id_pago) {
+//        select sum(t.cantidad) from deposito t where t.pago_id=1;
+        $consulata = Yii::app()->db->createCommand()->
+                select('sum(t.cantidad) as total_depositos_pago')->
+                from('deposito t')->
+                where('t.pago_id=:pago_id');
+
+        $consulata->params = array(':pago_id' => $id_pago);
+
+        return $consulata->queryAll();
     }
 
 }
