@@ -33,7 +33,6 @@ class DepositoController extends AweController {
     public function actionCreate($id_pago = null) {
         $result = array();
         $model = new Deposito;
-
         if ($id_pago) {
             $model->pago_id = $id_pago;
         }
@@ -46,52 +45,25 @@ class DepositoController extends AweController {
 
         if (Yii::app()->request->isAjaxRequest) {
             $validadorPartial = false;
-            $total_depositos_pago = $model->totalDepositosByPago($id_pago);
-            $modelPago = Pago::model()->findByPk($id_pago);
-            $cantidadDepositosPago = floatval($total_depositos_pago[0]['total_depositos_pago']);
-            $catidadPago = floatval($modelPago->cantidad);
-            $cantidad = $catidadPago - ($cantidadDepositosPago + floatval($model->cantidad));
-
-
-
-            $this->performAjaxValidation($model, 'deposito-form');
 
             if (isset($_POST['Deposito'])) {
 
                 $model->attributes = $_POST['Deposito'];
                 $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad ? $model->fecha_comprobante_entidad : Util::FechaActual());
                 $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su ? $model->fecha_comprobante_su : Util::FechaActual());
+                $result['success'] = $model->save();
 
-//                 
-
-                if ($cantidad >= 0.00 && floatval($model->cantidad) > 0.00) {
-
-                    $result['success'] = $model->save();
-
-                    if (!$result['success']) {
-                        $result['mensage'] = "Error ";
-                    }
-                    $validadorPartial = TRUE;
-
-                    echo json_encode($result);
-                } else {
-                    $result['success'] = false;
-                    if (!$result['success']) {
-                        $result['mensage'] = "La cantidad de este deposito es damaciado alta, supera el pago";
-                    }
-
-
-                    $validadorPartial = TRUE;
-
-                    echo json_encode($result);
+                if (!$result['success']) {
+                    $result['mensage'] = "Error al actualizar la fecha de la oportunidad";
                 }
+                $validadorPartial = TRUE;
+
+                echo json_encode($result);
             }
 
-
             if (!$validadorPartial) {
-                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
-                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
-                $model->cantidad = $cantidad;
+                 $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy",Util::FechaActual());
+                $model->fecha_comprobante_su =Yii::app()->dateFormatter->format("dd/MM/yyyy",  Util::FechaActual());
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);
