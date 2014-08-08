@@ -6,7 +6,8 @@ function AjaxAtualizacionInformacion(Formulario)
 {
     BloquearBotonesModal(Formulario);
     AjaxGestionModal(Formulario, function(list) {
-        ActualizarInformacion(list);
+        
+        
     });
 }
 
