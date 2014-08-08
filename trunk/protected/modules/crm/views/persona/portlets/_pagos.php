@@ -1,9 +1,7 @@
 <?php
 // Obtener pagos del cliente
 $pagos = Pago::model()->de_cliente($model->id)->findAll();
-$model_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
-//var_dump($model_pagos->id);
-//die();
+$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
 <div class="widget red">
@@ -22,14 +20,14 @@ $model_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageS
                     'id' => 'pago-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                     'type' => 'striped bordered hover advance',
-                    'dataProvider' => $model_pagos,
+                    'dataProvider' => $data_pagos,
                     'columns' => array(
-                        array(
-                            'header' => 'ID',
-                            'name' => 'id',
-                            'value' => '$data->id',
-                            'type' => 'raw',
-                        ),
+//                        array(
+//                            'header' => 'ID',
+//                            'name' => 'id',
+//                            'value' => '$data->id',
+//                            'type' => 'raw',
+//                        ),
                         array(
                             'header' => 'Mes',
                             'name' => 'fecha',
