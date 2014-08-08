@@ -1,4 +1,5 @@
 <?php
+Util::tsRegisterAssetJs('view.js');
 /** @var PersonaController $this */
 /** @var Persona $model */
 ?>

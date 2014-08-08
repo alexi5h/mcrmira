@@ -136,6 +136,7 @@ function showModalLoading() {
 }
 
 function showModalData(html) {
+    
     $("#mainModal").html(html);
     $('select.fix').selectBox();
 }
@@ -172,7 +173,7 @@ function AjaxGestionModal($form, CallBack) {
     $.fn.yiiactiveform.validate(form, function(messages) {
 
         $.each(messages, function() {
-            console.log(this);
+//            console.log(this);
         });
         if ($.isEmptyObject(messages)) {
             $.each(settings.attributes, function() {
@@ -284,6 +285,7 @@ function AjaxGuardarModal(verificador, Formulario, callBack)
             },
             success: function(data) {
                 if (data.success) {
+                    console.log(data);
                     $("#mainModal").modal("hide");
                     callBack(listaActualizar, data);
 

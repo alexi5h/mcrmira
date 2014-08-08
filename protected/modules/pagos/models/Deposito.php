@@ -33,6 +33,9 @@ class Deposito extends BaseDeposito {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 7,
+            ),
         ));
     }
 

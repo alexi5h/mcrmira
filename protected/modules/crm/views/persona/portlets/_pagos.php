@@ -8,7 +8,7 @@ $model_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageS
 
 <div class="widget red">
     <div class="widget-title">
-        <h4><i class="icon-tasks"></i> Pagos</h4>
+        <h4><i class="icon-tasks"></i> Pagos Ahorro</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--<a href="javascript:;" class="icon-remove"></a>-->
@@ -56,7 +56,7 @@ $model_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageS
                                     'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
                                     'options' => array('title' => 'Realizar deposito'),
                                     'url' => '"pagos/deposito/create?id_pago=".$data->id',
-                                    'click' => 'function(e){e.preventDefault(); viewModal($(this).attr("href"),function() {maskAttributes();}); return false;   }',
+                                    'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
                                     'imageUrl' => false,
                                 ),
                             ),
