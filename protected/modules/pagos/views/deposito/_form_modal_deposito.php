@@ -27,7 +27,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 
             <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 45)) ?>
 
-            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->findAll(), 'id', EntidadBancaria::representingColumn())) ?>
+            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->findAll(), 'id', EntidadBancaria::representingColumn()), array('placeholder' => '')) ?>
 
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
