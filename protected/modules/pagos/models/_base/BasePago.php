@@ -16,6 +16,8 @@
  * @property string $fecha
  * @property string $estado
  * @property string $tipo
+ * @property string $saldo_contra
+ * @property string $saldo_favor
  *
  * @property Deposito[] $depositos
  */
@@ -38,12 +40,13 @@ abstract class BasePago extends AweActiveRecord {
             array('descripcion, cliente_id, cantidad, fecha, estado, tipo', 'required'),
             array('cliente_id', 'numerical', 'integerOnly'=>true),
             array('descripcion', 'length', 'max'=>50),
-            array('cantidad', 'length', 'max'=>10),
+            array('cantidad, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
             array('tipo', 'in', 'range' => array('AHORRO','PRIMER_PAGO')), // enum,
-            array('id, descripcion, cliente_id, cantidad, fecha, estado, tipo', 'safe', 'on'=>'search'),
+            array('saldo_contra, saldo_favor', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, descripcion, cliente_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor', 'safe', 'on'=>'search'),
         );
     }
 
@@ -65,6 +68,8 @@ abstract class BasePago extends AweActiveRecord {
                 'fecha' => Yii::t('app', 'Fecha'),
                 'estado' => Yii::t('app', 'Estado'),
                 'tipo' => Yii::t('app', 'Tipo'),
+                'saldo_contra' => Yii::t('app', 'Saldo Contra'),
+                'saldo_favor' => Yii::t('app', 'Saldo Favor'),
                 'depositos' => null,
         );
     }
@@ -79,6 +84,8 @@ abstract class BasePago extends AweActiveRecord {
         $criteria->compare('fecha', $this->fecha, true);
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('tipo', $this->tipo, true);
+        $criteria->compare('saldo_contra', $this->saldo_contra, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

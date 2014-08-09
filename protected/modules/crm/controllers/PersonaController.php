@@ -62,16 +62,7 @@ class PersonaController extends AweController {
                 }
             }
             if ($model->save()) {
-                $pago = new Pago();
-                $pago->descripcion = 'Pago por ingreso a la mancomunidad';
-                $pago->cliente_id = $model->id;
-                $pago->cantidad = Pago::VALOR_REGISTRO;
-                $pago->fecha = Util::FechaActual();
-                $pago->estado = Pago::ESTADO_DEUDA;
-                $pago->tipo = Pago::TIPO_PRIMIER_PAGO;
-                if ($pago->save()) {
-                    $this->redirect(array('admin'));
-                }
+                $this->redirect(array('admin'));
             }
         }
 
@@ -190,6 +181,20 @@ class PersonaController extends AweController {
 
     public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
         if (Yii::app()->request->isAjaxRequest) {
+            $id_etapa_max = PersonaEtapa::model()->getEtapaMaxima();
+            $id_etapa_max = $id_etapa_max[0];
+            if ($id_etapa_max == $id_etapa) {
+                $pago = new Pago();
+                $pago->descripcion = 'Pago por ingreso a la mancomunidad';
+                $pago->cliente_id = $id_data;
+                $pago->cantidad = Pago::VALOR_REGISTRO;
+                $pago->fecha = Util::FechaActual();
+                $pago->estado = Pago::ESTADO_DEUDA;
+                $pago->tipo = Pago::TIPO_PRIMIER_PAGO;
+                $pago->saldo_favor = 0;
+                $pago->saldo_contra = Pago::VALOR_REGISTRO;
+                $pago->save();
+            }
             Persona::model()->updateByPk($id_data, array('persona_etapa_id' => $id_etapa,
                 'usuario_actualizacion_id' => Yii::app()->user->id,
                 'fecha_actualizacion' => Util::FechaActual(),
@@ -219,6 +224,7 @@ class PersonaController extends AweController {
                 $result[$param] = $params['value'];
             }
         } else {
+
             foreach ($params['filters'] as $param) {
                 $result[$param] = $params['value'];
             }
@@ -233,6 +239,7 @@ class PersonaController extends AweController {
      */
     public function loadModel($id, $modelClass = __CLASS__) {
         $model = Persona::model()->findByPk($id);
+
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

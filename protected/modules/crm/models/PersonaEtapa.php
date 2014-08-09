@@ -53,4 +53,14 @@ class PersonaEtapa extends BasePersonaEtapa {
         return ($command->queryAll());
     }
 
+    public function getEtapaMaxima() {
+        $command = Yii::app()->db->createCommand()
+                ->select("t.id")
+                ->from("persona_etapa t")
+                ->where("t.estado = :estado", array(':estado' => self::ESTADO_ACTIVO))
+                ->order("t.peso desc")
+                ->limit(1);
+        return ($command->queryColumn());
+    }
+
 }
