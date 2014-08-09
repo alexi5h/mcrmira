@@ -41,7 +41,7 @@ $this->menu = array(
                     //'ruc',
                     'telefono',
                     'celular',
-                    'email',
+//                    'email',
                     array(
                         'name' => 'persona_etapa_id',
                         'value' => '$data->personaEtapa',
@@ -52,7 +52,7 @@ $this->menu = array(
                         'value' => '$data->sucursal',
                         'type' => 'raw',
                     ),
-                    'aprobado',
+//                    'aprobado',
                     array(
                         'class' => 'CButtonColumn',
                         'template' => '{update} {delete}',
