@@ -3,12 +3,13 @@
 Yii::import('pagos.models._base.BasePago');
 
 class Pago extends BasePago {
+
 //    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
 //    tipo:AHORRO,PRIMER_PAGO
-    const TIPO_AHORRO='AHORRO';
-    const TIPO_PRIMIER_PAGO='PRIMER_PAGO';
+    const TIPO_AHORRO = 'AHORRO';
+    const TIPO_PRIMIER_PAGO = 'PRIMER_PAGO';
     //Valor a pagar por registro en la mancomunidad
     const VALOR_REGISTRO = 70;
 
@@ -22,10 +23,16 @@ class Pago extends BasePago {
     public static function label($n = 1) {
         return Yii::t('app', 'Pago|Pagos', $n);
     }
-    
+
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('cantidad', 'numerical', 'min'=>1, 'tooSmall'=>'La cantidad debe ser mayor a 0'),
+            array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
+            array('tipo', 'unique', 'criteria' => array(
+                    'condition' => 'cliente_id=:cliente_id',
+                    'params' => array(
+                        ':cliente_id' => $this->cliente_id
+                    )
+                )),
                 )
         );
     }

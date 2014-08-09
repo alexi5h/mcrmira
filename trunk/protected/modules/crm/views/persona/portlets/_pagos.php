@@ -22,16 +22,10 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                     'type' => 'striped bordered hover advance',
                     'dataProvider' => $data_pagos,
                     'columns' => array(
-//                        array(
-//                            'header' => 'ID',
-//                            'name' => 'id',
-//                            'value' => '$data->id',
-//                            'type' => 'raw',
-//                        ),
                         array(
-                            'header' => 'Mes',
+                            'header' => 'Fecha',
                             'name' => 'fecha',
-                            'value' => 'Util::FormatDate($data->fecha,"M")',
+                            'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
                             'type' => 'raw',
                         ),
                         array(
@@ -41,9 +35,21 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                             'type' => 'raw',
                         ),
                         array(
-                            'header' => 'Estado',
-                            'name' => 'estado',
-                            'value' => '$data->estado',
+                            'header' => 'Pagado',
+                            'name' => 'saldo_favor',
+                            'value' => '$data->saldo_favor',
+                            'type' => 'raw',
+                        ),
+                        array(
+                            'header' => 'Por pagar',
+                            'name' => 'saldo_contra',
+                            'value' => '$data->saldo_contra',
+                            'type' => 'raw',
+                        ),
+                        array(
+                            'header' => 'Razón',
+                            'name' => 'tipo',
+                            'value' => '$data->tipo',
                             'type' => 'raw',
                         ),
                         array(
