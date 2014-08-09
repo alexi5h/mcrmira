@@ -42,11 +42,11 @@ $this->menu = array(
                     'telefono',
                     'celular',
 //                    'email',
-                    array(
-                        'name' => 'persona_etapa_id',
-                        'value' => '$data->personaEtapa',
-                        'type' => 'raw',
-                    ),
+//                    array(
+//                        'name' => 'persona_etapa_id',
+//                        'value' => '$data->personaEtapa',
+//                        'type' => 'raw',
+//                    ),
                     array(
                         'name' => 'sucursal_id',
                         'value' => '$data->sucursal',
