@@ -135,7 +135,7 @@ function showModalLoading() {
 }
 
 function showModalData(html) {
-    
+
     $("#mainModal").html(html);
     $('select.fix').selectBox();
 }
@@ -184,7 +184,7 @@ function AjaxGestionModal($form, CallBack) {
                     $.each(settings.attributes, function() {
                         $.fn.yiiactiveform.updateInput(this, messages, form);
                     });
-            DesBloquearBotonesModal($form, 'Enviar', 'AjaxAtualizacionInformacion');
+            DesBloquearBotonesModal($form, 'Guardar', 'AjaxAtualizacionInformacion');
         }
     });
 }
@@ -215,7 +215,7 @@ function AjaxAccionModal($form, CallBack) {
                     $.each(settings.attributes, function() {
                         $.fn.yiiactiveform.updateInput(this, messages, form);
                     });
-            DesBloquearBotonesModal($form, 'Enviar', 'AjaxCrearAccion');
+            DesBloquearBotonesModal($form, 'Guardar', 'AjaxCrearAccion');
         }
     });
 }
@@ -286,8 +286,10 @@ function AjaxGuardarModal(verificador, Formulario, callBack)
 
                 } else {
 
-                    DesBloquearBotonesModal(Formulario);
-                    bootbox.alert(data);
+//                    DesBloquearBotonesModal(Formulario);
+                    DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxCrearAccion');
+
+                    bootbox.alert(data.message);
                 }
             }
         });

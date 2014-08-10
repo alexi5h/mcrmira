@@ -40,6 +40,8 @@ class SucursalController extends AweController {
         if (isset($_POST['Sucursal'])) {
             $model->attributes = $_POST['Sucursal'];
             $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->parroquia_id == 0)
+                $modelDireccion->parroquia_id = null;
             if ($modelDireccion->barrio_id == 0)
                 $modelDireccion->barrio_id = null;
 
@@ -69,6 +71,8 @@ class SucursalController extends AweController {
         if (isset($_POST['Sucursal'])) {
             $model->attributes = $_POST['Sucursal'];
             $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->parroquia_id == 0)
+                $modelDireccion->parroquia_id = null;
             if ($modelDireccion->barrio_id == 0)
                 $modelDireccion->barrio_id = null;
 

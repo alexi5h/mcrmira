@@ -45,13 +45,17 @@ class DepositoController extends AweController {
                 $model_pago->saldo_favor = $model_pago->saldo_favor + $model->cantidad;
                 $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
                 $model->fecha_comprobante_su = Util::FechaActual();
-//                die(var_dump($model->attributes, $model_pago->attributes));
+                $result['enableButtonSave'] = true;
                 if ($model->save()) {
+                    if ($model_pago->saldo_contra == 0) {
+                        $model_pago->estado = Pago::ESTADO_PAGADO;
+                        $result['enableButtonSave'] = false;
+                    }
                     $result['success'] = $model_pago->save();
                 }
-//                $result['success'] = $model_pago->save() && $model->save();
                 if (!$result['success']) {
-                    $result['mensage'] = "Error al registrar el deposito.";
+                    $model->delete();
+                    $result['message'] = "Error al registrar el deposito.";
                 }
                 $validadorPartial = false;
                 echo json_encode($result);

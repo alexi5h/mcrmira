@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.17)
-# Date: 2014-08-09 19:45:19
+# Date: 2014-08-10 18:25:54
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
@@ -89,7 +89,7 @@ CREATE TABLE `cruge_session` (
   `ipaddressout` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idsession`),
   KEY `crugesession_iduser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "cruge_system"
@@ -184,9 +184,9 @@ CREATE TABLE `pago` (
   `fecha` datetime NOT NULL,
   `estado` enum('DEUDA','PAGADO') NOT NULL,
   `tipo` enum('AHORRO','PRIMER_PAGO') NOT NULL,
-  `saldo_contra` decimal(10,2) DEFAULT NULL,
-  `saldo_favor` decimal(10,2) DEFAULT NULL,
-  `saldo_extra` decimal(10,2) DEFAULT NULL,
+  `saldo_contra` decimal(10,2) DEFAULT '0.00',
+  `saldo_favor` decimal(10,2) DEFAULT '0.00',
+  `saldo_extra` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
@@ -208,7 +208,7 @@ CREATE TABLE `deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_deposito_pago1_idx` (`pago_id`),
   CONSTRAINT `fk_deposito_pago1` FOREIGN KEY (`pago_id`) REFERENCES `pago` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "persona_etapa"

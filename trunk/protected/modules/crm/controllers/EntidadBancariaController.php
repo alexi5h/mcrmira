@@ -33,13 +33,16 @@ class EntidadBancariaController extends AweController {
     public function actionCreate() {
         $model = new EntidadBancaria;
         $modelDireccion = new Direccion('register');
-        $modelDireccion->tipo = Direccion::TIPO_SUCURSAL;
+        $modelDireccion->tipo = Direccion::TIPO_ENTIDAD_BANCARIA;
         $model->estado = EntidadBancaria::ESTADO_ACTIVO;
-        $this->performAjaxValidation(array($model, $modelDireccion));
 
+        $this->performAjaxValidation(array($model, $modelDireccion));
         if (isset($_POST['EntidadBancaria'])) {
             $model->attributes = $_POST['EntidadBancaria'];
             $modelDireccion->attributes = $_POST['Direccion'];
+
+            if ($modelDireccion->parroquia_id == 0)
+                $modelDireccion->parroquia_id = null;
             if ($modelDireccion->barrio_id == 0)
                 $modelDireccion->barrio_id = null;
 
@@ -65,11 +68,14 @@ class EntidadBancariaController extends AweController {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
         $modelDireccion = $model->direccion;
+        $modelDireccion->tipo = Direccion::TIPO_ENTIDAD_BANCARIA;
         $this->performAjaxValidation(array($model, $modelDireccion));
 
         if (isset($_POST['EntidadBancaria'])) {
             $model->attributes = $_POST['EntidadBancaria'];
             $modelDireccion->attributes = $_POST['Direccion'];
+            if ($modelDireccion->parroquia_id == 0)
+                $modelDireccion->parroquia_id = null;
             if ($modelDireccion->barrio_id == 0)
                 $modelDireccion->barrio_id = null;
 

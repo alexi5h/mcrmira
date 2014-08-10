@@ -2,7 +2,7 @@
 /** @var EntidadBancariaController $this */
 /** @var EntidadBancaria $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create').' '.EntidadBancaria::label(1), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create') . ' ' . EntidadBancaria::label(1), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -29,8 +29,8 @@ $this->menu = array(
                 'nombre',
                 array(
                     'name' => 'direccion_id',
-                    'value' => '$data->direccion->direccion_completa ? $data->direccion->direccion_completa : null',
-                    'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
+                    'value' => '$data->direccion ? $data->direccion->direccion_completa : null',
+//                    'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
                 ),
                 array(
                     'class' => 'CButtonColumn',

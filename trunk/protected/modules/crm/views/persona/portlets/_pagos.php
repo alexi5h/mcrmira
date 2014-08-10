@@ -62,6 +62,7 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                                     'url' => '"pagos/deposito/create?id_pago=".$data->id',
                                     'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
                                     'imageUrl' => false,
+                                    'visible' => '($data->estado=="PAGADO")?false:true',
                                 ),
                             ),
                         ),
