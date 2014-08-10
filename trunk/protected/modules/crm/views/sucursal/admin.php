@@ -30,7 +30,6 @@ $this->menu = array(
                 array(
                     'name' => 'direccion_id',
                     'value' => '$data->direccion ? $data->direccion->direccion_completa : null',
-//                    'filter' => CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn()),
                 ),
                 array(
                     'class' => 'CButtonColumn',
