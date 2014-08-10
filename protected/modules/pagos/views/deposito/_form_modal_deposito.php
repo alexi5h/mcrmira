@@ -46,16 +46,18 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
             <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'type' => 'success',
-                'icon' => 'ok',
-                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-                'htmlOptions' => array(
-                    'onClick' => 'AjaxAtualizacionInformacion("#deposito-form")'
-                ),
-            ));
-            ?>
+            <div id="buttondeposito">
+                <?php
+                $this->widget('bootstrap.widgets.TbButton', array(
+                    'type' => 'success',
+                    'icon' => 'ok',
+                    'label' => Yii::t('AweCrud.app', 'Save'),
+                    'htmlOptions' => array(
+                        'onClick' => 'AjaxAtualizacionInformacion("#deposito-form")'
+                    ),
+                ));
+                ?>
+            </div>
             <?php $this->endWidget(); ?>
 
         </div>

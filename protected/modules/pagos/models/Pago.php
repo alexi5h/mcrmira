@@ -32,7 +32,7 @@ class Pago extends BasePago {
                     'params' => array(
                         ':cliente_id' => $this->cliente_id
                     )
-                )),
+                ), 'on' => 'insert'),
                 )
         );
     }
@@ -56,4 +56,5 @@ class Pago extends BasePago {
         return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
     }
 
+   
 }

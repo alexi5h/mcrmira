@@ -11,13 +11,18 @@ class Deposito extends BaseDeposito {
         return parent::model($className);
     }
 
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->pago->saldo_contra),
+        ));
+    }
+
     public static function label($n = 1) {
         return Yii::t('app', 'Deposito|Depositos', $n);
     }
 
     public function searchByPago($id_pago = null) {
         $criteria = new CDbCriteria;
-//        $criteria->join = 'inner join pago p on p.id=t.pago_id ';       
         $criteria->compare('t.id', $this->id);
         $criteria->compare('t.cantidad', $this->cantidad, true);
         $criteria->compare('t.entidad_bancaria_id', $this->entidad_bancaria_id);
@@ -26,15 +31,11 @@ class Deposito extends BaseDeposito {
         $criteria->compare('t.sucursal_comprobante_id', $this->sucursal_comprobante_id);
         $criteria->compare('t.cod_comprobante_su', $this->cod_comprobante_su, true);
         $criteria->compare('t.fecha_comprobante_su', $this->fecha_comprobante_su, true);
-//        $criteria->compare('t.pago_id', $this->pago_id, true);
-        $criteria->compare('t.pago_id', $id_pago, true);
-//        $criteria->compare('p.id', $id_pago, true);
-
-
+        $criteria->compare('t.pago_id', $id_pago);
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 7,
+                'pageSize' => 5,
             ),
         ));
     }

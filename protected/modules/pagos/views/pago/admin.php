@@ -6,7 +6,7 @@ $this->menu = array(
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
-echo Pago::fechaMes(7);
+//echo Pago::fechaMes(7);
 ?>
 <div id="flashMsg"  class="flash-messages">
 
