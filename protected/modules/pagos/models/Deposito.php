@@ -45,7 +45,6 @@ class Deposito extends BaseDeposito {
                 select('sum(t.cantidad) as total_depositos_pago')->
                 from('deposito t')->
                 where('t.pago_id=:pago_id');
-
         $consulata->params = array(':pago_id' => $id_pago);
 
         return $consulata->queryAll();

@@ -31,29 +31,32 @@ class DepositoController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate($id_pago = null) {
-
-
         //petición del formulario por ajax renderPartial
         if (Yii::app()->request->isAjaxRequest) {
             $result = array();
             $model = new Deposito;
             $model->pago_id = $id_pago;
             $this->performAjaxValidation($model, 'deposito-form');
-            $validadorPartial = false;
+            $validadorPartial = true;
             if (isset($_POST['Deposito'])) {
+                $model_pago = Pago::model()->findByPk($id_pago);
                 $model->attributes = $_POST['Deposito'];
-                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad ? $model->fecha_comprobante_entidad : Util::FechaActual());
-                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su ? $model->fecha_comprobante_su : Util::FechaActual());
-                $result['success'] = $model->save();
-                if (!$result['success']) {
-                    $result['mensage'] = "Error al actualizar la fecha de la oportunidad";
+                $model_pago->saldo_contra = $model_pago->saldo_contra - $model->cantidad;
+                $model_pago->saldo_favor = $model_pago->saldo_favor + $model->cantidad;
+                $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
+                $model->fecha_comprobante_su = Util::FechaActual();
+//                die(var_dump($model->attributes, $model_pago->attributes));
+                if ($model->save()) {
+                    $result['success'] = $model_pago->save();
                 }
-                $validadorPartial = TRUE;
+//                $result['success'] = $model_pago->save() && $model->save();
+                if (!$result['success']) {
+                    $result['mensage'] = "Error al registrar el deposito.";
+                }
+                $validadorPartial = false;
                 echo json_encode($result);
             }
-            if (!$validadorPartial) {
-                $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
-                $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("dd/MM/yyyy", Util::FechaActual());
+            if ($validadorPartial) {
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);

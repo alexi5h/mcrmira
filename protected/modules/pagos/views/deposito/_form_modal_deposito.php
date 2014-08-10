@@ -27,7 +27,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 
             <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 45)) ?>
 
-            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->findAll(), 'id', EntidadBancaria::representingColumn()), array('placeholder' => '')) ?>
+            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
@@ -42,7 +42,8 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             );
             ?>
 
-            <?php echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
+            <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
+            <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
             <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
             <?php
@@ -67,13 +68,30 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                 "template" => "{items}{pager}",
                 'dataProvider' => $depositos->searchByPago($model->pago_id),
                 'columns' => array(
-                    'cantidad',
-                    'entidad_bancaria_id',
-//                    'cod_comprobante_entidad',
-//                    'fecha_comprobante_entidad',
-//                    'sucursal_comprobante_id',
-//                    'cod_comprobante_su',
-                    'fecha_comprobante_su',
+                    array(
+                        'header' => 'Sucursal',
+                        'name' => 'sucursal_comprobante_id',
+                        'value' => '$data->sucursal_comprobante_id',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'header' => 'Cod. Comprobante',
+                        'name' => 'cod_comprobante_su',
+                        'value' => '$data->cod_comprobante_su',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'header' => 'Fecha',
+                        'name' => 'fecha_comprobante_su',
+                        'value' => '$data->fecha_comprobante_su',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'header' => 'Cantidad',
+                        'name' => 'cantidad',
+                        'value' => '$data->cantidad',
+                        'type' => 'raw',
+                    ),
                 ),
             ));
             ?>

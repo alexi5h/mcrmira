@@ -9,6 +9,6 @@ function AjaxAtualizacionInformacion(Formulario)
         $.fn.yiiGridView.update('deposito-grid');
         $.fn.yiiGridView.update('pago-grid');
         $('#deposito-form').trigger("reset");
-        DesBloquearBotonesModal(Formulario, 'Enviar', 'AjaxAtualizacionInformacion');
+        DesBloquearBotonesModal(Formulario, 'Crear', 'AjaxAtualizacionInformacion');
     });
 }
