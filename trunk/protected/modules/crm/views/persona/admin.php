@@ -2,11 +2,12 @@
 /** @var PersonaController $this */
 /** @var Persona $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create').' Persona', 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create') . ' Persona', 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
 ?>
+
 <div id="flashMsg"  class="flash-messages">
 
 </div> 
