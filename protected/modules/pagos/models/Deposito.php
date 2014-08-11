@@ -25,7 +25,6 @@ class Deposito extends BaseDeposito {
         $criteria = new CDbCriteria;
         $criteria->compare('t.id', $this->id);
         $criteria->compare('t.cantidad', $this->cantidad, true);
-        $criteria->compare('t.entidad_bancaria_id', $this->entidad_bancaria_id);
         $criteria->compare('t.cod_comprobante_entidad', $this->cod_comprobante_entidad, true);
         $criteria->compare('t.fecha_comprobante_entidad', $this->fecha_comprobante_entidad, true);
         $criteria->compare('t.sucursal_comprobante_id', $this->sucursal_comprobante_id);
