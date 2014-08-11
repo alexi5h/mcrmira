@@ -157,6 +157,38 @@ class PersonaController extends AweController {
         ));
     }
 
+    public function actionEtapa_aprobado() {
+        $model = new Persona('search');
+        $model->unsetAttributes(); // clear any default values
+        if (isset($_GET['search'])) {
+            $model->attributes = $this->assignParams($_GET['search']);
+        }
+        if (isset($_GET['Persona']))
+            $model->attributes = $_GET['Persona'];
+        
+        $c_activos = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('persona p')
+                ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
+                ->where(array('and', 'e.id=3', 'p.aprobado=0'))
+                ->queryAll();
+        //return $c_activos;
+        $c_activos_data = new CArrayDataProvider($c_activos, array(
+            'keyField' => 'id',
+            'sort' => array(
+                        'attributes' => $model->attributeLabels(),
+                        'defaultOrder' => array(
+                            'id' => CSort::SORT_ASC, //default sort value
+                        ),
+                    ),
+            'pagination' => array('pageSize' => 30,)
+        ));
+        $this->render('etapa_aprobado', array(
+            'model' => $model,
+            'c_activos_data'=>$c_activos_data,
+        ));
+    }
+
     /**
      * Realiza en render de la vista Kanban
      * @author Armando Maldonado

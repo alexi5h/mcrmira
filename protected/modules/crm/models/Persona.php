@@ -113,6 +113,21 @@ class Persona extends BasePersona {
         );
     }
 
+    public function etapa_activos() {
+        $c_activos = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('persona p')
+                ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
+                ->where(array('and', 'e.id=3', 'p.aprobado=0'))
+                ->queryAll();
+        //return $c_activos;
+        $c_activos_data = new CArrayDataProvider($c_activos, array(
+            'keyField' => 'id',
+            'pagination' => array('pageSize' => 30,)
+        ));
+        return $c_activos_data;
+    }
+
     public function de_tipo($tipo) {
         $this->getDbCriteria()->mergeWith(
                 array(
