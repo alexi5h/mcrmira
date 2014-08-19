@@ -22,7 +22,7 @@ class Persona extends BasePersona {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'Persona|Personas', $n);
+        return Yii::t('app', 'Socio|Socios', $n);
     }
 
     public function attributeLabels() {
