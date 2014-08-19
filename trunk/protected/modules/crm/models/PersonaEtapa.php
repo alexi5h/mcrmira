@@ -15,7 +15,7 @@ class PersonaEtapa extends BasePersonaEtapa {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'Etapa de Persona|Etapas de Persona', $n);
+        return Yii::t('app', 'Etapa de Socio|Etapas de Socio', $n);
     }
 
     public function scopes() {
