@@ -1,6 +1,6 @@
 <?php
 // Obtener pagos del cliente
-$pagos = Pago::model()->de_cliente($model->id)->findAll();
+$pagos = Ahorro::model()->de_cliente($model->id)->findAll();
 $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
