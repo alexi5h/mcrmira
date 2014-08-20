@@ -1,6 +1,7 @@
 <?php
 
 Yii::import('crm.models._base.BasePersona');
+Yii::import('ahorro.models.*');
 
 class Persona extends BasePersona {
 
