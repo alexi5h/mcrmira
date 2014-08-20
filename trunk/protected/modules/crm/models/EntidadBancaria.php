@@ -19,15 +19,25 @@ class EntidadBancaria extends BaseEntidadBancaria {
     public static function label($n = 1) {
         return Yii::t('app', 'Entidad Bancaria|Entidades Bancarias', $n);
     }
+    
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), array(
+            'num_cuenta' => Yii::t('app', 'Nº de Cuenta'),
+            'tipo_cuenta' => Yii::t('app', 'Tipo de Cuenta'),
+                )
+        );
+    }
 
     public function rules() {
         return array(
-            array('nombre, direccion_id, estado', 'required'),
+            array('nombre, direccion_id, estado, num_cuenta, tipo_cuenta', 'required'),
             array('direccion_id', 'numerical', 'integerOnly' => true),
             array('nombre', 'length', 'max' => 45),
             array('estado', 'length', 'max' => 8),
             array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
-            array('id, nombre, direccion_id, estado', 'safe', 'on' => 'search'),
+            array('num_cuenta', 'length', 'max' => 45),
+            array('tipo_cuenta', 'in', 'range' => array('AHORRO', 'CORRIENTE')),
+            array('id, nombre, direccion_id, estado, tipo_cuenta', 'safe', 'on' => 'search'),
         );
     }
 
@@ -37,7 +47,9 @@ class EntidadBancaria extends BaseEntidadBancaria {
         $criteria->compare('id', $this->id);
         $criteria->compare('nombre', $this->nombre, true);
         $criteria->compare('direccion_id', $this->direccion_id);
-        $criteria->compare('estado', $this->estado, true);        
+        $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('num_cuenta', $this->num_cuenta, true);
+        $criteria->compare('tipo_cuenta', $this->tipo_cuenta, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

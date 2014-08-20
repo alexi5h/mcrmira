@@ -27,6 +27,11 @@ $this->menu = array(
             'dataProvider' => $model->activos()->search(),
             'columns' => array(
                 'nombre',
+                'num_cuenta',
+                array(
+                        'name' => 'tipo_cuenta',
+                        'filter' => array('AHORRO' => 'AHORRO', 'CORRIENTE' => 'CORRIENTE',),
+                ),
                 array(
                     'name' => 'direccion_id',
                     'value' => '$data->direccion ? $data->direccion->direccion_completa : null',
