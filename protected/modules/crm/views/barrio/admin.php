@@ -2,7 +2,7 @@
 /** @var BarrioController $this */
 /** @var Barrio $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create').' '.Barrio::label(1), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create') . ' ' . Barrio::label(1), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -44,6 +44,10 @@ $this->menu = array(
                     array(
                         'name' => 'provincia_id',
                         'value' => '$data->parroquia->canton->provincia',
+                    ),
+                    array(
+                        'name' => 'tipo',
+                        'filter' => array('B' => 'Barrio', 'C' => 'Comunidad',),
                     ),
                     array(
                         'class' => 'CButtonColumn',
