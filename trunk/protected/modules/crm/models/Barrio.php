@@ -20,7 +20,7 @@ class Barrio extends BaseBarrio {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('provincia_id,canton_id', 'required'),
+            array('provincia_id,canton_id,tipo', 'required'),
             array('provincia_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,
@@ -36,7 +36,7 @@ class Barrio extends BaseBarrio {
                 'min' => 1,
                 'tooSmall' => 'Elija un parroquia por favor.',
             ),
-            array('provincia_id,canton_id', 'safe', 'on' => 'search'),
+            array('provincia_id,canton_id,tipo', 'safe', 'on' => 'search'),
         ));
     }
 
@@ -44,6 +44,7 @@ class Barrio extends BaseBarrio {
         return array_merge(parent::attributeLabels(), array(
             'provincia_id' => Yii::t('app', 'Provincia'),
             'canton_id' => Yii::t('app', 'Cantón'),
+            'tipo' => Yii::t('app', 'Tipo'),
         ));
     }
 
