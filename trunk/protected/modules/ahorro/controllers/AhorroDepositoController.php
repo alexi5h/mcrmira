@@ -31,37 +31,42 @@ class AhorroDepositoController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate($id_ahorro = null) {
-        
+
         if (Yii::app()->request->isAjaxRequest) {
             $result = array();
             $model = new AhorroDeposito;
             $model->pago_id = $id_ahorro;
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
-            if (isset($_POST['Deposito'])) {
-                
+            if (isset($_POST['AhorroDeposito'])) {
+                $modelAhorro = Ahorro::model()->findByPk($id_ahorro);
+                $model->attributes = $_POST['AhorroDeposito'];
+                $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
+                $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
+                $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
+                $model->fecha_comprobante_su = Util::FechaActual();
+                $result['enableButtonSave'] = true;
+                if ($model->save()) {
+                    if ($modelAhorro->saldo_contra == 0) {
+                        $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
+                        $result['enableButtonSave'] = false;
+                    }
+                    $result['success'] = $modelAhorro->save();
+                }
+                if (!$result['success']) {
+                    $model->delete();
+                    $result['message'] = "Error al registrar el deposito.";
+                }
+                $validadorPartial = false;
+                echo json_encode($result);
             }
             if ($validadorPartial) {
+
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);
             }
         }
-
-//        $model = new AhorroDeposito;
-//
-//        $this->performAjaxValidation($model, 'ahorro-deposito-form');
-//
-//        if (isset($_POST['AhorroDeposito'])) {
-//            $model->attributes = $_POST['AhorroDeposito'];
-//            if ($model->save()) {
-//                $this->redirect(array('view', 'id' => $model->id));
-//            }
-//        }
-//
-//        $this->render('create', array(
-//            'model' => $model,
-//        ));
     }
 
     /**
@@ -76,6 +81,8 @@ class AhorroDepositoController extends AweController {
 
         if (isset($_POST['AhorroDeposito'])) {
             $model->attributes = $_POST['AhorroDeposito'];
+            $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad);
+            $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su);
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
             }

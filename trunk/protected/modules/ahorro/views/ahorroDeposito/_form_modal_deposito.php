@@ -25,27 +25,51 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             ;
             ?>
 
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 45)) ?>
+            <div class="span12 ">
+                <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
 
-            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+                <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+            </div>
 
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
+            <div class="span12 ">
+                <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
-            <?php
-            echo $form->datepickerRow(
-                    $model, 'fecha_comprobante_entidad', array(
-                'options' => array(
-                    'language' => 'es',
-                    'readonly' => 'readonly',
-                ),
-                    )
-            );
-            ?>
+                <?php
+                echo $form->datepickerRow(
+                        $model, 'fecha_comprobante_entidad', array(
+                    'options' => array(
+                        'language' => 'es',
+                        'readonly' => 'readonly',
+                    ),
+                        )
+                );
+                ?>
+            </div>
 
-            <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
-            <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+            <div class="span12 ">
+                <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
+                <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
+                <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
+            </div>
+
+
+
+            <!--<div class="span12 ">-->
+                <?php // echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
+                <?php
+                echo $form->datepickerRow(
+                        $model, 'fecha_comprobante_su', array(
+                    'options' => array(
+                        'language' => 'es',
+                        'readonly' => 'readonly',
+                    ),
+                        )
+                );
+                ?>
+                <?php // echo $form->dropDownListRow($model, 'pago_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Ahorro::model()->findAll(), 'id', Ahorro::representingColumn())) ?>
+            <!--</div>-->
+
             <div id="buttondeposito">
                 <?php
                 $this->widget('bootstrap.widgets.TbButton', array(
@@ -53,7 +77,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                     'icon' => 'ok',
                     'label' => Yii::t('AweCrud.app', 'Save'),
                     'htmlOptions' => array(
-                        'onClick' => 'AjaxAtualizacionInformacion("#deposito-form")'
+                        'onClick' => 'AjaxAtualizacionInformacion("#ahorro-deposito-form")'
                     ),
                 ));
                 ?>
