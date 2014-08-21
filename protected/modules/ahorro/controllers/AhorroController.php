@@ -37,6 +37,9 @@ class AhorroController extends AweController {
 
         if (isset($_POST['Ahorro'])) {
             $model->attributes = $_POST['Ahorro'];
+            $model->fecha = Util::FechaActual();
+            $model->estado = Ahorro::ESTADO_DEUDA;
+            $model->saldo_contra = $model->cantidad;
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -59,6 +62,7 @@ class AhorroController extends AweController {
 
         if (isset($_POST['Ahorro'])) {
             $model->attributes = $_POST['Ahorro'];
+            $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
