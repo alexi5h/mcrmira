@@ -24,13 +24,13 @@ $this->menu = array(
         $this->widget('bootstrap.widgets.TbGridView',array(
         'id' => 'actividad-economica-grid',
         'type' => 'striped bordered hover advance',
-        'dataProvider' => $model->search(),
+        'dataProvider' => $model->activos()->search(),
         'columns' => array(
                     'nombre',
-                        array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO',),
-                ),
+//                        array(
+//                    'name' => 'estado',
+//                    'filter' => array('ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO',),
+//                ),
                     array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
