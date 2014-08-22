@@ -19,6 +19,16 @@
                     'name' => 'email',
                     'type' => 'email'
                 ),
+                'sexo',
+                'fecha_nacimiento',
+                'estado_civil',
+                'discapacidad',
+                'carga_familiar',
+                array(
+                        'name' => 'actividad_economica_id',
+                        'value' => $model->actividad_economica,
+                        'type' => 'raw',
+                ),
 //                'estado',
 //                'fecha_creacion',
 //                'fecha_actualizacion',
