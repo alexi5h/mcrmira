@@ -4,6 +4,8 @@ Yii::import('crm.models._base.BaseActividadEconomica');
 
 class ActividadEconomica extends BaseActividadEconomica
 {
+    const ESTADO_ACTIVO = 'ACTIVO';
+    const ESTADO_INACTIVO = 'INACTIVO';
     /**
      * @return ActividadEconomica
      */
@@ -15,6 +17,12 @@ class ActividadEconomica extends BaseActividadEconomica
     public static function label($n = 1)
     {
         return Yii::t('app', 'Actividad Económica|Actividades Económicas', $n);
+    }
+    
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('nombre', 'required'),
+        ));
     }
 
 }

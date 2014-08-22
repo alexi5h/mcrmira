@@ -33,7 +33,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->radioButtonListRow(
             $model,
             'tipo_cuenta',
-            array('AHORRO' => 'Ahorro', 'CORRIENTE' => 'Corriente',)
+            array('AHORRO' => 'Ahorro', 'CORRIENTE' => 'Corriente',),
+                array('labelOptions'=>array('style'=>'display:inline-block'),
+                    'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;" )
         ); ?>
 
         <?php // echo $form->dropDownListRow($model, 'direccion_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Direccion::model()->findAll(), 'id', Direccion::representingColumn())) ?>

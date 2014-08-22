@@ -24,8 +24,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 50)) ?>
 
-            <?php echo $form->dropDownListRow($model, 'estado', array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',)) ?>
-        <div class="form-actions">
+            <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType' => 'submit',
