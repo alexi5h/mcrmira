@@ -74,7 +74,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->radioButtonListRow(
             $model,
             'tipo',
-            array('B' => 'Barrio', 'C' => 'Comunidad',)
+            array('B' => 'Barrio', 'C' => 'Comunidad',),
+                array('labelOptions'=>array('style'=>'display:inline-block'),
+                    'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;" )
         ); ?>
 
         <div class="form-actions">
