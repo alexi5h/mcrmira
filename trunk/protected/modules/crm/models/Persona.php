@@ -29,7 +29,16 @@ class Persona extends BasePersona {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
+            'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
+            'actividad_economica'=>null,
                 )
+        );
+    }
+    
+    public function relations() {
+        return array_merge(parent::relations(),array(
+            'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
+            )
         );
     }
 
@@ -39,13 +48,14 @@ class Persona extends BasePersona {
             array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
             array('nombre_formato', 'safe', 'on' => 'search'),
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id', 'required'),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, cedula, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
             array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
             array('telefono, celular', 'length', 'max' => 10),
             array('email', 'length', 'max' => 255),
+            array('carga_familiar', 'numerical'),
             array('tipo', 'length', 'max' => 7),
             array('estado', 'length', 'max' => 8),
             array('descripcion, fecha_actualizacion', 'safe'),
@@ -64,6 +74,7 @@ class Persona extends BasePersona {
             'telefono',
             'celular',
             'email',
+            'actividad_economica_id',
             'sucursal_id',
             'persona_etapa_id',
         );
@@ -71,7 +82,7 @@ class Persona extends BasePersona {
 
     public function search() {
         $criteria = new CDbCriteria;
-        $criteria->with = array('sucursal', 'personaEtapa');
+        $criteria->with = array('actividad_economica','sucursal', 'personaEtapa');
 
 
 //        $criteria->compare('t.id', $this->id, true, 'OR');
@@ -93,6 +104,7 @@ class Persona extends BasePersona {
 //        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
 //        $criteria->compare('usuario_actualizacion_id', $this->usuario_actualizacion_id);
 //        $criteria->compare('aprobado', $this->aprobado);
+        $criteria->compare('actividad_economica.nombre', $this->actividad_economica_id, true, 'OR');
         $criteria->compare('sucursal.nombre', $this->sucursal_id, true, 'OR');
         $criteria->compare('personaEtapa.nombre', $this->persona_etapa_id, true, 'OR');
 //        $criteria->compare('direccion_domicilio_id', $this->direccion_domicilio_id);

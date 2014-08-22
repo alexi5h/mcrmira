@@ -21,8 +21,19 @@ class ActividadEconomica extends BaseActividadEconomica
     
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('nombre', 'required'),
+            array('nombre, estado', 'required'),
         ));
+    }
+    
+    public function scopes() {
+        return array(
+            'activos' => array(
+                'condition' => 't.estado = :estado',
+                'params' => array(
+                    ':estado' => self::ESTADO_ACTIVO,
+                ),
+            ),
+        );
     }
 
 }
