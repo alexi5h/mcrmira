@@ -1,5 +1,7 @@
 <?php
 
+Yii::import('ahorro.models.*');
+
 class PersonaController extends AweController {
 
     /**
@@ -34,8 +36,8 @@ class PersonaController extends AweController {
         $model = new Persona;
         $modelDireccion1 = new Direccion;
         $modelDireccion2 = new Direccion;
-        $idEtapa=  PersonaEtapa::model()->getIdPesoMinimo();
-        $model->persona_etapa_id=$idEtapa;
+        $idEtapa = PersonaEtapa::model()->getIdPesoMinimo();
+        $model->persona_etapa_id = $idEtapa;
         $model->usuario_creacion_id = Yii::app()->user->id;
         $model->fecha_creacion = Util::FechaActual();
         $model->tipo = Persona::TIPO_CLIENTE;
@@ -167,7 +169,7 @@ class PersonaController extends AweController {
         }
         if (isset($_GET['Persona']))
             $model->attributes = $_GET['Persona'];
-        
+
         $c_activos = Yii::app()->db->createCommand()
                 ->select('*')
                 ->from('persona p')
@@ -178,16 +180,16 @@ class PersonaController extends AweController {
         $c_activos_data = new CArrayDataProvider($c_activos, array(
             'keyField' => 'id',
             'sort' => array(
-                        'attributes' => $model->attributeLabels(),
-                        'defaultOrder' => array(
-                            'id' => CSort::SORT_ASC, //default sort value
-                        ),
-                    ),
+                'attributes' => $model->attributeLabels(),
+                'defaultOrder' => array(
+                    'id' => CSort::SORT_ASC, //default sort value
+                ),
+            ),
             'pagination' => array('pageSize' => 30,)
         ));
         $this->render('etapa_aprobado', array(
             'model' => $model,
-            'c_activos_data'=>$c_activos_data,
+            'c_activos_data' => $c_activos_data,
         ));
     }
 
@@ -216,18 +218,19 @@ class PersonaController extends AweController {
     public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
         if (Yii::app()->request->isAjaxRequest) {
             $id_etapa_max = PersonaEtapa::model()->getEtapaMaxima();
-            $id_etapa_max = $id_etapa_max[0];
             if ($id_etapa_max == $id_etapa) {
-                $pago = new Pago();
-                $pago->descripcion = 'Pago por ingreso a la mancomunidad';
-                $pago->cliente_id = $id_data;
-                $pago->cantidad = Pago::VALOR_REGISTRO;
-                $pago->fecha = Util::FechaActual();
-                $pago->estado = Pago::ESTADO_DEUDA;
-                $pago->tipo = Pago::TIPO_PRIMIER_PAGO;
-                $pago->saldo_favor = 0;
-                $pago->saldo_contra = Pago::VALOR_REGISTRO;
-                $pago->save();
+                $ahorro=new Ahorro;
+                $ahorro->descripcion = 'Primer pago por registro en la Mancomunidad';
+                $ahorro->socio_id = $id_data;
+                $ahorro->cantidad = Ahorro::VALOR_REGISTRO;
+                $ahorro->fecha = Util::FechaActual();
+                $ahorro->estado = Ahorro::ESTADO_DEUDA;
+                $ahorro->tipo = Ahorro::TIPO_PRIMIER_PAGO;
+                $ahorro->saldo_contra = Ahorro::VALOR_REGISTRO;
+                $ahorro->saldo_favor = 0;
+                $ahorro->saldo_extra=0;
+                $ahorro->anulado = 0;
+                $ahorro->save();
             }
             Persona::model()->updateByPk($id_data, array('persona_etapa_id' => $id_etapa,
                 'usuario_actualizacion_id' => Yii::app()->user->id,
