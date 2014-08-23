@@ -96,14 +96,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php // echo $form->textFieldRow($model, 'aprobado')  ?>
         <?php
-        $etapas = PersonaEtapa::model()->activos()->findAll();
         $sucursales = Sucursal::model()->activos()->findAll();
 
-        if (!empty($etapas)) {
-            $etapas = array(null => '-- Seleccione --') + CHtml::listData($etapas, 'id', 'nombre');
-        } else {
-            $etapas = array(null => '-- Ninguno --');
-        }
         if (!empty($sucursales)) {
             $sucursales = array(null => '-- Seleccione --') + CHtml::listData($sucursales, 'id', 'nombre');
         } else {
@@ -111,7 +105,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         }
         ?>
 
-        <?php echo $form->dropDownListRow($model, 'persona_etapa_id', $etapas, array('class' => 'span4',)) ?>
         <?php echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',)) ?>
         <!--inicio direccion 1-->
         <?php
