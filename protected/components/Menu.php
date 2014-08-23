@@ -9,6 +9,7 @@ class Menu {
         $items = array(
             array('label' => '<i class="icon-home"></i> Home', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-briefcase"></i> '.Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),            
+            array('label' => '<i class="icon-money"></i> '.  Ahorro::label(2), 'url' => array('/ahorro/ahorro/admin'), 'access' => 'action_ahorro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorro')),            
 //            array('label' => '<i class="icon-book"></i>  Pagos', 'url' => '#', 'items' => array(
 //                array('label' => '<i class="icon-briefcase"></i> Pagos', 'url' => array('/pagos/pago/admin'), 'access' => 'action_pago_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pago')),
 //                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),
