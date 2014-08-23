@@ -26,13 +26,14 @@ return array(
         'application.modules.cruge.extensions.crugemailer.*',
         //crm
         'application.modules.crm.models.*',
-        //pagos
-        'application.modules.pagos.models.*',
+        //ahorros
+        'application.modules.ahorros.models.*',
     ),
     'modules' => array(
         'crm',
         'pagos',
         'ahorro',
+        'creditos',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',

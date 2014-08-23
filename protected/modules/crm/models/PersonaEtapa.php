@@ -46,7 +46,8 @@ class PersonaEtapa extends BasePersonaEtapa {
                 ->select("t.id")
                 ->from("persona_etapa t")
                 ->where("t.estado = :estado", array(':estado' => self::ESTADO_ACTIVO))
-                ->order("t.peso desc");
+                ->order("t.peso asc")
+                ->limit(1);
         $resultMin = $command->queryColumn();
         return $resultMin[0];
     }
