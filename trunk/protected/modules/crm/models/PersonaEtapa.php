@@ -40,6 +40,16 @@ class PersonaEtapa extends BasePersonaEtapa {
         $result = $command->queryColumn();
         return $result[0];
     }
+    
+    public function getIdPesoMinimo() {
+        $command = Yii::app()->db->createCommand()
+                ->select("t.id")
+                ->from("persona_etapa t")
+                ->where("t.estado = :estado", array(':estado' => self::ESTADO_ACTIVO))
+                ->order("t.peso desc");
+        $resultMin = $command->queryColumn();
+        return $resultMin[0];
+    }
 
     public function getPersonaEtapa() {
         $command = Yii::app()->db->createCommand()
