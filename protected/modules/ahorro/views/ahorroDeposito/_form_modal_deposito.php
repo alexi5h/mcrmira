@@ -9,7 +9,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 ?>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4><i class="icon-user"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . Deposito::label(1); ?></h4>
+    <h4><i class="icon-user"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . AhorroDeposito::label(1); ?></h4>
 </div>
 <div class="modal-body">
     <div class="row-fluid">
