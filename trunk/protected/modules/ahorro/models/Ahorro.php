@@ -1,6 +1,7 @@
 <?php
 
 Yii::import('ahorro.models._base.BaseAhorro');
+Yii::import('crm.models.Persona');
 
 class Ahorro extends BaseAhorro {
 
@@ -22,6 +23,13 @@ class Ahorro extends BaseAhorro {
 
     public static function label($n = 1) {
         return Yii::t('app', 'Ahorro|Ahorros', $n);
+    }
+
+    public function relations() {
+        return array(
+            'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'pago_id'),
+            'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
+        );
     }
 
     public function rules() {
