@@ -162,7 +162,6 @@
             $this->endWidget();
 //            ?>
             <!--// El modal-full width de la página-->
-            <!--<div id="full-width-modal" class="modal container hide fade" tabindex="-1"></div>-->
             <div id="responsive" class="modal hide fade" tabindex="-1" data-width="80%"></div>
         </div>
 
