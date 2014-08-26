@@ -7,8 +7,9 @@ class Ahorro extends BaseAhorro {
     //    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
-//    tipo:AHORRO,PRIMER_PAGO
-    const TIPO_AHORRO = 'AHORRO';
+//    tipo:OBLIGATORIO, VOLUNTARIO, PRIMER_PAGO
+    const TIPO_OBLIGATORIO = 'OBLIGATORIO';
+    const TIPO_VOLUNTARIO = 'VOLUNTARIO';
     const TIPO_PRIMIER_PAGO = 'PRIMER_PAGO';
     //Valor a pagar por registro en la mancomunidad
     const VALOR_REGISTRO = 70;
@@ -50,6 +51,32 @@ class Ahorro extends BaseAhorro {
                     'condition' => 'socio_id = :socio_id',
                     'params' => array(
                         ':socio_id' => $id_socio
+                    ),
+                )
+        );
+        return $this;
+    }
+    
+    public function de_cliente_obligatorio($id_socio) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'socio_id = :socio_id AND tipo=:tipo',
+                    'params' => array(
+                        ':socio_id' => $id_socio,
+                        ':tipo' => self::TIPO_OBLIGATORIO
+                    ),
+                )
+        );
+        return $this;
+    }
+    
+    public function de_cliente_voluntario($id_socio) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'socio_id = :socio_id AND tipo=:tipo',
+                    'params' => array(
+                        ':socio_id' => $id_socio,
+                        ':tipo' => self::TIPO_VOLUNTARIO
                     ),
                 )
         );

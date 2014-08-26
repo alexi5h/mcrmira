@@ -1,12 +1,12 @@
 <?php
-// Obtener pagos obligatorios del cliente
-$pagos = Ahorro::model()->de_cliente($model->id)->findAll();
+// Obtener pagos del cliente
+$pagos = Ahorro::model()->de_cliente_voluntario($model->id)->findAll();
 $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
-<div class="widget red">
+<div class="widget yellow">
     <div class="widget-title">
-        <h4><i class="icon-tasks"></i> Pagos Ahorro</h4>
+        <h4><i class="icon-tasks"></i> Pagos Ahorro Voluntario</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--<a href="javascript:;" class="icon-remove"></a>-->

@@ -12,6 +12,14 @@ function showModalDataWidth(html) {
     $("#responsive").modal("show");
     $('select.fix').selectBox();
 }
+
+function showModalDataLong(html) {
+
+    $("#long").html(html);
+    //$('#long').css('height', '1000px');
+    $("#long").modal("show");
+    $('select.fix').selectBox();
+}
 /**
  * 
  * @param {cadena} url
@@ -27,7 +35,7 @@ function viewModalWidth(url, CallBack)
         },
         success: function(data) {
             $("#mainModal").modal("hide");
-            showModalDataWidth(data);
+            showModalDataLong(data);
             CallBack();
 
         }

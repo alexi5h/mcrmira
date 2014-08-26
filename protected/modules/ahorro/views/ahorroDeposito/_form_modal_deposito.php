@@ -13,7 +13,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 </div>
 <div class="modal-body">
     <div class="row-fluid">
-        <div class="span6">
+        <div class="span12">
             <?php
             $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 'type' => 'horizontal',
@@ -85,7 +85,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             <?php $this->endWidget(); ?>
 
         </div>
-        <div class="span6">
+        <div class="span12">
             <?php
             $depositos = new AhorroDeposito('search');
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
