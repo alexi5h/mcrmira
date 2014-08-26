@@ -164,7 +164,7 @@
             ?>
             <!--// El modal-full width de la página-->
             <div id="responsive" class="modal hide fade" tabindex="-1" data-width="80%"></div>
-            <div id="long" class="modal hide fade" tabindex="-1" data-replace="true"></div>
+            <div id="long" class="modal hide fade" tabindex="-1"></div>
         </div>
 
         <!-- END MAIN MODAL -->
