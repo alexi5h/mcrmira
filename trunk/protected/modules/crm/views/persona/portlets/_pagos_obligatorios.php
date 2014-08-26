@@ -1,12 +1,12 @@
 <?php
-// Obtener pagos obligatorios del cliente
-$pagos = Ahorro::model()->de_cliente($model->id)->findAll();
+// Obtener pagos del cliente
+$pagos = Ahorro::model()->de_cliente_obligatorio($model->id)->findAll();
 $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
-<div class="widget red">
+<div class="widget green">
     <div class="widget-title">
-        <h4><i class="icon-tasks"></i> Pagos Ahorro</h4>
+        <h4><i class="icon-tasks"></i> Pagos Ahorro Obligatorio</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--<a href="javascript:;" class="icon-remove"></a>-->
@@ -52,20 +52,20 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                             'value' => '$data->tipo',
                             'type' => 'raw',
                         ),
-                        array(
-                            'class' => 'CButtonColumn',
-                            'template' => '{update}',
-                            'buttons' => array(
-                                'update' => array(
-                                    'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
-                                    'options' => array('title' => 'Realizar deposito'),
-                                    'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
-                                    'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
-                                    'imageUrl' => false,
-                                    'visible' => '($data->estado=="PAGADO")?false:true',
-                                ),
-                            ),
-                        ),
+//                        array(
+//                            'class' => 'CButtonColumn',
+//                            'template' => '{update}',
+//                            'buttons' => array(
+//                                'update' => array(
+//                                    'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
+//                                    'options' => array('title' => 'Realizar deposito'),
+//                                    'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
+//                                    'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
+//                                    'imageUrl' => false,
+//                                    'visible' => '($data->estado=="PAGADO")?false:true',
+//                                ),
+//                            ),
+//                        ),
                     ),
                 ));
                 ?>

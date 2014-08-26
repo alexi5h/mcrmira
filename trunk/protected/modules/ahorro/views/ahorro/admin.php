@@ -44,7 +44,7 @@ $this->menu = array(
                 ),
                 array(
                     'name' => 'tipo',
-                    'filter' => array('AHORRO' => 'AHORRO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
+                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO','VOLUNTARIO' => 'VOLUNTARIO','PRIMER_PAGO' => 'PRIMER_PAGO',),
                 ),
                 'saldo_contra',
                 /*
