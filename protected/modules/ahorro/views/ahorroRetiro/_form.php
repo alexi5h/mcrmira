@@ -33,23 +33,26 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
 
 
-        <?php echo $form->radioButtonListRow($model, 'tipoAhorro', array(Ahorro::TIPO_OBLIGATORIO => Ahorro::TIPO_OBLIGATORIO, Ahorro::TIPO_VOLUNTARIO => Ahorro::TIPO_VOLUNTARIO), array('class' => 'hfgh')); ?>
+        <?php
+        echo $form->radioButtonListRow($model, 'tipoAhorro', array(Ahorro::TIPO_OBLIGATORIO => Ahorro::TIPO_OBLIGATORIO, Ahorro::TIPO_VOLUNTARIO => Ahorro::TIPO_VOLUNTARIO), array('labelOptions' => array('style' => 'display:inline-block'),
+            'separator' => "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
+        ?>
 
 
-        <?php echo $form->textFieldRow($model, 'fecha_retiro') ?>
+<?php echo $form->textFieldRow($model, 'fecha_retiro') ?>
 
         <?php echo $form->textFieldRow($model, 'comprobante_retiro', array('maxlength' => 45)) ?>
 
 
-        <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+<?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
         <div class="form-actions">
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType' => 'submit',
-                'type' => 'success',
-                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-            ));
-            ?>
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType' => 'submit',
+            'type' => 'success',
+            'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
+        ));
+        ?>
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
                 'label' => Yii::t('AweCrud.app', 'Cancel'),
