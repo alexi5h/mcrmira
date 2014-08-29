@@ -8,8 +8,9 @@ class Menu {
         self::$_controller = $controller;
         $items = array(
             array('label' => '<i class="icon-home"></i> Home', 'url' => Yii::app()->homeUrl),
-            array('label' => '<i class="icon-briefcase"></i> '.Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),            
-            array('label' => '<i class="icon-money"></i> '.  Ahorro::label(2), 'url' => array('/ahorro/ahorro/admin'), 'access' => 'action_ahorro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorro')),            
+            array('label' => '<i class="icon-briefcase"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
+            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorro/admin'), 'access' => 'action_ahorro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorro')),
+            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
 //            array('label' => '<i class="icon-book"></i>  Pagos', 'url' => '#', 'items' => array(
 //                array('label' => '<i class="icon-briefcase"></i> Pagos', 'url' => array('/pagos/pago/admin'), 'access' => 'action_pago_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pago')),
 //                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),
@@ -50,9 +51,9 @@ class Menu {
                     array('label' => 'Barrios', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
                 )),
             array('label' => '<i class="icon-dollar"></i>  Entidades', 'url' => '#', 'items' => array(
-                array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
-                array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
-            )),
+                    array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
+                    array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
+                )),
             array('label' => '<i class="icon-tasks"></i>  Etapa Registro', 'url' => array('/crm/personaEtapa/admin'), 'access' => 'action_personaEtapa_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'personaEtapa')),
             array('label' => '<i class="icon-leaf"></i> Actividad Económica', 'url' => array('/crm/actividadEconomica/admin'), 'access' => 'action_actividadEconomica_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'actividadEconomica')),
         );
