@@ -2,7 +2,7 @@
 /** @var AhorroRetiroController $this */
 /** @var AhorroRetiro $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'), 
+    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -20,19 +20,30 @@ $this->menu = array(
     </div>
     <div class="widget-body">
 
-            <?php 
-        $this->widget('bootstrap.widgets.TbGridView',array(
-        'id' => 'ahorro-retiro-grid',
-        'type' => 'striped bordered hover advance',
-        'dataProvider' => $model->search(),
-        'columns' => array(
-                    'socio_id',
-                        'sucursal_id',
-                        'cantidad',
-                        'fecha_retiro',
-                        'comprobante_retiro',
-                        'entidad_bancaria_id',
-                    array(
+        <?php
+        $this->widget('bootstrap.widgets.TbGridView', array(
+            'id' => 'ahorro-retiro-grid',
+            'type' => 'striped bordered hover advance',
+            'dataProvider' => $model->search(),
+            'columns' => array(
+//                'id',
+                array(
+                    'name' => 'socio_id',
+                    'value' => '$data->socio->nombre_formato'
+                ),
+                array(
+                    'name' => 'sucursal_id',
+                    'value' => '$data->sucursal'
+                ),
+                'cantidad',
+                'fecha_retiro',
+                'comprobante_retiro',
+                
+                array(
+                    'name' => 'entidad_bancaria_id',
+                    'value' => '$data->entidadBancaria'
+                ),
+                array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',
                     'afterDelete' => 'function(link,success,data){ 
@@ -47,20 +58,21 @@ $this->menu = array(
                             'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
                             'options' => array('title' => 'Actualizar'),
                             'imageUrl' => false,
-                             //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                         ),
                         'delete' => array(
                             'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
                             'options' => array('title' => 'Eliminar'),
                             'imageUrl' => false,
-                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
                         ),
                     ),
                     'htmlOptions' => array(
                         'width' => '80px'
                     )
                 ),
-        ),
-        )); ?>
+            ),
+        ));
+        ?>
     </div>
 </div>
