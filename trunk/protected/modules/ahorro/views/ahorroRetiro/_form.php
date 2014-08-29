@@ -39,20 +39,31 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ?>
 
 
-<?php echo $form->textFieldRow($model, 'fecha_retiro') ?>
+
+        <?php
+        echo $form->datepickerRow(
+                $model, 'fecha_retiro', array(
+            'options' => array(
+                'language' => 'es',
+                'format' => 'yyyy-mm-dd',
+                'autoclose' => true,
+            )
+                )
+        );
+        ?>
 
         <?php echo $form->textFieldRow($model, 'comprobante_retiro', array('maxlength' => 45)) ?>
 
 
-<?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+        <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
         <div class="form-actions">
-        <?php
-        $this->widget('bootstrap.widgets.TbButton', array(
-            'buttonType' => 'submit',
-            'type' => 'success',
-            'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-        ));
-        ?>
+            <?php
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'buttonType' => 'submit',
+                'type' => 'success',
+                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
+            ));
+            ?>
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
                 'label' => Yii::t('AweCrud.app', 'Cancel'),
