@@ -56,7 +56,7 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
-    
+
     public function de_cliente_obligatorio($id_socio) {
         $this->getDbCriteria()->mergeWith(
                 array(
@@ -69,7 +69,7 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
-    
+
     public function de_cliente_voluntario($id_socio) {
         $this->getDbCriteria()->mergeWith(
                 array(
@@ -81,6 +81,47 @@ class Ahorro extends BaseAhorro {
                 )
         );
         return $this;
+    }
+
+    public function socioAhorroVoluntarioTotal($id_socio) {
+//        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(saldo_favor)as total')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=0'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
+
+        $return = $command->queryAll();
+
+        return $return[0]['total'];
+    }
+
+    /*
+     * devuelve los ahorros voluntarios con su respectovo saldo a favor de un cleinte 
+     */
+
+    public function socioAhorrosVoluntarios($id_socio) {
+//        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
+        $command = Yii::app()->db->createCommand()
+                ->select('id,saldo_favor')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=0'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
+
+        $return = $command->queryAll();
+
+        return $return;
+    }
+
+    public function setAnulado($id, $cantidad = NULL) {
+        $toUpdate = array();
+        if ($cantidad) {
+            $toUpdate = array('cantidad' => $cantidad, 'saldo_favor' => $cantidad);
+        } else {
+            $toUpdate = array('anulado' => 1);
+        }
+        $command = Yii::app()->db->createCommand()
+                ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
     }
 
     public static function fechaMes($id_cliente) {

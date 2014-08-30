@@ -32,15 +32,43 @@ class AhorroRetiroController extends AweController {
      */
     public function actionCreate() {
         $model = new AhorroRetiro;
-
+        $validadorSucces = true;
         $this->performAjaxValidation($model, 'ahorro-retiro-form');
 
         if (isset($_POST['AhorroRetiro'])) {
-//            var_dump($_POST);
-//            die();
+
             $model->attributes = $_POST['AhorroRetiro'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $cantidadInput = floatval($model->cantidad);
+
+            $saldoAhorro = 0;
+            if ($model->tipoAhorro == Ahorro::TIPO_VOLUNTARIO) {
+                $saldoAhorro = floatval(Ahorro::model()->socioAhorroVoluntarioTotal($model->socio_id));
+
+                if ($cantidadInput <= $saldoAhorro) {
+                    $listAhorrosVoluntario = Ahorro::model()->socioAhorrosVoluntarios($model->socio_id);
+                    foreach ($listAhorrosVoluntario as $ahorro) {
+                        $cantidadAhorro = floatval($ahorro['saldo_favor']);
+//                     
+                        if ($cantidadInput >= 0.00) {
+                            if ($cantidadInput > $cantidadAhorro) {
+                                Ahorro::model()->setAnulado($ahorro['id']);
+                            } else {
+                                //                            //no esta claro
+                                Ahorro::model()->setAnulado($ahorro['id'], $cantidadAhorro - $cantidadInput);
+                            }
+
+                            $cantidadInput = $cantidadInput - $cantidadAhorro;
+                        }
+                    }
+                } else {
+                    $validadorSucces = false;
+                    Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . ' de ahorros voluntarios.');
+                }
+            }
+            if ($validadorSucces) {
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
