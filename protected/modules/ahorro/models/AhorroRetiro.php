@@ -30,8 +30,8 @@ class AhorroRetiro extends BaseAhorroRetiro {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('tipoAhorro', 'required', 'message' => 'Seleccione un tipo de ahorro.',
-            ),
+            array('tipoAhorro', 'required', 'message' => 'Seleccione un tipo de ahorro.',),
+            array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
         ));
     }
 

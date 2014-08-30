@@ -14,44 +14,47 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
     </div>
     <div class="widget-body">
         <div class="row-fluid">
-            <div style='overflow:auto'> 
-                <?php
-                $this->widget('ext.bootstrap.widgets.TbGridView', array(
-                    'id' => 'pago-grid',
+            <?php $validarDataPagos = $data_pagos->getItemCount() > 0 ?>
+            <?php if ($validarDataPagos): ?>
+                <div style='overflow:auto'> 
+
+                    <?php
+                    $this->widget('ext.bootstrap.widgets.TbGridView', array(
+                        'id' => 'pago-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
-                    'type' => 'striped bordered hover advance',
-                    'dataProvider' => $data_pagos,
-                    'columns' => array(
-                        array(
-                            'header' => 'Fecha',
-                            'name' => 'fecha',
-                            'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
-                            'type' => 'raw',
-                        ),
-                        array(
-                            'header' => 'Cantidad',
-                            'name' => 'cantidad',
-                            'value' => '$data->cantidad',
-                            'type' => 'raw',
-                        ),
-                        array(
-                            'header' => 'Pagado',
-                            'name' => 'saldo_favor',
-                            'value' => '$data->saldo_favor',
-                            'type' => 'raw',
-                        ),
-                        array(
-                            'header' => 'Por pagar',
-                            'name' => 'saldo_contra',
-                            'value' => '$data->saldo_contra',
-                            'type' => 'raw',
-                        ),
-                        array(
-                            'header' => 'Razón',
-                            'name' => 'tipo',
-                            'value' => '$data->tipo',
-                            'type' => 'raw',
-                        ),
+                        'type' => 'striped bordered hover advance condensed',
+                        'dataProvider' => $data_pagos,
+                        'columns' => array(
+                            array(
+                                'header' => 'Fecha',
+                                'name' => 'fecha',
+                                'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
+                                'type' => 'raw',
+                            ),
+                            array(
+                                'header' => 'Cantidad',
+                                'name' => 'cantidad',
+                                'value' => '$data->cantidad',
+                                'type' => 'raw',
+                            ),
+                            array(
+                                'header' => 'Pagado',
+                                'name' => 'saldo_favor',
+                                'value' => '$data->saldo_favor',
+                                'type' => 'raw',
+                            ),
+                            array(
+                                'header' => 'Por pagar',
+                                'name' => 'saldo_contra',
+                                'value' => '$data->saldo_contra',
+                                'type' => 'raw',
+                            ),
+                            array(
+                                'header' => 'Razón',
+                                'name' => 'tipo',
+                                'value' => '$data->tipo',
+                                'type' => 'raw',
+                            ),
 //                        array(
 //                            'class' => 'CButtonColumn',
 //                            'template' => '{update}',
@@ -66,10 +69,30 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
 //                                ),
 //                            ),
 //                        ),
-                    ),
-                ));
-                ?>
-            </div>
+                        ),
+                    ));
+                    echo '<br/>';
+                    ?>
+
+                </div>
+            <?php endif; ?>
+
+
+            <?php
+            $this->widget(
+                    'bootstrap.widgets.TbButton', array(
+                'id' => 'add-Cobranza',
+                'label' => $validarDataPagos ? 'Agregar Ahorro Obligatorio' : '<h3 >Agregar Ahorro Obligatorio</h3>',
+                'encodeLabel' => false,
+                'icon' => $validarDataPagos ? 'plus-sign' : 'dollar',
+                'htmlOptions' => array(
+//                    'onClick' => 'js:viewModal("transaccion/txTrasaccion/create/id_deuda/' . $model->cltDeudas[0]['id'] . '",false,function(){'
+//                    . 'maskAttributes();})',
+                    'class' => $validarDataPagos ? '' : 'empty-portlet',
+                ),
+                    )
+            );
+            ?>
         </div>
     </div>
 </div>

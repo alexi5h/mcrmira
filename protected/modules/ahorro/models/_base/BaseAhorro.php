@@ -46,7 +46,7 @@ abstract class BaseAhorro extends AweActiveRecord {
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('tipo', 'in', 'range' => array('AHORRO','PRIMER_PAGO')), // enum,
+            array('tipo', 'in', 'range' => array('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO')), // enum,
             array('saldo_contra, saldo_favor, saldo_extra, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, saldo_extra, anulado', 'safe', 'on'=>'search'),
         );
