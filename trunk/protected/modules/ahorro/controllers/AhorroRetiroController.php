@@ -32,6 +32,8 @@ class AhorroRetiroController extends AweController {
      */
     public function actionCreate() {
         $model = new AhorroRetiro;
+        $retiroDetalle = new AhorroRetiroDetalle();
+        $validadorDetalle = false;
         $validadorSucces = true;
         $this->performAjaxValidation($model, 'ahorro-retiro-form');
 
@@ -55,6 +57,7 @@ class AhorroRetiroController extends AweController {
                             } else {
                                 //                            //no esta claro
                                 Ahorro::model()->setAnulado($ahorro['id'], $cantidadAhorro - $cantidadInput);
+                                $validadorDetalle = true;
                             }
 
                             $cantidadInput = $cantidadInput - $cantidadAhorro;
@@ -67,6 +70,14 @@ class AhorroRetiroController extends AweController {
             }
             if ($validadorSucces) {
                 if ($model->save()) {
+                    if ($validadorDetalle) {
+                        $retiroDetalle->cantidad = $cantidadAhorro;
+                        $retiroDetalle->ahorro_id = $ahorro['id'];
+                        $retiroDetalle->ahorro_retiro_id = $model->id;
+                        $retiroDetalle->save();
+                    }
+
+
                     $this->redirect(array('admin'));
                 }
             }
