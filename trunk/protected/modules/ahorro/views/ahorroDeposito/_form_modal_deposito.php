@@ -87,12 +87,12 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
         </div>
         <div class="span12">
             <?php
-            $depositos = new AhorroDeposito('search');
+            $depositos = AhorroDeposito::model()->searchByAhorro($model->pago_id);
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
                 'id' => 'deposito-grid',
                 'type' => '',
                 "template" => "{items}{pager}",
-                'dataProvider' => $depositos->searchByAhorro($model->pago_id),
+                'dataProvider' => $depositos,
                 'columns' => array(
                     array(
                         'header' => 'Sucursal',
