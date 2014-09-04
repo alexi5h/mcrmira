@@ -38,11 +38,21 @@ class AhorroDepositoController extends AweController {
             $model->pago_id = $id_ahorro;
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
+
+            $saldo_extra = 0;
+
             if (isset($_POST['AhorroDeposito'])) {
                 $modelAhorro = Ahorro::model()->findByPk($id_ahorro);
                 $model->attributes = $_POST['AhorroDeposito'];
-                $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
-                $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
+                if ($model->cantidad <= $modelAhorro->saldo_contra) {
+                    $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
+                    $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
+                } else {
+                    $modelAhorro->saldo_extra = $model->cantidad - $modelAhorro->saldo_contra;
+                    $modelAhorro->saldo_contra = 0;
+                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
+                }
+
                 $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
                 $model->fecha_comprobante_su = Util::FechaActual();
                 $result['enableButtonSave'] = true;
