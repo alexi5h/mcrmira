@@ -228,7 +228,6 @@ class PersonaController extends AweController {
                 $ahorro->tipo = Ahorro::TIPO_PRIMIER_PAGO;
                 $ahorro->saldo_contra = Ahorro::VALOR_REGISTRO;
                 $ahorro->saldo_favor = 0;
-                $ahorro->saldo_extra=0;
                 $ahorro->anulado = 0;
                 $ahorro->save();
             }
