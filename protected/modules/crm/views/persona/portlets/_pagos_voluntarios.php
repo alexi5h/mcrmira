@@ -76,21 +76,6 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
 
                 </div>
             <?php endif; ?>
-            <?php
-            $this->widget(
-                    'bootstrap.widgets.TbButton', array(
-                'id' => 'add-Cobranza',
-                'label' => $validarDataPagos ? 'Agregar Ahorro Voluntario' : '<h3 >Agregar Ahorro Voluntario</h3>',
-                'encodeLabel' => false,
-                'icon' => $validarDataPagos ? 'plus-sign' : 'dollar',
-                'htmlOptions' => array(
-//                    'onClick' => 'js:viewModal("transaccion/txTrasaccion/create/id_deuda/' . $model->cltDeudas[0]['id'] . '",false,function(){'
-//                    . 'maskAttributes();})',
-                    'class' => $validarDataPagos ? '' : 'empty-portlet',
-                ),
-                    )
-            );
-            ?>
         </div>
     </div>
 </div>
