@@ -38,8 +38,12 @@ class AhorroController extends AweController {
         if (isset($_POST['Ahorro'])) {
             $model->attributes = $_POST['Ahorro'];
             $model->fecha = Util::FechaActual();
-            $model->estado = Ahorro::ESTADO_DEUDA;
-            $model->saldo_contra = $model->cantidad;
+            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMIER_PAGO) {
+                $model->estado = Ahorro::ESTADO_DEUDA;
+                $model->saldo_contra = $model->cantidad;
+            }else{
+                $model->estado =null;
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }

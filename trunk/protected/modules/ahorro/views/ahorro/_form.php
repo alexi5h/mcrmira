@@ -30,15 +30,15 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'fecha') ?>
 
-        <?php echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',)) ?>
+        <?php //echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',)) ?>
 
         <?php echo $form->dropDownListRow($model, 'tipo', array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',)) ?>
 
-        <?php echo $form->textFieldRow($model, 'saldo_contra', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_contra', array('maxlength' => 10)) ?>
 
-        <?php echo $form->textFieldRow($model, 'saldo_favor', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_favor', array('maxlength' => 10)) ?>
 
-        <?php echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10)) ?>
 
             <?php echo $form->checkBoxRow($model, 'anulado') ?>
         <div class="form-actions">

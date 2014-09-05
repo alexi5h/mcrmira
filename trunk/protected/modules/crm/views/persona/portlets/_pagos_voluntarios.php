@@ -36,18 +36,18 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                                 'value' => '$data->cantidad',
                                 'type' => 'raw',
                             ),
-                            array(
-                                'header' => 'Pagado',
-                                'name' => 'saldo_favor',
-                                'value' => '$data->saldo_favor',
-                                'type' => 'raw',
-                            ),
-                            array(
-                                'header' => 'Por pagar',
-                                'name' => 'saldo_contra',
-                                'value' => '$data->saldo_contra',
-                                'type' => 'raw',
-                            ),
+//                            array(
+//                                'header' => 'Pagado',
+//                                'name' => 'saldo_favor',
+//                                'value' => '$data->saldo_favor',
+//                                'type' => 'raw',
+//                            ),
+//                            array(
+//                                'header' => 'Por pagar',
+//                                'name' => 'saldo_contra',
+//                                'value' => '$data->saldo_contra',
+//                                'type' => 'raw',
+//                            ),
                             array(
                                 'header' => 'Razón',
                                 'name' => 'tipo',
