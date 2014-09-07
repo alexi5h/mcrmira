@@ -18,7 +18,6 @@
  * @property string $tipo
  * @property string $saldo_contra
  * @property string $saldo_favor
- * @property string $saldo_extra
  * @property integer $anulado
  *
  * @property AhorroDeposito[] $ahorroDepositos
@@ -39,15 +38,15 @@ abstract class BaseAhorro extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('descripcion, socio_id, cantidad, fecha, tipo', 'required'),
             array('socio_id, anulado', 'numerical', 'integerOnly'=>true),
             array('descripcion', 'length', 'max'=>50),
             array('cantidad, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
+            array('fecha', 'safe'),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
             array('tipo', 'in', 'range' => array('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO')), // enum,
-            array('saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
         );
     }
@@ -72,7 +71,6 @@ abstract class BaseAhorro extends AweActiveRecord {
                 'tipo' => Yii::t('app', 'Tipo'),
                 'saldo_contra' => Yii::t('app', 'Saldo Contra'),
                 'saldo_favor' => Yii::t('app', 'Saldo Favor'),
-                //'saldo_extra' => Yii::t('app', 'Saldo Extra'),
                 'anulado' => Yii::t('app', 'Anulado'),
                 'ahorroDepositos' => null,
         );
@@ -90,7 +88,6 @@ abstract class BaseAhorro extends AweActiveRecord {
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
         $criteria->compare('saldo_favor', $this->saldo_favor, true);
-        //$criteria->compare('saldo_extra', $this->saldo_extra, true);
         $criteria->compare('anulado', $this->anulado);
 
         return new CActiveDataProvider($this, array(
