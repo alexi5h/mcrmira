@@ -41,33 +41,33 @@ class AhorroRetiroController extends AweController {
 
             $model->attributes = $_POST['AhorroRetiro'];
             $cantidadInput = floatval($model->cantidad);
+//TODO: borrar si es necesario
+//            $saldoAhorro = 0;
+//            if ($model->tipoAhorro == Ahorro::TIPO_VOLUNTARIO) {
+            $saldoAhorro = floatval(Ahorro::model()->socioAhorroVoluntarioTotal($model->socio_id));
 
-            $saldoAhorro = 0;
-            if ($model->tipoAhorro == Ahorro::TIPO_VOLUNTARIO) {
-                $saldoAhorro = floatval(Ahorro::model()->socioAhorroVoluntarioTotal($model->socio_id));
-
-                if ($cantidadInput <= $saldoAhorro) {
-                    $listAhorrosVoluntario = Ahorro::model()->socioAhorrosVoluntarios($model->socio_id);
-                    foreach ($listAhorrosVoluntario as $ahorro) {
-                        $cantidadAhorro = floatval($ahorro['saldo_favor']);
+            if ($cantidadInput <= $saldoAhorro) {
+                $listAhorrosVoluntario = Ahorro::model()->socioAhorrosVoluntarios($model->socio_id);
+                foreach ($listAhorrosVoluntario as $ahorro) {
+                    $cantidadAhorro = floatval($ahorro['saldo_favor']);
 //                     
-                        if ($cantidadInput >= 0.00) {
-                            if ($cantidadInput > $cantidadAhorro) {
-                                Ahorro::model()->setAnulado($ahorro['id']);
-                            } else {
-                                //                            //no esta claro
-                                Ahorro::model()->setAnulado($ahorro['id'], $cantidadAhorro - $cantidadInput);
-                                $validadorDetalle = true;
-                            }
-
-                            $cantidadInput = $cantidadInput - $cantidadAhorro;
+                    if ($cantidadInput >= 0.00) {
+                        if ($cantidadInput > $cantidadAhorro) {
+                            Ahorro::model()->setAnulado($ahorro['id']);
+                        } else {
+                            //                            //no esta claro
+                            Ahorro::model()->setAnulado($ahorro['id'], $cantidadAhorro - $cantidadInput);
+                            $validadorDetalle = true;
                         }
+
+                        $cantidadInput = $cantidadInput - $cantidadAhorro;
                     }
-                } else {
-                    $validadorSucces = false;
-                    Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . ' de ahorros voluntarios.');
                 }
+            } else {
+                $validadorSucces = false;
+                Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . ' de ahorros voluntarios.');
             }
+//            }
             if ($validadorSucces) {
                 if ($model->save()) {
                     if ($validadorDetalle) {
