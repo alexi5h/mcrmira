@@ -1,6 +1,6 @@
 <?php
 
-class CreditosModule extends CWebModule
+class CreditoModule extends CWebModule
 {
 	public function init()
 	{
@@ -9,8 +9,8 @@ class CreditosModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'creditos.models.*',
-			'creditos.components.*',
+			'credito.models.*',
+			'credito.components.*',
 		));
 	}
 
