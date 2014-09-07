@@ -27,13 +27,15 @@ return array(
         //crm
         'application.modules.crm.models.*',
         //ahorros
-        'application.modules.ahorros.models.*',
+        'application.modules.ahorro.models.*',
+        //credito
+        'application.modules.credito.models.*'
     ),
     'modules' => array(
         'crm',
         'pagos',
         'ahorro',
-        'creditos',
+        'credito',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
