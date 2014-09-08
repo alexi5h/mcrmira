@@ -26,7 +26,6 @@
                 'tipo',
                 'saldo_contra',
                 'saldo_favor',
-                'saldo_extra',
                 array(
                     'name' => 'anulado',
                     'type' => 'boolean'
