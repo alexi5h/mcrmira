@@ -19,7 +19,7 @@ class Credito extends BaseCredito {
     public static function label($n = 1) {
         return Yii::t('app', 'Credito|Creditos', $n);
     }
-    
+
     public function relations() {
         return array_merge(parent::relations(), array(
             'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
@@ -27,6 +27,12 @@ class Credito extends BaseCredito {
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
                 )
         );
+    }
+
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total','required'),
+        ));
     }
 
 }
