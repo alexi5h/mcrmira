@@ -30,15 +30,16 @@ class Persona extends BasePersona {
         return array_merge(parent::attributeLabels(), array(
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
             'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
-            'actividad_economica'=>null,
+            'actividad_economica' => null,
                 )
         );
     }
-    
+
     public function relations() {
-        return array_merge(parent::relations(),array(
+        return array_merge(parent::relations(), array(
             'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
-            )
+            'ahorros' => array(self::HAS_MANY, 'Ahorro', 'socio_id'),
+                )
         );
     }
 
@@ -82,7 +83,7 @@ class Persona extends BasePersona {
 
     public function search() {
         $criteria = new CDbCriteria;
-        $criteria->with = array('actividad_economica','sucursal', 'personaEtapa');
+        $criteria->with = array('actividad_economica', 'sucursal', 'personaEtapa');
 
 
 //        $criteria->compare('t.id', $this->id, true, 'OR');
@@ -139,6 +140,20 @@ class Persona extends BasePersona {
             'pagination' => array('pageSize' => 30,)
         ));
         return $c_activos_data;
+    }
+
+    /*
+     * devuelve los socios que pueden ser garantes (que estén al día en sus pagos)
+     */
+    public function condicion_garantes() {
+        /* select cedula from persona pe
+          where not exists(select * from ahorro ah
+          where ah.socio_id=pe.id and ah.estado='DEUDA') */
+        $garantes = Persona::model()->findAll(array(
+            'join' => 'LEFT JOIN ahorro ah ON t.id=ah.socio_id and ah.estado="DEUDA"',
+            'condition' => 'ah.socio_id is null',
+        ));
+        return $garantes;
     }
 
     public function de_tipo($tipo) {

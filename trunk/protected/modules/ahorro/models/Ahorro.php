@@ -82,6 +82,7 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
+    
 
     public function socioAhorroVoluntarioTotal($id_socio) {
 //        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0

@@ -26,9 +26,19 @@ $this->menu = array(
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
             'columns' => array(
-                'socio_id',
-                'garante_id',
-                'sucursal_id',
+                array(
+                    'name' => 'socio_id',
+                    'value' => '$data->socio->nombre_formato'
+                ),
+                array(
+                    'name' => 'garante_id',
+                    'value' => '$data->garante->nombre_formato'
+                ),
+                array(
+                        'name' => 'sucursal_id',
+                        'value' => '$data->sucursal',
+                        'type' => 'raw',
+                    ),
                 'fecha_credito',
                 'fecha_limite',
                 'cantidad_total',

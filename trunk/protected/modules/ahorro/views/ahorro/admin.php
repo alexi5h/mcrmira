@@ -26,12 +26,11 @@ $this->menu = array(
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
             'columns' => array(
-                
-                  array(
-                        'name' => 'Id',
-                        'value' => 'CHtml::link($data->id, Yii::app()->createUrl("ahorro/ahorro/view",array("id"=>$data->id)))',
-                        'type' => 'raw',
-                    ),
+                array(
+                    'name' => 'Id',
+                    'value' => 'CHtml::link($data->id, Yii::app()->createUrl("ahorro/ahorro/view",array("id"=>$data->id)))',
+                    'type' => 'raw',
+                ),
                 array(
                     'name' => 'socio_id',
                     'value' => '$data->socio->nombre_formato'
@@ -44,7 +43,7 @@ $this->menu = array(
                 ),
                 array(
                     'name' => 'tipo',
-                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO','VOLUNTARIO' => 'VOLUNTARIO','PRIMER_PAGO' => 'PRIMER_PAGO',),
+                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
                 ),
                 'saldo_contra',
                 /*

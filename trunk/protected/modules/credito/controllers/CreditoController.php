@@ -37,6 +37,10 @@ class CreditoController extends AweController {
 
         if (isset($_POST['Credito'])) {
             $model->attributes = $_POST['Credito'];
+            $model->fecha_credito = Util::FechaActual();
+            $model->estado = Credito::ESTADO_DEUDA;
+            $model->interes=5;
+            $model->fecha_limite = Yii::app()->dateFormatter->format("yyyy-MM-dd", $model->fecha_limite);
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
