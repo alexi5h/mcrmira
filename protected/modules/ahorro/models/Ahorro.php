@@ -13,6 +13,9 @@ class Ahorro extends BaseAhorro {
     const TIPO_PRIMIER_PAGO = 'PRIMER_PAGO';
     //Valor a pagar por registro en la mancomunidad
     const VALOR_REGISTRO = 70;
+    //anulacion
+    const ANULADO_SI = 'SI';
+    const ANULADO_NO = 'NO';
 
     /**
      * @return Ahorro
@@ -82,15 +85,27 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
-    
 
     public function socioAhorroVoluntarioTotal($id_socio) {
-//        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0
+//        select sum(cantidad) from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado='NO'
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(cantidad)as total')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO, 'anulado' => self::ANULADO_NO);
+
+        $return = $command->queryAll();
+
+        return $return[0]['total'];
+    }
+
+    public function socioAhorroObligatorioTotal($id_socio) {
+//        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='OBLIGATORIO' and anulado='SI'
         $command = Yii::app()->db->createCommand()
                 ->select('sum(saldo_favor)as total')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=0'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO, 'anulado' => self::ANULADO_NO);
 
         $return = $command->queryAll();
 
@@ -104,25 +119,37 @@ class Ahorro extends BaseAhorro {
     public function socioAhorrosVoluntarios($id_socio) {
 //        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
         $command = Yii::app()->db->createCommand()
-                ->select('id,saldo_favor')
+                ->select('id,cantidad')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=0'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO, 'anulado' => self::ANULADO_NO);
 
         $return = $command->queryAll();
 
         return $return;
     }
 
-    public function setAnulado($id, $cantidad = NULL) {
+    public function socioAhorrosObligatorios($id_socio) {
+//        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
+        $command = Yii::app()->db->createCommand()
+                ->select('id,cantidad')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO, 'anulado' => self::ANULADO_NO);
+
+        $return = $command->queryAll();
+
+        return $return;
+    }
+
+    public function setAnuladoVoluntario($id, $cantidad = NULL) {
         $toUpdate = array();
-        if ($cantidad) {
-            $toUpdate = array('cantidad' => $cantidad, 'saldo_favor' => $cantidad);
-        } else {
-            $toUpdate = array('anulado' => 1);
-        }
+
+        $toUpdate = array('cantidad' => $cantidad);
+
         $command = Yii::app()->db->createCommand()
                 ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
+        return $command == 1 ? true : flase;
     }
 
     public static function fechaMes($id_cliente) {

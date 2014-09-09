@@ -18,9 +18,10 @@
  * @property string $tipo
  * @property string $saldo_contra
  * @property string $saldo_favor
- * @property integer $anulado
+ * @property string $anulado
  *
  * @property AhorroDeposito[] $ahorroDepositos
+ * @property AhorroExtra[] $ahorroExtras
  */
 abstract class BaseAhorro extends AweActiveRecord {
 
@@ -38,15 +39,17 @@ abstract class BaseAhorro extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('socio_id, anulado', 'numerical', 'integerOnly'=>true),
+            array('descripcion, socio_id, cantidad, fecha, tipo', 'required'),
+            array('socio_id', 'numerical', 'integerOnly'=>true),
             array('descripcion', 'length', 'max'=>50),
             array('cantidad, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
-            array('fecha', 'safe'),
+            array('anulado', 'length', 'max'=>2),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
             array('tipo', 'in', 'range' => array('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO')), // enum,
-            array('descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('anulado', 'in', 'range' => array('SI','NO')), // enum,
+            array('estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
         );
     }
@@ -54,6 +57,7 @@ abstract class BaseAhorro extends AweActiveRecord {
     public function relations() {
         return array(
             'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'pago_id'),
+            'ahorroExtras' => array(self::HAS_MANY, 'AhorroExtra', 'ahorro_id'),
         );
     }
 
@@ -73,6 +77,7 @@ abstract class BaseAhorro extends AweActiveRecord {
                 'saldo_favor' => Yii::t('app', 'Saldo Favor'),
                 'anulado' => Yii::t('app', 'Anulado'),
                 'ahorroDepositos' => null,
+                'ahorroExtras' => null,
         );
     }
 
@@ -88,7 +93,7 @@ abstract class BaseAhorro extends AweActiveRecord {
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
         $criteria->compare('saldo_favor', $this->saldo_favor, true);
-        $criteria->compare('anulado', $this->anulado);
+        $criteria->compare('anulado', $this->anulado, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
