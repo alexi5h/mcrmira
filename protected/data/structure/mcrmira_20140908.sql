@@ -1,6 +1,6 @@
-﻿# Host: 127.0.0.1  (Version: 5.6.17)
-# Date: 2014-09-08 16:54:57
-# Generator: MySQL-Front 5.3  (Build 4.156)
+﻿# Host: 127.0.0.1  (Version: 5.6.12-log)
+# Date: 2014-09-09 09:56:07
+# Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
 
@@ -31,9 +31,9 @@ CREATE TABLE `ahorro` (
   `tipo` enum('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO') NOT NULL,
   `saldo_contra` decimal(10,2) DEFAULT NULL,
   `saldo_favor` decimal(10,2) DEFAULT NULL,
-  `anulado` tinyint(1) DEFAULT NULL,
+  `anulado` enum('SI','NO') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "ahorro_deposito"
@@ -228,7 +228,7 @@ CREATE TABLE `cruge_session` (
   `ipaddressout` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idsession`),
   KEY `crugesession_iduser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "cruge_system"
@@ -475,4 +475,4 @@ CREATE TABLE `persona` (
   CONSTRAINT `fk_cliente_direccion2` FOREIGN KEY (`direccion_negocio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_persona_persona_etapa1` FOREIGN KEY (`persona_etapa_id`) REFERENCES `persona_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_persona_actividad_economica1` FOREIGN KEY (`actividad_economica_id`) REFERENCES `actividad_economica` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
