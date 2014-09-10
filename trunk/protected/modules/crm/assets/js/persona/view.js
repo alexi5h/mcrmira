@@ -35,7 +35,7 @@ function viewModalWidth(url, CallBack)
         },
         success: function(data) {
             $("#mainModal").modal("hide");
-            showModalDataLong(data);
+            showModalDataWidth(data);
             CallBack();
 
         }

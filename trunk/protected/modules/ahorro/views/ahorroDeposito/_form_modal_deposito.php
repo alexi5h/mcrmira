@@ -13,7 +13,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 </div>
 <div class="modal-body">
     <div class="row-fluid">
-        <div class="span12">
+        <div class="span6">
             <?php
             $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 'type' => 'horizontal',
@@ -25,13 +25,13 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             ;
             ?>
 
-            <div class="span12 ">
+            <!--<div class="span12 ">-->
                 <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
 
                 <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-            </div>
+            <!--</div>-->
 
-            <div class="span12 ">
+            <!--<div class="span12 ">-->
                 <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
                 <?php
@@ -44,14 +44,14 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                         )
                 );
                 ?>
-            </div>
+            <!--</div>-->
 
-            <div class="span12 ">
+            <!--<div class="span12 ">-->
                 <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
                 <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
                 <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
-            </div>
+            <!--</div>-->
 
 
 
@@ -85,7 +85,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             <?php $this->endWidget(); ?>
 
         </div>
-        <div class="span12">
+        <div class="span6">
             <?php
             $depositos = AhorroDeposito::model()->searchByAhorro($model->pago_id);
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
