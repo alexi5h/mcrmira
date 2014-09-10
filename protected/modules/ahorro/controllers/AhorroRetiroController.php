@@ -45,18 +45,38 @@ class AhorroRetiroController extends AweController {
             $saldoAhorro = 0;
             if ($model->tipoAhorro == Ahorro::TIPO_OBLIGATORIO) {
                 $saldoAhorro = floatval(Ahorro::model()->socioAhorroObligatorioTotal($model->socio_id));
-                var_dump($saldoAhorro);
-                die();
+//                var_dump($saldoAhorro);
+//                die();
 
                 if ($cantidadInput <= $saldoAhorro) {
                     if ($model->save()) {
                         $listAhorrosObligatorios = Ahorro::model()->socioAhorrosObligatorios($model->socio_id);
                         foreach ($listAhorrosObligatorios as $ahorro) {
-                            $cantidadAhorro = floatval($ahorro['cantidad']);
+//                            var_dump($ahorro);die();
+                            $cantidadAhorro = floatval($ahorro['saldo_favor']);
                             if ($cantidadInput <= $cantidadAhorro) {
-                                
+                                $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
+                                if ($validadorDetalle) {
+
+                                    $retiroDetalle->cantidad = $cantidadAhorro;
+                                    $retiroDetalle->ahorro_id = $ahorro['id'];
+                                    $retiroDetalle->ahorro_retiro_id = $model->id;
+                                    $retiroDetalle->save();
+                                } else {
+                                    AhorroRetiro::model()->deleteByPk($model->id);
+                                }
                             } else {
-                                
+                                $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
+                                if ($validadorDetalle) {
+
+                                    $retiroDetalle->cantidad = $cantidadAhorro;
+                                    $retiroDetalle->ahorro_id = $ahorro['id'];
+                                    $retiroDetalle->ahorro_retiro_id = $model->id;
+                                    $retiroDetalle->save();
+                                } else {
+                                    AhorroRetiro::model()->deleteByPk($model->id);
+                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
+                                }
                             }
                             $cantidadInput = $cantidadInput - $cantidadAhorro;
                         }
@@ -89,6 +109,9 @@ class AhorroRetiroController extends AweController {
                                     $retiroDetalle->ahorro_id = $ahorro['id'];
                                     $retiroDetalle->ahorro_retiro_id = $model->id;
                                     $retiroDetalle->save();
+                                } else {
+                                    AhorroRetiro::model()->deleteByPk($model->id);
+                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
                                 }
                             }
                         }

@@ -132,7 +132,7 @@ class Ahorro extends BaseAhorro {
     public function socioAhorrosObligatorios($id_socio) {
 //        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
         $command = Yii::app()->db->createCommand()
-                ->select('id,cantidad')
+                ->select('id,saldo_favor')
                 ->from('ahorro ')
                 ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
         $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO, 'anulado' => self::ANULADO_NO);
@@ -145,11 +145,34 @@ class Ahorro extends BaseAhorro {
     public function setAnuladoVoluntario($id, $cantidad = NULL) {
         $toUpdate = array();
 
-        $toUpdate = array('cantidad' => $cantidad);
+
+
+//        $toUpdate = array('cantidad' => $cantidad, 'saldo_favor' => $cantidad);
+        $toUpdate = array('saldo_contra' => $cant1, 'saldo_favor' => $cantidad);
+//
+        $command = Yii::app()->db->createCommand()
+                ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
+
+
+        return $command == 1 ? true : false;
+    }
+
+    public function setAnuladoObligatorio($id, $cantidad = NULL) {
+        $toUpdate = array();
+        $cant = Yii::app()->db->createCommand()->select('cantidad,id')->from('ahorro')->where('id=:id', array('id' => $id));
+        $cant1 = $cant->queryAll();
+        $cant1 = floatval($cant1['0']['cantidad']) - $cantidad;
+//        if ($cantidad) {
+        $toUpdate = array('saldo_contra' => $cant1, 'saldo_favor' => $cantidad);
+//        } else {
+//            $toUpdate = array('anulado' => self::ANULADO_SI);
+//        }
+
 
         $command = Yii::app()->db->createCommand()
                 ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
-        return $command == 1 ? true : flase;
+
+        return $command == 1 ? true : false;
     }
 
     public static function fechaMes($id_cliente) {
