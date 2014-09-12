@@ -83,7 +83,7 @@ class Ahorro extends BaseAhorro {
                     ),
                 )
         );
-        return $this;
+        return $this->findAll();
     }
 
     public function socioAhorroVoluntarioTotal($id_socio) {

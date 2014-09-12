@@ -1,6 +1,6 @@
 <?php
 // Obtener pagos del cliente
-$pagos = Ahorro::model()->de_cliente_voluntario($model->id)->findAll();
+$pagos = Ahorro::model()->de_cliente_voluntario($model->id);
 $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
@@ -77,19 +77,19 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                 </div>
             <?php endif; ?>
             <?php
-        $this->widget('bootstrap.widgets.TbButton', array(
-            'id' => 'agregarAhorroV',
-            'label' => 'Agregar Ahorro Voluntario',
-            'encodeLabel' => false,
-            'icon' => $model ? 'icon-plus' : 'tag',
-            'htmlOptions' => array(
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'id' => 'agregarAhorroV',
+                'label' => 'Agregar Ahorro Voluntario',
+                'encodeLabel' => false,
+                'icon' => $model ? 'icon-plus' : 'tag',
+                'htmlOptions' => array(
 //                'onClick' => 'js:viewModal("campanias/campania/create/id_cuenta/' . $model->cuenta->id . '/id_contacto/' . $model->id . '",function(){'
 //                . 'maskAttributes();})',
-                'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro='.$pagos[0]->id.'",function() {maskAttributes();}); return false;',
+                    //'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro='.$data_pagos->id. '",function() {maskAttributes();}); return false;',
 //                'class' => $model ? '' : 'empty-portlet',
-            ),
-        ));
-        ?>
+                ),
+            ));
+            ?>
         </div>
     </div>
 </div>
