@@ -36,16 +36,19 @@ $this->menu = array(
                     'value' => '$data->sucursal'
                 ),
                 'cantidad',
-                'fecha_retiro',
+                array(
+                    'name' => 'fecha_retiro',
+                    'value' => 'Util::FormatDate($data->fecha_retiro,"d/m/Y")',
+                ),
                 'comprobante_retiro',
-                
                 array(
                     'name' => 'entidad_bancaria_id',
                     'value' => '$data->entidadBancaria'
                 ),
                 array(
                     'class' => 'CButtonColumn',
-                    'template' => '{update} {delete}',
+                    'template' => ' {delete}',
+//                    'template' => '{update} {delete}',
                     'afterDelete' => 'function(link,success,data){ 
                     if(success) {
                          $("#flashMsg").empty();
@@ -54,12 +57,12 @@ $this->menu = array(
                     }
                     }',
                     'buttons' => array(
-                        'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-                        ),
+//                        'update' => array(
+//                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+//                            'options' => array('title' => 'Actualizar'),
+//                            'imageUrl' => false,
+//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+//                        ),
                         'delete' => array(
                             'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
                             'options' => array('title' => 'Eliminar'),

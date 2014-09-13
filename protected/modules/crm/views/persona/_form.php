@@ -39,7 +39,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
-        
+
         <?php echo $form->textFieldRow($model, 'cedula', array('maxlength' => 10, 'class' => 'span4')) ?>
 
         <?php echo $form->textFieldRow($model, 'ruc', array('maxlength' => 13, 'class' => 'span4')) ?>
@@ -49,7 +49,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->textFieldRow($model, 'celular', array('maxlength' => 24, 'class' => 'span4')) ?>
 
         <?php echo $form->textFieldRow($model, 'email', array('maxlength' => 255, 'class' => 'span4')) ?>
-        
+
         <?php echo $form->textFieldRow($model, 'carga_familiar', array('maxlength' => 3, 'class' => 'span4')) ?>
 
         <?php
@@ -64,22 +64,27 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 $model, 'fecha_nacimiento', array(
             'options' => array(
                 'language' => 'es',
-                'format'=>'yyyy-mm-dd',
+                'format' => 'dd/mm/yyyy',
+                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
             )
                 )
         );
         ?>
-        
+
         <?php
         echo $form->radioButtonListRow(
                 $model, 'estado_civil', array('SOLTERO' => 'Soltero', 'CASADO' => 'Casado', 'DIVORCIADO' => 'Divorciado', 'VIUDO' => 'Viudo',), array('labelOptions' => array('style' => 'display:inline-block'),
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
-        
+
         <?php
-        $actividades_eco=  ActividadEconomica::model()->activos()->findAll();
-        
+        $actividades_eco = ActividadEconomica::model()->activos()->findAll();
+
         echo $form->select2Row($model, 'actividad_economica_id', array(
             'asDropDownList' => true,
             'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
@@ -89,12 +94,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')  ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')    ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')  ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')    ?>
 
 
-        <?php // echo $form->textFieldRow($model, 'aprobado')  ?>
+        <?php // echo $form->textFieldRow($model, 'aprobado')    ?>
         <?php
         $sucursales = Sucursal::model()->activos()->findAll();
 

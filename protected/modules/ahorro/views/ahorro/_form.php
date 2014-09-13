@@ -28,7 +28,21 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
 
-        <?php echo $form->textFieldRow($model, 'fecha') ?>
+        <?php
+        echo $form->datepickerRow(
+                $model, 'fecha', array(
+            'options' => array(
+                'language' => 'es',
+                'format' => 'dd/mm/yyyy',
+                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
+            )
+                )
+        );
+        ?>
 
         <?php //echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',)) ?>
 
@@ -40,7 +54,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php //echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10)) ?>
 
-            <?php echo $form->checkBoxRow($model, 'anulado') ?>
+        <?php // echo $form->dropDownListRow($model, 'anulado', array('SI'=>'SI','NO'=>'NO')) ?>
+        
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(

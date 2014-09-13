@@ -36,7 +36,10 @@ $this->menu = array(
                     'value' => '$data->socio->nombre_formato'
                 ),
                 'cantidad',
-                'fecha',
+                array(
+                    'name' => 'fecha',
+                    'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
+                ),
                 array(
                     'name' => 'estado',
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),

@@ -65,6 +65,8 @@ class PersonaController extends AweController {
                     $model->direccion_negocio_id = $modelDireccion2->id;
                 }
             }
+            $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
+
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -111,6 +113,7 @@ class PersonaController extends AweController {
                     $model->direccion_negocio_id = $modelDireccion2->id;
                 }
             }
+            $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
             if ($model->save()) {
                 if ($r != null) {
                     $this->redirect(array('admin'));
@@ -119,6 +122,7 @@ class PersonaController extends AweController {
                 }
             }
         }
+        $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'd/m/Y');
         $this->render('update', array(
             'model' => $model,
             'modelDireccion1' => $modelDireccion1,
@@ -219,7 +223,7 @@ class PersonaController extends AweController {
         if (Yii::app()->request->isAjaxRequest) {
             $id_etapa_max = PersonaEtapa::model()->getEtapaMaxima();
             if ($id_etapa_max == $id_etapa) {
-                $ahorro=new Ahorro;
+                $ahorro = new Ahorro;
                 $ahorro->descripcion = 'Primer pago por registro en la Mancomunidad';
                 $ahorro->socio_id = $id_data;
                 $ahorro->cantidad = Ahorro::VALOR_REGISTRO;

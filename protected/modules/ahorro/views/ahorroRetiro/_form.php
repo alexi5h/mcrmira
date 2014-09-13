@@ -45,8 +45,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 $model, 'fecha_retiro', array(
             'options' => array(
                 'language' => 'es',
-                'format' => 'yyyy-mm-dd',
-                'autoclose' => true,
+                'format' => 'dd/mm/yyyy',
+                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
             )
                 )
         );
