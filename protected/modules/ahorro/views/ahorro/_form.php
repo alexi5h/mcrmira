@@ -12,7 +12,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 ?>
 <div class="widget blue">
     <div class="widget-title">
-        <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . Ahorro::label(1); ?></h4>
+        <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Registar' : 'Update') . ' ' . Ahorro::label(1); ?></h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->
