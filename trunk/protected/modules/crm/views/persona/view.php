@@ -11,17 +11,14 @@ Util::tsRegisterAssetJs('view.js');
 <div class="row-fluid">
     <div class="span6">
         <?php $this->renderPartial('portlets/_info', array('model' => $model)); ?>
-    </div>
-
-    <div class="span6">
-        <?php $this->renderPartial('portlets/_pagos', array('model' => $model)); ?>
-    </div>
-    
-    <div class="span6">
-        <?php $this->renderPartial('portlets/_pagos_obligatorios', array('model' => $model)); ?>
-    </div>
-    
-    <div class="span6">
         <?php $this->renderPartial('portlets/_pagos_voluntarios', array('model' => $model)); ?>
+
+
+    </div>
+    <div class="span6">
+
+        <?php $this->renderPartial('portlets/_pagos', array('model' => $model)); ?>
+        <?php $this->renderPartial('portlets/_pagos_obligatorios', array('model' => $model)); ?>
+
     </div>
 </div>

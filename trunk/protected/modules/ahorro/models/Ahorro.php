@@ -182,4 +182,20 @@ class Ahorro extends BaseAhorro {
         return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
     }
 
+    public static function existPagoObligatorio($socio_id, $fecha) {
+//    SELECT count(*)as pago FROM  `ahorro` 
+//    WHERE  `socio_id` =1 AND  `tipo` =  'OBLIGATORIO' AND  YEAR(`fecha`) = YEAR('2014-09-13') and MONTH (`fecha`) =MONTH ('2014-09-13')
+
+        $command = Yii::app()->db->createCommand()->select('count(*) as pago')
+                ->from('ahorro')
+                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) =MONTH (:fecha)', array('socio_id' => $socio_id, 'tipo' => self::TIPO_OBLIGATORIO, 'fecha' => $fecha)
+        );
+
+        $command = $command->queryAll();
+
+//        var_dump($command);
+//        die();
+        return $command['0']['pago'] > 0;
+    }
+
 }

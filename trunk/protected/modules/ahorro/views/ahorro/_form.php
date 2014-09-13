@@ -2,6 +2,8 @@
 /** @var AhorroController $this */
 /** @var Ahorro $model */
 /** @var AweActiveForm $form */
+$model_persona = Persona::model()->activos()->findAll();
+
 $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'ahorro-form',
@@ -24,7 +26,16 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldRow($model, 'descripcion', array('maxlength' => 50)) ?>
 
-        <?php echo $form->textFieldRow($model, 'socio_id') ?>
+        <?php // echo $form->textFieldRow($model, 'socio_id')  ?>
+        <?php
+        echo $form->select2Row($model, 'socio_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
+        ));
+        ?>
 
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
 
@@ -44,18 +55,19 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php //echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',)) ?>
+        <?php //echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',))  ?>
 
-        <?php echo $form->dropDownListRow($model, 'tipo', array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',)) ?>
+        <?php // echo $form->dropDownListRow($model, 'tipo', array(OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',)) ?>
+        <?php echo $form->dropDownListRow($model, 'tipo', array('placeholder' => '-- Seleccione --', 'OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO',)) ?>
 
-        <?php //echo $form->textFieldRow($model, 'saldo_contra', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_contra', array('maxlength' => 10))  ?>
 
-        <?php //echo $form->textFieldRow($model, 'saldo_favor', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_favor', array('maxlength' => 10))  ?>
 
-        <?php //echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10)) ?>
+        <?php //echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10))  ?>
 
-        <?php // echo $form->dropDownListRow($model, 'anulado', array('SI'=>'SI','NO'=>'NO')) ?>
-        
+        <?php // echo $form->dropDownListRow($model, 'anulado', array('placeholder' => '-- Seleccione --','SI'=>'SI','NO'=>'NO'))  ?>
+
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
