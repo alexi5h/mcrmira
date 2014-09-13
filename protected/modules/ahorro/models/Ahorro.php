@@ -10,7 +10,7 @@ class Ahorro extends BaseAhorro {
 //    tipo:OBLIGATORIO, VOLUNTARIO, PRIMER_PAGO
     const TIPO_OBLIGATORIO = 'OBLIGATORIO';
     const TIPO_VOLUNTARIO = 'VOLUNTARIO';
-    const TIPO_PRIMIER_PAGO = 'PRIMER_PAGO';
+    const TIPO_PRIMER_PAGO = 'PRIMER_PAGO';
     //Valor a pagar por registro en la mancomunidad
     const VALOR_REGISTRO = 70;
     //anulacion
