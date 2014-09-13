@@ -84,13 +84,14 @@ class AhorroRetiroController extends AweController {
                     $validadorSucces = true;
                 } else {
                     $validadorSucces = false;
-                    Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . ' de ahorros voluntarios.');
+                    Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . '');
                 }
             }
             if ($model->tipoAhorro == Ahorro::TIPO_VOLUNTARIO) {
                 $saldoAhorro = floatval(Ahorro::model()->socioAhorroVoluntarioTotal($model->socio_id));
 
                 if ($cantidadInput <= $saldoAhorro) {
+                    $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
                     if ($model->save()) {
                         $listAhorrosVoluntario = Ahorro::model()->socioAhorrosVoluntarios($model->socio_id);
 //                    var_dump($listAhorrosVoluntario);

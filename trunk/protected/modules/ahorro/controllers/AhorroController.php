@@ -37,17 +37,17 @@ class AhorroController extends AweController {
 
         if (isset($_POST['Ahorro'])) {
             $model->attributes = $_POST['Ahorro'];
-            $model->anulado= (int) $_POST['Ahorro']['anulado'];
-            var_dump( $model->anulado,$_POST['Ahorro']['anulado']);
-            die();
-            $model->fecha = Util::FechaActual();
+//            $model->anulado = (int) $_POST['Ahorro']['anulado'];
+//            $model->fecha = Util::FechaActual();
+            $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
             if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMIER_PAGO) {
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
-                $model->anulado = 0;
+                $model->anulado = Ahorro::ANULADO_NO;
             } else {
                 $model->estado = null;
             }
+
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -70,12 +70,13 @@ class AhorroController extends AweController {
 
         if (isset($_POST['Ahorro'])) {
             $model->attributes = $_POST['Ahorro'];
-            $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
+//            $model->fecha = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha);
+            $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
         }
-
+        $model->fecha = Util::FormatDate($model->fecha, 'd/m/Y');
         $this->render('update', array(
             'model' => $model,
         ));

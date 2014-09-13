@@ -31,15 +31,22 @@
  * @property integer $persona_etapa_id
  * @property integer $direccion_domicilio_id
  * @property integer $direccion_negocio_id
+ * @property string $sexo
+ * @property string $fecha_nacimiento
+ * @property integer $carga_familiar
+ * @property string $discapacidad
+ * @property string $estado_civil
+ * @property integer $actividad_economica_id
  *
- * @property Sucursal $sucursal
  * @property Direccion $direccionDomicilio
  * @property Direccion $direccionNegocio
+ * @property Sucursal $sucursal
+ * @property ActividadEconomica $actividadEconomica
  * @property PersonaEtapa $personaEtapa
  */
 abstract class BasePersona extends AweActiveRecord {
 
-    public static function model($className = __CLASS__) {
+    public static function model($className=__CLASS__) {
         return parent::model($className);
     }
 
@@ -53,28 +60,36 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id', 'required'),
-            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, cedula, ruc', 'numerical', 'integerOnly' => true),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, carga_familiar, actividad_economica_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
-            array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
-            array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
-            array('telefono, celular', 'length', 'max' => 10),
-            array('email', 'length', 'max' => 255),
-            array('tipo', 'length', 'max' => 7),
-            array('estado', 'length', 'max' => 8),
+            array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
+            array('apellido_paterno, apellido_materno', 'length', 'max'=>30),
+            array('ruc', 'length', 'max'=>13),
+            array('telefono, celular', 'length', 'max'=>24),
+            array('email', 'length', 'max'=>255),
+            array('tipo', 'length', 'max'=>7),
+            array('estado', 'length', 'max'=>8),
+            array('sexo', 'length', 'max'=>1),
+            array('discapacidad', 'length', 'max'=>2),
+            array('estado_civil', 'length', 'max'=>10),
             array('descripcion, fecha_actualizacion', 'safe'),
-            array('tipo', 'in', 'range' => array('CLIENTE', 'GARANTE')), // enum,
-            array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
+            array('tipo', 'in', 'range' => array('CLIENTE','GARANTE')), // enum,
+            array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
+            array('sexo', 'in', 'range' => array('M','F')), // enum,
+            array('discapacidad', 'in', 'range' => array('SI','NO')), // enum,
+            array('estado_civil', 'in', 'range' => array('SOLTERO','CASADO','DIVORCIADO','VIUDO')), // enum,
             array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
+            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
             'direccionDomicilio' => array(self::BELONGS_TO, 'Direccion', 'direccion_domicilio_id'),
             'direccionNegocio' => array(self::BELONGS_TO, 'Direccion', 'direccion_negocio_id'),
+            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
+            'actividadEconomica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
             'personaEtapa' => array(self::BELONGS_TO, 'PersonaEtapa', 'persona_etapa_id'),
         );
     }
@@ -84,32 +99,39 @@ abstract class BasePersona extends AweActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'id' => Yii::t('app', 'ID'),
-            'primer_nombre' => Yii::t('app', 'Primer Nombre'),
-            'segundo_nombre' => Yii::t('app', 'Segundo Nombre'),
-            'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
-            'apellido_materno' => Yii::t('app', 'Apellido Materno'),
-            'cedula' => Yii::t('app', 'Cédula'),
-            'ruc' => Yii::t('app', 'RUC'),
-            'telefono' => Yii::t('app', 'Teléfono'),
-            'celular' => Yii::t('app', 'Celular'),
-            'email' => Yii::t('app', 'E-mail'),
-            'descripcion' => Yii::t('app', 'Descripción'),
-            'tipo' => Yii::t('app', 'Tipo'),
-            'estado' => Yii::t('app', 'Estado'),
-            'fecha_creacion' => Yii::t('app', 'Fecha Creación'),
-            'fecha_actualizacion' => Yii::t('app', 'Fecha Actualización'),
-            'usuario_creacion_id' => Yii::t('app', 'Usuario Creación'),
-            'usuario_actualizacion_id' => Yii::t('app', 'Usuario Actualización'),
-            'aprobado' => Yii::t('app', 'Aprobado'),
-            'sucursal_id' => Yii::t('app', 'Sucursal'),
-            'persona_etapa_id' => Yii::t('app', 'Etapa'),
-            'direccion_domicilio_id' => Yii::t('app', 'Dirección Domicilio'),
-            'direccion_negocio_id' => Yii::t('app', 'Dirección Negocio'),
-            'sucursal' => null,
-            'direccionDomicilio' => null,
-            'direccionNegocio' => null,
-            'personaEtapa' => null,
+                'id' => Yii::t('app', 'ID'),
+                'primer_nombre' => Yii::t('app', 'Primer Nombre'),
+                'segundo_nombre' => Yii::t('app', 'Segundo Nombre'),
+                'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
+                'apellido_materno' => Yii::t('app', 'Apellido Materno'),
+                'cedula' => Yii::t('app', 'Cedula'),
+                'ruc' => Yii::t('app', 'Ruc'),
+                'telefono' => Yii::t('app', 'Telefono'),
+                'celular' => Yii::t('app', 'Celular'),
+                'email' => Yii::t('app', 'Email'),
+                'descripcion' => Yii::t('app', 'Descripcion'),
+                'tipo' => Yii::t('app', 'Tipo'),
+                'estado' => Yii::t('app', 'Estado'),
+                'fecha_creacion' => Yii::t('app', 'Fecha Creacion'),
+                'fecha_actualizacion' => Yii::t('app', 'Fecha Actualizacion'),
+                'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
+                'usuario_actualizacion_id' => Yii::t('app', 'Usuario Actualizacion'),
+                'aprobado' => Yii::t('app', 'Aprobado'),
+                'sucursal_id' => Yii::t('app', 'Sucursal'),
+                'persona_etapa_id' => Yii::t('app', 'Persona Etapa'),
+                'direccion_domicilio_id' => Yii::t('app', 'Direccion Domicilio'),
+                'direccion_negocio_id' => Yii::t('app', 'Direccion Negocio'),
+                'sexo' => Yii::t('app', 'Sexo'),
+                'fecha_nacimiento' => Yii::t('app', 'Fecha Nacimiento'),
+                'carga_familiar' => Yii::t('app', 'Carga Familiar'),
+                'discapacidad' => Yii::t('app', 'Discapacidad'),
+                'estado_civil' => Yii::t('app', 'Estado Civil'),
+                'actividad_economica_id' => Yii::t('app', 'Actividad Economica'),
+                'direccionDomicilio' => null,
+                'direccionNegocio' => null,
+                'sucursal' => null,
+                'actividadEconomica' => null,
+                'personaEtapa' => null,
         );
     }
 
@@ -138,6 +160,12 @@ abstract class BasePersona extends AweActiveRecord {
         $criteria->compare('persona_etapa_id', $this->persona_etapa_id);
         $criteria->compare('direccion_domicilio_id', $this->direccion_domicilio_id);
         $criteria->compare('direccion_negocio_id', $this->direccion_negocio_id);
+        $criteria->compare('sexo', $this->sexo, true);
+        $criteria->compare('fecha_nacimiento', $this->fecha_nacimiento, true);
+        $criteria->compare('carga_familiar', $this->carga_familiar);
+        $criteria->compare('discapacidad', $this->discapacidad, true);
+        $criteria->compare('estado_civil', $this->estado_civil, true);
+        $criteria->compare('actividad_economica_id', $this->actividad_economica_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -152,7 +180,6 @@ abstract class BasePersona extends AweActiveRecord {
                 'updateAttribute' => 'fecha_actualizacion',
                 'timestampExpression' => new CDbExpression('NOW()'),
             )
-                ), parent::behaviors());
+        ), parent::behaviors());
     }
-
 }
