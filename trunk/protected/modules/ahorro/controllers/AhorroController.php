@@ -41,7 +41,7 @@ class AhorroController extends AweController {
 //            $model->fecha = Util::FechaActual();
             $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
             
-            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMIER_PAGO) {
+            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
                 $model->anulado = Ahorro::ANULADO_NO;

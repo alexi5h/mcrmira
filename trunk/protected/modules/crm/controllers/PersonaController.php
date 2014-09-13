@@ -229,13 +229,14 @@ class PersonaController extends AweController {
                 $ahorro->cantidad = Ahorro::VALOR_REGISTRO;
                 $ahorro->fecha = Util::FechaActual();
                 $ahorro->estado = Ahorro::ESTADO_DEUDA;
-                $ahorro->tipo = Ahorro::TIPO_PRIMIER_PAGO;
+                $ahorro->tipo = Ahorro::TIPO_PRIMER_PAGO;
                 $ahorro->saldo_contra = Ahorro::VALOR_REGISTRO;
                 $ahorro->saldo_favor = 0;
-                $ahorro->anulado = 0;
+                $ahorro->anulado = Ahorro::ANULADO_NO;
                 $ahorro->save();
             }
-            Persona::model()->updateByPk($id_data, array('persona_etapa_id' => $id_etapa,
+            Persona::model()->updateByPk($id_data, array(
+                'persona_etapa_id' => $id_etapa,
                 'usuario_actualizacion_id' => Yii::app()->user->id,
                 'fecha_actualizacion' => Util::FechaActual(),
                 'aprobado' => 0
@@ -247,11 +248,11 @@ class PersonaController extends AweController {
     public function actionAjaxAprobado() {
         if (Yii::app()->request->isAjaxRequest) {
             $id = $_POST['cliente_id'];
-            $value = (boolean) $_POST['value'];
+            $value = $_POST['value'];
             Persona::model()->updateByPk($id, array(
                 'usuario_actualizacion_id' => Yii::app()->user->id,
                 'fecha_actualizacion' => Util::FechaActual(),
-                'aprobado' => $value
+                'aprobado' => $value=='false' ? 0 : 1
                     )
             );
         }
