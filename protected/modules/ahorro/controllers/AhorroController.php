@@ -31,7 +31,7 @@ class AhorroController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Ahorro;
+        $model = new Ahorro();
 
         $this->performAjaxValidation($model, 'ahorro-form');
 
@@ -40,6 +40,7 @@ class AhorroController extends AweController {
 //            $model->anulado = (int) $_POST['Ahorro']['anulado'];
 //            $model->fecha = Util::FechaActual();
             $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
+            
             if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMIER_PAGO) {
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
@@ -47,9 +48,25 @@ class AhorroController extends AweController {
             } else {
                 $model->estado = null;
             }
-
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            
+            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO) {
+                if (Ahorro::existPagoObligatorio($model->socio_id, $model->fecha)) {
+                    Yii::app()->user->setFlash('error', 'ERROR! Ya se ha generado un ahorro OBLIGATORIO para este mes.');
+                } else {
+                    if ($model->cantidad > 10) {
+                        Yii::app()->user->setFlash('error', 'ERROR! La cantidad No puede sobrepasar de $10 dolares.');
+                    } else {
+                        if ($model->save()) {
+                            $this->redirect(array('admin'));
+                        }
+                    }
+                }
+            }
+            
+            if ($model->tipo == Ahorro::TIPO_VOLUNTARIO) {
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
         }
 

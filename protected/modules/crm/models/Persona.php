@@ -13,6 +13,7 @@ class Persona extends BasePersona {
     const TIPO_GARANTE = 'GARANTE';
 
     private $nombre_formato;
+    private $cedula_nombre_formato;
     private $nombre_corto;
 
     /**
@@ -72,12 +73,12 @@ class Persona extends BasePersona {
         return array(
             'nombre_formato',
             'cedula',
-            'telefono',
-            'celular',
-            'email',
-            'actividad_economica_id',
-            'sucursal_id',
-            'persona_etapa_id',
+//            'telefono',
+//            'celular',
+//            'email',
+//            'actividad_economica_id',
+//            'sucursal_id',
+//            'persona_etapa_id',
         );
     }
 
@@ -145,6 +146,7 @@ class Persona extends BasePersona {
     /*
      * devuelve los socios que pueden ser garantes (que estén al día en sus pagos)
      */
+
     public function condicion_garantes() {
         /* select cedula from persona pe
           where not exists(select * from ahorro ah
@@ -192,6 +194,20 @@ class Persona extends BasePersona {
     public function setNombre_formato($nombre_formato) {
         $this->nombre_formato = $nombre_formato;
         return $this->nombre_formato;
+    }
+
+    public function getCedula_nombre_formato() {
+        $return = $this->primer_nombre;
+        $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
+        $return = $return . ' ' . $this->apellido_paterno;
+        $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
+        $this->cedula_nombre_formato = $this->cedula .' - '. $return;
+        return $this->cedula_nombre_formato;
+    }
+
+    public function setcedula_nombre_formato($cedula_nombre_formato) {
+        $this->cedula_nombre_formato = $cedula_nombre_formato;
+        return $this->cedula_nombre_formato;
     }
 
     public function getNombre_corto() {
