@@ -188,7 +188,7 @@ class Ahorro extends BaseAhorro {
 
         $command = Yii::app()->db->createCommand()->select('count(*) as pago')
                 ->from('ahorro')
-                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) =MONTH (:fecha)', array('socio_id' => $socio_id, 'tipo' => self::TIPO_OBLIGATORIO, 'fecha' => $fecha)
+                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) = MONTH (:fecha)', array(':socio_id' => $socio_id, ':tipo' => self::TIPO_OBLIGATORIO, ':fecha' => $fecha)
         );
 
         $command = $command->queryAll();
