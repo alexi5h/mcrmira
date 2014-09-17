@@ -9,8 +9,8 @@
         <meta charset="utf-8" />
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <!--<link rel="shortcut icon" href="<?php // echo Yii::app()->theme->baseUrl;           ?>/images/favicon.ico" type="image/x-icon">-->
-        <!--<link rel="icon" href="<?php // echo Yii::app()->theme->baseUrl;           ?>/images/favicon.ico" type="image/x-icon">-->
+        <!--<link rel="shortcut icon" href="<?php // echo Yii::app()->theme->baseUrl;            ?>/images/favicon.ico" type="image/x-icon">-->
+        <!--<link rel="icon" href="<?php // echo Yii::app()->theme->baseUrl;            ?>/images/favicon.ico" type="image/x-icon">-->
 
         <!-- CSS FILES -->
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/fonts/font-awesome.css" />
@@ -19,8 +19,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jquery.selectBox.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/kanban.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/custom-fixes.css" />
-        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-modal.css" />-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl;             ?>/css/reports.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl;  ?>/css/bootstrap-modal.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->theme->baseUrl;              ?>/css/reports.css" />-->
 
         <script>
             var baseUrl = "<?php print Yii::app()->baseUrl . '/'; ?>";
@@ -165,7 +165,7 @@
         <div class="row-fluid">
             <?php
 // El modal de la página
-            $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'mainBigModal', 'options' => array('backdrop' => 'static')));
+            $this->beginWidget('ext.bootstrap.widgets.TbModal', array('id' => 'mainBigModal', 'options' => array('backdrop' => 'static')));
             $this->endWidget();
             ?>
         </div>
@@ -183,13 +183,13 @@
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.nicescroll.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.selectBox.js" type="text/javascript"></script>
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;             ?>/js/_alerta.js" type="text/javascript"></script>-->
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;              ?>/js/_alerta.js" type="text/javascript"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mask.min.js" type="text/javascript"></script>
         <!--<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap-modal.js" type="text/javascript"></script>-->
         <!--<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap-modalmanager.js" type="text/javascript"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.validateAjax.js" type="text/javascript"></script>
         <!--scroll infinito-->
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;             ?>/js/jquery-ias.min.js" type="text/javascript"></script>--> 
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;              ?>/js/jquery-ias.min.js" type="text/javascript"></script>--> 
 
         <!--//        common script for all pages-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/common-scripts.js"></script>
