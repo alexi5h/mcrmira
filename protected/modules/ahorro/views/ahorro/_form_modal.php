@@ -52,6 +52,7 @@ Util::tsRegisterAssetJs('_form_modal.js');
                     )
             );
             ?>
+            <?php echo $form->textAreaRow($model,'observaciones') ?>
         </div>
 
         <?php $this->endWidget(); ?>
