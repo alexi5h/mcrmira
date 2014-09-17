@@ -1,11 +1,11 @@
-var Script = function() {
+var Script = function () {
     maskAttributes();
 //bandera para saltar la proÃ§imera accion al validar los formularios
     var primero = false;
     /**
      * validacion de formularios para bloquear botones de accion
      */
-    $("form").submit(function(e) {
+    $("form").submit(function (e) {
 //        alert($('form button.btn-success').attr('class'));
         if (verificarValidacionModal("form"))
         {
@@ -30,7 +30,7 @@ var Script = function() {
 
 //    sidebar dropdown menu
 
-    jQuery('#sidebar .sub-menu > a').click(function() {
+    jQuery('#sidebar .sub-menu > a').click(function () {
         var last = jQuery('.sub-menu.open', $('#sidebar'));
         last.removeClass("open");
         jQuery('.arrow', last).removeClass("open");
@@ -49,7 +49,7 @@ var Script = function() {
 
 //    sidebar toggle
 
-    $('.icon-reorder').click(function() {
+    $('.icon-reorder').click(function () {
         if ($('#sidebar > ul').is(":visible") === true) {
             $('#main-content').css({
                 'margin-left': '0px'
@@ -78,7 +78,7 @@ var Script = function() {
 
 // widget tools
 
-    jQuery('.widget .tools .icon-chevron-down, .widget .tools .icon-chevron-up').click(function() {
+    jQuery('.widget .tools .icon-chevron-down, .widget .tools .icon-chevron-up').click(function () {
         var el = jQuery(this).parents(".widget").children(".widget-body");
         if (jQuery(this).hasClass("icon-chevron-down")) {
             jQuery(this).removeClass("icon-chevron-down").addClass("icon-chevron-up");
@@ -89,7 +89,7 @@ var Script = function() {
         }
     });
 
-    jQuery('.widget .tools .icon-remove').click(function() {
+    jQuery('.widget .tools .icon-remove').click(function () {
         jQuery(this).parents(".widget").remove();
     });
 
@@ -110,7 +110,7 @@ var Script = function() {
 
     var buttons = $('.form-actions-float');
     floatButtons();
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         floatButtons();
     });
 
@@ -126,17 +126,33 @@ var Script = function() {
 
 }();
 
-function showModalLoading() {
+function showModalLoading(tipo) {
     var html = "";
     html += "<div class='modal-header'><a class='close' data-dismiss='modal'>&times;</a><h4><i class='icon-refresh'></i> Cargando</h4></div>";
-    html += "<div class='loading'><img src='" + themeUrl + "images/truulo-loading.gif' /></div>";
-    $("#mainModal").html(html);
-    $("#mainModal").modal("show");
+    html += "<div class='modal-body'><div class='loading'><img src='" + themeUrl + "images/truulo-loading.gif' /></div></div>";
+    if (tipo)
+    {
+        $("#mainBigModal").html(html);
+        $("#mainBigModal").modal("show");
+    }
+    else {
+        $("#mainModal").html(html);
+        $("#mainModal").modal("show");
+    }
+
 }
 
-function showModalData(html) {
+function showModalData(html, tipo) {
+    if (tipo) {
 
-    $("#mainModal").html(html);
+        $("#mainBigModal").html(html);
+
+    }
+    else {
+
+        $("#mainModal").html(html);
+
+    }
     $('select.fix').selectBox();
 }
 /**
@@ -144,18 +160,17 @@ function showModalData(html) {
  * @param {cadena} url
  * @returns {undefined}
  */
-function viewModal(url, CallBack)
+function viewModal(url, CallBack, tipo)
 {
     $.ajax({
         type: "POST",
         url: baseUrl + url,
-        beforeSend: function() {
-            showModalLoading();
+        beforeSend: function () {
+            showModalLoading(tipo);
         },
-        success: function(data) {
-            showModalData(data);
+        success: function (data) {
+            showModalData(data, tipo);
             CallBack();
-
         }
     });
 }
@@ -168,20 +183,20 @@ function AjaxGestionModal($form, CallBack) {
     var form = $($form);
     var settings = form.data('settings');
     settings.submitting = true;
-    $.fn.yiiactiveform.validate(form, function(messages) {
+    $.fn.yiiactiveform.validate(form, function (messages) {
 
-        $.each(messages, function() {
+        $.each(messages, function () {
 //            console.log(this);
         });
         if ($.isEmptyObject(messages)) {
-            $.each(settings.attributes, function() {
+            $.each(settings.attributes, function () {
                 $.fn.yiiactiveform.updateInput(this, messages, form);
             });
             AjaxGuardarModal(true, $form, CallBack);
         }
         else {
             settings = form.data('settings'),
-                    $.each(settings.attributes, function() {
+                    $.each(settings.attributes, function () {
                         $.fn.yiiactiveform.updateInput(this, messages, form);
                     });
             DesBloquearBotonesModal($form, 'Guardar', 'AjaxAtualizacionInformacion');
@@ -198,12 +213,12 @@ function AjaxAccionModal($form, CallBack) {
     var form = $($form);
     var settings = form.data('settings');
     settings.submitting = true;
-    $.fn.yiiactiveform.validate(form, function(messages) {
-        $.each(messages, function() {
+    $.fn.yiiactiveform.validate(form, function (messages) {
+        $.each(messages, function () {
             console.log(this);
         });
         if ($.isEmptyObject(messages)) {
-            $.each(settings.attributes, function() {
+            $.each(settings.attributes, function () {
 
                 $.fn.yiiactiveform.updateInput(this, messages, form);
             });
@@ -212,7 +227,7 @@ function AjaxAccionModal($form, CallBack) {
         }
         else {
             settings = form.data('settings'),
-                    $.each(settings.attributes, function() {
+                    $.each(settings.attributes, function () {
                         $.fn.yiiactiveform.updateInput(this, messages, form);
                     });
             DesBloquearBotonesModal($form, 'Guardar', 'AjaxCrearAccion');
@@ -250,7 +265,7 @@ function verificarValidacionModal($contenedor)
 {
     var verificar = true;
     $contenedor = $contenedor + ' div.control-group';
-    $($contenedor).each(function(index, elemento) {
+    $($contenedor).each(function (index, elemento) {
         if ($(elemento).hasClass('error'))
         {
             verificar = false;
@@ -276,9 +291,9 @@ function AjaxGuardarModal(verificador, Formulario, callBack)
             dataType: 'json',
             url: $(Formulario).attr('action'),
             data: $(Formulario).serialize(),
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
             },
-            success: function(data) {
+            success: function (data) {
                 if (data.success) {
                     console.log(data);
                     $("#mainModal").modal("hide");
@@ -309,9 +324,9 @@ function AjaxGuardarAccionModal(verificador, Formulario, CallBack)
             dataType: 'json',
             url: $(Formulario).attr('action'),
             data: $(Formulario).serialize(),
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
             },
-            success: function(data) {
+            success: function (data) {
                 if (data.success) {
                     $("#mainModal").modal("hide");
                     $("#maiMessages").removeClass('hidden');
@@ -343,11 +358,11 @@ function AjaxUpdateElement(url, elemento, callBack)
         type: "POST",
         dataType: 'json',
         url: url,
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             var html = "<div class='loading'><img src='" + themeUrl + "images/truulo-loading.gif' /></div>";
             $(elemento).html(html);
         },
-        success: function(data) {
+        success: function (data) {
             if (data.success) {
                 $(elemento).html(data.html);
                 callBack();

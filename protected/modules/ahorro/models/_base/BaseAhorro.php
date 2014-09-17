@@ -34,22 +34,22 @@ abstract class BaseAhorro extends AweActiveRecord {
     }
 
     public static function representingColumn() {
-        return 'descripcion';
+        return 'cantidad';
     }
 
     public function rules() {
         return array(
-            array('descripcion, socio_id, cantidad, fecha, tipo', 'required'),
+            array('socio_id, cantidad, fecha, tipo', 'required'),
             array('socio_id', 'numerical', 'integerOnly'=>true),
-            array('descripcion', 'length', 'max'=>50),
             array('cantidad, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
             array('anulado', 'length', 'max'=>2),
+            array('descripcion', 'safe'),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
             array('tipo', 'in', 'range' => array('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO')), // enum,
             array('anulado', 'in', 'range' => array('SI','NO')), // enum,
-            array('estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('descripcion, estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
         );
     }
