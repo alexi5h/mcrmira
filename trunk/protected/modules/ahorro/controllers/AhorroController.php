@@ -40,7 +40,7 @@ class AhorroController extends AweController {
 //            $model->anulado = (int) $_POST['Ahorro']['anulado'];
 //            $model->fecha = Util::FechaActual();
             $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
-            
+
             if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
@@ -48,7 +48,7 @@ class AhorroController extends AweController {
             } else {
                 $model->estado = null;
             }
-            
+
             if ($model->tipo == Ahorro::TIPO_OBLIGATORIO) {
                 if (Ahorro::existPagoObligatorio($model->socio_id, $model->fecha)) {
                     Yii::app()->user->setFlash('error', 'ERROR! Ya se ha generado un ahorro OBLIGATORIO para este mes.');
@@ -62,7 +62,7 @@ class AhorroController extends AweController {
                     }
                 }
             }
-            
+
             if ($model->tipo == Ahorro::TIPO_VOLUNTARIO) {
                 if ($model->save()) {
                     $this->redirect(array('admin'));
@@ -128,6 +128,50 @@ class AhorroController extends AweController {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionAjaxCreateAhorroVoluntario($socio_id) {
+        if (Yii::app()->request->isAjaxRequest) {
+            $render_form = true;
+            $result = array();
+            $model = new Ahorro;
+            $modelDeposito = new AhorroDeposito;
+
+            $model->tipo = Ahorro::TIPO_VOLUNTARIO;
+            $model->socio_id = $socio_id;
+            $model->estado = Ahorro::ESTADO_PAGADO;
+            $model->fecha = Util::FechaActual();
+            if (isset($_POST['ajax']) && $_POST['ajax'] === '#ahorro-deposito-form') {
+                $render_form = false;
+
+                $modelDeposito->attributes = $_POST['AhorroDeposito'];
+
+                $result['success'] = $modelDeposito->validate();
+                $result['errors'] = $modelDeposito->errors;
+                if (!$result['success']) {
+                    echo CJSON::encode($result);
+                    Yii::app()->end();
+                }
+            }
+            if (isset($_POST['Ahorro'])) {
+                $render_form = false;
+                $model->attributes = $_POST['Ahorro'];
+                $model->saldo_contra = 0;
+                $model->saldo_favor = $_POST['Ahorro']['cantidad'];
+                $model->anulado = Ahorro::ANULADO_NO;
+                $result['success'] = $model->save();
+                if ($result['success']) {
+                    
+                } else {
+                    $result['message'] = 'Error al registrar el ahorro, porfavor intente nuevamente';
+                }
+                echo CJSON::encode($result);
+            }
+
+            if ($render_form) {
+                $this->renderPartial('_form_modal', array('model' => $modelDeposito), false, true);
+            }
+        }
     }
 
     /**

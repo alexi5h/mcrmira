@@ -387,12 +387,12 @@ a,a:focus, a:hover, a:active {
 
 #header.navbar-inverse .navbar-inner {
     background: #4a8bc2;
-   
-/*background: -ms-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
-    background: -moz-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
-    background: -o-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #FFFFFF), color-stop(0.1, #FFFFFF), color-stop(0.3, #008AC5), color-stop(1, #008AC5));
-    background: -webkit-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);*/
+
+    /*background: -ms-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
+        background: -moz-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
+        background: -o-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0, #FFFFFF), color-stop(0.1, #FFFFFF), color-stop(0.3, #008AC5), color-stop(1, #008AC5));
+        background: -webkit-linear-gradient(left, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);*/
     /*background: linear-gradient(to right, #FFFFFF 0%, #FFFFFF 10%, #008AC5 30%, #008AC5 100%);*/
     border-color: #008AC5;
     color: #fff;
@@ -4254,6 +4254,11 @@ ul.amounts li {
 
 /*modal loading*/
 #mainModal .loading {
+    text-align: center;
+    padding: 50px;
+}
+/*modal big loading*/
+#mainBigModal .loading {
     text-align: center;
     padding: 50px;
 }
