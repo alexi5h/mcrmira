@@ -9,11 +9,12 @@ $ahorros = new Ahorro;
         </span>
     </div>
     <div class="widget-body">
-<?php $validarDataPagos = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_VOLUNTARIO)->count() > 0 ?>
+        <?php $validarDataPagos = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_VOLUNTARIO)->count() > 0 ?>
         <?php if ($validarDataPagos): ?>
-        
-
-
+            <div style='overflow:auto'> 
+                <?php
+                $this->widget('ext.bootstrap.widgets.TbGridView', array(
+                    'id' => 'pago-voluntario-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                     'type' => 'striped bordered hover advance',
                     'dataProvider' => $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_VOLUNTARIO)->search(),
@@ -42,40 +43,40 @@ $ahorros = new Ahorro;
 //                                'value' => '$data->saldo_contra',
 //                                'type' => 'raw',
 //                            ),
-array(
+                        //array(
 //                        'header' => 'Razón',
 //                        'name' => 'tipo',
 //                        'value' => '$data->tipo',
 //                        'type' => 'raw',
 //                    ),
-                    array(
-                        'header' => 'Sucursal',
-                        'name' => 'ahorro_deposito',
-                        'value' => '$data->ahorroDepositoVoluntario->sucursal->nombre',
-                        'type' => 'raw',
-                    ),
-                    array(
-                        'header' => 'Entidad Bancaria',
-                        'name' => 'ahorro_deposito',
-                        'value' => '$data->ahorroDepositoVoluntario->entidadBancaria->nombre',
-                        'type' => 'raw',
-                    ),
-                    array(
-                        'class' => 'CButtonColumn',
-                        'template' => '{update}',
-                        'buttons' => array(
-                            'update' => array(
-                                'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
-                                'options' => array('title' => 'Realizar deposito'),
-                                'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
-                                'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
-                                'imageUrl' => false,
-                                'visible' => '($data->estado=="PAGADO")?false:true',
+                        //array(
+//                'header' => 'Sucursal',
+//                'name' => 'ahorro_deposito',
+//                'value' => '$data->ahorroDepositoVoluntario->sucursal->nombre',
+//                'type' => 'raw',
+//                ),
+//                        array(
+//                            'header' => 'Entidad Bancaria',
+//                            'name' => 'ahorro_deposito',
+//                            'value' => '$data->ahorroDepositoVoluntario->entidadBancaria->nombre',
+//                            'type' => 'raw',
+//                        ),
+                        array(
+                            'class' => 'CButtonColumn',
+                            'template' => '{update}',
+                            'buttons' => array(
+                                'update' => array(
+                                    'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
+                                    'options' => array('title' => 'Realizar deposito'),
+                                    'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
+                                    'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
+                                    'imageUrl' => false,
+                                    'visible' => '($data->estado=="PAGADO")?false:true',
+                                ),
                             ),
                         ),
                     ),
-            ));
-
+                ));
                 echo '<br/>';
                 ?>
             </div>
