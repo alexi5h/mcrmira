@@ -43,10 +43,22 @@
 //                                'value' => '$data->saldo_contra',
 //                                'type' => 'raw',
 //                            ),
+//                    array(
+//                        'header' => 'Razón',
+//                        'name' => 'tipo',
+//                        'value' => '$data->tipo',
+//                        'type' => 'raw',
+//                    ),
                     array(
-                        'header' => 'Razón',
-                        'name' => 'tipo',
-                        'value' => '$data->tipo',
+                        'header' => 'Sucursal',
+                        'name' => 'ahorro_deposito',
+                        'value' => '$data->ahorroDepositoVoluntario->sucursal->nombre',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'header' => 'Entidad Bancaria',
+                        'name' => 'ahorro_deposito',
+                        'value' => '$data->ahorroDepositoVoluntario->entidadBancaria->nombre',
                         'type' => 'raw',
                     ),
                     array(

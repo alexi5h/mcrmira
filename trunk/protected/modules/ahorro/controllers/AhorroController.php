@@ -143,7 +143,7 @@ class AhorroController extends AweController {
             $model->fecha = Util::FechaActual();
             if (isset($_POST['ajax']) && $_POST['ajax'] === '#ahorro-deposito-form') {
                 $modelDeposito->attributes = $_POST['AhorroDeposito'];
-                $modelDeposito->pago_id = 0;
+                $modelDeposito->ahorro_id = 0;
                 $result['success'] = $modelDeposito->validate();
                 $result['errors'] = $modelDeposito->errors;
                 if (!$result['success']) {
@@ -164,7 +164,7 @@ class AhorroController extends AweController {
                 $model->anulado = Ahorro::ANULADO_NO;
                 $result['success'] = $model->save();
                 if ($result['success']) {
-                    $modelDeposito->pago_id = $model->id;
+                    $modelDeposito->ahorro_id = $model->id;
                     $result['success'] = $result['success'] && $modelDeposito->save();
                 } else {
                     $result['message'] = 'Error al registrar el ahorro, porfavor intente nuevamente';
