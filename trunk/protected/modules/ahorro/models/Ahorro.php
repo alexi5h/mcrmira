@@ -31,7 +31,7 @@ class Ahorro extends BaseAhorro {
 
     public function relations() {
         return array_merge(parent::relations(), array(
-            'ahorroDepositoVoluntario' => array(self::HAS_ONE, 'AhorroDeposito', 'ahorro_id'),
+//            'ahorroDepositoVoluntario' => array(self::HAS_ONE, 'AhorroDeposito', 'ahorro_id'),
             'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
         ));
     }
