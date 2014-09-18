@@ -23,7 +23,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         </span>
     </div>
     <div class="widget-body">
-        <?php // echo $form->errorSummary(array($model)) ?>
 
         <?php echo $form->textFieldRow($model, 'primer_nombre', array('maxlength' => 20, 'class' => 'span6')) ?>
 
