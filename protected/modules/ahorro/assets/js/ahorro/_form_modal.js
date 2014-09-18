@@ -5,7 +5,13 @@ function save(form_id) {
             BloquearBotonesModal(form_id);
         },
         successCall: function (data) {
-            
+            $("#mainBigModal").modal("hide");
+            if (data.success) {
+                $.fn.yiiGridView.update("pago-voluntario-grid");
+            } else {
+                bootbox.alert(data.message);
+            }
+
         },
         errorCall: function (data) {
             DesBloquearBotonesModal(form_id, ' Crear', 'save');

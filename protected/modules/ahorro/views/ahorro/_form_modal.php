@@ -28,7 +28,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     $model, 'fecha_comprobante_entidad', array(
                 'options' => array(
                     'language' => 'es',
-                    'readonly' => 'readonly',
+                    'language' => 'es',
+                    'format' => 'dd/mm/yyyy',
+                    'autoclose' => 'true',
+                    'weekStart' => 1,
+                    'keyboardNavigation' => true,
+                    'forceParse' => false,
                 ),
                     )
             );
@@ -43,7 +48,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     $model, 'fecha_comprobante_su', array(
                 'options' => array(
                     'language' => 'es',
-                    'readonly' => 'readonly',
+                    'language' => 'es',
+                    'format' => 'dd/mm/yyyy',
+                    'autoclose' => 'true',
+                    'weekStart' => 1,
+                    'keyboardNavigation' => true,
+                    'forceParse' => false,
                 ),
                     )
             );

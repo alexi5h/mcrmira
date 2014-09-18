@@ -14,7 +14,7 @@
         <div style='overflow:auto'> 
             <?php
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
-                'id' => 'pago-grid',
+                'id' => 'pago-voluntario-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                 'type' => 'striped bordered hover advance',
                 'dataProvider' => Ahorro::model()->de_tipo(Ahorro::TIPO_VOLUNTARIO)->de_socio($model->id)->search(),
