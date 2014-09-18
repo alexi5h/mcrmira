@@ -1,36 +1,35 @@
 <?php
-// Obtener pagos del cliente
-//$pagos = Ahorro::model()->de_tipo(Ahorro::TIPO_VOLUNTARIO)->de_socio($model->id)->count();
-//$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
+$ahorros = new Ahorro;
 ?>
 <div class="widget red">
     <div class="widget-title">
-        <h4><i class="icon-info-sign"></i> Pagos Ahorro Voluntario</h4>
+        <h4><i class="icon-tasks"></i> Ahorros Voluntarios</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
         </span>
     </div>
     <div class="widget-body">
-        <div style='overflow:auto'> 
-            <?php
-            $this->widget('ext.bootstrap.widgets.TbGridView', array(
-                'id' => 'pago-voluntario-grid',
+<?php $validarDataPagos = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_VOLUNTARIO)->count() > 0 ?>
+        <?php if ($validarDataPagos): ?>
+        
+
+
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
-                'type' => 'striped bordered hover advance',
-                'dataProvider' => Ahorro::model()->de_tipo(Ahorro::TIPO_VOLUNTARIO)->de_socio($model->id)->search(),
-                'columns' => array(
-                    array(
-                        'header' => 'Fecha',
-                        'name' => 'fecha',
-                        'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
-                        'type' => 'raw',
-                    ),
-                    array(
-                        'header' => 'Cantidad',
-                        'name' => 'cantidad',
-                        'value' => '$data->cantidad',
-                        'type' => 'raw',
-                    ),
+                    'type' => 'striped bordered hover advance',
+                    'dataProvider' => $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_VOLUNTARIO)->search(),
+                    'columns' => array(
+                        array(
+                            'header' => 'Fecha',
+                            'name' => 'fecha',
+                            'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
+                            'type' => 'raw',
+                        ),
+                        array(
+                            'header' => 'Cantidad',
+                            'name' => 'cantidad',
+                            'value' => '$data->cantidad',
+                            'type' => 'raw',
+                        ),
 //                            array(
 //                                'header' => 'Pagado',
 //                                'name' => 'saldo_favor',
@@ -43,7 +42,7 @@
 //                                'value' => '$data->saldo_contra',
 //                                'type' => 'raw',
 //                            ),
-//                    array(
+array(
 //                        'header' => 'Razón',
 //                        'name' => 'tipo',
 //                        'value' => '$data->tipo',
@@ -75,21 +74,22 @@
                             ),
                         ),
                     ),
-                ),
             ));
 
-            echo '<br/>';
-            ?>
-        </div>
+                echo '<br/>';
+                ?>
+            </div>
+        <?php endif; ?>
         <?php
         $this->widget('bootstrap.widgets.TbButton', array(
             'id' => 'agregarAhorroV',
-            'label' => 'Agregar Ahorro Voluntario',
+            'label' => $validarDataPagos ? 'Agregar Ahorro Voluntario' : '<h3 >Agregar Ahorro Voluntario</h3>',
             'encodeLabel' => false,
-            'icon' => 'icon-plus',
+            'icon' => $validarDataPagos ? 'plus-sign' : 'dollar',
             'htmlOptions' => array(
                 'onClick' => 'js:viewModal("ahorro/ahorro/ajaxCreateAhorroVoluntario/socio_id/' . $model->id . '",function(){'
                 . 'maskAttributes();},true)',
+                'class' => $validarDataPagos ? '' : 'empty-portlet',
             ),
         ));
         ?>
