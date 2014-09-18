@@ -16,11 +16,12 @@ class AhorroDeposito extends BaseAhorroDeposito {
 //            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->pago->saldo_contra),
         ));
     }
-       public function relations() {
-        return array(
-            'pago' => array(self::BELONGS_TO, 'Ahorro', 'pago_id'),
+
+    public function relations() {
+        return array_merge(parent::relations(), array(
             'entidadBancaria' => array(self::BELONGS_TO, 'EntidadBancaria', 'entidad_bancaria_id'),
-        );
+            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_comprobante_id'),
+        ));
     }
 
     public static function label($n = 1) {
