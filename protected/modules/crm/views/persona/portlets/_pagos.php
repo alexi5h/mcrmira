@@ -1,7 +1,8 @@
 <?php
 // Obtener pagos obligatorios del cliente
-$pagos = Ahorro::model()->de_cliente($model->id)->findAll();
-$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
+//$pagos = Ahorro::model()->de_socio($model->id);
+//var_dump($pagos);
+//$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
 <div class="widget red">
@@ -20,7 +21,7 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                     'id' => 'pago-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                     'type' => 'striped bordered hover advance',
-                    'dataProvider' => $data_pagos,
+                    'dataProvider' => Ahorro::model()->de_socio($model->id)->search(),
                     'columns' => array(
                         array(
                             'header' => 'Fecha',

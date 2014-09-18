@@ -73,18 +73,6 @@ class Ahorro extends BaseAhorro {
         return $this;
     }
 
-    public function de_cliente($id_socio) {
-        $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => 'socio_id = :socio_id',
-                    'params' => array(
-                        ':socio_id' => $id_socio
-                    ),
-                )
-        );
-        return $this;
-    }
-
     public function de_cliente_obligatorio($id_socio) {
         $this->getDbCriteria()->mergeWith(
                 array(
