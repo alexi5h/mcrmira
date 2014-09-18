@@ -1,7 +1,7 @@
 <?php
 // Obtener pagos del cliente
-$pagos = Ahorro::model()->de_cliente_obligatorio($model->id)->findAll();
-$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
+//$pagos = Ahorro::model()->de_cliente_obligatorio($model->id)->findAll();
+//$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
 ?>
 
 <div class="widget green">
@@ -14,7 +14,7 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
     </div>
     <div class="widget-body">
         <div class="row-fluid">
-            <?php $validarDataPagos = $data_pagos->getItemCount() > 0 ?>
+            <?php $validarDataPagos = Ahorro::model()->de_tipo(Ahorro::TIPO_OBLIGATORIO)->de_socio($model->id)->count() ?>
             <?php if ($validarDataPagos): ?>
                 <div style='overflow:auto'> 
 
@@ -23,7 +23,7 @@ $data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSi
                         'id' => 'pago-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                         'type' => 'striped bordered hover advance condensed',
-                        'dataProvider' => $data_pagos,
+                        'dataProvider' => Ahorro::model()->de_tipo(Ahorro::TIPO_OBLIGATORIO)->de_socio($model->id)->search(),
                         'columns' => array(
                             array(
                                 'header' => 'Fecha',
