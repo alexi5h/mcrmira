@@ -16,6 +16,7 @@ class Ahorro extends BaseAhorro {
     //anulacion
     const ANULADO_SI = 'SI';
     const ANULADO_NO = 'NO';
+    
 
     /**
      * @return Ahorro
@@ -47,11 +48,12 @@ class Ahorro extends BaseAhorro {
                 )
         );
     }
+    
 
     public function de_tipo($tipo) {
         $this->getDbCriteria()->mergeWith(
                 array(
-                    'condition' => 'tipo = :tipo',
+                    'condition' => 't.tipo = :tipo',
                     'params' => array(
                         ':tipo' => $tipo
                     ),
@@ -63,7 +65,7 @@ class Ahorro extends BaseAhorro {
     public function de_socio($socio_id) {
         $this->getDbCriteria()->mergeWith(
                 array(
-                    'condition' => 'socio_id = :socio_id',
+                    'condition' => 't.socio_id = :socio_id',
                     'params' => array(
                         ':socio_id' => $socio_id
                     ),
@@ -71,7 +73,7 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
-
+    
     public function de_cliente_obligatorio($id_socio) {
         $this->getDbCriteria()->mergeWith(
                 array(

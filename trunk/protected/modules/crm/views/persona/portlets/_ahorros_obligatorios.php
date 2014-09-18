@@ -1,12 +1,10 @@
 <?php
-// Obtener pagos del cliente
-//$pagos = Ahorro::model()->de_cliente_obligatorio($model->id)->findAll();
-//$data_pagos = new CArrayDataProvider($pagos, array('pagination' => array('pageSize' => 5)));
+$ahorros=new Ahorro;
 ?>
 
 <div class="widget green">
     <div class="widget-title">
-        <h4><i class="icon-tasks"></i> Pagos Ahorro Obligatorio</h4>
+        <h4><i class="icon-tasks"></i> Ahorros Obligatorios</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--<a href="javascript:;" class="icon-remove"></a>-->
@@ -14,7 +12,7 @@
     </div>
     <div class="widget-body">
         <div class="row-fluid">
-            <?php $validarDataPagos = Ahorro::model()->de_tipo(Ahorro::TIPO_OBLIGATORIO)->de_socio($model->id)->count() ?>
+            <?php $validarDataPagos = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_OBLIGATORIO)->count() > 0 ?>
             <?php if ($validarDataPagos): ?>
                 <div style='overflow:auto'> 
 
@@ -23,7 +21,7 @@
                         'id' => 'pago-grid',
 //                        'afterAjaxUpdate' => "function(id,data){AjaxActualizarActividades();}",
                         'type' => 'striped bordered hover advance condensed',
-                        'dataProvider' => Ahorro::model()->de_tipo(Ahorro::TIPO_OBLIGATORIO)->de_socio($model->id)->search(),
+                        'dataProvider' => $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_OBLIGATORIO)->search(),
                         'columns' => array(
                             array(
                                 'header' => 'Fecha',
