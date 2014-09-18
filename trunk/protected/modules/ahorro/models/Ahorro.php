@@ -39,12 +39,12 @@ class Ahorro extends BaseAhorro {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
-            array('tipo', 'unique', 'criteria' => array(
-                    'condition' => 'socio_id=:socio_id',
-                    'params' => array(
-                        ':socio_id' => $this->socio_id
-                    )
-                ), 'on' => 'insert'),
+//            array('tipo', 'unique', 'criteria' => array(
+//                    'condition' => 'socio_id=:socio_id',
+//                    'params' => array(
+//                        ':socio_id' => $this->socio_id
+//                    )
+//                ), 'on' => 'insert'),
                 )
         );
     }

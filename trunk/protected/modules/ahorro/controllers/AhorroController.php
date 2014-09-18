@@ -142,10 +142,8 @@ class AhorroController extends AweController {
             $model->estado = Ahorro::ESTADO_PAGADO;
             $model->fecha = Util::FechaActual();
             if (isset($_POST['ajax']) && $_POST['ajax'] === '#ahorro-deposito-form') {
-                $render_form = false;
-
                 $modelDeposito->attributes = $_POST['AhorroDeposito'];
-
+                $modelDeposito->pago_id = 0;
                 $result['success'] = $modelDeposito->validate();
                 $result['errors'] = $modelDeposito->errors;
                 if (!$result['success']) {
@@ -153,15 +151,21 @@ class AhorroController extends AweController {
                     Yii::app()->end();
                 }
             }
-            if (isset($_POST['Ahorro'])) {
+            if (isset($_POST['AhorroDeposito'])) {
                 $render_form = false;
-                $model->attributes = $_POST['Ahorro'];
+                $modelDeposito->attributes = $_POST['AhorroDeposito'];
+                $modelDeposito->fecha_comprobante_su = Util::FormatDate($modelDeposito->fecha_comprobante_su, 'Y-m-d H:i:s');
+                $modelDeposito->fecha_comprobante_entidad = Util::FormatDate($modelDeposito->fecha_comprobante_entidad, 'Y-m-d H:i:s');
+
                 $model->saldo_contra = 0;
-                $model->saldo_favor = $_POST['Ahorro']['cantidad'];
+                $model->saldo_favor = $_POST['AhorroDeposito']['cantidad'];
+                $model->cantidad = $_POST['AhorroDeposito']['cantidad'];
+                $model->descripcion = $_POST['AhorroDeposito']['observaciones'];
                 $model->anulado = Ahorro::ANULADO_NO;
                 $result['success'] = $model->save();
                 if ($result['success']) {
-                    
+                    $modelDeposito->pago_id = $model->id;
+                    $result['success'] = $result['success'] && $modelDeposito->save();
                 } else {
                     $result['message'] = 'Error al registrar el ahorro, porfavor intente nuevamente';
                 }
