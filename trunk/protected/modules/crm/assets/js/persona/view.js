@@ -7,9 +7,8 @@ function showModalLoadingWidth() {
 }
 
 function showModalDataWidth(html) {
-
-    $("#responsive").html(html);
-    $("#responsive").modal("show");
+    $("#mainBigModal").html(html);
+    $("#mainBigModal").modal("show");
     $('select.fix').selectBox();
 }
 
@@ -27,6 +26,7 @@ function showModalDataLong(html) {
  */
 function viewModalWidth(url, CallBack)
 {
+
     $.ajax({
         type: "POST",
         url: baseUrl + url,
@@ -35,6 +35,7 @@ function viewModalWidth(url, CallBack)
         },
         success: function(data) {
             $("#mainModal").modal("hide");
+
             showModalDataWidth(data);
             CallBack();
 

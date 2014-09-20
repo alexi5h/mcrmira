@@ -87,7 +87,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
         </div>
         <div class="span6">
             <?php
-            $depositos = AhorroDeposito::model()->searchByAhorro($model->pago_id);
+            $depositos = AhorroDeposito::model()->searchByAhorro($model->ahorro_id);
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
                 'id' => 'deposito-grid',
                 'type' => '',
@@ -125,7 +125,6 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
     </div>
 </div>
 <div class="modal-footer">
-
     <?php
     $this->widget('bootstrap.widgets.TbButton', array(
         'icon' => 'remove',
