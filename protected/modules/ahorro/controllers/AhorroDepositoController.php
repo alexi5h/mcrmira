@@ -35,7 +35,8 @@ class AhorroDepositoController extends AweController {
         if (Yii::app()->request->isAjaxRequest) {
             $result = array();
             $model = new AhorroDeposito;
-            $model->pago_id = $id_ahorro;
+
+            $model->ahorro_id = $id_ahorro;
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
 
@@ -51,7 +52,7 @@ class AhorroDepositoController extends AweController {
                         $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
                         $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
                     } else {
-                        $modelAhorroVol = Ahorro::model()->de_cliente_voluntario($modelAhorro->socio_id)->findAll();
+                        $modelAhorroVol = Ahorro::model()->de_cliente_obligatorio($modelAhorro->socio_id)->findAll();
                         if ($modelAhorroVol == null) {
                             $modelAhorroVol = new Ahorro;
                             $modelAhorroVol->descripcion = 'Creación del ahorro voluntario';
@@ -61,7 +62,7 @@ class AhorroDepositoController extends AweController {
                             $modelAhorroVol->tipo = Ahorro::TIPO_VOLUNTARIO;
                             $modelAhorroVol->save();
                         } else {
-                            Ahorro::model()->updateByPk(($modelAhorroVol[0]->id)+0, array(
+                            Ahorro::model()->updateByPk(($modelAhorroVol[0]->id) + 0, array(
                                 'cantidad' => $modelAhorroVol[0]->cantidad + $model->cantidad - $modelAhorro->saldo_contra
                             ));
                         }

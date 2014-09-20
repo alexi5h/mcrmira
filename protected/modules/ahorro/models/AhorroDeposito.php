@@ -39,7 +39,7 @@ class AhorroDeposito extends BaseAhorroDeposito {
         $criteria->compare('sucursal_comprobante_id', $this->sucursal_comprobante_id);
         $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
         $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
-        $criteria->compare('pago_id', $id_ahorro);
+        $criteria->compare('ahorro_id', $id_ahorro);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

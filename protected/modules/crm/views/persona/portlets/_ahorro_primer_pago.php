@@ -60,7 +60,7 @@ $ahorros = new Ahorro;
                                         'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
                                         'options' => array('title' => 'Realizar deposito'),
                                         'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
-                                        'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();}); return false;}',
+                                        'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
                                         'imageUrl' => false,
                                         'visible' => '($data->estado=="PAGADO")?false:true',
                                     ),
