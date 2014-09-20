@@ -16,7 +16,6 @@ class Ahorro extends BaseAhorro {
     //anulacion
     const ANULADO_SI = 'SI';
     const ANULADO_NO = 'NO';
-    
 
     /**
      * @return Ahorro
@@ -39,6 +38,8 @@ class Ahorro extends BaseAhorro {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
+            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
+            array('cantidad', 'cantidadMayor10PagoObligatorio'),
 //            array('tipo', 'unique', 'criteria' => array(
 //                    'condition' => 'socio_id=:socio_id',
 //                    'params' => array(
@@ -48,7 +49,6 @@ class Ahorro extends BaseAhorro {
                 )
         );
     }
-    
 
     public function de_tipo($tipo) {
         $this->getDbCriteria()->mergeWith(
@@ -73,7 +73,7 @@ class Ahorro extends BaseAhorro {
         );
         return $this;
     }
-    
+
     public function de_cliente_obligatorio($id_socio) {
         $this->getDbCriteria()->mergeWith(
                 array(
@@ -196,20 +196,26 @@ class Ahorro extends BaseAhorro {
         return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
     }
 
-    public static function existPagoObligatorio($socio_id, $fecha) {
-//    SELECT count(*)as pago FROM  `ahorro` 
+    public function existPagoObligatorio($attribute, $params) {
+        //    SELECT count(*)as pago FROM  `ahorro` 
 //    WHERE  `socio_id` =1 AND  `tipo` =  'OBLIGATORIO' AND  YEAR(`fecha`) = YEAR('2014-09-13') and MONTH (`fecha`) =MONTH ('2014-09-13')
-
         $command = Yii::app()->db->createCommand()->select('count(*) as pago')
                 ->from('ahorro')
-                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) = MONTH (:fecha)', array(':socio_id' => $socio_id, ':tipo' => self::TIPO_OBLIGATORIO, ':fecha' => $fecha)
+                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) = MONTH (:fecha)', array(':socio_id' => $this->socio_id, ':tipo' => self::TIPO_OBLIGATORIO, ':fecha' => $this->fecha)
         );
-
         $command = $command->queryAll();
 
-//        var_dump($command);
-//        die();
-        return $command['0']['pago'] > 0;
+        $validator = $command['0']['pago'] > 0;
+
+        if ($validator && $this->tipo == self::TIPO_OBLIGATORIO) {
+            $this->addError($attribute, 'Ya existe un pago obligatorio para este mes.');
+        }
+    }
+
+    public function cantidadMayor10PagoObligatorio($attribute, $params) {
+        if ($this->cantidad > 10 && $this->tipo == self::TIPO_OBLIGATORIO) {
+            $this->addError($attribute, 'La cantidad sobrepasa lo establecido para un ahorro obligatorio');
+        }
     }
 
 }

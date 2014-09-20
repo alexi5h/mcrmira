@@ -31,7 +31,9 @@ class AhorroController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Ahorro();
+        $model = new Ahorro('create');
+
+       
 
         $this->performAjaxValidation($model, 'ahorro-form');
 
@@ -49,24 +51,10 @@ class AhorroController extends AweController {
                 $model->estado = null;
             }
 
-            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO) {
-                if (Ahorro::existPagoObligatorio($model->socio_id, $model->fecha)) {
-                    Yii::app()->user->setFlash('error', 'ERROR! Ya se ha generado un ahorro OBLIGATORIO para este mes.');
-                } else {
-                    if ($model->cantidad > 10) {
-                        Yii::app()->user->setFlash('error', 'ERROR! La cantidad No puede sobrepasar de $10 dolares.');
-                    } else {
-                        if ($model->save()) {
-                            $this->redirect(array('admin'));
-                        }
-                    }
-                }
-            }
 
-            if ($model->tipo == Ahorro::TIPO_VOLUNTARIO) {
-                if ($model->save()) {
-                    $this->redirect(array('admin'));
-                }
+
+            if ($model->save()) {
+                $this->redirect(array('admin'));
             }
         }
 
