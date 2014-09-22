@@ -16,7 +16,8 @@ class Ahorro extends BaseAhorro {
     //anulacion
     const ANULADO_SI = 'SI';
     const ANULADO_NO = 'NO';
-
+    
+    public $cantidad_extra;
     /**
      * @return Ahorro
      */

@@ -22,3 +22,4 @@ Util::tsRegisterAssetJs('view.js');
 
     </div>
 </div>
+<input type="text" id="cantidad-extra" name="CantidadExtra" value="">
