@@ -45,31 +45,34 @@ class AhorroDepositoController extends AweController {
                 $modelAhorroVol = null;
 
                 $model->attributes = $_POST['AhorroDeposito'];
-                if ($modelAhorro->tipo == Ahorro::TIPO_VOLUNTARIO) {
-                    $modelAhorro->cantidad = $modelAhorro->cantidad + $model->cantidad;
+//                if ($modelAhorro->tipo == Ahorro::TIPO_VOLUNTARIO) {
+//                    $modelAhorro->cantidad = $modelAhorro->cantidad + $model->cantidad;
+//                } else {
+                if ($model->cantidad <= $modelAhorro->saldo_contra) {
+                    $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
+                    $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
+                    $result['cantidadExtra'] = 0;
                 } else {
-                    if ($model->cantidad <= $modelAhorro->saldo_contra) {
-                        $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
-                        $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
-                    } else {
-                        $modelAhorroVol = Ahorro::model()->de_cliente_obligatorio($modelAhorro->socio_id)->findAll();
-                        if ($modelAhorroVol == null) {
-                            $modelAhorroVol = new Ahorro;
-                            $modelAhorroVol->descripcion = 'Creación del ahorro voluntario';
-                            $modelAhorroVol->socio_id = $modelAhorro->socio_id;
-                            $modelAhorroVol->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
-                            $modelAhorroVol->fecha = Util::FechaActual();
-                            $modelAhorroVol->tipo = Ahorro::TIPO_VOLUNTARIO;
-                            $modelAhorroVol->save();
-                        } else {
-                            Ahorro::model()->updateByPk(($modelAhorroVol[0]->id) + 0, array(
-                                'cantidad' => $modelAhorroVol[0]->cantidad + $model->cantidad - $modelAhorro->saldo_contra
-                            ));
-                        }
-                        $modelAhorro->saldo_contra = 0;
-                        $modelAhorro->saldo_favor = $modelAhorro->cantidad;
-                    }
+//                        $modelAhorroVol = Ahorro::model()->de_cliente_obligatorio($modelAhorro->socio_id)->findAll();
+//                        if ($modelAhorroVol == null) {
+//                            $modelAhorroVol = new Ahorro;
+//                            $modelAhorroVol->descripcion = 'Creación del ahorro voluntario';
+//                            $modelAhorroVol->socio_id = $modelAhorro->socio_id;
+//                            $modelAhorroVol->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
+//                            $modelAhorroVol->fecha = Util::FechaActual();
+//                            $modelAhorroVol->tipo = Ahorro::TIPO_VOLUNTARIO;
+//                            $modelAhorroVol->save();
+//                        } else {
+//                            Ahorro::model()->updateByPk(($modelAhorroVol[0]->id) + 0, array(
+//                                'cantidad' => $modelAhorroVol[0]->cantidad + $model->cantidad - $modelAhorro->saldo_contra
+//                            ));
+//                        }
+//                        $modelAhorro->cantidad_extra=$model->cantidad - $modelAhorro->saldo_contra;
+                    $result['cantidadExtra'] = $model->cantidad - $modelAhorro->saldo_contra;
+                    $modelAhorro->saldo_contra = 0;
+                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
                 }
+//                }
                 $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
                 $model->fecha_comprobante_su = Util::FechaActual();
                 $result['enableButtonSave'] = true;
@@ -90,7 +93,6 @@ class AhorroDepositoController extends AweController {
                 echo json_encode($result);
             }
             if ($validadorPartial) {
-
                 $this->renderPartial('_form_modal_deposito', array(
                     'model' => $model,
                         ), false, true);

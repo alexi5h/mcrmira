@@ -132,7 +132,4 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
         'htmlOptions' => array('data-dismiss' => 'modal'),
     ));
     ?>
-
-
 </div>
-

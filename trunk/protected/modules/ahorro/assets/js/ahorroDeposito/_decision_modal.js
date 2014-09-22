@@ -1,29 +1,23 @@
-$(function() {
-    $("#AhorroDeposito_cantidad").on('keyup', function() {
-        var value = $(this).val();
-        $("#cantidad-extra").val(value);
-    }).keyup();
-});
-
 /**
  * @param {type} Formulario
  * guarda los _form_modal por ajax para contacto, tarea, oportunidad, evento y cobranza
  */
-function AjaxAtualizacionInformacion(Formulario)
+
+function AjaxActualizacionInformacion(Formulario)
 {
     BloquearBotonesModal(Formulario);
-    AjaxGestionModalDeposito(Formulario, function(list) {
+    AjaxGestionModalAhorroExtra(Formulario, function(list) {
         $.fn.yiiGridView.update('deposito-grid');
         $.fn.yiiGridView.update('pago-grid');
         $('#deposito-form').trigger("reset");
-        DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxAtualizacionInformacion');
+        DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
 //        bootbox.confirm('jjj', function(param) {
 //            console.log(param);
 //        });
     });
 }
 
-function AjaxGestionModalDeposito($form, CallBack) {
+function AjaxGestionModalAhorroExtra($form, CallBack) {
 //    console.log('entro');
     var form = $($form);
     var settings = form.data('settings');
@@ -37,18 +31,18 @@ function AjaxGestionModalDeposito($form, CallBack) {
             $.each(settings.attributes, function() {
                 $.fn.yiiactiveform.updateInput(this, messages, form);
             });
-            AjaxGuardarModalDeposito(true, $form, CallBack);
+            AjaxGuardarModalAhorroExtra(true, $form, CallBack);
         }
         else {
             settings = form.data('settings'),
                     $.each(settings.attributes, function() {
                         $.fn.yiiactiveform.updateInput(this, messages, form);
                     });
-            DesBloquearBotonesModal($form, 'Guardar', 'AjaxAtualizacionInformacion');
+            DesBloquearBotonesModal($form, 'Guardar', 'AjaxActualizacionInformacion');
         }
     });
 }
-function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
+function AjaxGuardarModalAhorroExtra(verificador, Formulario, callBack)
 {
 //    console.log('entro dos');
     if (verificador)
@@ -70,13 +64,12 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
                     }
                     if(data.cantidadExtra!=0){
                         $("#mainBigModal").modal("hide");
-                        viewModal('ahorro/ahorroExtra/create?id_ahorro=9');
                     }
                     console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);
 
                 } else {
-                    DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxAtualizacionInformacion');
+                    DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
                     bootbox.alert(data.message);
                 }
             }
