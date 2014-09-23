@@ -11,7 +11,9 @@
  */
 function AjaxAtualizacionInformacion(Formulario)
 {
-//    viewModal('ahorro/ahorroExtra/create/ahorro_id/12/cantidad_extra/10');
+//    viewModal('ahorro/ahorro/create/ahorro_id/39/ahorro_extra_id/1', function () {
+//        maskAttributes();
+//    });
     BloquearBotonesModal(Formulario);
     AjaxGestionModalDeposito(Formulario, function (list) {
         $.fn.yiiGridView.update('deposito-grid');
@@ -48,7 +50,6 @@ function AjaxGestionModalDeposito($form, CallBack) {
 }
 function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
 {
-//    console.log('entro dos');
     if (verificador)
     {
         var listaActualizar = Formulario.split('-');
@@ -67,9 +68,7 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
                     }
                     if (data.cantidadExtra != 0) {
                         $("#mainBigModal").modal("hide");
-                        viewModal('ahorro/ahorroExtra/create/ahorro_id/' + data.ahorro_id + '/cantidad_extra/' + data.cantidadExtra, function () {
-                            maskAttributes();
-                        });
+                        viewModal('ahorro/ahorro/create/ahorro_id/' + data.ahorro_id + '/ahorro_extra_id/' + data.ahorro_extra_id, function () {});
                     }
                     console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);

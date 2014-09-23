@@ -39,11 +39,11 @@ class AhorroDepositoController extends AweController {
             $model->ahorro_id = $id_ahorro;
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
-            
+
             if (isset($_POST['AhorroDeposito'])) {
                 $modelAhorro = Ahorro::model()->findByPk($id_ahorro);
                 $modelAhorroVol = null;
-                $result['ahorro_id']=$model->ahorro_id;
+                $result['ahorro_id'] = $model->ahorro_id;
                 $model->attributes = $_POST['AhorroDeposito'];
 //                if ($modelAhorro->tipo == Ahorro::TIPO_VOLUNTARIO) {
 //                    $modelAhorro->cantidad = $modelAhorro->cantidad + $model->cantidad;
@@ -68,6 +68,17 @@ class AhorroDepositoController extends AweController {
 //                            ));
 //                        }
 //                        $modelAhorro->cantidad_extra=$model->cantidad - $modelAhorro->saldo_contra;
+//                        
+                    //Creación por default de una ahorro extra antes de consultar el destino de la cantidad sobrante
+                    $modelAhorroExtra = new AhorroExtra;
+                    $modelAhorroExtra->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
+                    $modelAhorroExtra->fecha_creacion = Util::FechaActual();
+                    $modelAhorroExtra->anulado = AhorroExtra::NO_ANULADO;
+                    $modelAhorroExtra->ahorro_id = $id_ahorro;
+                    $modelAhorroExtra->socio_id = $modelAhorro->socio_id;
+                    $modelAhorroExtra->save();
+                    
+                    $result['ahorro_extra_id'] = $modelAhorroExtra->id;
                     $result['cantidadExtra'] = $model->cantidad - $modelAhorro->saldo_contra;
                     $modelAhorro->saldo_contra = 0;
                     $modelAhorro->saldo_favor = $modelAhorro->cantidad;

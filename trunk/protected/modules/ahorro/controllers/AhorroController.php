@@ -30,33 +30,36 @@ class AhorroController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($ahorro_id = null, $cantidad_extra = null) {
+    public function actionCreate($ahorro_id = null, $ahorro_extra_id = null) {
         $model = new Ahorro('create');
 
         if (Yii::app()->request->isAjaxRequest) {
-            $this->performAjaxValidation($model, 'ahorro-form-modal');
-            $model->id = $ahorro_id;
-            $model->cantidad = $cantidad_extra;
-            $model->tipo == Ahorro::TIPO_VOLUNTARIO;
+            $result = array();
+            $ahorro_extra = AhorroExtra::model()->findByPk($ahorro_extra_id);
             $validadorPartial = true;
+            $modelVol = new Ahorro;
+            $this->performAjaxValidation($modelVol, 'ahorroVoluntario-form');
+            $modelVol->cantidad = $ahorro_extra->cantidad;
+            $modelVol->tipo = Ahorro::TIPO_VOLUNTARIO;
             if (isset($_POST['Ahorro'])) {
                 $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
-                $model->attributes = $_POST['Ahorro'];
-                $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
-                if ($model->tipo == Ahorro::TIPO_VOLUNTARIO) {
-                    $model->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA;
-                    $model->socio_id = $modelAhorro->socio_id;
-                    $model->fecha = Util::FechaActual();
-                    $model->estado = Ahorro::ESTADO_PAGADO;
-                    $model->saldo_contra = 0;
-                    $model->saldo_favor = $model->cantidad;
-                    $model->anulado = Ahorro::ANULADO_NO;
-                    if ($model->save()) {
+                $modelVol->attributes = $_POST['Ahorro'];
+                $modelVol->fecha = Util::FormatDate($modelVol->fecha, 'Y-m-d');
+                if ($modelVol->tipo == Ahorro::TIPO_VOLUNTARIO) {
+                    $modelVol->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA;
+                    $modelVol->socio_id = $modelAhorro->socio_id;
+                    $modelVol->fecha = Util::FechaActual();
+                    $modelVol->estado = Ahorro::ESTADO_PAGADO;
+                    $modelVol->saldo_contra = 0;
+                    $modelVol->saldo_favor = $modelVol->cantidad;
+                    $modelVol->anulado = Ahorro::ANULADO_NO;
+                    if ($modelVol->save()) {
+                        AhorroExtra::model()->deleteByPk($ahorro_extra_id);
                         $result['success'] = true;
-                        $result['message'] = "Cantidad ingresada correctamente";
+                        $result['message'] = "Ahorro ingresado correctamente";
                     }
                     if (!$result['success']) {
-                        $model->delete();
+                        $modelVol->delete();
                         $result['message'] = "Error al registrar el nuevo ahorro.";
                     }
                     $validadorPartial = false;
@@ -64,10 +67,10 @@ class AhorroController extends AweController {
                 }
             }
             if ($validadorPartial) {
-                    $this->renderPartial('_decision_modal', array(
-                        'model' => $model,
-                            ), false, true);
-                }
+                $this->renderPartial('_decision_modal', array(
+                    'modelVol' => $modelVol,
+                        ), false, true);
+            }
         } else {
             $this->performAjaxValidation($model, 'ahorro-form');
             if (isset($_POST['Ahorro'])) {
