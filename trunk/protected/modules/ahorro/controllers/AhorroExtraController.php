@@ -29,23 +29,39 @@ class AhorroExtraController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($id_ahorro = null) {
+    public function actionCreate($ahorro_id = null, $cantidad_extra = null) {
         if (Yii::app()->request->isAjaxRequest) {
+            $result = array();
             $model = new AhorroExtra;
-            $model->ahorro_id=$id_ahorro;
-            
-            $modelAhorro=  Ahorro::model()->findByPk($id_ahorro);
-//            $this->performAjaxValidation($model, 'ahorroExtra-form');
+            $model->ahorro_id = $ahorro_id;
+            $model->cantidad = $cantidad_extra;
+
+            $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
+            $this->performAjaxValidation($model, 'ahorroExtra-form');
+            $validadorPartial = true;
 
             if (isset($_POST['AhorroExtra'])) {
                 $model->attributes = $_POST['AhorroExtra'];
+                $model->fecha_creacion = Util::FechaActual();
+                $model->anulado = AhorroExtra::NO_ANULADO;
+                $model->socio_id = $modelAhorro->socio_id;
                 if ($model->save()) {
-                    $this->redirect(array('admin'));
+//                    $this->redirect(array('admin'));
+                    $result['success'] = true;
+                    $result['message'] = "Cantidad ingresada correctamente";
                 }
+                if (!$result['success']) {
+                    $model->delete();
+                    $result['message'] = "Error al registrar el nuevo ahorro.";
+                }
+                $validadorPartial = false;
+                echo json_encode($result);
             }
-            $this->renderPartial('_decision_modal', array(
-                'model' => $model,
-                    ), false, true);
+            if ($validadorPartial) {
+                $this->renderPartial('_decision_modal', array(
+                    'model' => $model,
+                        ), false, true);
+            }
         }
     }
 

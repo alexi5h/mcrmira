@@ -39,11 +39,11 @@ class AhorroDepositoController extends AweController {
             $model->ahorro_id = $id_ahorro;
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
-
+            
             if (isset($_POST['AhorroDeposito'])) {
                 $modelAhorro = Ahorro::model()->findByPk($id_ahorro);
                 $modelAhorroVol = null;
-
+                $result['ahorro_id']=$model->ahorro_id;
                 $model->attributes = $_POST['AhorroDeposito'];
 //                if ($modelAhorro->tipo == Ahorro::TIPO_VOLUNTARIO) {
 //                    $modelAhorro->cantidad = $modelAhorro->cantidad + $model->cantidad;

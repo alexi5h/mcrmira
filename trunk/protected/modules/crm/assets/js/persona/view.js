@@ -12,13 +12,6 @@ function showModalDataWidth(html) {
     $('select.fix').selectBox();
 }
 
-function showModalDataLong(html) {
-
-    $("#long").html(html);
-    //$('#long').css('height', '1000px');
-    $("#long").modal("show");
-    $('select.fix').selectBox();
-}
 /**
  * 
  * @param {cadena} url

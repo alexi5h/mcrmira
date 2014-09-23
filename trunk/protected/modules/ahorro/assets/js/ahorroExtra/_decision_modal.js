@@ -9,11 +9,8 @@ function AjaxActualizacionInformacion(Formulario)
     AjaxGestionModalAhorroExtra(Formulario, function(list) {
         $.fn.yiiGridView.update('deposito-grid');
         $.fn.yiiGridView.update('pago-grid');
-        $('#deposito-form').trigger("reset");
+//        $('#deposito-form').trigger("reset");
         DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
-//        bootbox.confirm('jjj', function(param) {
-//            console.log(param);
-//        });
     });
 }
 
@@ -21,6 +18,7 @@ function AjaxGestionModalAhorroExtra($form, CallBack) {
 //    console.log('entro');
     var form = $($form);
     var settings = form.data('settings');
+    console.log(settings);
     settings.submitting = true;
     $.fn.yiiactiveform.validate(form, function(messages) {
 
@@ -58,15 +56,16 @@ function AjaxGuardarModalAhorroExtra(verificador, Formulario, callBack)
             },
             success: function(data) {
                 if (data.success) {
-//                    $("#mainBigModal").modal("hide");
-                    if (!data.enableButtonSave) {
-                        $('#buttondeposito').remove();
-                    }
-                    if(data.cantidadExtra!=0){
-                        $("#mainBigModal").modal("hide");
-                    }
-                    console.log(data.cantidadExtra);
-                    callBack(listaActualizar, data);
+                    $("#mainModal").modal("hide");
+                    bootbox.alert(data.message);
+//                    if (!data.enableButtonSave) {
+//                        $('#buttondeposito').remove();
+//                    }
+//                    if(data.cantidadExtra!=0){
+//                        $("#mainBigModal").modal("hide");
+//                    }
+//                    console.log(data.cantidadExtra);
+//                    callBack(listaActualizar, data);
 
                 } else {
                     DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');

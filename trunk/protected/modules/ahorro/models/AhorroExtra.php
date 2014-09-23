@@ -4,6 +4,10 @@ Yii::import('ahorro.models._base.BaseAhorroExtra');
 
 class AhorroExtra extends BaseAhorroExtra
 {
+    const ANULADO='SI';
+    const NO_ANULADO='NO';
+
+
     /**
      * @return AhorroExtra
      */
