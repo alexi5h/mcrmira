@@ -3,6 +3,8 @@ $(function() {
         var value = $(this).val();
         $("#cantidad-extra").val(value);
     }).keyup();
+    
+    
 });
 
 /**
@@ -11,6 +13,7 @@ $(function() {
  */
 function AjaxAtualizacionInformacion(Formulario)
 {
+    viewModal('ahorro/ahorroExtra/create/ahorro_id/8/cantidad_extra/10');
     BloquearBotonesModal(Formulario);
     AjaxGestionModalDeposito(Formulario, function(list) {
         $.fn.yiiGridView.update('deposito-grid');
@@ -27,6 +30,7 @@ function AjaxGestionModalDeposito($form, CallBack) {
 //    console.log('entro');
     var form = $($form);
     var settings = form.data('settings');
+//    console.log(settings);
     settings.submitting = true;
     $.fn.yiiactiveform.validate(form, function(messages) {
 
@@ -70,7 +74,7 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
                     }
                     if(data.cantidadExtra!=0){
                         $("#mainBigModal").modal("hide");
-                        viewModal('ahorro/ahorroExtra/create?id_ahorro=9');
+                        viewModal('ahorro/ahorroExtra/create/ahorro_id/'+data.ahorro_id+'/cantidad_extra/'+data.cantidadExtra);
                     }
                     console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);
