@@ -8,6 +8,7 @@ class AhorroExtraController extends AweController {
      */
     public $layout = '//layouts/column2';
     public $defaultAction = 'admin';
+    public $admin = false;
 
     public function filters() {
         return array(
@@ -29,81 +30,21 @@ class AhorroExtraController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($ahorro_id = null, $cantidad_extra = null) {
-        if (Yii::app()->request->isAjaxRequest) {
-            $result = array();
-            //Model para AhorroExtra
-            $model = new AhorroExtra;
-            $model->ahorro_id = $ahorro_id;
-            $model->cantidad = $cantidad_extra;
+    public function actionCreate() {
+        $model = new AhorroExtra;
 
-            //Model para AhorroVoluntario
-            $modelVol = new Ahorro;
-            $this->performAjaxValidation($model, 'ahorro-form-modal');
-            $modelVol->id = $ahorro_id;
-            $modelVol->cantidad = $cantidad_extra;
-            $modelVol->tipo == Ahorro::TIPO_VOLUNTARIO;
-            $validadorPartial = true;
-            if (isset($_POST['Ahorro'])) {
-                $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
-                $modelVol->attributes = $_POST['Ahorro'];
-                $modelVol->fecha = Util::FormatDate($modelVol->fecha, 'Y-m-d');
-                if ($modelVol->tipo == Ahorro::TIPO_VOLUNTARIO) {
-                    $modelVol->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA;
-                    $modelVol->socio_id = $modelAhorro->socio_id;
-                    $modelVol->fecha = Util::FechaActual();
-                    $modelVol->estado = Ahorro::ESTADO_PAGADO;
-                    $modelVol->saldo_contra = 0;
-                    $modelVol->saldo_favor = $modelVol->cantidad;
-                    $modelVol->anulado = Ahorro::ANULADO_NO;
-                    if ($modelVol->save()) {
-                        $result['success'] = true;
-                        $result['message'] = "Cantidad ingresada correctamente";
-                    }
-                    if (!$result['success']) {
-                        $modelVol->delete();
-                        $result['message'] = "Error al registrar el nuevo ahorro.";
-                    }
-                    $validadorPartial = false;
-                    echo json_encode($result);
-                }
-            }
-            if ($validadorPartial) {
-                    $this->renderPartial('_decision_modal', array(
-                        'model' => $modelVol,
-                            ), false, true);
-                }
+        $this->performAjaxValidation($model, 'ahorro-extra-form');
 
-            
-            
-            
-            
-            $this->performAjaxValidation($model, 'ahorroExtra-form');
-            $validadorPartial = true;
-
-            if (isset($_POST['AhorroExtra'])) {
-                $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
-                $model->attributes = $_POST['AhorroExtra'];
-                $model->fecha_creacion = Util::FechaActual();
-                $model->anulado = AhorroExtra::NO_ANULADO;
-                $model->socio_id = $modelAhorro->socio_id;
-                if ($model->save()) {
-                    $result['success'] = true;
-                    $result['message'] = "Cantidad ingresada correctamente";
-                }
-                if (!$result['success']) {
-                    $model->delete();
-                    $result['message'] = "Error al registrar el nuevo ahorro.";
-                }
-                $validadorPartial = false;
-                echo json_encode($result);
-            }
-            if ($validadorPartial) {
-                $this->renderPartial('_decision_modal', array(
-                    'model' => $model,
-                        ), false, true);
+        if (isset($_POST['AhorroExtra'])) {
+            $model->attributes = $_POST['AhorroExtra'];
+            if ($model->save()) {
+                $this->redirect(array('admin'));
             }
         }
+
+        $this->render('create', array(
+            'model' => $model,
+        ));
     }
 
     /**
