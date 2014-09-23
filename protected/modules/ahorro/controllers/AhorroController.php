@@ -30,37 +30,64 @@ class AhorroController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate($ahorro_id = null, $cantidad_extra = null) {
         $model = new Ahorro('create');
 
-       
-
-        $this->performAjaxValidation($model, 'ahorro-form');
-
-        if (isset($_POST['Ahorro'])) {
-            $model->attributes = $_POST['Ahorro'];
-//            $model->anulado = (int) $_POST['Ahorro']['anulado'];
-//            $model->fecha = Util::FechaActual();
-            $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
-
-            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
-                $model->estado = Ahorro::ESTADO_DEUDA;
-                $model->saldo_contra = $model->cantidad;
-                $model->anulado = Ahorro::ANULADO_NO;
-            } else {
-                $model->estado = null;
+        if (Yii::app()->request->isAjaxRequest) {
+            $this->performAjaxValidation($model, 'ahorro-form-modal');
+            $model->id = $ahorro_id;
+            $model->cantidad = $cantidad_extra;
+            $model->tipo == Ahorro::TIPO_VOLUNTARIO;
+            $validadorPartial = true;
+            if (isset($_POST['Ahorro'])) {
+                $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
+                $model->attributes = $_POST['Ahorro'];
+                $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
+                if ($model->tipo == Ahorro::TIPO_VOLUNTARIO) {
+                    $model->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA;
+                    $model->socio_id = $modelAhorro->socio_id;
+                    $model->fecha = Util::FechaActual();
+                    $model->estado = Ahorro::ESTADO_PAGADO;
+                    $model->saldo_contra = 0;
+                    $model->saldo_favor = $model->cantidad;
+                    $model->anulado = Ahorro::ANULADO_NO;
+                    if ($model->save()) {
+                        $result['success'] = true;
+                        $result['message'] = "Cantidad ingresada correctamente";
+                    }
+                    if (!$result['success']) {
+                        $model->delete();
+                        $result['message'] = "Error al registrar el nuevo ahorro.";
+                    }
+                    $validadorPartial = false;
+                    echo json_encode($result);
+                }
             }
-
-
-
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            if ($validadorPartial) {
+                    $this->renderPartial('_decision_modal', array(
+                        'model' => $model,
+                            ), false, true);
+                }
+        } else {
+            $this->performAjaxValidation($model, 'ahorro-form');
+            if (isset($_POST['Ahorro'])) {
+                $model->attributes = $_POST['Ahorro'];
+                $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
+                if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
+                    $model->estado = Ahorro::ESTADO_DEUDA;
+                    $model->saldo_contra = $model->cantidad;
+                    $model->anulado = Ahorro::ANULADO_NO;
+                } else {
+                    $model->estado = null;
+                }
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
             }
+            $this->render('create', array(
+                'model' => $model,
+            ));
         }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
     }
 
     /**

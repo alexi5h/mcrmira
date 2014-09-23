@@ -16,6 +16,8 @@ class Ahorro extends BaseAhorro {
     //anulacion
     const ANULADO_SI = 'SI';
     const ANULADO_NO = 'NO';
+    //descripciones
+    const DESCRIPCION_CANTIDAD_EXTRA='Ahorro Voluntario creado por cantidad sobrante en un depósito';
     
     public $cantidad_extra;
     /**
