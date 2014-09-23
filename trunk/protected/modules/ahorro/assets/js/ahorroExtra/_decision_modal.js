@@ -1,16 +1,11 @@
-/**
- * @param {type} Formulario
- * guarda los _form_modal por ajax para contacto, tarea, oportunidad, evento y cobranza
- */
-
 function AjaxActualizacionInformacion(Formulario)
 {
     BloquearBotonesModal(Formulario);
-    AjaxGestionModalAhorroExtra(Formulario, function(list) {
-        $.fn.yiiGridView.update('deposito-grid');
-        $.fn.yiiGridView.update('pago-grid');
+    AjaxGestionModalAhorroExtra(Formulario, function (list) {
+//        $.fn.yiiGridView.update('deposito-grid');
+//        $.fn.yiiGridView.update('pago-grid');
 //        $('#deposito-form').trigger("reset");
-        DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
+//        DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
     });
 }
 
@@ -18,27 +13,28 @@ function AjaxGestionModalAhorroExtra($form, CallBack) {
 //    console.log('entro');
     var form = $($form);
     var settings = form.data('settings');
-    console.log(settings);
-    settings.submitting = true;
-    $.fn.yiiactiveform.validate(form, function(messages) {
 
-        $.each(messages, function() {
-//            console.log(this);
-        });
-        if ($.isEmptyObject(messages)) {
-            $.each(settings.attributes, function() {
-                $.fn.yiiactiveform.updateInput(this, messages, form);
-            });
-            AjaxGuardarModalAhorroExtra(true, $form, CallBack);
-        }
-        else {
-            settings = form.data('settings'),
-                    $.each(settings.attributes, function() {
-                        $.fn.yiiactiveform.updateInput(this, messages, form);
-                    });
-            DesBloquearBotonesModal($form, 'Guardar', 'AjaxActualizacionInformacion');
-        }
-    });
+    settings.submitting = true;
+//    $.fn.yiiactiveform.validate(form, function (messages) {
+//
+//        if ($.isEmptyObject(messages)) {
+//            console.log('si');
+//            $.each(settings.attributes, function () {
+//                $.fn.yiiactiveform.updateInput(this, messages, form);
+//            });
+//            
+//            AjaxGuardarModalAhorroExtra(true, $form, CallBack);
+//        }
+//        else {
+//            console.log(messages);
+//            settings = form.data('settings'),
+//                    $.each(settings.attributes, function () {
+//                        $.fn.yiiactiveform.updateInput(this, messages, form);
+//                    });
+////            DesBloquearBotonesModal($form, 'Guardar', 'AjaxActualizacionInformacion');
+//        }
+//    });
+    AjaxGuardarModalAhorroExtra(true, $form, CallBack);
 }
 function AjaxGuardarModalAhorroExtra(verificador, Formulario, callBack)
 {
@@ -52,10 +48,11 @@ function AjaxGuardarModalAhorroExtra(verificador, Formulario, callBack)
             dataType: 'json',
             url: $(Formulario).attr('action'),
             data: $(Formulario).serialize(),
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
             },
-            success: function(data) {
+            success: function (data) {
                 if (data.success) {
+                    console.log('done');
                     $("#mainModal").modal("hide");
                     bootbox.alert(data.message);
 //                    if (!data.enableButtonSave) {
