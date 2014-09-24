@@ -19,10 +19,13 @@
                     'name' => 'email',
                     'type' => 'email'
                 ),
-                'sexo',
+                array(
+                    'name' => 'sexo',
+                    'value' => $model->nombre_sexo($model->sexo)
+                ),
                 array(
                     'name' => 'fecha_nacimiento',
-                    'value' => Util::FormatDate('$data->fecha_nacimiento', 'd/m/Y'),
+                    'value' => Util::FormatDate($model->fecha_nacimiento, 'd-m-Y')
                 ),
                 'estado_civil',
                 'discapacidad',
