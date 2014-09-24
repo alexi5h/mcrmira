@@ -156,14 +156,14 @@ class Persona extends BasePersona {
     }
 
     /*
-     * devuelve los socios que pueden ser garantes (que estén al día en sus pagos)
+     * devuelve los socios activos que pueden acceder a un crédito o ser garantes (que estén al día en sus pagos)
      */
 
-    public function condicion_garantes() {
+    public function condicion_credito() {
         /* select cedula from persona pe
           where not exists(select * from ahorro ah
           where ah.socio_id=pe.id and ah.estado='DEUDA') */
-        $garantes = Persona::model()->findAll(array(
+        $garantes = Persona::model()->activos()->findAll(array(
             'join' => 'LEFT JOIN ahorro ah ON t.id=ah.socio_id and ah.estado="DEUDA"',
             'condition' => 'ah.socio_id is null',
         ));

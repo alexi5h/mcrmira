@@ -38,11 +38,11 @@
  * @property string $estado_civil
  * @property integer $actividad_economica_id
  *
+ * @property Sucursal $sucursal
  * @property Direccion $direccionDomicilio
  * @property Direccion $direccionNegocio
- * @property Sucursal $sucursal
- * @property ActividadEconomica $actividadEconomica
  * @property PersonaEtapa $personaEtapa
+ * @property ActividadEconomica $actividadEconomica
  */
 abstract class BasePersona extends AweActiveRecord {
 
@@ -86,11 +86,11 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function relations() {
         return array(
+            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
             'direccionDomicilio' => array(self::BELONGS_TO, 'Direccion', 'direccion_domicilio_id'),
             'direccionNegocio' => array(self::BELONGS_TO, 'Direccion', 'direccion_negocio_id'),
-            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
-            'actividadEconomica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
             'personaEtapa' => array(self::BELONGS_TO, 'PersonaEtapa', 'persona_etapa_id'),
+            'actividadEconomica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
         );
     }
 
@@ -127,11 +127,11 @@ abstract class BasePersona extends AweActiveRecord {
                 'discapacidad' => Yii::t('app', 'Discapacidad'),
                 'estado_civil' => Yii::t('app', 'Estado Civil'),
                 'actividad_economica_id' => Yii::t('app', 'Actividad Economica'),
+                'sucursal' => null,
                 'direccionDomicilio' => null,
                 'direccionNegocio' => null,
-                'sucursal' => null,
-                'actividadEconomica' => null,
                 'personaEtapa' => null,
+                'actividadEconomica' => null,
         );
     }
 

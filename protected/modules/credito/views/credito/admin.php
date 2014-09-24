@@ -6,6 +6,7 @@ $this->menu = array(
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
+var_dump(Util::calculo_amortizacion(1200,5,18));
 ?>
 <div id="flashMsg"  class="flash-messages">
 

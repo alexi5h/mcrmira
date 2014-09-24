@@ -39,8 +39,22 @@ class CreditoController extends AweController {
             $model->attributes = $_POST['Credito'];
             $model->fecha_credito = Util::FechaActual();
             $model->estado = Credito::ESTADO_DEUDA;
-            $model->interes=5;
-            $model->fecha_limite = Yii::app()->dateFormatter->format("yyyy-MM-dd", $model->fecha_limite);
+            $model->interes = Credito::INTERES;
+
+            $fecha_lim = new DateTime(Util::FechaActual());
+            $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
+            $model->fecha_limite = $fecha_lim->format('Y-m-d H:i:s');
+            
+            $fecha_temp=  date("Y-m-d",  strtotime(Util::FechaActual()." +1month"));
+//            $cuota
+            $modelAmortizacion;
+            for ($i = 0; $i < $model->periodos; $i++) {
+                $modelAmortizacion=new CreditoAmortizacion;
+                $modelAmortizacion->nro_cuota=$i+1;
+                $modelAmortizacion->fecha_pago=$fecha_temp;
+//                $modelAmortizacion->cuota
+            }
+            
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
