@@ -29,9 +29,17 @@ class Credito extends BaseCredito {
         );
     }
 
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), array(
+            'periodos' => Yii::t('app', 'Plazo (meses)'),
+                )
+        );
+    }
+
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total','required'),
+            array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total, periodos', 'required'),
+            array('periodos, cantidad_total', 'numerical'),
         ));
     }
 

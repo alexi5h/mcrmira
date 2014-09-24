@@ -6,7 +6,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'credito-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => true,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
         ));
 ?>
@@ -20,8 +20,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="widget-body">
         <?php
-        $model_persona = Persona::model()->activos()->findAll();
-        $model_garante= Persona::model()->condicion_garantes();
+        $model_persona = Persona::model()->condicion_credito();
+        $model_garante = Persona::model()->condicion_credito();
         ?>
         <?php
         echo $form->select2Row($model, 'socio_id', array(
@@ -43,21 +43,25 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') + 
-                CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+        <?php
+        echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') +
+                CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))
+        ?>
 
         <?php
-                echo $form->datepickerRow(
-                        $model, 'fecha_limite', array(
-                    'options' => array(
-                        'language' => 'es',
-                        'readonly' => 'readonly',
-                    ),
-                        )
-                );
-                ?>
+//        echo $form->datepickerRow(
+//                $model, 'fecha_limite', array(
+//            'options' => array(
+//                'language' => 'es',
+//                'readonly' => 'readonly',
+//                'format' => 'dd/mm/yyyy',
+//            ),
+//                )
+//        );
+        ?>
 
         <?php echo $form->textFieldRow($model, 'cantidad_total', array('maxlength' => 10)) ?>
+        <?php echo $form->textFieldRow($model, 'periodos', array('maxlength' => 3)) ?>
 
         <div class="form-actions">
             <?php
