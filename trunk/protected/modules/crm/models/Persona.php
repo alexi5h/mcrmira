@@ -11,6 +11,9 @@ class Persona extends BasePersona {
     //tipo: CLIENTE,GARANTE
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
+    //sexo: MASCULINO,FEMENINO
+    const SEXO_MASCULINO='MASCULINO';
+    const SEXO_FEMENINO='FEMENINO';
 
     private $nombre_formato;
     private $cedula_nombre_formato;
@@ -126,6 +129,15 @@ class Persona extends BasePersona {
                 ),
             ),
         );
+    }
+    
+    public function nombre_sexo($ident) {
+        if($ident=='M'){
+            return self::SEXO_MASCULINO;
+        }else{
+            return self::SEXO_FEMENINO;
+        }
+        return null;
     }
 
     public function etapa_activos() {
