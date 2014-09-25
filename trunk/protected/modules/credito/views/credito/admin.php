@@ -6,7 +6,33 @@ $this->menu = array(
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
-var_dump(Util::calculo_amortizacion(1200,5,18));
+$tabla = Util::calculo_amortizacion(1200, 5, 18);
+//$count=0;
+//foreach ($tabla as $registro) {
+//    $tabla[$count]['estado']='DEUDA';
+//    $tabla[$count]['credito_id']=2;
+//    $count++;
+//}
+////$linea1=  implode(',', $tabla[5]);
+//$modelAmort=0;
+$sumaInteres=0;
+$sumaCuota=0;
+$sumaAmort=0;
+for ($i = 0; $i < count($tabla); $i++) {
+//    $modelAmort=new CreditoAmortizacion;
+//    $modelAmort->nro_cuota=$tabla[$i]['nro_cuota'];
+//    $modelAmort->fecha_pago=$tabla[$i]['fecha_pago'];
+//    $modelAmort->cuota=$tabla[$i]['cuota'];
+//    $modelAmort->interes=$tabla[$i]['interes'];
+//    $modelAmort->mora=$tabla[$i]['mora'];
+//    $modelAmort->estado=$tabla[$i]['estado'];
+//    $modelAmort->credito_id=$tabla[$i]['credito_id'];
+//    $modelAmort->save();
+    $sumaInteres+=$tabla[$i]['interes'];
+    $sumaCuota+=$tabla[$i]['cuota'];
+    $sumaAmort+=$tabla[$i]['amort'];
+}
+var_dump($sumaInteres.' '.$sumaCuota.' '.$sumaAmort);
 ?>
 <div id="flashMsg"  class="flash-messages">
 
@@ -36,10 +62,10 @@ var_dump(Util::calculo_amortizacion(1200,5,18));
                     'value' => '$data->garante->nombre_formato'
                 ),
                 array(
-                        'name' => 'sucursal_id',
-                        'value' => '$data->sucursal',
-                        'type' => 'raw',
-                    ),
+                    'name' => 'sucursal_id',
+                    'value' => '$data->sucursal',
+                    'type' => 'raw',
+                ),
                 'fecha_credito',
                 'fecha_limite',
                 'cantidad_total',
