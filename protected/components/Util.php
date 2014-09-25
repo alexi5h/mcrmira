@@ -590,9 +590,9 @@ class Util {
      */
     public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null) {
         $tabla = array();
-        $interes_mensual = round(($interes / 12) * 0.01, 5);
-        $cuota_sinaprox = ($cantidad_total * $interes_mensual * 100) / (100 * (1 - pow(1 + $interes_mensual, -$periodos)));
-        $cuota = $cuota_sinaprox;
+        $interes_mensual = ($interes / 12) * 0.01;
+        $cuota = ($cantidad_total * $interes_mensual * 100) / (100 * (1 - pow(1 + $interes_mensual, -$periodos)));
+//        $cuota = $cuota_sinaprox;
         $fecha_temp = date("Y-m-d", strtotime(self::FechaActual() . " +1month"));
         $intereses = $cantidad_total * $interes_mensual;
         $amortizacion = $cuota - $intereses;
@@ -600,7 +600,7 @@ class Util {
 
         //Llenar tabla
         for ($i = 0; $i < $periodos; $i++) {
-            array_push($tabla, array('Cuota' => $i + 1, 'Fecha_Pago' => $fecha_temp, 'Capital' => round($cuota,2), 'Intereses' => round($intereses,2), 'Amortizacion' => round($amortizacion,2), 'Capital_vivo' => round($capital_vivo,2)));
+            array_push($tabla, array('nro_cuota' => $i + 1, 'fecha_pago' => $fecha_temp, 'cuota' => $cuota, 'interes' => $intereses, 'mora'=>null, 'estado'=>null, 'credito_id'=>null,'amort'=>round($amortizacion,2)));
             $fecha_temp = date("Y-m-d", strtotime($fecha_temp . " +1month"));
             $intereses = $capital_vivo * $interes_mensual;
             $amortizacion = $cuota - $intereses;
@@ -608,7 +608,6 @@ class Util {
         }
         return $tabla;
     }
-
 }
 
 ?>
