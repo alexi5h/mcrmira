@@ -7,7 +7,11 @@ class Credito extends BaseCredito {
     //    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
+    //Porcentaje del interes
     const INTERES = 5;
+    //anulado: SI,NO
+    const NO_ANULADO='NO';
+    const ANULADO='SI';
 
     /**
      * @return Credito
@@ -41,6 +45,29 @@ class Credito extends BaseCredito {
             array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total, periodos', 'required'),
             array('periodos, cantidad_total', 'numerical'),
         ));
+    }
+    
+    public function scopes() {
+        return array(
+            'en_deuda' => array(
+                'condition' => 't.estado = :estado',
+                'params' => array(
+                    ':estado' => self::ESTADO_DEUDA,
+                ),
+            ),
+        );
+    }
+    
+    public function de_socio($socio_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.socio_id = :socio_id',
+                    'params' => array(
+                        ':socio_id' => $socio_id
+                    ),
+                )
+        );
+        return $this;
     }
 
 }

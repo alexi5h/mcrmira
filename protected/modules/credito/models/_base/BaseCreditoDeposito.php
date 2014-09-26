@@ -18,9 +18,9 @@
  * @property string $cod_comprobante_su
  * @property string $fecha_comprobante_su
  * @property string $observaciones
- * @property integer $credito_id
+ * @property integer $credito_amortizacion_id
  *
- * @property Credito $credito
+ * @property CreditoAmortizacion $creditoAmortizacion
  */
 abstract class BaseCreditoDeposito extends AweActiveRecord {
 
@@ -38,18 +38,19 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('entidad_bancaria_id, sucursal_comprobante_id, credito_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, credito_amortizacion_id', 'required'),
+            array('entidad_bancaria_id, sucursal_comprobante_id, credito_amortizacion_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
             array('cod_comprobante_entidad, cod_comprobante_su', 'length', 'max'=>45),
-            array('fecha_comprobante_entidad, fecha_comprobante_su, observaciones', 'safe'),
-            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, observaciones, credito_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, observaciones, credito_id', 'safe', 'on'=>'search'),
+            array('observaciones', 'safe'),
+            array('observaciones', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, observaciones, credito_amortizacion_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'credito' => array(self::BELONGS_TO, 'Credito', 'credito_id'),
+            'creditoAmortizacion' => array(self::BELONGS_TO, 'CreditoAmortizacion', 'credito_amortizacion_id'),
         );
     }
 
@@ -67,8 +68,8 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
                 'cod_comprobante_su' => Yii::t('app', 'Cod Comprobante Su'),
                 'fecha_comprobante_su' => Yii::t('app', 'Fecha Comprobante Su'),
                 'observaciones' => Yii::t('app', 'Observaciones'),
-                'credito_id' => Yii::t('app', 'Credito'),
-                'credito' => null,
+                'credito_amortizacion_id' => Yii::t('app', 'Credito Amortizacion'),
+                'creditoAmortizacion' => null,
         );
     }
 
@@ -84,7 +85,7 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
         $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
         $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
         $criteria->compare('observaciones', $this->observaciones, true);
-        $criteria->compare('credito_id', $this->credito_id);
+        $criteria->compare('credito_amortizacion_id', $this->credito_amortizacion_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

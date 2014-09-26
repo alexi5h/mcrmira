@@ -17,9 +17,12 @@
  * @property string $amortizacion
  * @property string $mora
  * @property string $estado
+ * @property string $saldo_contra
+ * @property string $saldo_favor
  * @property integer $credito_id
  *
  * @property Credito $credito
+ * @property CreditoDeposito[] $creditoDepositos
  */
 abstract class BaseCreditoAmortizacion extends AweActiveRecord {
 
@@ -39,17 +42,18 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
         return array(
             array('nro_cuota, fecha_pago, cuota, interes, amortizacion, estado, credito_id', 'required'),
             array('nro_cuota, credito_id', 'numerical', 'integerOnly'=>true),
-            array('cuota, interes, amortizacion, mora', 'length', 'max'=>10),
+            array('cuota, interes, amortizacion, mora, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('mora', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, nro_cuota, fecha_pago, cuota, interes, amortizacion, mora, estado, credito_id', 'safe', 'on'=>'search'),
+            array('mora, saldo_contra, saldo_favor', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, nro_cuota, fecha_pago, cuota, interes, amortizacion, mora, estado, saldo_contra, saldo_favor, credito_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
             'credito' => array(self::BELONGS_TO, 'Credito', 'credito_id'),
+            'creditoDepositos' => array(self::HAS_MANY, 'CreditoDeposito', 'credito_amortizacion_id'),
         );
     }
 
@@ -66,8 +70,11 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
                 'amortizacion' => Yii::t('app', 'Amortizacion'),
                 'mora' => Yii::t('app', 'Mora'),
                 'estado' => Yii::t('app', 'Estado'),
+                'saldo_contra' => Yii::t('app', 'Saldo Contra'),
+                'saldo_favor' => Yii::t('app', 'Saldo Favor'),
                 'credito_id' => Yii::t('app', 'Credito'),
                 'credito' => null,
+                'creditoDepositos' => null,
         );
     }
 
@@ -82,6 +89,8 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
         $criteria->compare('amortizacion', $this->amortizacion, true);
         $criteria->compare('mora', $this->mora, true);
         $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('saldo_contra', $this->saldo_contra, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
         $criteria->compare('credito_id', $this->credito_id);
 
         return new CActiveDataProvider($this, array(
