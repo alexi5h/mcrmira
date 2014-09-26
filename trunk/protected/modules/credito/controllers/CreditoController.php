@@ -48,6 +48,9 @@ class CreditoController extends AweController {
             $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos);
             $model->total_pagar = $info_Amortizacion['suma_cuota'];
             $model->total_interes = $info_Amortizacion['suma_interes'];
+            $model->saldo_contra=$model->total_pagar;
+            $model->saldo_favor=0;
+            $model->anulado=  Credito::NO_ANULADO;
 
             $tabla = $info_Amortizacion['tabla'];
             if ($model->save()) {
@@ -58,8 +61,9 @@ class CreditoController extends AweController {
                     $modelAmort->cuota = $tabla[$i]['cuota'];
                     $modelAmort->interes = $tabla[$i]['interes'];
                     $modelAmort->amortizacion = $tabla[$i]['amortizacion'];
-//                $modelAmort->mora = $tabla[$i]['mora'];
                     $modelAmort->estado = Credito::ESTADO_DEUDA;
+                    $modelAmort->saldo_contra=$modelAmort->cuota;
+                    $modelAmort->saldo_favor=0;
                     $modelAmort->credito_id = $model->id;
                     $modelAmort->save();
                 }

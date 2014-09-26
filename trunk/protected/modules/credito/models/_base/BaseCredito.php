@@ -21,9 +21,11 @@
  * @property string $total_interes
  * @property string $estado
  * @property integer $periodos
+ * @property string $saldo_contra
+ * @property string $saldo_favor
+ * @property string $anulado
  *
  * @property CreditoAmortizacion[] $creditoAmortizacions
- * @property CreditoDeposito[] $creditoDepositos
  */
 abstract class BaseCredito extends AweActiveRecord {
 
@@ -43,18 +45,20 @@ abstract class BaseCredito extends AweActiveRecord {
         return array(
             array('socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, total_pagar, interes, total_interes, estado, periodos', 'required'),
             array('socio_id, garante_id, sucursal_id, periodos', 'numerical', 'integerOnly'=>true),
-            array('cantidad_total, total_pagar, total_interes', 'length', 'max'=>10),
+            array('cantidad_total, total_pagar, total_interes, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('interes', 'length', 'max'=>3),
             array('estado', 'length', 'max'=>6),
+            array('anulado', 'length', 'max'=>2),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('id, socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, total_pagar, interes, total_interes, estado, periodos', 'safe', 'on'=>'search'),
+            array('anulado', 'in', 'range' => array('SI','NO')), // enum,
+            array('saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, total_pagar, interes, total_interes, estado, periodos, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
             'creditoAmortizacions' => array(self::HAS_MANY, 'CreditoAmortizacion', 'credito_id'),
-            'creditoDepositos' => array(self::HAS_MANY, 'CreditoDeposito', 'credito_id'),
         );
     }
 
@@ -75,8 +79,10 @@ abstract class BaseCredito extends AweActiveRecord {
                 'total_interes' => Yii::t('app', 'Total Interes'),
                 'estado' => Yii::t('app', 'Estado'),
                 'periodos' => Yii::t('app', 'Periodos'),
+                'saldo_contra' => Yii::t('app', 'Saldo Contra'),
+                'saldo_favor' => Yii::t('app', 'Saldo Favor'),
+                'anulado' => Yii::t('app', 'Anulado'),
                 'creditoAmortizacions' => null,
-                'creditoDepositos' => null,
         );
     }
 
@@ -95,6 +101,9 @@ abstract class BaseCredito extends AweActiveRecord {
         $criteria->compare('total_interes', $this->total_interes, true);
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('periodos', $this->periodos);
+        $criteria->compare('saldo_contra', $this->saldo_contra, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
+        $criteria->compare('anulado', $this->anulado, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
