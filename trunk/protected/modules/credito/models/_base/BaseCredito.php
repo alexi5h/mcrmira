@@ -16,9 +16,11 @@
  * @property string $fecha_credito
  * @property string $fecha_limite
  * @property string $cantidad_total
+ * @property string $total_pagar
  * @property string $interes
- * @property integer $periodos
+ * @property string $total_interes
  * @property string $estado
+ * @property integer $periodos
  *
  * @property CreditoAmortizacion[] $creditoAmortizacions
  * @property CreditoDeposito[] $creditoDepositos
@@ -39,14 +41,13 @@ abstract class BaseCredito extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, interes, estado', 'required'),
+            array('socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, total_pagar, interes, total_interes, estado, periodos', 'required'),
             array('socio_id, garante_id, sucursal_id, periodos', 'numerical', 'integerOnly'=>true),
-            array('cantidad_total', 'length', 'max'=>10),
+            array('cantidad_total, total_pagar, total_interes', 'length', 'max'=>10),
             array('interes', 'length', 'max'=>3),
             array('estado', 'length', 'max'=>6),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('periodos', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, interes, periodos, estado', 'safe', 'on'=>'search'),
+            array('id, socio_id, garante_id, sucursal_id, fecha_credito, fecha_limite, cantidad_total, total_pagar, interes, total_interes, estado, periodos', 'safe', 'on'=>'search'),
         );
     }
 
@@ -69,9 +70,11 @@ abstract class BaseCredito extends AweActiveRecord {
                 'fecha_credito' => Yii::t('app', 'Fecha Credito'),
                 'fecha_limite' => Yii::t('app', 'Fecha Limite'),
                 'cantidad_total' => Yii::t('app', 'Cantidad Total'),
+                'total_pagar' => Yii::t('app', 'Total Pagar'),
                 'interes' => Yii::t('app', 'Interes'),
-                'periodos' => Yii::t('app', 'Periodos'),
+                'total_interes' => Yii::t('app', 'Total Interes'),
                 'estado' => Yii::t('app', 'Estado'),
+                'periodos' => Yii::t('app', 'Periodos'),
                 'creditoAmortizacions' => null,
                 'creditoDepositos' => null,
         );
@@ -87,9 +90,11 @@ abstract class BaseCredito extends AweActiveRecord {
         $criteria->compare('fecha_credito', $this->fecha_credito, true);
         $criteria->compare('fecha_limite', $this->fecha_limite, true);
         $criteria->compare('cantidad_total', $this->cantidad_total, true);
+        $criteria->compare('total_pagar', $this->total_pagar, true);
         $criteria->compare('interes', $this->interes, true);
-        $criteria->compare('periodos', $this->periodos);
+        $criteria->compare('total_interes', $this->total_interes, true);
         $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('periodos', $this->periodos);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
