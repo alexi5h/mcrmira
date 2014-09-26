@@ -44,9 +44,25 @@ class CreditoController extends AweController {
             $fecha_lim = new DateTime(Util::FechaActual());
             $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
             $model->fecha_limite = $fecha_lim->format('Y-m-d H:i:s');
-            $tabla_Amortizacion=  Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos);
-            
+
+            $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos);
+            $model->total_pagar = $info_Amortizacion['suma_cuota'];
+            $model->total_interes = $info_Amortizacion['suma_interes'];
+
+            $tabla = $info_Amortizacion['tabla'];
             if ($model->save()) {
+                for ($i = 0; $i < count($tabla); $i++) {
+                    $modelAmort = new CreditoAmortizacion;
+                    $modelAmort->nro_cuota = $tabla[$i]['nro_cuota'];
+                    $modelAmort->fecha_pago = $tabla[$i]['fecha_pago'];
+                    $modelAmort->cuota = $tabla[$i]['cuota'];
+                    $modelAmort->interes = $tabla[$i]['interes'];
+                    $modelAmort->amortizacion = $tabla[$i]['amortizacion'];
+//                $modelAmort->mora = $tabla[$i]['mora'];
+                    $modelAmort->estado = Credito::ESTADO_DEUDA;
+                    $modelAmort->credito_id = $model->id;
+                    $modelAmort->save();
+                }
                 $this->redirect(array('admin'));
             }
         }

@@ -585,29 +585,43 @@ class Util {
     }
 
     /**
-     * Devuelve la tabla de amortización para créditos en MCRMIRA
+     * Devuelve la tabla de amortización para créditos en MCRMIRA incluido sumas totales
+     * @param type $cantidad_total
+     * @param type $interes
+     * @param type $periodos
      * @return type array()
      */
     public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null) {
         $tabla = array();
+        //Datos de cálculo
         $interes_mensual = ($interes / 12) * 0.01;
         $cuota = ($cantidad_total * $interes_mensual * 100) / (100 * (1 - pow(1 + $interes_mensual, -$periodos)));
-//        $cuota = $cuota_sinaprox;
         $fecha_temp = date("Y-m-d", strtotime(self::FechaActual() . " +1month"));
         $intereses = $cantidad_total * $interes_mensual;
         $amortizacion = $cuota - $intereses;
         $capital_vivo = $cantidad_total - $amortizacion;
 
+        //Datos suma total
+        $sumaInteres = $intereses;
+        $sumaCuota = $cuota;
+        $sumaAmort = $amortizacion;
+
         //Llenar tabla
         for ($i = 0; $i < $periodos; $i++) {
-            array_push($tabla, array('nro_cuota' => $i + 1, 'fecha_pago' => $fecha_temp, 'cuota' => $cuota, 'interes' => $intereses, 'mora'=>null, 'estado'=>null, 'credito_id'=>null,'amort'=>round($amortizacion,2)));
+            array_push($tabla, array('nro_cuota' => $i + 1, 'fecha_pago' => $fecha_temp, 'cuota' => round($cuota, 2), 'interes' => round($intereses, 2), 'amortizacion' => round($amortizacion, 2), 'mora' => null, 'estado' => null, 'credito_id' => null));
             $fecha_temp = date("Y-m-d", strtotime($fecha_temp . " +1month"));
             $intereses = $capital_vivo * $interes_mensual;
             $amortizacion = $cuota - $intereses;
             $capital_vivo = $capital_vivo - $amortizacion;
+            if ($i != $periodos - 1) {
+                $sumaInteres += $intereses;
+                $sumaCuota += $cuota;
+                $sumaAmort += $amortizacion;
+            }
         }
-        return $tabla;
+        return array('tabla' => $tabla, 'suma_cuota' => round($sumaCuota, 2), 'suma_interes' => round($sumaInteres, 2), 'suma_amortizacion' => round($sumaAmort, 2));
     }
+
 }
 
 ?>

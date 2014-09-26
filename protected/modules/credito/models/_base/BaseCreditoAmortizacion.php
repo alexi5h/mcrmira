@@ -14,6 +14,7 @@
  * @property string $fecha_pago
  * @property string $cuota
  * @property string $interes
+ * @property string $amortizacion
  * @property string $mora
  * @property string $estado
  * @property integer $credito_id
@@ -36,13 +37,13 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
 
     public function rules() {
         return array(
+            array('nro_cuota, fecha_pago, cuota, interes, amortizacion, estado, credito_id', 'required'),
             array('nro_cuota, credito_id', 'numerical', 'integerOnly'=>true),
-            array('cuota, interes, mora', 'length', 'max'=>10),
+            array('cuota, interes, amortizacion, mora', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
-            array('fecha_pago', 'safe'),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('nro_cuota, fecha_pago, cuota, interes, mora, estado, credito_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, nro_cuota, fecha_pago, cuota, interes, mora, estado, credito_id', 'safe', 'on'=>'search'),
+            array('mora', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, nro_cuota, fecha_pago, cuota, interes, amortizacion, mora, estado, credito_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -62,6 +63,7 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
                 'fecha_pago' => Yii::t('app', 'Fecha Pago'),
                 'cuota' => Yii::t('app', 'Cuota'),
                 'interes' => Yii::t('app', 'Interes'),
+                'amortizacion' => Yii::t('app', 'Amortizacion'),
                 'mora' => Yii::t('app', 'Mora'),
                 'estado' => Yii::t('app', 'Estado'),
                 'credito_id' => Yii::t('app', 'Credito'),
@@ -77,6 +79,7 @@ abstract class BaseCreditoAmortizacion extends AweActiveRecord {
         $criteria->compare('fecha_pago', $this->fecha_pago, true);
         $criteria->compare('cuota', $this->cuota, true);
         $criteria->compare('interes', $this->interes, true);
+        $criteria->compare('amortizacion', $this->amortizacion, true);
         $criteria->compare('mora', $this->mora, true);
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('credito_id', $this->credito_id);
