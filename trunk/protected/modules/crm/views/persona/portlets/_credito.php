@@ -1,4 +1,6 @@
 <?php
+//$modelAmortizacionesComp = CreditoAmortizacion::model()->en_deuda()->de_credito(15)->findAll();
+//var_dump($modelAmortizacionesComp);
 $creditos = new Credito;
 ?>
 <?php $validarDataCreditos = $creditos->de_socio($model->id)->en_deuda()->count() > 0 ?>
@@ -34,19 +36,21 @@ $creditos = new Credito;
 //                                'value' => '$data->sucursal',
 //                                'type' => 'raw',
 //                            ),
-                            array(
-                                'name' => 'fecha_credito',
-                                'value' => 'Util::FormatDate($data->fecha_credito, "d-m-Y")',
-                                'type' => 'raw',
-                            ),
-                            array(
-                                'name' => 'fecha_limite',
-                                'value' => 'Util::FormatDate($data->fecha_limite, "d-m-Y")',
-                                'type' => 'raw',
-                            ),
+//                            array(
+//                                'name' => 'fecha_credito',
+//                                'value' => 'Util::FormatDate($data->fecha_credito, "d-m-Y")',
+//                                'type' => 'raw',
+//                            ),
+//                            array(
+//                                'name' => 'fecha_limite',
+//                                'value' => 'Util::FormatDate($data->fecha_limite, "d-m-Y")',
+//                                'type' => 'raw',
+//                            ),
                             'cantidad_total',
 //                            'total_interes',
-//                            'total_pagar',
+                            'total_pagar',
+                            'saldo_contra',
+                            'saldo_favor',
                             /*
                               'interes',
                               array(
@@ -56,7 +60,7 @@ $creditos = new Credito;
                              */
                             array(
                                 'class' => 'CButtonColumn',
-                                'template' => '{delete}',
+                                'template' => '{update}{delete}',
                                 'afterDelete' => 'function(link,success,data){ 
                     if(success) {
                          $("#flashMsg").empty();
@@ -65,6 +69,14 @@ $creditos = new Credito;
                     }
                     }',
                                 'buttons' => array(
+                                    'update' => array(
+                                        'label' => '<button class="btn btn-warning"><i class="icon-dollar"></i></button>',
+                                        'options' => array('title' => 'Realizar deposito'),
+                                        'url' => '"credito/creditoDeposito/create?credito_id=".$data->id',
+                                        'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
+                                        'imageUrl' => false,
+                                        'visible' => '($data->estado=="PAGADO")?false:true',
+                                    ),
                                     'delete' => array(
                                         'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
                                         'options' => array('title' => 'Eliminar'),

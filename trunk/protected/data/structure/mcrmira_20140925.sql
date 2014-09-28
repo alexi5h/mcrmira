@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.24-log)
-# Date: 2014-09-25 22:46:31
+# Date: 2014-09-27 13:59:58
 # Generator: MySQL-Front 5.3  (Build 4.136)
 
 /*!40101 SET NAMES utf8 */;
@@ -33,7 +33,7 @@ CREATE TABLE `ahorro` (
   `saldo_favor` decimal(10,2) DEFAULT NULL,
   `anulado` enum('SI','NO') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "ahorro_deposito"
@@ -54,7 +54,7 @@ CREATE TABLE `ahorro_deposito` (
   PRIMARY KEY (`id`),
   KEY `fk_deposito_ahorro1_idx` (`ahorro_id`),
   CONSTRAINT `fk_deposito_ahorro1` FOREIGN KEY (`ahorro_id`) REFERENCES `ahorro` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "ahorro_extra"
@@ -126,7 +126,7 @@ CREATE TABLE `credito` (
   `saldo_favor` decimal(10,2) DEFAULT NULL,
   `anulado` enum('SI','NO') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "credito_amortizacion"
@@ -148,7 +148,7 @@ CREATE TABLE `credito_amortizacion` (
   PRIMARY KEY (`id`),
   KEY `fk_credito_amortizacion_credito1_idx` (`credito_id`),
   CONSTRAINT `fk_credito_amortizacion_credito1` FOREIGN KEY (`credito_id`) REFERENCES `credito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "credito_deposito"
@@ -165,10 +165,10 @@ CREATE TABLE `credito_deposito` (
   `cod_comprobante_su` varchar(45) NOT NULL,
   `fecha_comprobante_su` datetime NOT NULL,
   `observaciones` text,
-  `credito_amortizacion_id` int(11) NOT NULL,
+  `credito_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_credito_deposito_credito_amortizacion1_idx` (`credito_amortizacion_id`),
-  CONSTRAINT `fk_credito_deposito_credito_amortizacion1` FOREIGN KEY (`credito_amortizacion_id`) REFERENCES `credito_amortizacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_credito_deposito_credito1_idx` (`credito_id`),
+  CONSTRAINT `fk_credito_deposito_credito1` FOREIGN KEY (`credito_id`) REFERENCES `credito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
@@ -238,7 +238,7 @@ CREATE TABLE `cruge_session` (
   `ipaddressout` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idsession`),
   KEY `crugesession_iduser` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "cruge_system"
@@ -299,8 +299,8 @@ CREATE TABLE `cruge_fieldvalue` (
   PRIMARY KEY (`idfieldvalue`),
   KEY `fk_cruge_fieldvalue_cruge_user1` (`iduser`),
   KEY `fk_cruge_fieldvalue_cruge_field1` (`idfield`),
-  CONSTRAINT `fk_cruge_fieldvalue_cruge_user1` FOREIGN KEY (`iduser`) REFERENCES `cruge_user` (`iduser`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cruge_fieldvalue_cruge_field1` FOREIGN KEY (`idfield`) REFERENCES `cruge_field` (`idfield`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_cruge_fieldvalue_cruge_field1` FOREIGN KEY (`idfield`) REFERENCES `cruge_field` (`idfield`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cruge_fieldvalue_cruge_user1` FOREIGN KEY (`iduser`) REFERENCES `cruge_user` (`iduser`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
@@ -480,9 +480,9 @@ CREATE TABLE `persona` (
   KEY `fk_cliente_direccion2_idx` (`direccion_negocio_id`),
   KEY `fk_persona_persona_etapa1_idx` (`persona_etapa_id`),
   KEY `fk_persona_actividad_economica1_idx` (`actividad_economica_id`),
-  CONSTRAINT `fk_cliente_sucursal1` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_direccion1` FOREIGN KEY (`direccion_domicilio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_direccion2` FOREIGN KEY (`direccion_negocio_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_persona_persona_etapa1` FOREIGN KEY (`persona_etapa_id`) REFERENCES `persona_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_persona_actividad_economica1` FOREIGN KEY (`actividad_economica_id`) REFERENCES `actividad_economica` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_cliente_sucursal1` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_persona_actividad_economica1` FOREIGN KEY (`actividad_economica_id`) REFERENCES `actividad_economica` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_persona_persona_etapa1` FOREIGN KEY (`persona_etapa_id`) REFERENCES `persona_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;

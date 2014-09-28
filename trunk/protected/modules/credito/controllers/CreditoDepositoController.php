@@ -30,21 +30,105 @@ class CreditoDepositoController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
-        $model = new CreditoDeposito;
+    public function actionCreate($credito_id = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            $result = array();
+            $model = new CreditoDeposito;
+            $model->credito_id = $credito_id;
+            $model->fecha_comprobante_su = Util::FechaActual();
+            $this->performAjaxValidation($model, 'credito-deposito-form');
+            $validadorPartial = true;
+            if (isset($_POST['CreditoDeposito'])) {
+                $modelCredito = Credito::model()->findByPk($model->credito_id);
+                $modelAmortizacion = CreditoAmortizacion::model()->en_deuda()->de_credito($model->credito_id)->findAll();
 
-        $this->performAjaxValidation($model, 'credito-deposito-form');
+                $model->attributes = $_POST['CreditoDeposito'];
+                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-s h:m:s');
+                $result['cantidadExtra'] = 0;
+                if ($model->cantidad <= $modelCredito->saldo_contra) {
+                    $modelCredito->saldo_contra-=$model->cantidad;
+                    $modelCredito->saldo_favor+=$model->cantidad;
+                    $cantidadTemp = $model->cantidad;
+                    $cont = 0;
+                    while ($cantidadTemp != 0) {
+                        $modelAmortizacionTemp = $modelAmortizacion[$cont];
+                        if ($cantidadTemp <= $modelAmortizacionTemp->saldo_contra) {
+                            $modelAmortizacionTemp->saldo_contra-=$cantidadTemp;
+                            $modelAmortizacionTemp->saldo_favor+=$cantidadTemp;
+                            if ($modelAmortizacionTemp->saldo_contra == 0) {
+                                $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
+                            }
+                            $cantidadTemp = 0;
+                        } else {
+                            $cantidadTemp-=$modelAmortizacionTemp->saldo_contra;
+                            $modelAmortizacionTemp->saldo_contra = 0;
+                            $modelAmortizacionTemp->saldo_favor = $modelAmortizacionTemp->cuota;
+                            $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
+                        }
+                        CreditoAmortizacion::model()->updateByPk($modelAmortizacionTemp->id, array(
+                            'estado' => $modelAmortizacionTemp->estado,
+                            'saldo_contra' => $modelAmortizacionTemp->saldo_contra,
+                            'saldo_favor' => $modelAmortizacionTemp->saldo_favor,
+                        ));
+                        $cont++;
+                    }
+                    $modelAmortizacionesComp = CreditoAmortizacion::model()->en_deuda()->de_credito($model->credito_id)->findAll();
+                    if (count($modelAmortizacionesComp) == 0) {
+                        $modelCredito->saldo_contra = 0;
+                        $modelCredito->saldo_favor = $modelCredito->total_pagar;
+                    }
+                } else {
+                    $result['cantidadExtra'] = $model->cantidad - $modelCredito->saldo_contra;
+                    $result['socio_id'] = $modelCredito->socio_id;
+                    $modelCredito->saldo_contra = 0;
+                    $modelCredito->saldo_favor = $modelCredito->total_pagar;
+                    foreach ($modelAmortizacion as $amortizacion) {
+                        $amortizacion->estado = CreditoAmortizacion::ESTADO_PAGADO;
+                        $amortizacion->saldo_contra = 0;
+                        $amortizacion->saldo_favor = $amortizacion->cuota;
+                        CreditoAmortizacion::model()->updateByPk($amortizacion->id, array(
+                            'estado' => $amortizacion->estado,
+                            'saldo_contra' => $amortizacion->saldo_contra,
+                            'saldo_favor' => $amortizacion->saldo_favor,
+                        ));
+                    }
+                    //Creación de un nuevo ahorro voluntario si existe una cantidad extra
+                    $modelAhorro = new Ahorro;
+                    $modelAhorro->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA_CREDITO;
+                    $modelAhorro->socio_id = $modelCredito->socio_id;
+                    $modelAhorro->cantidad = $result['cantidadExtra'];
+                    $modelAhorro->fecha = Util::FechaActual();
+                    $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
+                    $modelAhorro->tipo = Ahorro::TIPO_VOLUNTARIO;
+                    $modelAhorro->saldo_contra = 0;
+                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
+                    $modelAhorro->anulado = Ahorro::ANULADO_NO;
+                    $modelAhorro->save();
+                    $result['message'] = 'Pago del crédito completo, la cantidad extra de valor $' . $result['cantidadExtra'] . ' se guardó en un nuevo ahorro Voluntario';
+                }
+                if ($model->save()) {
+                    $result['success'] = true;
+                    if ($modelCredito->saldo_contra == 0) {
+                        $modelCredito->estado = Credito::ESTADO_PAGADO;
+                    }
+                    Credito::model()->updateByPk($model->credito_id, array(
+                        'estado' => $modelCredito->estado,
+                        'saldo_contra' => $modelCredito->saldo_contra,
+                        'saldo_favor' => $modelCredito->saldo_favor,
+                    ));
+                } else {
+                    $result['message'] = 'Error al guardar el depósito';
+                }
+                $validadorPartial = false;
+                echo json_encode($result);
+            }
 
-        if (isset($_POST['CreditoDeposito'])) {
-            $model->attributes = $_POST['CreditoDeposito'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            if ($validadorPartial) {
+                $this->renderPartial('_form_modal_deposito', array(
+                    'model' => $model,
+                        ), false, true);
             }
         }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
     }
 
     /**
