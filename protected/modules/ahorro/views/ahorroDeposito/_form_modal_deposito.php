@@ -22,7 +22,6 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                 'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
                 'enableClientValidation' => false,
             ));
-            ;
             ?>
 
             <!--<div class="span12 ">-->

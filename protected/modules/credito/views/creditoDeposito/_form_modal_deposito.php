@@ -6,14 +6,24 @@ Yii::app()->clientScript->scriptMap['jquery.js'] = false;
 Yii::app()->clientScript->scriptMap['jquery.yiigridview.js'] = false;
 
 Util::tsRegisterAssetJs('_form_modal_deposito.js');
+Yii::app()->clientScript->registerScript('scroll', "
+   $(document).on('click','.yiiPager li a',function() {
+      $('html, body').animate({scrollTop:$('#credito-amortizacion-grid').offset().top - 20}, 'slow');
+   });
+");
 ?>
-<div class="modal-header">
+
+<div class="modal-header span12" style="margin: 0px">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4><i class="icon-user"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . CreditoDeposito::label(1); ?></h4>
+    <!--<div class="span6">-->
+    <h4 class="span6" style="margin: 10px 0px 0px 0px"><i class="icon-dollar"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . CreditoDeposito::label(1); ?></h4>
+    <!--</div>-->
+    <h4 class="span6" style="margin: 10px 0px 0px 0px"><i class="icon-money"></i> Detalle de Amortización</h4>
+
 </div>
 <div class="modal-body">
     <div class="row-fluid">
-        <div class="span6">
+        <div class="span6" style="padding-top: 10px">
             <?php
             /** @var CreditoDepositoController $this */
             /** @var CreditoDeposito $model */
@@ -22,28 +32,30 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                 'type' => 'horizontal',
                 'id' => 'credito-deposito-form',
                 'enableAjaxValidation' => true,
-                'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
+                'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
                 'enableClientValidation' => false,
             ));
             ?>
 
             <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
-
-            <?php echo $form->textFieldRow($model, 'entidad_bancaria_id') ?>
-
+            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
-
-            <?php echo $form->textFieldRow($model, 'fecha_comprobante_entidad') ?>
-
-            <?php echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
-
+            <?php
+            echo $form->datepickerRow(
+                    $model, 'fecha_comprobante_entidad', array(
+                'options' => array(
+                    'language' => 'es',
+                    'readonly' => 'readonly',
+                ),
+                    )
+            );
+            ?>
+            <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
-
-            <?php echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
-
+            <?php // echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
             <?php echo $form->textAreaRow($model, 'observaciones', array('rows' => 3, 'cols' => 50)) ?>
 
-            <?php echo $form->dropDownListRow($model, 'credito_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Credito::model()->findAll(), 'id', Credito::representingColumn())) ?>
+            <?php // echo $form->dropDownListRow($model, 'credito_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Credito::model()->findAll(), 'id', Credito::representingColumn())) ?>
 
             <div id="buttondeposito">
                 <?php
@@ -52,7 +64,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                     'icon' => 'ok',
                     'label' => Yii::t('AweCrud.app', 'Save'),
                     'htmlOptions' => array(
-                        'onClick' => 'AjaxAtualizacionInformacion("#ahorro-deposito-form")'
+                        'onClick' => 'AjaxActualizacionInformacion("#credito-deposito-form")'
                     ),
                 ));
                 ?>
@@ -62,38 +74,32 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
         </div>
         <div class="span6">
             <?php
-            $depositos = AhorroDeposito::model()->searchByAhorro($model->ahorro_id);
-            $this->widget('ext.bootstrap.widgets.TbGridView', array(
-                'id' => 'deposito-grid',
-                'type' => '',
-                "template" => "{items}{pager}",
-                'dataProvider' => $depositos,
+            $amortizaciones = CreditoAmortizacion::model()->de_credito($model->credito_id)->search();
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'credito-amortizacion-grid',
+//                'type' => 'striped bordered hover advance',
+                'template' => '{items}{summary}{pager}',
+                'dataProvider' => $amortizaciones,
                 'columns' => array(
+//                    'nro_cuota',
                     array(
-                        'header' => 'Sucursal',
-                        'name' => 'sucursal_comprobante_id',
-                        'value' => '$data->sucursal_comprobante_id',
+                        'header' => 'Nº',
+                        'name' => 'nro_cuota',
+                        'value' => '$data->nro_cuota',
                         'type' => 'raw',
                     ),
+                    'fecha_pago',
+                    'cuota',
+                    'saldo_contra',
+                    'saldo_favor',
+//                    'interes',
+//                    'mora',
                     array(
-                        'header' => 'Cod. Comprobante',
-                        'name' => 'cod_comprobante_su',
-                        'value' => '$data->cod_comprobante_su',
-                        'type' => 'raw',
-                    ),
-                    array(
-                        'header' => 'Fecha',
-                        'name' => 'fecha_comprobante_su',
-                        'value' => '$data->fecha_comprobante_su',
-                        'type' => 'raw',
-                    ),
-                    array(
-                        'header' => 'Cantidad',
-                        'name' => 'cantidad',
-                        'value' => '$data->cantidad',
-                        'type' => 'raw',
+                        'name' => 'estado',
+                        'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                     ),
                 ),
+                'htmlOptions'=>array('style'=>'padding-top: 5px;'),
             ));
             ?>
         </div>

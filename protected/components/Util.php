@@ -610,10 +610,10 @@ class Util {
         for ($i = 0; $i < $periodos; $i++) {
             array_push($tabla, array('nro_cuota' => $i + 1, 'fecha_pago' => $fecha_temp, 'cuota' => round($cuota, 2), 'interes' => round($intereses, 2), 'amortizacion' => round($amortizacion, 2), 'mora' => null, 'estado' => null, 'credito_id' => null));
             $fecha_temp = date("Y-m-d", strtotime($fecha_temp . " +1month"));
-            $intereses = $capital_vivo * $interes_mensual;
-            $amortizacion = $cuota - $intereses;
-            $capital_vivo = $capital_vivo - $amortizacion;
             if ($i != $periodos - 1) {
+                $intereses = $capital_vivo * $interes_mensual;
+                $amortizacion = $cuota - $intereses;
+                $capital_vivo = $capital_vivo - $amortizacion;
                 $sumaInteres += $intereses;
                 $sumaCuota += $cuota;
                 $sumaAmort += $amortizacion;

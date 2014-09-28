@@ -93,6 +93,53 @@ class AhorroController extends AweController {
         }
     }
 
+    public function actionCrearVoluntario($socio_id = null, $cantidad = null) {
+//        $model = new Ahorro('create');
+
+        if (Yii::app()->request->isAjaxRequest) {
+            $result = array();
+//            $ahorro_extra = AhorroExtra::model()->findByPk($ahorro_extra_id);
+            $validadorPartial = true;
+            $modelVol = new Ahorro;
+            $this->performAjaxValidation($modelVol, 'ahorroVoluntario-form');
+            $modelVol->cantidad = $cantidad;
+            $modelVol->tipo = Ahorro::TIPO_VOLUNTARIO;
+            $modelVol->socio_id = $socio_id;
+            if (isset($_POST['Ahorro'])) {
+//                $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
+                $modelVol->attributes = $_POST['Ahorro'];
+//                $modelVol->fecha = Util::FormatDate($modelVol->fecha, 'Y-m-d');
+                if ($modelVol->tipo == Ahorro::TIPO_VOLUNTARIO) {
+                    $modelVol->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA_CREDITO;
+//                    $modelVol->socio_id = $modelAhorro->socio_id;
+                    $modelVol->fecha = Util::FechaActual();
+                    $modelVol->estado = Ahorro::ESTADO_PAGADO;
+                    $modelVol->saldo_contra = 0;
+                    $modelVol->saldo_favor = $modelVol->cantidad;
+                    $modelVol->anulado = Ahorro::ANULADO_NO;
+                    if ($modelVol->save()) {
+//                        AhorroExtra::model()->deleteByPk($ahorro_extra_id);
+                        $result['success'] = true;
+                        $result['message'] = "Ahorro ingresado correctamente";
+                    }
+                    if (!$result['success']) {
+                        $modelVol->delete();
+                        $result['message'] = "Error al registrar el nuevo ahorro.";
+                    }
+                    $validadorPartial = false;
+                    echo json_encode($result);
+                }
+            }
+            $identificador = true; //identificador de crédito para el renderPartial
+            if ($validadorPartial) {
+                $this->renderPartial('_decision_modal', array(
+                    'modelVol' => $modelVol,
+                    'identificador' => $identificador,
+                        ), false, true);
+            }
+        }
+    }
+
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
