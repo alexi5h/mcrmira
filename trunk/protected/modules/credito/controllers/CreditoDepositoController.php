@@ -108,7 +108,9 @@ class CreditoDepositoController extends AweController {
                 }
                 if ($model->save()) {
                     $result['success'] = true;
+                    $result['saldo_contra'] = $modelCredito->saldo_contra;
                     if ($modelCredito->saldo_contra == 0) {
+                        $result['pagado'] = true;
                         $modelCredito->estado = Credito::ESTADO_PAGADO;
                     }
                     Credito::model()->updateByPk($model->credito_id, array(

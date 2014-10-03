@@ -34,23 +34,21 @@ $this->menu = array(
                     'name' => 'garante_id',
                     'value' => '$data->garante->nombre_formato'
                 ),
-                array(
-                    'name' => 'sucursal_id',
-                    'value' => '$data->sucursal',
-                    'type' => 'raw',
-                ),
+//                array(
+//                    'name' => 'sucursal_id',
+//                    'value' => '$data->sucursal',
+//                    'type' => 'raw',
+//                ),
                 'fecha_credito',
                 'fecha_limite',
                 'cantidad_total',
                 'total_interes',
                 'total_pagar',
-                /*
-                  'interes',
-                  array(
-                  'name' => 'estado',
-                  'filter' => array('DEUDA'=>'DEUDA','PAGADO'=>'PAGADO',),
-                  ),
-                 */
+//                'interes',
+                array(
+                    'name' => 'estado',
+                    'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
+                ),
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',

@@ -4,13 +4,8 @@
 /** @var AweActiveForm $form */
 Yii::app()->clientScript->scriptMap['jquery.js'] = false;
 Yii::app()->clientScript->scriptMap['jquery.yiigridview.js'] = false;
-
 Util::tsRegisterAssetJs('_form_modal_deposito.js');
-Yii::app()->clientScript->registerScript('scroll', "
-   $(document).on('click','.yiiPager li a',function() {
-      $('html, body').animate({scrollTop:$('#credito-amortizacion-grid').offset().top - 20}, 'slow');
-   });
-");
+$credito=  Credito::model()->findByPk($model->credito_id);
 ?>
 
 <div class="modal-header span12" style="margin: 0px">
@@ -57,19 +52,7 @@ Yii::app()->clientScript->registerScript('scroll', "
 
             <?php // echo $form->dropDownListRow($model, 'credito_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Credito::model()->findAll(), 'id', Credito::representingColumn())) ?>
 
-            <div id="buttondeposito">
-                <?php
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'type' => 'success',
-                    'icon' => 'ok',
-                    'label' => Yii::t('AweCrud.app', 'Save'),
-                    'htmlOptions' => array(
-                        'onClick' => 'AjaxActualizacionInformacion("#credito-deposito-form")'
-                    ),
-                ));
-                ?>
-            </div>
-            <?php $this->endWidget(); ?>
+
 
         </div>
         <div class="span6">
@@ -99,18 +82,37 @@ Yii::app()->clientScript->registerScript('scroll', "
                         'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                     ),
                 ),
-                'htmlOptions'=>array('style'=>'padding-top: 5px;'),
+                'htmlOptions' => array('style' => 'padding-top: 5px;'),
             ));
             ?>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'icon' => 'remove',
-        'label' => Yii::t('AweCrud.app', 'Cerrar'),
-        'htmlOptions' => array('data-dismiss' => 'modal'),
-    ));
-    ?>
+    <div class="span4">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'type' => 'success',
+            'icon' => 'ok',
+            'label' => Yii::t('AweCrud.app', 'Save'),
+            'htmlOptions' => array(
+                'onClick' => 'AjaxActualizacionInformacion("#credito-deposito-form")',
+                'style' => 'float: left;',
+            ),
+        ));
+        ?>
+        <?php $this->endWidget(); ?>
+    </div>
+    <div id="centrado" class="span4">
+        <h4 style="margin: 5px 0px 0px 0px; text-align: center">$<?php echo $credito->saldo_contra ?> por pagar</h4>
+    </div>
+    <div class="span4">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'icon' => 'remove',
+            'label' => Yii::t('AweCrud.app', 'Cerrar'),
+            'htmlOptions' => array('data-dismiss' => 'modal'),
+        ));
+        ?>
+    </div>
 </div>
