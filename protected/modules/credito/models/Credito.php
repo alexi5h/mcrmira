@@ -10,8 +10,8 @@ class Credito extends BaseCredito {
     //Porcentaje del interes
     const INTERES = 5;
     //anulado: SI,NO
-    const NO_ANULADO='NO';
-    const ANULADO='SI';
+    const NO_ANULADO = 'NO';
+    const ANULADO = 'SI';
 
     /**
      * @return Credito
@@ -46,7 +46,7 @@ class Credito extends BaseCredito {
             array('periodos, cantidad_total', 'numerical'),
         ));
     }
-    
+
     public function scopes() {
         return array(
             'en_deuda' => array(
@@ -57,7 +57,7 @@ class Credito extends BaseCredito {
             ),
         );
     }
-    
+
     public function de_socio($socio_id) {
         $this->getDbCriteria()->mergeWith(
                 array(
@@ -68,6 +68,33 @@ class Credito extends BaseCredito {
                 )
         );
         return $this;
+    }
+
+    /*     * total tes dashboard* */
+
+    public function getTotalCreditos() {
+//select  sum(total_pagar) from  credito where anulado='NO' and estado='PAGADO'
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(total_pagar) as total')
+                ->from('credito')
+                ->where('anulado=:anulado_no and estado=:estado_pagado'
+                , array(':anulado_no' => self::NO_ANULADO, ':estado_pagado' => self::ESTADO_PAGADO));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
+    }
+    public function getTotalCreditosDeuda() {
+//select  sum(saldo_contra) from  credito where anulado='NO' and estado='DEUDA'
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(saldo_contra) as total')
+                ->from('credito')
+                ->where('anulado=:anulado_no and estado=:estado_pagado'
+                , array(':anulado_no' => self::NO_ANULADO, ':estado_pagado' => self::ESTADO_DEUDA));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
 }

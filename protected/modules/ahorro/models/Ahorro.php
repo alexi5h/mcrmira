@@ -17,10 +17,11 @@ class Ahorro extends BaseAhorro {
     const ANULADO_SI = 'SI';
     const ANULADO_NO = 'NO';
     //descripciones
-    const DESCRIPCION_CANTIDAD_EXTRA='Ahorro Voluntario creado por cantidad sobrante en un depósito';
-    const DESCRIPCION_CANTIDAD_EXTRA_CREDITO='Ahorro Voluntario creado por cantidad sobrante en un depósito de crédito';
-    
+    const DESCRIPCION_CANTIDAD_EXTRA = 'Ahorro Voluntario creado por cantidad sobrante en un depósito';
+    const DESCRIPCION_CANTIDAD_EXTRA_CREDITO = 'Ahorro Voluntario creado por cantidad sobrante en un depósito de crédito';
+
     public $cantidad_extra;
+
     /**
      * @return Ahorro
      */
@@ -220,6 +221,68 @@ class Ahorro extends BaseAhorro {
         if ($this->cantidad > 10 && $this->tipo == self::TIPO_OBLIGATORIO) {
             $this->addError($attribute, 'La cantidad sobrepasa lo establecido para un ahorro obligatorio');
         }
+    }
+
+    /*     * *Consultas para dashboard* */
+
+    public function getTotalAhorros_Obligatorios_y_Primer_Pago() {
+//        select sum(ad.cantidad) from ahorro a
+//        inner join ahorro_deposito ad on a.id = ad.ahorro_id
+//        where a.tipo = 'OBLIGATORIO' or a.tipo = 'PRIMER_PAGO';
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(ad.cantidad)as total')
+                ->from('ahorro a')
+                ->join('ahorro_deposito ad', 'a.id = ad.ahorro_id')
+                ->where('a.tipo =:tipo_obligatorio or a.tipo =:tipo_preimer_pago'
+                , array(':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
+    }
+
+    public function getTotalAhorros_Voluntarios() {
+//        select sum(saldo_favor) as total from ahorro
+//        where tipo = 'VOLUNTARIO'
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(saldo_favor) as total')
+                ->from('ahorro')
+                ->where('tipo =:tipo_voluntario'
+                , array(':tipo_voluntario' => self::TIPO_VOLUNTARIO));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
+    }
+
+    public function getTotalAhorros_extras() {
+//        select sum(ae.cantidad) from ahorro a
+//        inner join ahorro_extra ae on a.id = ae.ahorro_id
+//        where ae.anulado = 'NO'
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(ae.cantidad) as total')
+                ->from('ahorro a')
+                ->join('ahorro_extra ae', 'a.id = ae.ahorro_id')
+                ->where('ae.anulado =:anulado_no'
+                , array(':anulado_no' => self::ANULADO_NO));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
+    }
+
+    public function getTotalAhorros_Deuda() {
+//        select sum(a.saldo_contra) from ahorro a
+//        where a.tipo = 'OBLIGATORIO' or a.tipo = 'PRIMER_PAGO'
+//        and estado = 'DEUDA' and a.anulado='NO';
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('sum(a.saldo_contra) as total')
+                ->from('ahorro a')
+                ->where('a.anulado =:anulado_no and a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
+                , array(':anulado_no' => self::ANULADO_NO, ':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
+        $result = $command->queryAll();
+        return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
 }
