@@ -56,7 +56,7 @@ abstract class BaseAhorro extends AweActiveRecord {
 
     public function relations() {
         return array(
-            'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'pago_id'),
+            'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'ahorro_id'),
             'ahorroExtras' => array(self::HAS_MANY, 'AhorroExtra', 'ahorro_id'),
         );
     }
