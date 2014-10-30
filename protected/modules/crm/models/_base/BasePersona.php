@@ -14,6 +14,7 @@
  * @property string $segundo_nombre
  * @property string $apellido_paterno
  * @property string $apellido_materno
+ * @property string $tipo_identificacion
  * @property string $cedula
  * @property string $ruc
  * @property string $telefono
@@ -60,27 +61,28 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, carga_familiar, actividad_economica_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
             array('apellido_paterno, apellido_materno', 'length', 'max'=>30),
+            array('tipo_identificacion, sexo', 'length', 'max'=>1),
             array('ruc', 'length', 'max'=>13),
             array('telefono, celular', 'length', 'max'=>24),
             array('email', 'length', 'max'=>255),
             array('tipo', 'length', 'max'=>7),
             array('estado', 'length', 'max'=>8),
-            array('sexo', 'length', 'max'=>1),
             array('discapacidad', 'length', 'max'=>2),
             array('estado_civil', 'length', 'max'=>10),
             array('descripcion, fecha_actualizacion', 'safe'),
+            array('tipo_identificacion', 'in', 'range' => array('C','P')), // enum,
             array('tipo', 'in', 'range' => array('CLIENTE','GARANTE')), // enum,
             array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
             array('sexo', 'in', 'range' => array('M','F')), // enum,
             array('discapacidad', 'in', 'range' => array('SI','NO')), // enum,
             array('estado_civil', 'in', 'range' => array('SOLTERO','CASADO','DIVORCIADO','VIUDO')), // enum,
             array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'safe', 'on'=>'search'),
+            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, tipo_identificacion, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -104,6 +106,7 @@ abstract class BasePersona extends AweActiveRecord {
                 'segundo_nombre' => Yii::t('app', 'Segundo Nombre'),
                 'apellido_paterno' => Yii::t('app', 'Apellido Paterno'),
                 'apellido_materno' => Yii::t('app', 'Apellido Materno'),
+                'tipo_identificacion' => Yii::t('app', 'Tipo Identificacion'),
                 'cedula' => Yii::t('app', 'Cedula'),
                 'ruc' => Yii::t('app', 'Ruc'),
                 'telefono' => Yii::t('app', 'Telefono'),
@@ -143,6 +146,7 @@ abstract class BasePersona extends AweActiveRecord {
         $criteria->compare('segundo_nombre', $this->segundo_nombre, true);
         $criteria->compare('apellido_paterno', $this->apellido_paterno, true);
         $criteria->compare('apellido_materno', $this->apellido_materno, true);
+        $criteria->compare('tipo_identificacion', $this->tipo_identificacion, true);
         $criteria->compare('cedula', $this->cedula, true);
         $criteria->compare('ruc', $this->ruc, true);
         $criteria->compare('telefono', $this->telefono, true);

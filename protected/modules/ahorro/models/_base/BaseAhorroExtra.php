@@ -15,6 +15,7 @@
  * @property string $anulado
  * @property integer $ahorro_id
  * @property integer $socio_id
+ * @property integer $usuario_creacion_id
  *
  * @property Ahorro $ahorro
  */
@@ -34,13 +35,13 @@ abstract class BaseAhorroExtra extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('cantidad, ahorro_id, socio_id', 'required'),
-            array('ahorro_id, socio_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, ahorro_id, socio_id, usuario_creacion_id', 'required'),
+            array('ahorro_id, socio_id, usuario_creacion_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
             array('anulado', 'length', 'max'=>2),
             array('anulado', 'in', 'range' => array('SI','NO')), // enum,
             array('anulado', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, cantidad, fecha_creacion, anulado, ahorro_id, socio_id', 'safe', 'on'=>'search'),
+            array('id, cantidad, fecha_creacion, anulado, ahorro_id, socio_id, usuario_creacion_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -61,6 +62,7 @@ abstract class BaseAhorroExtra extends AweActiveRecord {
                 'anulado' => Yii::t('app', 'Anulado'),
                 'ahorro_id' => Yii::t('app', 'Ahorro'),
                 'socio_id' => Yii::t('app', 'Socio'),
+                'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
                 'ahorro' => null,
         );
     }
@@ -74,6 +76,7 @@ abstract class BaseAhorroExtra extends AweActiveRecord {
         $criteria->compare('anulado', $this->anulado, true);
         $criteria->compare('ahorro_id', $this->ahorro_id);
         $criteria->compare('socio_id', $this->socio_id);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

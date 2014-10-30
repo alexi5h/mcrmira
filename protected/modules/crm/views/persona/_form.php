@@ -34,7 +34,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php
         echo $form->radioButtonListRow(
-                $model, 'sexo', array('M' => 'Masculino', 'F' => 'Femenino',), array('labelOptions' => array('style' => 'display:inline-block'),
+                $model, 'tipo_identificacion', array('C' => 'Cédula', 'P' => 'Pasaporte',), array('labelOptions' => array('style' => 'display:inline-block'),
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
@@ -42,6 +42,18 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->textFieldRow($model, 'cedula', array('maxlength' => 10, 'class' => 'span4')) ?>
 
         <?php echo $form->textFieldRow($model, 'ruc', array('maxlength' => 13, 'class' => 'span4')) ?>
+        
+        <?php
+        $actividades_eco = ActividadEconomica::model()->activos()->findAll();
+
+        echo $form->select2Row($model, 'actividad_economica_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
+        ));
+        ?>
 
         <?php echo $form->textFieldRow($model, 'telefono', array('maxlength' => 24, 'class' => 'span4')) ?>
 
@@ -80,17 +92,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
-
+        
         <?php
-        $actividades_eco = ActividadEconomica::model()->activos()->findAll();
-
-        echo $form->select2Row($model, 'actividad_economica_id', array(
-            'asDropDownList' => true,
-            'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
-            'options' => array(
-                'placeholder' => '-- Seleccione --',
-            )
-        ));
+        echo $form->radioButtonListRow(
+                $model, 'sexo', array('M' => 'Masculino', 'F' => 'Femenino',), array('labelOptions' => array('style' => 'display:inline-block'),
+            'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
+        );
         ?>
 
         <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')    ?>

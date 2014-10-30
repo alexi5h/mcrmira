@@ -38,34 +38,34 @@ $this->menu = array(
                         'name' => 'provincia_id',
                         'value' => '$data->provincia',
                     ),
-                    array(
-                        'class' => 'CButtonColumn',
-                        'template' => '{update} {delete}',
-                        'afterDelete' => 'function(link,success,data){ 
-                    if(success) {
-                         $("#flashMsg").empty();
-                         $("#flashMsg").css("display","");
-                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
-                    }
-                    }',
-                        'buttons' => array(
-                            'update' => array(
-                                'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                                'options' => array('title' => 'Actualizar'),
-                                'imageUrl' => false,
-                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-                            ),
-                            'delete' => array(
-                                'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-                                'options' => array('title' => 'Eliminar'),
-                                'imageUrl' => false,
-                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-                            ),
-                        ),
-                        'htmlOptions' => array(
-                            'width' => '80px'
-                        )
-                    ),
+//                    array(
+//                        'class' => 'CButtonColumn',
+//                        'template' => '{update} {delete}',
+//                        'afterDelete' => 'function(link,success,data){ 
+//                    if(success) {
+//                         $("#flashMsg").empty();
+//                         $("#flashMsg").css("display","");
+//                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
+//                    }
+//                    }',
+//                        'buttons' => array(
+//                            'update' => array(
+//                                'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+//                                'options' => array('title' => 'Actualizar'),
+//                                'imageUrl' => false,
+//                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+//                            ),
+//                            'delete' => array(
+//                                'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+//                                'options' => array('title' => 'Eliminar'),
+//                                'imageUrl' => false,
+//                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+//                            ),
+//                        ),
+//                        'htmlOptions' => array(
+//                            'width' => '80px'
+//                        )
+//                    ),
                 ),
             ));
             ?>

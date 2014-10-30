@@ -13,6 +13,7 @@
  * @property string $cantidad
  * @property integer $ahorro_id
  * @property integer $ahorro_retiro_id
+ * @property integer $usuario_creacion_id
  *
  * @property AhorroRetiro $ahorroRetiro
  */
@@ -32,10 +33,10 @@ abstract class BaseAhorroRetiroDetalle extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('cantidad, ahorro_id, ahorro_retiro_id', 'required'),
-            array('ahorro_id, ahorro_retiro_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, ahorro_id, ahorro_retiro_id, usuario_creacion_id', 'required'),
+            array('ahorro_id, ahorro_retiro_id, usuario_creacion_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
-            array('id, cantidad, ahorro_id, ahorro_retiro_id', 'safe', 'on'=>'search'),
+            array('id, cantidad, ahorro_id, ahorro_retiro_id, usuario_creacion_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -54,6 +55,7 @@ abstract class BaseAhorroRetiroDetalle extends AweActiveRecord {
                 'cantidad' => Yii::t('app', 'Cantidad'),
                 'ahorro_id' => Yii::t('app', 'Ahorro'),
                 'ahorro_retiro_id' => Yii::t('app', 'Ahorro Retiro'),
+                'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
                 'ahorroRetiro' => null,
         );
     }
@@ -65,6 +67,7 @@ abstract class BaseAhorroRetiroDetalle extends AweActiveRecord {
         $criteria->compare('cantidad', $this->cantidad, true);
         $criteria->compare('ahorro_id', $this->ahorro_id);
         $criteria->compare('ahorro_retiro_id', $this->ahorro_retiro_id);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -35,6 +35,7 @@ class Persona extends BasePersona {
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
             'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
             'actividad_economica' => null,
+            'cedula'=> Yii::t('app', 'Identificación'),
                 )
         );
     }
