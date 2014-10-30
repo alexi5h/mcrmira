@@ -19,6 +19,7 @@
  * @property string $fecha_comprobante_su
  * @property string $observaciones
  * @property integer $credito_id
+ * @property integer $usuario_creacion_id
  *
  * @property Credito $credito
  */
@@ -38,13 +39,13 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, credito_id', 'required'),
-            array('entidad_bancaria_id, sucursal_comprobante_id, credito_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, credito_id, usuario_creacion_id', 'required'),
+            array('entidad_bancaria_id, sucursal_comprobante_id, credito_id, usuario_creacion_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
             array('cod_comprobante_entidad, cod_comprobante_su', 'length', 'max'=>45),
             array('observaciones', 'safe'),
             array('observaciones', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, observaciones, credito_id', 'safe', 'on'=>'search'),
+            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, observaciones, credito_id, usuario_creacion_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -69,6 +70,7 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
                 'fecha_comprobante_su' => Yii::t('app', 'Fecha Comprobante Su'),
                 'observaciones' => Yii::t('app', 'Observaciones'),
                 'credito_id' => Yii::t('app', 'Credito'),
+                'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
                 'credito' => null,
         );
     }
@@ -86,6 +88,7 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
         $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
         $criteria->compare('observaciones', $this->observaciones, true);
         $criteria->compare('credito_id', $this->credito_id);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

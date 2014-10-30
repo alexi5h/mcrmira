@@ -7,7 +7,7 @@
  * property or method in class "AhorroRetiro".
  *
  * Columns in table "ahorro_retiro" available as properties of the model,
- * and there are no model relations.
+ * followed by relations of table "ahorro_retiro" available as properties of the model.
  *
  * @property integer $id
  * @property integer $socio_id
@@ -16,7 +16,9 @@
  * @property string $fecha_retiro
  * @property string $comprobante_retiro
  * @property integer $entidad_bancaria_id
+ * @property integer $usuario_creacion_id
  *
+ * @property AhorroRetiroDetalle[] $ahorroRetiroDetalles
  */
 abstract class BaseAhorroRetiro extends AweActiveRecord {
 
@@ -34,16 +36,17 @@ abstract class BaseAhorroRetiro extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('socio_id, sucursal_id, cantidad, fecha_retiro, comprobante_retiro, entidad_bancaria_id', 'required'),
-            array('socio_id, sucursal_id, entidad_bancaria_id', 'numerical', 'integerOnly'=>true),
+            array('socio_id, sucursal_id, cantidad, fecha_retiro, comprobante_retiro, entidad_bancaria_id, usuario_creacion_id', 'required'),
+            array('socio_id, sucursal_id, entidad_bancaria_id, usuario_creacion_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
             array('comprobante_retiro', 'length', 'max'=>45),
-            array('id, socio_id, sucursal_id, cantidad, fecha_retiro, comprobante_retiro, entidad_bancaria_id', 'safe', 'on'=>'search'),
+            array('id, socio_id, sucursal_id, cantidad, fecha_retiro, comprobante_retiro, entidad_bancaria_id, usuario_creacion_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
+            'ahorroRetiroDetalles' => array(self::HAS_MANY, 'AhorroRetiroDetalle', 'ahorro_retiro_id'),
         );
     }
 
@@ -59,6 +62,8 @@ abstract class BaseAhorroRetiro extends AweActiveRecord {
                 'fecha_retiro' => Yii::t('app', 'Fecha Retiro'),
                 'comprobante_retiro' => Yii::t('app', 'Comprobante Retiro'),
                 'entidad_bancaria_id' => Yii::t('app', 'Entidad Bancaria'),
+                'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
+                'ahorroRetiroDetalles' => null,
         );
     }
 
@@ -72,6 +77,7 @@ abstract class BaseAhorroRetiro extends AweActiveRecord {
         $criteria->compare('fecha_retiro', $this->fecha_retiro, true);
         $criteria->compare('comprobante_retiro', $this->comprobante_retiro, true);
         $criteria->compare('entidad_bancaria_id', $this->entidad_bancaria_id);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
