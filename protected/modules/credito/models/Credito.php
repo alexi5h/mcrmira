@@ -55,6 +55,12 @@ class Credito extends BaseCredito {
                     ':estado' => self::ESTADO_DEUDA,
                 ),
             ),
+            'aprobados' => array(
+                'condition' => 't.credito_etapa_id = :etapa',
+                'params' => array(
+                    ':etapa' => 3,
+                ),
+            ),
         );
     }
 

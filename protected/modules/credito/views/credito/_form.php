@@ -1,4 +1,9 @@
 <?php
+//$test=  Persona::model()->activos()->condicion_credito2();
+//$test=Persona::model()->findAll();
+//var_dump($test);
+//var_dump($test->getData());
+Util::tsRegisterAssetJs('_form.js');
 /** @var CreditoController $this */
 /** @var Credito $model */
 /** @var AweActiveForm $form */
@@ -20,8 +25,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="widget-body">
         <?php
-        $model_persona = Persona::model()->condicion_credito();
-        $model_garante = Persona::model()->condicion_credito();
+        $model_persona = Persona::model()->condicion_socio_credito();
+        $model_garante = Persona::model()->condicion_garante_credito($model->id);
         ?>
         <?php
         echo $form->select2Row($model, 'socio_id', array(
@@ -36,10 +41,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php
         echo $form->select2Row($model, 'garante_id', array(
             'asDropDownList' => true,
-            'data' => CHtml::listData($model_garante, 'id', 'nombre_formato'),
+            'data' => null,
             'options' => array(
                 'placeholder' => '-- Seleccione --',
-            )
+            ),
+//            'htmlOptions'=>array(
+//                'readonly' => 'readonly',
+//            ),
         ));
         ?>
 

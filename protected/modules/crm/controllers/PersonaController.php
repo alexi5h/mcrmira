@@ -252,7 +252,7 @@ class PersonaController extends AweController {
             Persona::model()->updateByPk($id, array(
                 'usuario_actualizacion_id' => Yii::app()->user->id,
                 'fecha_actualizacion' => Util::FechaActual(),
-                'aprobado' => $value=='false' ? 0 : 1
+                'aprobado' => $value == 'false' ? 0 : 1
                     )
             );
         }
@@ -294,6 +294,25 @@ class PersonaController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'persona-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    public function actionAjaxGetGarantes() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['socio_id']) && $_POST['socio_id'] > 0) {
+                $data = Persona::model()->condicion_garante_credito($_POST['socio_id']);
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre_formato');
+                    echo CHtml::tag('option', array('value' => '', 'id' => 'p','selected'=>'selected'), '- Seleccione -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un socio -', true);
+            }
         }
     }
 

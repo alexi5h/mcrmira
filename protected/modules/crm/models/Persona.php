@@ -12,8 +12,8 @@ class Persona extends BasePersona {
     const TIPO_CLIENTE = 'CLIENTE';
     const TIPO_GARANTE = 'GARANTE';
     //sexo: MASCULINO,FEMENINO
-    const SEXO_MASCULINO='MASCULINO';
-    const SEXO_FEMENINO='FEMENINO';
+    const SEXO_MASCULINO = 'MASCULINO';
+    const SEXO_FEMENINO = 'FEMENINO';
 
     private $nombre_formato;
     private $cedula_nombre_formato;
@@ -35,7 +35,7 @@ class Persona extends BasePersona {
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
             'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
             'actividad_economica' => null,
-            'cedula'=> Yii::t('app', 'Identificación'),
+            'cedula' => Yii::t('app', 'Identificación'),
                 )
         );
     }
@@ -131,11 +131,11 @@ class Persona extends BasePersona {
             ),
         );
     }
-    
+
     public function nombre_sexo($ident) {
-        if($ident=='M'){
+        if ($ident == 'M') {
             return self::SEXO_MASCULINO;
-        }else{
+        } else {
             return self::SEXO_FEMENINO;
         }
         return null;
@@ -157,16 +157,37 @@ class Persona extends BasePersona {
     }
 
     /*
-     * devuelve los socios activos que pueden acceder a un crédito o ser garantes (que estén al día en sus pagos)
+     * devuelve los socios activos que pueden acceder a un crédito (que estén al día en sus pagos)
      */
 
-    public function condicion_credito() {
-        /* select cedula from persona pe
-          where not exists(select * from ahorro ah
-          where ah.socio_id=pe.id and ah.estado='DEUDA') */
+    public function condicion_socio_credito() {
+        /* select * from persona pe
+          where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
+          and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
         $garantes = Persona::model()->activos()->findAll(array(
-            'join' => 'LEFT JOIN ahorro ah ON t.id=ah.socio_id and ah.estado="DEUDA"',
-            'condition' => 'ah.socio_id is null',
+            'condition' => '(t.estado=:estado) and (t.id not in (select ah.socio_id from ahorro ah where ah.estado="DEUDA"))
+          and (t.id not in (select cr.socio_id from credito cr where cr.estado="DEUDA"))',
+            'params' => array(
+                ':estado' => self::ESTADO_ACTIVO,
+            ),
+        ));
+        return $garantes;
+    }
+    /*
+     * devuelve los socios activos que pueden ser garantes para dar un crédito (que estén al día en sus pagos)
+     */
+
+    public function condicion_garante_credito($socio_id=null) {
+        /* select * from persona pe
+          where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
+          and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
+        $garantes = Persona::model()->activos()->findAll(array(
+            'condition' => '(t.estado=:estado) and (t.id not in (select ah.socio_id from ahorro ah where ah.estado="DEUDA"))
+          and (t.id not in (select cr.socio_id from credito cr where cr.estado="DEUDA")) and (t.id!=:socio_id)',
+            'params' => array(
+                ':estado' => self::ESTADO_ACTIVO,
+                ':socio_id' => $socio_id,
+            ),
         ));
         return $garantes;
     }
@@ -214,7 +235,7 @@ class Persona extends BasePersona {
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
         $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
-        $this->cedula_nombre_formato = $this->cedula .' - '. $return;
+        $this->cedula_nombre_formato = $this->cedula . ' - ' . $return;
         return $this->cedula_nombre_formato;
     }
 
