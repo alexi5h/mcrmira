@@ -34,6 +34,7 @@ class CreditoDepositoController extends AweController {
         if (Yii::app()->request->isAjaxRequest) {
             $result = array();
             $model = new CreditoDeposito;
+            $model->usuario_creacion_id = Yii::app()->user->id;
             $model->credito_id = $credito_id;
             $model->fecha_comprobante_su = Util::FechaActual();
             $this->performAjaxValidation($model, 'credito-deposito-form');

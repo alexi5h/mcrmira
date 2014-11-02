@@ -6,6 +6,7 @@ $this->menu = array(
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
+$baseUrl = Yii::app()->baseUrl;
 ?>
 <div id="flashMsg"  class="flash-messages">
 
@@ -50,33 +51,50 @@ $this->menu = array(
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                 ),
                 array(
-                    'class' => 'CButtonColumn',
-                    'template' => '{update} {delete}',
-                    'afterDelete' => 'function(link,success,data){ 
-                    if(success) {
-                         $("#flashMsg").empty();
-                         $("#flashMsg").css("display","");
-                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
-                    }
-                    }',
-                    'buttons' => array(
-                        'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-                        ),
-                        'delete' => array(
-                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-                            'options' => array('title' => 'Eliminar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-                        ),
-                    ),
+                    'value'=>'$data->credito_etapa_id==3 ? "" : CHtml::link("<i class=\"icon-tasks\"></i>", Yii::app()->createUrl("credito/credito/kanban",array("id"=>$data->id)),array("class" => "btn btn-primary","title"=>"Gestionar Etapa"))',
                     'htmlOptions' => array(
                         'width' => '80px'
-                    )
+                    ),
+                    'type'=>'raw',
                 ),
+//                array(
+//                    'class' => 'CButtonColumn',
+//                    'template' => '{stagemanage} {delete}',
+//                    'afterDelete' => 'function(link,success,data){ 
+//                    if(success) {
+//                         $("#flashMsg").empty();
+//                         $("#flashMsg").css("display","");
+//                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
+//                    }
+//                    }',
+//                    'buttons' => array(
+//                        'stagemanage' => array(
+//                            'label' => '<button class="btn btn-primary"><i class="icon-tasks"></i> Gestionar Etapa</button>',
+//                            'label' => 'CHtml::link(\"<i class=\"icon-tasks\"></i>\", Yii::app()->createUrl("credito/credito/kanban",array("id"=>$data->id)),array("class" => "btn btn-primary","title"=>"Gestionar Etapa"))',
+//                            'options' => array(
+//                                'title' => 'Gestionar Etapa',
+////                                'href'=>$baseUrl.'/credito/credito/kanban?id=$data->id',
+//                            ),
+//                            'imageUrl' => false,
+////                            'url' => '$data->id',
+//                        ),
+////                        'update' => array(
+////                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+////                            'options' => array('title' => 'Actualizar'),
+////                            'imageUrl' => false,
+////                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+////                        ),
+//                        'delete' => array(
+//                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+//                            'options' => array('title' => 'Eliminar'),
+//                            'imageUrl' => false,
+//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+//                        ),
+//                    ),
+//                    'htmlOptions' => array(
+//                        'width' => '80px'
+//                    )
+//                ),
             ),
         ));
         ?>
