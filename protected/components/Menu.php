@@ -60,6 +60,7 @@ class Menu {
                     array('label' => 'Etapa Crédito', 'url' => array('/credito/creditoEtapa/admin'), 'access' => 'action_creditoEtapa_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoEtapa')),
                 )),
             array('label' => '<i class="icon-leaf"></i> Actividad Económica', 'url' => array('/crm/actividadEconomica/admin'), 'access' => 'action_actividadEconomica_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'actividadEconomica')),
+            array('label' => '<i class="icon-upload-alt"></i> Importar CSV', 'url' => array('/importCsv/'), 'access' => 'action_actividadEconomica_admin', 'active_rules' => array('module' => 'importCsv', 'controller' => 'default')),
         );
 
         return self::generateMenu($items);
