@@ -36,6 +36,9 @@ return array(
         'pagos',
         'ahorro',
         'credito',
+        'importCsv' => array(
+            'path' => 'uploads/importCsv/', // path to folder for saving csv file and file with import params
+        ),
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
