@@ -31,7 +31,8 @@ $this->menu = array(
             $this->widget('ext.bootstrap.widgets.TbGridView', array(
                 'id' => 'persona-grid',
                 'type' => 'striped bordered hover advance',
-                'dataProvider' => $model->de_tipo(Persona::TIPO_CLIENTE)->activos()->search(),
+                'dataProvider' => $model->activos()->search(),
+//                'dataProvider' => $model->de_tipo(Persona::TIPO_CLIENTE)->activos()->search(),
                 'columns' => array(
                     array(
                         'name' => 'nombre_formato',
