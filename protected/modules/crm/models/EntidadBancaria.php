@@ -31,7 +31,7 @@ class EntidadBancaria extends BaseEntidadBancaria {
     public function rules() {
         return array(
             array('nombre, direccion_id, estado, num_cuenta, tipo_cuenta', 'required'),
-            array('direccion_id', 'numerical', 'integerOnly' => true),
+            array('direccion_id, num_cuenta', 'numerical', 'integerOnly' => true),
             array('nombre', 'length', 'max' => 45),
             array('estado', 'length', 'max' => 8),
             array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
