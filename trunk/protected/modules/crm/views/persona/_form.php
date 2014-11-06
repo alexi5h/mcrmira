@@ -107,16 +107,16 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php // echo $form->textFieldRow($model, 'aprobado')    ?>
         <?php
-        $sucursales = Sucursal::model()->activos()->findAll();
+//        $sucursales = Sucursal::model()->activos()->findAll();
 
-        if (!empty($sucursales)) {
-            $sucursales = array(null => '-- Seleccione --') + CHtml::listData($sucursales, 'id', 'nombre');
-        } else {
-            $sucursales = array(null => '-- Ninguno --');
-        }
+//        if (!empty($sucursales)) {
+//            $sucursales = array(null => '-- Seleccione --') + CHtml::listData($sucursales, 'id', 'nombre');
+//        } else {
+//            $sucursales = array(null => '-- Ninguno --');
+//        }
         ?>
 
-        <?php echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',)) ?>
+<!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',)) ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {

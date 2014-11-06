@@ -23,7 +23,13 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
             'enableClientValidation' => true,
         ));
         ?>
-
+        <?php  echo $form->select2Row($modelCrugeSucursal, 'sucursal_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData(Sucursal::model()->findAll(), 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Seleccione sucursal --',
+            )
+        )); ?>
 
         <?php echo $form->textFieldRow($model, 'username', array('class' => 'span4')) ?>
         <?php echo $form->textFieldRow($model, 'email', array('class' => 'span4')) ?>
@@ -31,9 +37,9 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
         echo $form->textFieldRow($model, 'newPassword', array(
             'class' => 'span12',
             'append' => CHtml::ajaxLink(
-                    "<i class='icon-refresh'></i>"
-                    , Yii::app()->user->ui->ajaxGenerateNewPasswordUrl
-                    , array('success' => 'js:fnSuccess', 'error' => 'js:fnError')
+                "<i class='icon-refresh'></i>"
+                , Yii::app()->user->ui->ajaxGenerateNewPasswordUrl
+                , array('success' => 'js:fnSuccess', 'error' => 'js:fnError')
             )
         ))
         ?>

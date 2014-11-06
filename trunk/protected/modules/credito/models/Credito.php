@@ -2,7 +2,8 @@
 
 Yii::import('credito.models._base.BaseCredito');
 
-class Credito extends BaseCredito {
+class Credito extends BaseCredito
+{
 
     //    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
@@ -16,38 +17,44 @@ class Credito extends BaseCredito {
     /**
      * @return Credito
      */
-    public static function model($className = __CLASS__) {
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
-    public static function label($n = 1) {
+    public static function label($n = 1)
+    {
         return Yii::t('app', 'Credito|Creditos', $n);
     }
 
-    public function relations() {
+    public function relations()
+    {
         return array_merge(parent::relations(), array(
-            'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
-            'garante' => array(self::BELONGS_TO, 'Persona', 'garante_id'),
-            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
-                )
+                'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
+                'garante' => array(self::BELONGS_TO, 'Persona', 'garante_id'),
+                'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
+            )
         );
     }
 
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array_merge(parent::attributeLabels(), array(
-            'periodos' => Yii::t('app', 'Plazo (meses)'),
-                )
+                'periodos' => Yii::t('app', 'Plazo (meses)'),
+            )
         );
     }
 
-    public function rules() {
+    public function rules()
+    {
         return array_merge(parent::rules(), array(
             array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total, periodos', 'required'),
             array('periodos, cantidad_total', 'numerical'),
         ));
     }
 
-    public function scopes() {
+    public function scopes()
+    {
         return array(
             'en_deuda' => array(
                 'condition' => 't.estado = :estado',
@@ -64,43 +71,60 @@ class Credito extends BaseCredito {
         );
     }
 
-    public function de_socio($socio_id) {
+    public function de_socio($socio_id)
+    {
         $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => 't.socio_id = :socio_id',
-                    'params' => array(
-                        ':socio_id' => $socio_id
-                    ),
-                )
+            array(
+                'condition' => 't.socio_id = :socio_id',
+                'params' => array(
+                    ':socio_id' => $socio_id
+                ),
+            )
         );
         return $this;
     }
 
     /*     * total tes dashboard* */
 
-    public function getTotalCreditos() {
+    public function getTotalCreditos()
+    {
 //select  sum(total_pagar) from  credito where anulado='NO' and estado='PAGADO'
 
 
         $command = Yii::app()->db->createCommand()
-                ->select('sum(total_pagar) as total')
-                ->from('credito')
-                ->where('anulado=:anulado_no and estado=:estado_pagado'
+            ->select('sum(total_pagar) as total')
+            ->from('credito')
+            ->where('anulado=:anulado_no and estado=:estado_pagado'
                 , array(':anulado_no' => self::NO_ANULADO, ':estado_pagado' => self::ESTADO_PAGADO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
-    public function getTotalCreditosDeuda() {
+
+    public function getTotalCreditosDeuda()
+    {
 //select  sum(saldo_contra) from  credito where anulado='NO' and estado='DEUDA'
 
 
         $command = Yii::app()->db->createCommand()
-                ->select('sum(saldo_contra) as total')
-                ->from('credito')
-                ->where('anulado=:anulado_no and estado=:estado_pagado'
+            ->select('sum(saldo_contra) as total')
+            ->from('credito')
+            ->where('anulado=:anulado_no and estado=:estado_pagado'
                 , array(':anulado_no' => self::NO_ANULADO, ':estado_pagado' => self::ESTADO_DEUDA));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
+    public function beforeSave()
+    {
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        $this->sucursal_id = Util::getSucursal();
+        return parent::beforeSave();
+    }
+
+    public function beforeValidate()
+    {
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        $this->sucursal_id = Util::getSucursal();
+        return parent::beforeValidate();
+    }
 }

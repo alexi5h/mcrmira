@@ -16,8 +16,9 @@ class CreditoDeposito extends BaseCreditoDeposito
     {
         return Yii::t('app', 'Depósito de Crédito|Depósitos de Crédito', $n);
     }
-    
-    public function searchByCredito($credito_id) {
+
+    public function searchByCredito($credito_id)
+    {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
@@ -37,5 +38,23 @@ class CreditoDeposito extends BaseCreditoDeposito
             ),
         ));
     }
+
+
+    public function beforeSave()
+    {
+        $this->fecha_comprobante_su = Util::FechaActual();
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        $this->sucursal_comprobante_id = Util::getSucursal();
+        return parent::beforeSave();
+    }
+
+    public function beforeValidate()
+    {
+        $this->fecha_comprobante_su = Util::FechaActual();
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        $this->sucursal_comprobante_id = Util::getSucursal();
+        return parent::beforeValidate();
+    }
+
 
 }

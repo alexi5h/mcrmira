@@ -17,4 +17,16 @@ class AhorroRetiroDetalle extends BaseAhorroRetiroDetalle
         return Yii::t('app', 'AhorroRetiroDetalle|AhorroRetiroDetalles', $n);
     }
 
+    public function beforeSave()
+    {
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
+
+    public function beforeValidate()
+    {
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        return parent::beforeValidate();
+    }
+
 }
