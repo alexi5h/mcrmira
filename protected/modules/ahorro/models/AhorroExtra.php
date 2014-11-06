@@ -4,8 +4,8 @@ Yii::import('ahorro.models._base.BaseAhorroExtra');
 
 class AhorroExtra extends BaseAhorroExtra
 {
-    const ANULADO='SI';
-    const NO_ANULADO='NO';
+    const ANULADO = 'SI';
+    const NO_ANULADO = 'NO';
 
 
     /**
@@ -19,6 +19,20 @@ class AhorroExtra extends BaseAhorroExtra
     public static function label($n = 1)
     {
         return Yii::t('app', 'AhorroExtra|AhorroExtras', $n);
+    }
+
+    public function beforeSave()
+    {
+        $this->fecha_creacion = Util::FechaActual();
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
+
+    public function beforeValidate()
+    {
+        $this->fecha_creacion = Util::FechaActual();
+        $this->usuario_creacion_id = Yii::app()->user->id;
+        return parent::beforeValidate();
     }
 
 }

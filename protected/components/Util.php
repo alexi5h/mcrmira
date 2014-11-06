@@ -3,9 +3,10 @@
 /**
  * Description of Util
  *
- * 
+ *
  */
-class Util {
+class Util
+{
 
     /**
      * fucnion para el guardado de multiples registrsos
@@ -13,19 +14,20 @@ class Util {
      * @param type $tableName
      * @return type
      */
-    public static function saveBulk($inserValues, $tableName) {
+    public static function saveBulk($inserValues, $tableName)
+    {
         try {
             $builder = Yii::app()->db->getSchema()->getCommandBuilder();
             $comand = $builder->createMultipleInsertCommand($tableName, $inserValues);
             $countRow = $comand->execute();
             $lastRow = $builder->dbConnection->createCommand('SELECT max(id) FROM ' . $builder->dbConnection->quoteTableName($tableName))->queryScalar();
             $idNewRows = $builder->dbConnection->createCommand()
-                    ->select("id")
-                    ->from($tableName)
-                    ->where("id > :ini and id <= :end", array(
-                ':ini' => ((int) $lastRow - $countRow),
-                ':end' => (int) $lastRow
-            ));
+                ->select("id")
+                ->from($tableName)
+                ->where("id > :ini and id <= :end", array(
+                    ':ini' => ((int)$lastRow - $countRow),
+                    ':end' => (int)$lastRow
+                ));
             return $idNewRows->queryColumn();
         } catch (Exception $exc) {
             return array();
@@ -37,13 +39,14 @@ class Util {
      * @param type $Rol
      * @return array
      */
-    public static function getUsersRol($Rol) {
+    public static function getUsersRol($Rol)
+    {
         $command = Yii::app()->db->createCommand()
-                ->select("cu.iduser as id,"
-                        . "cu.username as nombre")
-                ->from("cruge_authassignment ata")
-                ->leftJoin('cruge_user cu', 'ata.userid = cu.iduser')
-                ->Where("ata.itemname = :rol", array(':rol' => $Rol));
+            ->select("cu.iduser as id,"
+                . "cu.username as nombre")
+            ->from("cruge_authassignment ata")
+            ->leftJoin('cruge_user cu', 'ata.userid = cu.iduser')
+            ->Where("ata.itemname = :rol", array(':rol' => $Rol));
         return $command->queryAll();
     }
 
@@ -52,7 +55,8 @@ class Util {
      * @param type $rolPermitido
      * @return boolean
      */
-    public static function validarRol($rolUser, $rolPermitido) {
+    public static function validarRol($rolUser, $rolPermitido)
+    {
 
         $acceso = false;
         $cont = 0;
@@ -80,12 +84,13 @@ class Util {
      * @param type $user_id 'id del usuario'
      * @return string $rol
      */
-    public static function getRolUser($user_id) {
+    public static function getRolUser($user_id)
+    {
         $consulta = Yii::app()->db->createCommand()
-                ->select('as.itemname as rol')
-                ->from('cruge_authassignment as')
-                ->where('(as.userid =:userid)', array(':userid' => $user_id))
-                ->queryAll();
+            ->select('as.itemname as rol')
+            ->from('cruge_authassignment as')
+            ->where('(as.userid =:userid)', array(':userid' => $user_id))
+            ->queryAll();
         return $consulta;
     }
 
@@ -95,7 +100,8 @@ class Util {
      * @param int $caracteresPermitidos
      * @return string
      */
-    public static function Truncate($texto, $caracteresPermitidos) {
+    public static function Truncate($texto, $caracteresPermitidos)
+    {
         if (strlen($texto) > $caracteresPermitidos) {
             $texto = substr($texto, 0, $caracteresPermitidos);
             $texto = $texto . '...';
@@ -104,11 +110,12 @@ class Util {
     }
 
     /**
-     * @param array $elementos 
+     * @param array $elementos
      * altera el valor en forma acendente desde 0 de una determinada columna
      * @return array $NewArray nuevo array con la columna 'id' con valores desde 0 a $elementos.length
      */
-    public static function AlterIdAttrArray($elementos) {
+    public static function AlterIdAttrArray($elementos)
+    {
         $NewArray = array();
         foreach ($elementos as $key => $value) {
             $value['id'] = ($key + 1) . '';
@@ -118,14 +125,15 @@ class Util {
     }
 
     /**
-     * 
+     *
      * @param matriz $arrayInicial
      * @param array $NewKeys las nuevas claves
      * @param array $val los nuevos valores
      * agraga las claves y valores a cara array de la matriz $arrayInicial
      * @return array $NewArray
      */
-    public static function AddNewKeyArray($arrayInicial, $NewKeys, $val) {
+    public static function AddNewKeyArray($arrayInicial, $NewKeys, $val)
+    {
         $NewArray = array();
         foreach ($arrayInicial as $key => $elemento) {
             for ($i = 0; $i < count($NewKeys); $i++) {
@@ -145,7 +153,8 @@ class Util {
      * retona la fecha actual del sistema
      * @return string
      */
-    public static function FechaActual() {
+    public static function FechaActual()
+    {
         $tz_object = new DateTimeZone('America/Guayaquil');
         $datetime = new DateTime();
         $datetime->setTimezone($tz_object);
@@ -157,7 +166,8 @@ class Util {
      * @param type $tipo
      * @return string
      */
-    public static function FormatDate($fechaAt, $tipo) {
+    public static function FormatDate($fechaAt, $tipo)
+    {
         if ($fechaAt) {
             $date = str_replace('/', '-', $fechaAt);
             $fechaAt = date($tipo, strtotime($date));
@@ -165,7 +175,8 @@ class Util {
         }
     }
 
-    public static function nicetime($date) {
+    public static function nicetime($date)
+    {
         if ($date) {
             $periods = array("segundo", "minuto", "hora", "día", "semana", "mes", "año");
             $lengths = array("60", "60", "24", "7", "4.35", "12");
@@ -190,16 +201,17 @@ class Util {
 
             if ($difference != 1) {
                 if ($j == 5)
-                    $periods[$j].= "es";
+                    $periods[$j] .= "es";
                 else
-                    $periods[$j].= "s";
+                    $periods[$j] .= "s";
             }
 
             return "{$tense} $difference $periods[$j]";
         }
     }
 
-    public static function nicetimeColor($date) {
+    public static function nicetimeColor($date)
+    {
         if ($date) {
             $now = time();
             $unix_date = strtotime($date);
@@ -220,7 +232,8 @@ class Util {
      * @param array $operations
      * @return boolean resultado
      */
-    public static function checkAccess($operations) {
+    public static function checkAccess($operations)
+    {
         if (is_array($operations)) {
             foreach ($operations as $operation) {
                 if (Yii::app()->user->checkAccess($operation)) {
@@ -237,7 +250,8 @@ class Util {
      * @param int $position the position of the JavaScript code.
      * @see CClientScript::registerScriptFile
      */
-    public static function tsRegisterAssetJs($jsFile, $position = CClientScript::POS_END) {
+    public static function tsRegisterAssetJs($jsFile, $position = CClientScript::POS_END)
+    {
         $assetsPath = Yii::getPathOfAlias(YiiBase::app()->getController()->getModule()->getId() . '.assets');
         $assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, true);
         Yii::app()->getClientScript()->registerScriptFile($assetsUrl . "/js/" . YiiBase::app()->getController()->getId() . "/" . $jsFile, $position);
@@ -249,7 +263,8 @@ class Util {
      * @param type $data
      * @return type
      */
-    public static function getGridViewId($options, $data) {
+    public static function getGridViewId($options, $data)
+    {
         foreach ($options as &$option) {
             if (strpos($option, '$data->') !== false) {
                 $propiedad = str_replace('$data->', '', $option);
@@ -263,20 +278,22 @@ class Util {
      * // regresa la cadena sin subguiones("_"), y los convierte en espacios, ademas de poner letra capital
      * @param type $nomre
      */
-    public static function setName($nombre) {
+    public static function setName($nombre)
+    {
         $nombre = str_replace('_', " ", $nombre);
         return ucwords(strtolower($nombre)); //retorna la primera letra de cada palabra en mayusculas
     }
 
     /**
      * recibe 2 fechas, 1)el tiempo de creacion. 2)El tiempo que toma en resolverse una incidencia y devuelve
-     * el tiempo restante para resolverla en horas 
+     * el tiempo restante para resolverla en horas
      * @param type $fCreacion
      * @param type $tIncidencia
      * @return type
      */
     //TODO: Borrar en caso que ya no se utilice
-    public static function semaforoUtil($fCreacion, $tIncidencia) {
+    public static function semaforoUtil($fCreacion, $tIncidencia)
+    {
         $tiempo = (strtotime($fCreacion . "+ {$tIncidencia} hour") - strtotime(date("Y-m-d H:i:s"))) / 3600;
         $minutos = round(($tiempo - floor($tiempo)) * 60);
         if ($minutos < 10) {//si los minutos son menores a 10, setear con 0 adelante
@@ -290,12 +307,13 @@ class Util {
 
     /**
      * recive 2 fechas, 1)el tiempo de creacion. 2)El tiempo que toma en resolverse una incidencia y devuelve
-     * el tiempo restante para resolverla en horas 
+     * el tiempo restante para resolverla en horas
      * @param type $fCreacion
      * @param type $tIncidencia
      * @return type
      */
-    public static function semaforo($fGestion) {
+    public static function semaforo($fGestion)
+    {
         $tiempoDias = (strtotime($fGestion) - strtotime(date("Y-m-d H:i:s"))) / 86400;
         $dias = floor($tiempoDias);
         $tiempoHoras = ($tiempoDias - $dias) * 24;
@@ -325,7 +343,8 @@ class Util {
      * @param type $yearsMax
      * @return array
      */
-    public static function getYears($yearsMin = 10, $yearsMax = 0) {
+    public static function getYears($yearsMin = 10, $yearsMax = 0)
+    {
         $year = intval(date("Y"));
         $years = array();
         for ($i = $year - $yearsMin; $i <= $year + $yearsMax; $i++) {
@@ -341,7 +360,8 @@ class Util {
      * @param type $boolean
      * @param Controller $controller
      */
-    public static function llamarPdf($controller, $titulo, $pag_render, $options, $boolean, $reporte_nombre) {
+    public static function llamarPdf($controller, $titulo, $pag_render, $options, $boolean, $reporte_nombre)
+    {
 
         //PDF
         # You can easily override default constructor's params
@@ -437,7 +457,8 @@ class Util {
      * @param type $arrayOptions
      * @return String $options
      */
-    public static function toSelectOptions($arrayOptions) {
+    public static function toSelectOptions($arrayOptions)
+    {
         $options = array("" => " - Seleccione - ") + CHtml::listData($arrayOptions, 'id', TipificacionIncidencia::representingColumn());
         $htmlOptions = "";
         foreach ($options as $key => $option) {
@@ -450,17 +471,20 @@ class Util {
      * Traduce la fecha actual a español
      * @return type
      */
-    public static function traducirFechaActual() {
+    public static function traducirFechaActual()
+    {
         $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         return date('d') . " de " . $meses[date('n') - 1] . " del " . date('Y');
     }
 
-    public static function quitarScripts() {
+    public static function quitarScripts()
+    {
         Yii::app()->clientScript->scriptMap['*.js'] = false;
         Yii::app()->clientScript->scriptMap['*.css'] = false;
     }
 
-    public static function obtenerMeses() {
+    public static function obtenerMeses()
+    {
         return array(
             'Enero',
             'Febrero',
@@ -476,19 +500,23 @@ class Util {
             'Diciembre');
     }
 
-    public static function obtenerMesesCortos() {
+    public static function obtenerMesesCortos()
+    {
         return array('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic');
     }
 
-    public static function obtenerDias() {
+    public static function obtenerDias()
+    {
         return array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado');
     }
 
-    public static function obtenerDiasCortos() {
+    public static function obtenerDiasCortos()
+    {
         return array('Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab');
     }
 
-    public static function obtenerBotonesCalendario() {
+    public static function obtenerBotonesCalendario()
+    {
         return array(
             'today' => 'hoy',
             'month' => 'mes',
@@ -497,14 +525,16 @@ class Util {
         );
     }
 
-    public static function obtenerColumnasCalendario() {
+    public static function obtenerColumnasCalendario()
+    {
         return array(
             'week' => 'ddd d',
             'day' => 'dddd',
         );
     }
 
-    public static function obtenerTitulosCalendario() {
+    public static function obtenerTitulosCalendario()
+    {
         return array(
             'month' => "MMMM yyyy",
             'week' => "MMMM d[, yyyy]{ '-'[ MMMM] d, yyyy}",
@@ -512,7 +542,8 @@ class Util {
         );
     }
 
-    public static function obtenerPrimerDiaMes() {
+    public static function obtenerPrimerDiaMes()
+    {
         $fecha = new DateTime();
 
         $fecha->modify('first day of this month');
@@ -521,7 +552,8 @@ class Util {
         return $dia;
     }
 
-    public static function obtenerUltimoDiaMes() {
+    public static function obtenerUltimoDiaMes()
+    {
         $fecha = new DateTime();
         $fecha->modify('last day of this month');
         $fecha->format("Y-m-d");
@@ -529,7 +561,8 @@ class Util {
         return $dia;
     }
 
-    public static function calcularMesAnterior($var = null) {
+    public static function calcularMesAnterior($var = null)
+    {
         $fecha = new DateTime();
         $fecha->modify("-1 month");
         $var == 0 ? $fecha->modify('first day of this month') : $fecha->modify('last day of this month');
@@ -537,7 +570,8 @@ class Util {
         return $fecha;
     }
 
-    public static function calcularSemanaAnterior($var = null) {
+    public static function calcularSemanaAnterior($var = null)
+    {
 
         $fecha = new DateTime();
         $fecha->modify("-1 week");
@@ -556,12 +590,12 @@ class Util {
         return date_format($fecha, 'Y-m-d');
     }
 
-    public static function generarColores() {
+    public static function generarColores()
+    {
 
         $colores = array("rgb(116,183,73)", "rgb(274,70,74)", "rgb(70,191,189)",
             "rgb(253,180,92)", "rgb(77,83,96)", "rgb(70,136,71)", "rgb(78,138,199)",
             "rgb(119,128,138)", "rgb(243,123,83)", "rgb(13,174,211)", "rgb(148,159,167)", "rgb(139,20,15)", "rgb(222,87,123)");
-
 
 
         shuffle($colores);
@@ -573,7 +607,8 @@ class Util {
      * Enlista los templates disponibles que tenemos en Mandrill
      * @return type array()
      */
-    public static function getTemplatesMandrill() {
+    public static function getTemplatesMandrill()
+    {
         $mandrill = new Mandrill(Constants::KEY_MANDRILLAPP);
         $templates = $mandrill->templates->getList();
         $namesT = array();
@@ -591,7 +626,8 @@ class Util {
      * @param type $periodos
      * @return type array()
      */
-    public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null) {
+    public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null)
+    {
         $tabla = array();
         //Datos de cálculo
         $interes_mensual = ($interes / 12) * 0.01;
@@ -622,6 +658,19 @@ class Util {
         return array('tabla' => $tabla, 'suma_cuota' => round($sumaCuota, 2), 'suma_interes' => round($sumaInteres, 2), 'suma_amortizacion' => round($sumaAmort, 2));
     }
 
+    /**
+     * Retorna el id de la sucursal segun el usuario logeado
+     * @param $cruge_id
+     * @return mixed
+     */
+    public static function getSucursal()
+    {
+        $command = Yii::app()->db->createCommand();
+        $command->select("t.sucursal_id")
+            ->from("cruge_user_sucursal as t")
+            ->andWhere("t.cruge_id=:cruge_id", array(":cruge_id" => Yii::app()->user->id));
+        return $command->queryScalar();
+    }
 }
 
 ?>
