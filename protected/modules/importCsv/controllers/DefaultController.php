@@ -27,8 +27,8 @@ class DefaultController extends Controller {
 // Cargar el archivo
                 if ($file = fopen($path . $name, 'r')) {
 
-                    $data = fgetcsv($file, 1000, ",");
-//                     die(var_dump(fgetcsv($file, 1000, ",")));
+//                    $data = fgetcsv($file, 1000, ",");
+                    $data = fgetcsv($file, 1000, ";");
                     if ($entidad_tipo == ImportForm::TIPO_ENTIDAD_SOCIO) {
 
                         if (in_array("cedula", $data)) {
@@ -58,7 +58,8 @@ class DefaultController extends Controller {
         $transaction = Yii::app()->db->beginTransaction();
 
         try {
-            while (($data = fgetcsv($file, 1000, ",")) !== FALSE) { // Me barro por cada fila
+//            while (($data = fgetcsv($file, 1000, ",")) !== FALSE) { // Me barro por cada fila
+            while (($data = fgetcsv($file, 1000, ";")) !== FALSE) { // Me barro por cada fila
 //TODO: Guardar la informacion
                 {
 
@@ -76,9 +77,15 @@ class DefaultController extends Controller {
 
 //                    var_dump(count($modelPersona));
 //                    die();
+                    //para la actividad Economica
+                    $modelActividadEconomica = ActividadEconomica::model()->find(array(
+                        'condition' => 'nombre=:nombre',
+                        'params' => array(
+                            ':nombre' => ucwords(utf8_encode($data[27])),
+                    )));
 
                     if (count($modelPersona) == 0) {
-
+//                        die(var_dump($data[4]));
                         /* Creacion del Socio */
                         $modelPersona = new Persona();
                         $modelPersona->primer_nombre = ucwords(utf8_encode($data[0]));
@@ -103,25 +110,28 @@ class DefaultController extends Controller {
 //                        $modelPersona->usuario_actualizacion_id = $data[16];
                         $modelPersona->usuario_actualizacion_id = '';
                         $modelPersona->aprobado = $data[17];
-                        //TODO: falta deinir campo en csv
+                        //TODO: falta deinir campo en csv                        
                         $modelPersona->sucursal_id = Sucursal::model()->findByPk($data[18]) ? $data[18] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->persona_etapa_id = PersonaEtapa::model()->findByPk($data[19]) ? $data[19] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->direccion_domicilio_id = Direccion::model()->findByPk($data[20]) ? $data[20] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->direccion_negocio_id = Direccion::model()->findByPk($data[21]) ? $data[21] : '';
                         $modelPersona->sexo = ucwords(utf8_encode($data[22]));
                         $modelPersona->fecha_nacimiento = Util::FormatDate($data[23], 'Y-m-d');
                         $modelPersona->carga_familiar = ($data[24] == null || $data[24] == '') ? 0 : $data[24];
                         $modelPersona->discapacidad = strtoupper($data[25]);
                         $modelPersona->estado_civil = strtoupper($data[26]);
-                        //TODO: falta deinir campo en csv
-                        $modelPersona->actividad_economica_id = ActividadEconomica::model()->findByPk($data[27]) ? $data[27] : '';
+
+                        $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[27])));
 
                         if (!$modelPersona->save()) {
                             var_dump($modelPersona);
                             die();
                         }
                     } else {
-                        /* Creacion del Socio */                       
+                        /* Creacion del Socio */
                         $modelPersona->primer_nombre = ucwords(utf8_encode($data[0]));
                         $modelPersona->segundo_nombre = ucwords(utf8_encode($data[1]));
                         $modelPersona->apellido_paterno = ucwords(utf8_encode($data[2]));
@@ -146,17 +156,19 @@ class DefaultController extends Controller {
                         $modelPersona->aprobado = $data[17];
                         //TODO: falta deinir campo en csv
                         $modelPersona->sucursal_id = Sucursal::model()->findByPk($data[18]) ? $data[18] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->persona_etapa_id = PersonaEtapa::model()->findByPk($data[19]) ? $data[19] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->direccion_domicilio_id = Direccion::model()->findByPk($data[20]) ? $data[20] : '';
+                        //TODO: falta por definir en el CSV
                         $modelPersona->direccion_negocio_id = Direccion::model()->findByPk($data[21]) ? $data[21] : '';
                         $modelPersona->sexo = ucwords(utf8_encode($data[22]));
                         $modelPersona->fecha_nacimiento = Util::FormatDate($data[23], 'Y-m-d');
                         $modelPersona->carga_familiar = ($data[24] == null || $data[24] == '') ? 0 : $data[24];
                         $modelPersona->discapacidad = strtoupper($data[25]);
                         $modelPersona->estado_civil = strtoupper($data[26]);
-                        //TODO: falta deinir campo en csv
-                        $modelPersona->actividad_economica_id = ActividadEconomica::model()->findByPk($data[27]) ? $data[27] : '';
 
+                        $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[27])));
                         if (!$modelPersona->save()) {
                             var_dump($modelPersona);
                             die();
@@ -196,6 +208,22 @@ class DefaultController extends Controller {
             }
         }
         return false;
+    }
+
+    //para crear una actividad economica si no existe
+    public function crearActividadEconomica($nombre) {
+        $modelActividad = new ActividadEconomica;
+        $modelActividad->nombre = $nombre;
+        $modelActividad->estado = ActividadEconomica::ESTADO_ACTIVO;
+        if ($modelActividad->save()) {
+//            var_dump($modelActividad);
+//            var_dump($modelActividad->save());
+//            var_dump($modelActividad->getErrors());
+//            var_dump($modelActividad);
+            return $modelActividad->id;
+        } else {
+            return $this->crearActividadEconomica($nombre);
+        }
     }
 
 }
