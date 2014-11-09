@@ -34,14 +34,16 @@ class CreditoController extends AweController {
         $model = new Credito;
         $idEtapa = CreditoEtapa::model()->getIdPesoMinimo();
         $model->credito_etapa_id = $idEtapa;
+        
         $this->performAjaxValidation($model, 'credito-form');
 
         if (isset($_POST['Credito'])) {
             $model->attributes = $_POST['Credito'];
+//            $model->sucursal_id = 1;
             $model->fecha_credito = Util::FechaActual();
             $model->estado = Credito::ESTADO_DEUDA;
             $model->interes = Credito::INTERES;
-            $model->usuario_creacion_id = Yii::app()->user->id;
+//            $model->usuario_creacion_id = Yii::app()->user->id;
 
             $fecha_lim = new DateTime(Util::FechaActual());
             $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
@@ -55,6 +57,8 @@ class CreditoController extends AweController {
             $model->anulado = Credito::NO_ANULADO;
 
             $tabla = $info_Amortizacion['tabla'];
+//            var_dump($tabla);
+//            die();
             if ($model->save()) {
                 for ($i = 0; $i < count($tabla); $i++) {
                     $modelAmort = new CreditoAmortizacion;
@@ -161,7 +165,7 @@ class CreditoController extends AweController {
             'id' => $id,
         ));
     }
-    
+
     public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
         if (Yii::app()->request->isAjaxRequest) {
 //            $id_etapa_max = CreditoEtapa::model()->getEtapaMaxima();

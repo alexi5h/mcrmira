@@ -65,7 +65,7 @@ class Credito extends BaseCredito
             'aprobados' => array(
                 'condition' => 't.credito_etapa_id = :etapa',
                 'params' => array(
-                    ':etapa' => 3,
+                    ':etapa' => CreditoEtapa::model()->getPesoMaximo(),
                 ),
             ),
         );
