@@ -52,8 +52,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ?>
 
         <?php
-        echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') +
-                CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))
+//        echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') +
+//                CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))
         ?>
 
         <?php

@@ -11,6 +11,10 @@
             'data' => $model,
             'attributes' => array(
                 'nombre_formato',
+                array(
+                    'name' => 'tipo_identificacion',
+                    'value' => $model->getTipoIdentificacion()
+                ),
                 'cedula',
                 'ruc',
                 'telefono',
@@ -21,7 +25,7 @@
                 ),
                 array(
                     'name' => 'sexo',
-                    'value' => $model->nombre_sexo($model->sexo)
+                    'value' => $model->getGenero()
                 ),
                 array(
                     'name' => 'fecha_nacimiento',

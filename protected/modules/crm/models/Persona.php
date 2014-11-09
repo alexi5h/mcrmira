@@ -3,8 +3,7 @@
 Yii::import('crm.models._base.BasePersona');
 Yii::import('ahorro.models.*');
 
-class Persona extends BasePersona
-{
+class Persona extends BasePersona {
 
     //estado: ACTIVO,INACTIVO
     const ESTADO_ACTIVO = 'ACTIVO';
@@ -15,6 +14,9 @@ class Persona extends BasePersona
     //sexo: MASCULINO,FEMENINO
     const SEXO_MASCULINO = 'MASCULINO';
     const SEXO_FEMENINO = 'FEMENINO';
+    //tipo_identificacion: CEDULA,PASAPORTE
+    const TIPO_CEDULA = 'CEDULA';
+    const TIPO_PASAPORTE = 'PASAPORTE';
 
     private $nombre_formato;
     private $cedula_nombre_formato;
@@ -23,52 +25,46 @@ class Persona extends BasePersona
     /**
      * @return Persona
      */
-    public static function model($className = __CLASS__)
-    {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
-    public static function label($n = 1)
-    {
+    public static function label($n = 1) {
         return Yii::t('app', 'Socio|Socios', $n);
     }
 
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(
-                'nombre_formato' => Yii::t('app', 'Nombre Completo'),
-                'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
-                'actividad_economica' => null,
-                'cedula' => Yii::t('app', 'Identificación'),
-            )
+            'nombre_formato' => Yii::t('app', 'Nombre Completo'),
+            'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
+            'actividad_economica' => null,
+            'cedula' => Yii::t('app', 'Identificación'),
+            'tipo_identificacion' => Yii::t('app', 'Tipo Identificación'),
+                )
         );
     }
 
-    public function relations()
-    {
+    public function relations() {
         return array_merge(parent::relations(), array(
-                'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
-                'ahorros' => array(self::HAS_MANY, 'Ahorro', 'socio_id'),
-            )
+            'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
+            'ahorros' => array(self::HAS_MANY, 'Ahorro', 'socio_id'),
+                )
         );
     }
 
-    public function beforeSave()
-    {
+    public function beforeSave() {
         if (!$this->sucursal_id)
             $this->sucursal_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
-    public function beforeValidate()
-    {
+    public function beforeValidate() {
         if (!$this->sucursal_id)
             $this->sucursal_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
-    public function rules()
-    {
+    public function rules() {
         return array(
             array('cedula', 'ext.Validations.CampoCedula'),
             array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
@@ -93,8 +89,7 @@ class Persona extends BasePersona
         );
     }
 
-    public function searchParams()
-    {
+    public function searchParams() {
         return array(
             'nombre_formato',
             'cedula',
@@ -107,8 +102,7 @@ class Persona extends BasePersona
         );
     }
 
-    public function search()
-    {
+    public function search() {
         $criteria = new CDbCriteria;
         $criteria->with = array('actividad_economica', 'sucursal', 'personaEtapa');
 
@@ -143,8 +137,7 @@ class Persona extends BasePersona
         ));
     }
 
-    public function scopes()
-    {
+    public function scopes() {
         return array(
             'activos' => array(
                 'condition' => 't.estado = :estado',
@@ -155,9 +148,8 @@ class Persona extends BasePersona
         );
     }
 
-    public function nombre_sexo($ident)
-    {
-        if ($ident == 'M') {
+    public function getGenero() {
+        if ($this->sexo == 'M') {
             return self::SEXO_MASCULINO;
         } else {
             return self::SEXO_FEMENINO;
@@ -165,14 +157,22 @@ class Persona extends BasePersona
         return null;
     }
 
-    public function etapa_activos()
-    {
+    public function getTipoIdentificacion() {
+        if ($this->tipo_identificacion == 'C') {
+            return self::TIPO_CEDULA;
+        } else {
+            return self::TIPO_PASAPORTE;
+        }
+        return null;
+    }
+
+    public function etapa_activos() {
         $c_activos = Yii::app()->db->createCommand()
-            ->select('*')
-            ->from('persona p')
-            ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
-            ->where(array('and', 'e.id=3', 'p.aprobado=0'))
-            ->queryAll();
+                ->select('*')
+                ->from('persona p')
+                ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
+                ->where(array('and', 'e.id=3', 'p.aprobado=0'))
+                ->queryAll();
         //return $c_activos;
         $c_activos_data = new CArrayDataProvider($c_activos, array(
             'keyField' => 'id',
@@ -185,8 +185,7 @@ class Persona extends BasePersona
      * devuelve los socios activos que pueden acceder a un crédito (que estén al día en sus pagos)
      */
 
-    public function condicion_socio_credito()
-    {
+    public function condicion_socio_credito() {
         /* select * from persona pe
           where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
           and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
@@ -204,8 +203,7 @@ class Persona extends BasePersona
      * devuelve los socios activos que pueden ser garantes para dar un crédito (que estén al día en sus pagos)
      */
 
-    public function condicion_garante_credito($socio_id = null)
-    {
+    public function condicion_garante_credito($socio_id = null) {
         /* select * from persona pe
           where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
           and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
@@ -220,34 +218,31 @@ class Persona extends BasePersona
         return $garantes;
     }
 
-    public function de_tipo($tipo)
-    {
+    public function de_tipo($tipo) {
         $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 'tipo = :tipo',
-                'params' => array(
-                    ':tipo' => $tipo
-                ),
-            )
+                array(
+                    'condition' => 'tipo = :tipo',
+                    'params' => array(
+                        ':tipo' => $tipo
+                    ),
+                )
         );
         return $this;
     }
 
-    public function de_etapa($etapa_id)
-    {
+    public function de_etapa($etapa_id) {
         $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 'persona_etapa_id = :persona_etapa_id',
-                'params' => array(
-                    ':persona_etapa_id' => $etapa_id
-                ),
-            )
+                array(
+                    'condition' => 'persona_etapa_id = :persona_etapa_id',
+                    'params' => array(
+                        ':persona_etapa_id' => $etapa_id
+                    ),
+                )
         );
         return $this;
     }
 
-    public function getNombre_formato()
-    {
+    public function getNombre_formato() {
         $return = $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
@@ -256,14 +251,12 @@ class Persona extends BasePersona
         return $this->nombre_formato;
     }
 
-    public function setNombre_formato($nombre_formato)
-    {
+    public function setNombre_formato($nombre_formato) {
         $this->nombre_formato = $nombre_formato;
         return $this->nombre_formato;
     }
 
-    public function getCedula_nombre_formato()
-    {
+    public function getCedula_nombre_formato() {
         $return = $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
@@ -272,14 +265,12 @@ class Persona extends BasePersona
         return $this->cedula_nombre_formato;
     }
 
-    public function setcedula_nombre_formato($cedula_nombre_formato)
-    {
+    public function setcedula_nombre_formato($cedula_nombre_formato) {
         $this->cedula_nombre_formato = $cedula_nombre_formato;
         return $this->cedula_nombre_formato;
     }
 
-    public function getNombre_corto()
-    {
+    public function getNombre_corto() {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
     }
