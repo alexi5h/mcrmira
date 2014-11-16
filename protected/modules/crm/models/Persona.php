@@ -17,6 +17,14 @@ class Persona extends BasePersona {
     //tipo_identificacion: CEDULA,PASAPORTE
     const TIPO_CEDULA = 'CEDULA';
     const TIPO_PASAPORTE = 'PASAPORTE';
+    //discapacidad
+    const DISCAPASIDAD_SI = 'SI';
+    const DISCAPASIDAD_NO = 'NO';
+//estado civil
+    const ESTADO_CIVIL_SOLTERO = 'SOLTERO';
+    const ESTADO_CIVIL_CASADO = 'CASADO';
+    const ESTADO_CIVIL_DIVORCIADO = 'DIVORCIADO';
+    const ESTADO_CIVIL_VIUDO = 'VIUDO';
 
     private $nombre_formato;
     private $cedula_nombre_formato;
@@ -65,7 +73,7 @@ class Persona extends BasePersona {
     }
 
     public function rules() {
-        return array(
+        return array_merge(parent::rules(), array(
             array('cedula', 'ext.Validations.CampoCedula'),
             array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
@@ -85,7 +93,7 @@ class Persona extends BasePersona {
             array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
             array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
-//                )
+                )
         );
     }
 
