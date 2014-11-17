@@ -31,7 +31,7 @@ class Parroquia extends BaseParroquia {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('provincia_id', 'required'),
+            array('provincia_id', 'required', 'on' => 'insert,update'),
             array('provincia_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,
