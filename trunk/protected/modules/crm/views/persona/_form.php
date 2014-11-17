@@ -172,7 +172,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             <div class="controls controls-row">
                 <div class=" control-group span4">
                     <?php
-                            var_dump($modelDireccion1);
+//                            var_dump($modelDireccion1);
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,

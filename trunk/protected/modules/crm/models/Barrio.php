@@ -20,7 +20,7 @@ class Barrio extends BaseBarrio {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('provincia_id,canton_id,tipo', 'required'),
+            array('provincia_id,canton_id,tipo', 'required', 'on' => 'insert,update'),
             array('provincia_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,

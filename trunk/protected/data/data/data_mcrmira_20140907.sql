@@ -118,3 +118,10 @@ INSERT INTO `sucursal` (`id`,`nombre`,`direccion_id`,`estado`) VALUES (1,'Mira',
 #
 
 INSERT INTO `actividad_economica` (`id`,`nombre`,`estado`) VALUES (1,'Mecánico','ACTIVO'),(2,'Panadero','ACTIVO'),(3,'Comerciante','ACTIVO');
+
+
+#
+# Data for table "cruge_user_sucursal"
+#
+
+INSERT INTO `cruge_user_sucursal` (`cruge_id`,`sucursal_id`) VALUES (1,1);

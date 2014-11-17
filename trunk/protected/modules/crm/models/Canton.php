@@ -17,7 +17,7 @@ class Canton extends BaseCanton {
 
     public function rules() {
         return array(
-            array('nombre, provincia_id', 'required'),
+            array('nombre, provincia_id', 'required', 'on' => 'insert,update'),
             array('provincia_id', 'numerical',
                 'integerOnly' => true,
                 'min' => 1,
