@@ -40,23 +40,23 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ?>
         </div>
         <div class="span6">
-            <?php echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+<!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
             <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
             <?php
-            echo $form->datepickerRow(
-                    $model, 'fecha_comprobante_su', array(
-                'options' => array(
-                    'language' => 'es',
-                    'language' => 'es',
-                    'format' => 'dd/mm/yyyy',
-                    'autoclose' => 'true',
-                    'weekStart' => 1,
-                    'keyboardNavigation' => true,
-                    'forceParse' => false,
-                ),
-                    )
-            );
+//            echo $form->datepickerRow(
+//                    $model, 'fecha_comprobante_su', array(
+//                'options' => array(
+//                    'language' => 'es',
+//                    'language' => 'es',
+//                    'format' => 'dd/mm/yyyy',
+//                    'autoclose' => 'true',
+//                    'weekStart' => 1,
+//                    'keyboardNavigation' => true,
+//                    'forceParse' => false,
+//                ),
+//                    )
+//            );
             ?>
             <?php echo $form->textAreaRow($model, 'observaciones') ?>
         </div>
