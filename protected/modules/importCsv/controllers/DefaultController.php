@@ -81,7 +81,7 @@ class DefaultController extends Controller {
                     $modelActividadEconomica = ActividadEconomica::model()->find(array(
                         'condition' => 'nombre=:nombre',
                         'params' => array(
-                            ':nombre' => ucwords(utf8_encode($data[27])),
+                            ':nombre' => ucwords(utf8_encode($data[26])),
                     )));
 //para la sucursal
                     $modelSucursal = Sucursal::model()->find(
