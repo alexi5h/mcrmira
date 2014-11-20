@@ -18,11 +18,9 @@ function AjaxAtualizacionInformacion(Formulario)
     AjaxGestionModalDeposito(Formulario, function (list) {
         $.fn.yiiGridView.update('deposito-grid');
         $.fn.yiiGridView.update('pago-grid');
+        $.fn.yiiGridView.update('deposito-grid-grid');
         $('#deposito-form').trigger("reset");
         DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxAtualizacionInformacion');
-//        bootbox.confirm('jjj', function(param) {
-//            console.log(param);
-//        });
     });
 }
 
@@ -68,9 +66,13 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
                     }
                     if (data.cantidadExtra != 0) {
                         $("#mainBigModal").modal("hide");
-                        viewModal('ahorro/ahorro/create/ahorro_id/' + data.ahorro_id + '/ahorro_extra_id/' + data.ahorro_extra_id, function () {});
-                    }
-                    console.log(data.cantidadExtra);
+                        viewModal('ahorro/ahorro/create/ahorro_id/' + data.ahorro_id + '/ahorro_extra_id/' + data.ahorro_extra_id, function () {
+                        });
+                    } 
+//                    else {
+//                        $("#mainBigModal").modal("hide");
+//                    }
+//                    console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);
 
                 } else {

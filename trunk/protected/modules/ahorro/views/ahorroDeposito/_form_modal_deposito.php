@@ -96,7 +96,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                     array(
                         'header' => 'Sucursal',
                         'name' => 'sucursal_comprobante_id',
-                        'value' => '$data->sucursal_comprobante_id',
+                        'value' => '$data->sucursal',
                         'type' => 'raw',
                     ),
                     array(
