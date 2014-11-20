@@ -23,8 +23,14 @@ class PersonaController extends AweController {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $model = $this->loadModel($id);
+        $modelDepositoAhorro = new AhorroDeposito;
+        $modelDepositoCredito = new CreditoDeposito;
+        $depositosAhorro = $modelDepositoAhorro->searchDepositosSocio($model->id);
+        $depositosCredito = $modelDepositoCredito->searchDepositosSocio($model->id);
+        $gridDataProvider = new CArrayDataProvider(array_merge($depositosCredito->getData(), $depositosAhorro->getData()));
         $this->render('view', array(
-            'model' => $this->loadModel($id),
+            'model' => $model,
         ));
     }
 
@@ -303,7 +309,7 @@ class PersonaController extends AweController {
                 $data = Persona::model()->condicion_garante_credito($_POST['socio_id']);
                 if ($data) {
                     $data = CHtml::listData($data, 'id', 'nombre_formato');
-                    echo CHtml::tag('option', array('value' => '', 'id' => 'p','selected'=>'selected'), '- Seleccione -', true);
+                    echo CHtml::tag('option', array('value' => '', 'id' => 'p', 'selected' => 'selected'), '- Seleccione -', true);
                     foreach ($data as $value => $name) {
                         echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
                     }
