@@ -31,10 +31,10 @@ $gridDataProvider->sort = $sort;
     </div>
     <div class="widget-body">
         <?php
-        $this->widget('ext.search.TruuloModuleSearch', array(
-            'model' => $model,
-            'grid_id' => 'deposito-grid-grid',
-        ));
+//        $this->widget('ext.search.TruuloModuleSearch', array(
+//            'model' => $model,
+//            'grid_id' => 'deposito-grid-grid',
+//        ));
         ?>
         <div class="row-fluid">
             <div style='overflow:auto'> 
