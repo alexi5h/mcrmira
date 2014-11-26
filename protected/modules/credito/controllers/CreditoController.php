@@ -38,6 +38,8 @@ class CreditoController extends AweController {
         $this->performAjaxValidation($model, 'credito-form');
 
         if (isset($_POST['Credito'])) {
+//            var_dump($_POST['Credito']);
+//            die();
             $model->attributes = $_POST['Credito'];
 //            $model->sucursal_id = 1;
             $model->fecha_credito = Util::FechaActual();

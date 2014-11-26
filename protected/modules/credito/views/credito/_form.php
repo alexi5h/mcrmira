@@ -68,7 +68,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        );
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad_total', array('maxlength' => 10)) ?>
+        <?php echo $form->dropDownListRow($model, 'cantidad_total', array('300' => 300, '700' => 700, '1200' => 1200, '3600' => 3600), array('placeholder' => null)) ?>
+
+        <?php // echo $form->textFieldRow($model, 'cantidad_total', array('maxlength' => 10)) ?>
         <?php echo $form->textFieldRow($model, 'periodos', array('maxlength' => 3)) ?>
 
         <div class="form-actions">
