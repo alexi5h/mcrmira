@@ -39,10 +39,10 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cedula', array('maxlength' => 10, 'class' => 'span4')) ?>
+        <?php echo $form->textFieldRow($model, 'cedula', array('class' => 'span4', 'disabled' => $model->isNewRecord ? true : false)) ?>
 
         <?php echo $form->textFieldRow($model, 'ruc', array('maxlength' => 13, 'class' => 'span4')) ?>
-        
+
         <?php
         $actividades_eco = ActividadEconomica::model()->activos()->findAll();
 
@@ -92,7 +92,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
-        
+
         <?php
         echo $form->radioButtonListRow(
                 $model, 'sexo', array('M' => 'Masculino', 'F' => 'Femenino',), array('labelOptions' => array('style' => 'display:inline-block'),
@@ -108,7 +108,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php // echo $form->textFieldRow($model, 'aprobado')    ?>
         <?php
 //        $sucursales = Sucursal::model()->activos()->findAll();
-
 //        if (!empty($sucursales)) {
 //            $sucursales = array(null => '-- Seleccione --') + CHtml::listData($sucursales, 'id', 'nombre');
 //        } else {
@@ -116,7 +115,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-<!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',)) ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))    ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {

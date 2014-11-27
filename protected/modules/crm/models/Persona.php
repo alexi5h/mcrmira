@@ -79,7 +79,7 @@ class Persona extends BasePersona {
             array('ruc', 'ext.Validations.CampoRuc'),
             array('nombre_formato', 'safe', 'on' => 'search'),
             array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
-            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, cedula, ruc', 'numerical', 'integerOnly' => true),
+            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
             array('apellido_paterno, apellido_materno', 'length', 'max' => 30),

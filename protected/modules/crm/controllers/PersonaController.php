@@ -48,6 +48,7 @@ class PersonaController extends AweController {
         $model->fecha_creacion = Util::FechaActual();
         $model->tipo = Persona::TIPO_CLIENTE;
         $model->estado = Persona::ESTADO_ACTIVO;
+        $model->discapacidad='NO';
         $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
@@ -308,7 +309,7 @@ class PersonaController extends AweController {
             if (isset($_POST['socio_id']) && $_POST['socio_id'] > 0) {
                 $data = Persona::model()->condicion_garante_credito($_POST['socio_id']);
                 if ($data) {
-                    $data = CHtml::listData($data, 'id', 'nombre_formato');
+                    $data = CHtml::listData($data, 'id', 'cedula_nombre_formato');
                     echo CHtml::tag('option', array('value' => '', 'id' => 'p', 'selected' => 'selected'), '- Seleccione -', true);
                     foreach ($data as $value => $name) {
                         echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
