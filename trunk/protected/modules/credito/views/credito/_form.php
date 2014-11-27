@@ -31,7 +31,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php
         echo $form->select2Row($model, 'socio_id', array(
             'asDropDownList' => true,
-            'data' => CHtml::listData($model_persona, 'id', 'nombre_formato'),
+            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
             'options' => array(
                 'placeholder' => '-- Seleccione --',
             )
@@ -45,9 +45,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'options' => array(
                 'placeholder' => '-- Seleccione --',
             ),
-//            'htmlOptions'=>array(
-//                'readonly' => 'readonly',
-//            ),
+            'htmlOptions'=>array(
+                'disabled'=>true
+            ),
         ));
         ?>
 
