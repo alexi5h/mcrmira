@@ -64,7 +64,14 @@
             ),
         ));
         ?>
-        <?php echo Chtml::link('<i class="icon-edit-sign"></i> Actualizar', array('update', 'id' => $model->id), array('class' => 'btn')) ?>
-        <?php echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('kanban', 'id' => $model->id), array('class' => 'btn')) ?>
+        <?php
+
+        echo Chtml::link('<i class="icon-edit-sign"></i> Actualizar', array('update', 'id' => $model->id), array('class' => 'btn'));
+        ?>
+        <?php
+        $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();
+        if (!$etapa_max_id == $model->personaEtapa->id) // valida si la etapa ya esa la ultima no se debe gestionar mas
+            echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('kanban', 'id' => $model->id), array('class' => 'btn'));
+        ?>
     </div>
 </div>

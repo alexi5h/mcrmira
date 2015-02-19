@@ -29,7 +29,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->errorSummary(array($model, $modelDireccion)) ?>
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
-        <?php echo $form->textFieldRow($model, 'num_cuenta', array('maxlength' => 45)) ?>
+        <?php echo $form->textFieldRow($model, 'num_cuenta', array('maxlength' => 45,'class'=>'number')) ?>
         <?php echo $form->radioButtonListRow(
             $model,
             'tipo_cuenta',
