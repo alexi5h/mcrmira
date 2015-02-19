@@ -385,8 +385,9 @@ function maskAttributes() {
     $('input.money').mask('P999999999999999999999.ZZ', {
         translation: {
             'Z': {pattern: /[0-9]/, optional: true},
-            'P': {pattern: /[1-9]/, },
+            'P': {pattern: /[1-9]/ }
         }});
+    $('input.number').mask('00000000000000000000000000000000000000000000000');
     //continuar cargando formatos para input
 }
 
