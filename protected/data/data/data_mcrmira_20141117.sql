@@ -39,6 +39,8 @@ INSERT INTO `actividad_economica` (`id`,`nombre`,`estado`) VALUES (1,'Mecánico'
 # Data for table "credito_etapa"
 #
 
+INSERT INTO `credito_etapa` (`id`,`nombre`,`peso`,`estado`) VALUES (1,'Solicitud de crédito',1,'ACTIVO'),(2,'En aprobación',2,'ACTIVO'),(3,'Revisión de requisitos',3,'ACTIVO'),(4,'Crédito aprobado',4,'ACTIVO');
+
 
 #
 # Data for table "credito"
@@ -87,7 +89,7 @@ INSERT INTO `cruge_system` (`idsystem`,`name`,`largename`,`sessionmaxdurationmin
 # Data for table "cruge_user"
 #
 
-INSERT INTO `cruge_user` (`iduser`,`regdate`,`actdate`,`logondate`,`username`,`email`,`password`,`authkey`,`state`,`totalsessioncounter`,`currentsessioncounter`) VALUES (1,NULL,NULL,1416257854,'admin','armand1live@gmail.com','admin','admin',1,0,0),(2,1415240459,NULL,NULL,'qwertyui','1@gmail.com','123456789','3593c8cb699478840de253cd633e0483',1,0,0),(3,1415240900,NULL,NULL,'FFFF','a@gmail.com','1234567','a88b988853e7c688b3ae71a853c60a26',1,0,0),(4,1415241003,NULL,NULL,'HHHHH','h@gmail.com','1234567890','ab7f415b5cfcab13c10c1d4198fc38b7',1,0,0),(5,1415241309,NULL,1415241336,'amaldonado','amaldonado@gmail.com','master2014','367bbc8c6eda8024f3f7b032780625ff',1,0,0);
+INSERT INTO `cruge_user` (`iduser`,`regdate`,`actdate`,`logondate`,`username`,`email`,`password`,`authkey`,`state`,`totalsessioncounter`,`currentsessioncounter`) VALUES (1,NULL,NULL,1416257854,'admin','armand1live@gmail.com','admin','admin',1,0,0);
 
 #
 # Data for table "cruge_fieldvalue"
@@ -109,7 +111,8 @@ INSERT INTO `cruge_user_sucursal` (`cruge_id`,`sucursal_id`) VALUES (1,1);
 # Data for table "persona_etapa"
 #
 
-INSERT INTO `persona_etapa` (`id`,`nombre`,`peso`,`estado`) VALUES (1,'Etapa 1',1,'ACTIVO'),(2,'Etapa 2',2,'ACTIVO');
+INSERT INTO `persona_etapa` (`id`,`nombre`,`peso`,`estado`) VALUES (1,'Oficio dirigido al Presidente de la Asociación',1,'ACTIVO'),(2,'En Aprobación',2,'ACTIVO'),(3,'Pago de cuota de ingreso',3,'ACTIVO');
+
 
 #
 # Data for table "provincia"
@@ -152,8 +155,4 @@ INSERT INTO `entidad_bancaria` (`id`,`nombre`,`direccion_id`,`estado`,`num_cuent
 
 INSERT INTO `sucursal` (`id`,`nombre`,`direccion_id`,`estado`) VALUES (1,'Mira',1,'ACTIVO'),(2,'Espejo',2,'ACTIVO');
 
-#
-# Data for table "persona"
-#
 
--- INSERT INTO `persona` (`id`,`primer_nombre`,`segundo_nombre`,`apellido_paterno`,`apellido_materno`,`tipo_identificacion`,`cedula`,`ruc`,`telefono`,`celular`,`email`,`descripcion`,`tipo`,`estado`,`fecha_creacion`,`fecha_actualizacion`,`usuario_creacion_id`,`usuario_actualizacion_id`,`aprobado`,`sucursal_id`,`persona_etapa_id`,`direccion_domicilio_id`,`direccion_negocio_id`,`sexo`,`fecha_nacimiento`,`carga_familiar`,`discapacidad`,`estado_civil`,`actividad_economica_id`) VALUES (2,'Armando',NULL,'Maldonado','Conejo','P','1003508153',NULL,NULL,NULL,NULL,NULL,'CLIENTE','ACTIVO','2014-11-05 21:52:29','2014-11-17 16:08:07',1,1,0,1,2,NULL,NULL,'M','1992-06-01',1,'NO','CASADO',2),(3,'Juan',NULL,'Maldonado',NULL,'C','1003508155',NULL,NULL,NULL,NULL,NULL,'CLIENTE','ACTIVO','2014-11-05 21:54:02',NULL,1,NULL,0,1,1,NULL,NULL,'M','2014-11-04',1,'SI','SOLTERO',2),(4,'ksdfjbksdj',NULL,'sdknjksdjf',NULL,'P','1234567890',NULL,NULL,NULL,NULL,NULL,'CLIENTE','ACTIVO','2014-11-17 15:58:17',NULL,1,NULL,0,1,1,NULL,NULL,'M','2014-10-27',2,'NO','CASADO',1);
