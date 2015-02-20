@@ -37,6 +37,7 @@ class CreditoDepositoController extends AweController {
             $model->usuario_creacion_id = Yii::app()->user->id;
             $model->credito_id = $credito_id;
             $model->fecha_comprobante_su = Util::FechaActual();
+            $model->cod_comprobante_su = CreditoDeposito::model()->generarCodigoComprobante($model->credito->socio_id);
             $this->performAjaxValidation($model, 'credito-deposito-form');
             $validadorPartial = true;
             if (isset($_POST['CreditoDeposito'])) {
@@ -44,7 +45,8 @@ class CreditoDepositoController extends AweController {
                 $modelAmortizacion = CreditoAmortizacion::model()->en_deuda()->de_credito($model->credito_id)->findAll();
 
                 $model->attributes = $_POST['CreditoDeposito'];
-                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-s h:m:s');
+                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
+                $model->cod_comprobante_su = CreditoDeposito::model()->generarCodigoComprobante($model->credito->socio_id);
                 $result['cantidadExtra'] = 0;
                 if ($model->cantidad <= $modelCredito->saldo_contra) {
                     $modelCredito->saldo_contra-=$model->cantidad;
