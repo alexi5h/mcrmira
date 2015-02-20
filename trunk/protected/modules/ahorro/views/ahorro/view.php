@@ -1,6 +1,7 @@
 <?php
 /** @var AhorroController $this */
 /** @var Ahorro $model */
+Util::tsRegisterAssetJs('view.js');
 $this->menu = array(
         //array('label' => Yii::t('AweCrud.app', 'List') . ' ' . Ahorro::label(2), 'icon' => 'list', 'url' => array('index')),
 //    array('label' => Yii::t('AweCrud.app', 'Manage'), 'icon' => 'icon-list', 'url' => array('admin')),

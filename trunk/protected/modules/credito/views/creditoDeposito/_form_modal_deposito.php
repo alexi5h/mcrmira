@@ -32,7 +32,7 @@ $credito = Credito::model()->findByPk($model->credito_id);
             ));
             ?>
 
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
+            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class' => 'money')) ?>
             <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
             <?php

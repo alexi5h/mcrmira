@@ -1,11 +1,11 @@
 <?php
 /** @var CreditoController $this */
 /** @var Credito $model */
-$this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
+//$this->menu = array(
+//    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
-    ),
-);
+//    ),
+//);
 $baseUrl = Yii::app()->baseUrl;
 ?>
 <div id="flashMsg"  class="flash-messages">

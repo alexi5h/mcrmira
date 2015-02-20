@@ -29,7 +29,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->dropDownListRow($model, 'socio_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Persona::model()->activos()->findAll(), 'id', 'nombre_formato'), array('placeholder' => '', 'class' => 'span4')) ?>
         <?php echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
+        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class' => 'money')) ?>
 
 
 
