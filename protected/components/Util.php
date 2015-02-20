@@ -673,6 +673,10 @@ class Util {
         return $command->queryScalar();
     }
 
+    public static function number_pad($number, $n) {
+        return str_pad((int) $number, $n, "0", STR_PAD_LEFT);
+    }
+
 }
 
 ?>
