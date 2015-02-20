@@ -68,13 +68,14 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
                         $("#mainBigModal").modal("hide");
                         viewModal('ahorro/ahorro/create/ahorro_id/' + data.ahorro_id + '/ahorro_extra_id/' + data.ahorro_extra_id, function () {
                         });
-                    } 
+                    }
 //                    else {
 //                        $("#mainBigModal").modal("hide");
 //                    }
 //                    console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);
 
+                    restaurarCampos();
                 } else {
                     DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxAtualizacionInformacion');
                     bootbox.alert(data.message);
@@ -82,5 +83,14 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
             }
         });
     }
+
+}
+function restaurarCampos() {
+    $("#AhorroDeposito_cantidad").val("");
+    var select = $("#AhorroDeposito_entidad_bancaria_id");
+    select.val($('option:first', select).val());
+    $("#AhorroDeposito_cod_comprobante_entidad").val("");
+    $("#AhorroDeposito_fecha_comprobante_entidad").val("");
+    $("#AhorroDeposito_cod_comprobante_su").val("");
 
 }
