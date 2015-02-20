@@ -23,7 +23,7 @@ $gridDataProvider->sort = $sort;
 <?php // if ($validarDataDepositos):  ?>
 <div class="widget blue">
     <div class="widget-title">
-        <h4><i class="icon-list"></i> Depósitos</h4>
+        <h4><i class="icon-list"></i> Consolidado Depósitos</h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--<a href="javascript:;" class="icon-remove"></a>-->
