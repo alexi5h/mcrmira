@@ -209,6 +209,7 @@ class AhorroController extends AweController {
             if (isset($_POST['ajax']) && $_POST['ajax'] === '#ahorro-deposito-form') {
                 $modelDeposito->attributes = $_POST['AhorroDeposito'];
                 $modelDeposito->ahorro_id = 0;
+                $modelDeposito->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($socio_id);
                 $result['success'] = $modelDeposito->validate();
                 $result['errors'] = $modelDeposito->errors;
                 if (!$result['success']) {
@@ -220,6 +221,7 @@ class AhorroController extends AweController {
                 $render_form = false;
                 $modelDeposito->attributes = $_POST['AhorroDeposito'];
                 $modelDeposito->fecha_comprobante_su = Util::FormatDate($modelDeposito->fecha_comprobante_su, 'Y-m-d H:i:s');
+                $modelDeposito->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($socio_id);
                 $modelDeposito->fecha_comprobante_entidad = Util::FormatDate($modelDeposito->fecha_comprobante_entidad, 'Y-m-d H:i:s');
 
                 $model->saldo_contra = 0;
