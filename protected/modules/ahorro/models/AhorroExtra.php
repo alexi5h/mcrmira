@@ -34,5 +34,17 @@ class AhorroExtra extends BaseAhorroExtra
         $this->usuario_creacion_id = Yii::app()->user->id;
         return parent::beforeValidate();
     }
+    
+    public function de_socio($socio_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.socio_id = :socio_id',
+                    'params' => array(
+                        ':socio_id' => $socio_id
+                    ),
+                )
+        );
+        return $this;
+    }
 
 }
