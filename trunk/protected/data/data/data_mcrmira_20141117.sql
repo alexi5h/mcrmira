@@ -147,7 +147,7 @@ INSERT INTO `direccion` (`id`,`calle_1`,`calle_2`,`numero`,`referencia`,`tipo`,`
 # Data for table "entidad_bancaria"
 #
 
-INSERT INTO `entidad_bancaria` (`id`,`nombre`,`direccion_id`,`estado`,`num_cuenta`,`tipo_cuenta`) VALUES (1,'Pichincha',1,'ACTIVO','10a','AHORRO');
+INSERT INTO `entidad_bancaria` (`id`,`nombre`,`direccion_id`,`estado`,`num_cuenta`,`tipo_cuenta`) VALUES (1,'Pichincha',1,'ACTIVO','2201133485','AHORRO');
 
 #
 # Data for table "sucursal"
