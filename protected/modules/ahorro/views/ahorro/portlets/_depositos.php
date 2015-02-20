@@ -1,6 +1,3 @@
-<?php ?>
-<?php ?>
-
 <div class="widget red">
     <div class="widget-title">
         <h4> <i class="icon-dollar"></i> <?php echo AhorroDeposito::label() ?> </h4>
@@ -10,19 +7,28 @@
         </span>
     </div>
     <div class="widget-body">
-        <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
-            'id' => 'ahorro-deposito-grid',
-            'type' => 'striped bordered hover advance',
-            'dataProvider' => new CArrayDataProvider($model->ahorroDepositos),
-            'columns' => array(
-                'cantidad',
-                array(
-                    'name' => 'entidad_bancaria_id',
-                    'value' => '$data->entidadBancaria->nombre',
-                ),
+        <div style="overflow: auto">
+            <?php
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'ahorro-deposito-grid',
+                'type' => 'striped bordered hover advance',
+                'dataProvider' => new CArrayDataProvider($model->ahorroDepositos),
+                'columns' => array(
+                    array(
+                        'header' => "Cantidad",
+                        'name' => 'cantidad',
+                        'value' => 'number_format($data->cantidad, 2)',
+                    ),
+                    array(
+                        'header' => "Entidad Bancaria",
+                        'name' => 'entidad_bancaria_id',
+                        'value' => '$data->entidadBancaria->nombre',
+                    ),
 //                'cod_comprobante_entidad',
-                'fecha_comprobante_entidad',
+                    array(
+                        'header' => 'Fecha Comprobante',
+                        'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
+                    ),
 //                'sucursal_comprobante_id',
 //                'cod_comprobante_su',
                 /*
@@ -33,36 +39,46 @@
                   'filter' => CHtml::listData(Ahorro::model()->findAll(), 'id', Ahorro::representingColumn()),
                   ),
                  */
-                array(
-                    'class' => 'CButtonColumn',
-                    'template' => '{update} ',
-                    'afterDelete' => 'function(link,success,data){ 
-                    if(success) {
-                         $("#flashMsg").empty();
-                         $("#flashMsg").css("display","");
-                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
-                    }
-                    }',
-                    'buttons' => array(
-                        'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-                        ),
-//                        'delete' => array(
-//                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-//                            'options' => array('title' => 'Eliminar'),
+//                array(
+//                    'class' => 'CButtonColumn',
+//                    'template' => '{update} ',
+//                    'afterDelete' => 'function(link,success,data){ 
+//                    if(success) {
+//                         $("#flashMsg").empty();
+//                         $("#flashMsg").css("display","");
+//                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
+//                    }
+//                    }',
+//                    'buttons' => array(
+//                        'update' => array(
+//                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+//                            'options' => array('title' => 'Actualizar'),
 //                            'imageUrl' => false,
-//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
 //                        ),
-                    ),
-                    'htmlOptions' => array(
-                        'width' => '80px'
-                    )
+//
+//                    ),
+//                    'htmlOptions' => array(
+//                        'width' => '80px'
+//                    )
+//                ),
                 ),
-            ),
-        ));
-        ?>
+            ));
+            ?>
+            <br>
+            <?php
+            if ($model->saldo_contra > 0) {
+                $this->widget('bootstrap.widgets.TbButton', array(
+                    'type' => 'default',
+                    'icon' => 'plus',
+                    'label' => 'Agregar',
+                    'htmlOptions' => array(
+//                        'href' => 'ahorro/ahorroDeposito/create?id_ahorro=' . $model->id,
+                        'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro=' . $model->id . '",function() {maskAttributes();}); ',
+                    ),
+                ));
+            }
+            ?>
+        </div>
     </div>
 </div>

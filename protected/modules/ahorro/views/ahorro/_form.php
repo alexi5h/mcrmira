@@ -37,7 +37,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
+        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class'=>'money')) ?>
 
         <?php
         echo $form->datepickerRow(

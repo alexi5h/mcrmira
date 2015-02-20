@@ -1,6 +1,7 @@
 <?php
 /** @var AhorroController $this */
 /** @var Ahorro $model */
+Util::tsRegisterAssetJs('admin.js');
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
@@ -27,13 +28,15 @@ $this->menu = array(
             'dataProvider' => $model->search(),
             'columns' => array(
                 array(
+                    'header' => 'Código',
                     'name' => 'Id',
-                    'value' => 'CHtml::link($data->id, Yii::app()->createUrl("ahorro/ahorro/view",array("id"=>$data->id)))',
+                    'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("ahorro/ahorro/view",array("id"=>$data->id)))',
                     'type' => 'raw',
                 ),
                 array(
                     'name' => 'socio_id',
-                    'value' => '$data->socio->nombre_formato'
+                    'value' => 'CHtml::link($data->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view",array("id"=>$data->socio->id)))',
+                    'type' => 'raw',
                 ),
                 'cantidad',
                 array(
@@ -60,7 +63,7 @@ $this->menu = array(
                  */
                 array(
                     'class' => 'CButtonColumn',
-                    'template' => '{update} {delete}',
+                    'template' => '{pago}',
                     'afterDelete' => 'function(link,success,data){ 
                     if(success) {
                          $("#flashMsg").empty();
@@ -69,18 +72,26 @@ $this->menu = array(
                     }
                     }',
                     'buttons' => array(
-                        'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
+                        'pago' => array(
+                            'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
+                            'options' => array('title' => 'Realizar deposito'),
+                            'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
+                            'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
                             'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                            'visible' => '($data->estado=="PAGADO")?false:true',
                         ),
-                        'delete' => array(
-                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-                            'options' => array('title' => 'Eliminar'),
-                            'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-                        ),
+//                        'update' => array(
+//                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+//                            'options' => array('title' => 'Actualizar'),
+//                            'imageUrl' => false,
+//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+//                        ),
+//                        'delete' => array(
+//                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+//                            'options' => array('title' => 'Eliminar'),
+//                            'imageUrl' => false,
+//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+//                        ),
                     ),
                     'htmlOptions' => array(
                         'width' => '80px'

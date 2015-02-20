@@ -20,7 +20,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 <div class="modal-body">
     <div class="row-fluid">
         <div class="span6">
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
+            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
             <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
             <?php
@@ -41,7 +41,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ?>
         </div>
         <div class="span6">
-<!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
+            <!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))    ?>
 
             <?php
 //            echo $form->datepickerRow(
