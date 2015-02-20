@@ -37,6 +37,7 @@ class AhorroDepositoController extends AweController {
             $model = new AhorroDeposito;
 
             $model->ahorro_id = $id_ahorro;
+            $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->ahorro->socio_id);
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $validadorPartial = true;
 
@@ -59,7 +60,7 @@ class AhorroDepositoController extends AweController {
                     $modelAhorroExtra->ahorro_id = $id_ahorro;
                     $modelAhorroExtra->socio_id = $modelAhorro->socio_id;
                     $modelAhorroExtra->save();
-                    
+
                     $result['ahorro_extra_id'] = $modelAhorroExtra->id;
                     $result['cantidadExtra'] = $model->cantidad - $modelAhorro->saldo_contra;
                     $modelAhorro->saldo_contra = 0;
@@ -67,6 +68,7 @@ class AhorroDepositoController extends AweController {
                 }
 //                }
                 $model->fecha_comprobante_entidad = $model->fecha_comprobante_entidad ? Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s') : Util::FechaActual();
+                $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->ahorro->socio_id);
                 $model->fecha_comprobante_su = Util::FechaActual();
                 $result['enableButtonSave'] = true;
                 if ($model->save()) {
@@ -74,14 +76,13 @@ class AhorroDepositoController extends AweController {
                         if ($modelAhorro->tipo != Ahorro::TIPO_VOLUNTARIO) { // si el ahorro  no es voluntario()
                             $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
                         }
-                        if($modelAhorro->tipo==Ahorro::TIPO_PRIMER_PAGO){ //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
+                        if ($modelAhorro->tipo == Ahorro::TIPO_PRIMER_PAGO) { //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
                             Persona::model()->updateByPk($modelAhorro->socio->id, array(
-                                    'usuario_actualizacion_id' => Yii::app()->user->id,
-                                    'fecha_actualizacion' => Util::FechaActual(),
-                                    'aprobado' =>  1
-                                )
+                                'usuario_actualizacion_id' => Yii::app()->user->id,
+                                'fecha_actualizacion' => Util::FechaActual(),
+                                'aprobado' => 1
+                                    )
                             );
-
                         }
 
                         $result['enableButtonSave'] = false;

@@ -5,7 +5,7 @@
 Yii::app()->clientScript->scriptMap['jquery.js'] = false;
 Yii::app()->clientScript->scriptMap['jquery.yiigridview.js'] = false;
 Util::tsRegisterAssetJs('_form_modal_deposito.js');
-$credito=  Credito::model()->findByPk($model->credito_id);
+$credito = Credito::model()->findByPk($model->credito_id);
 ?>
 
 <div class="modal-header span12" style="margin: 0px">
@@ -40,13 +40,15 @@ $credito=  Credito::model()->findByPk($model->credito_id);
                     $model, 'fecha_comprobante_entidad', array(
                 'options' => array(
                     'language' => 'es',
+                    'format' => 'dd-mm-yyyy',
+                    'endDate' => 'today',
                     'readonly' => 'readonly',
                 ),
                     )
             );
             ?>
             <?php // echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
+            <?php // echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
             <?php // echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
             <?php echo $form->textAreaRow($model, 'observaciones', array('rows' => 3, 'cols' => 50)) ?>
 

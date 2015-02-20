@@ -38,36 +38,13 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
                     $model, 'fecha_comprobante_entidad', array(
                 'options' => array(
                     'language' => 'es',
+                    'format' => 'dd-mm-yyyy',
+                    'endDate' => 'today',
                     'readonly' => 'readonly',
                 ),
                     )
             );
             ?>
-            <!--</div>-->
-
-            <!--<div class="span12 ">-->
-            <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
-<!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
-            <!--</div>-->
-
-
-
-            <!--<div class="span12 ">-->
-            <?php // echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
-            <?php
-//            echo $form->datepickerRow(
-//                    $model, 'fecha_comprobante_su', array(
-//                'options' => array(
-//                    'language' => 'es',
-//                    'readonly' => 'readonly',
-//                ),
-//                    )
-//            );
-            ?>
-            <?php // echo $form->dropDownListRow($model, 'pago_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Ahorro::model()->findAll(), 'id', Ahorro::representingColumn())) ?>
-            <!--</div>-->
 
             <div id="buttondeposito">
                 <?php

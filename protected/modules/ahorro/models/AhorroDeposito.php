@@ -101,5 +101,10 @@ class AhorroDeposito extends BaseAhorroDeposito {
             'criteria' => $criteria, 'sort' => $sort,
         ));
     }
+    
+    public function generarCodigoComprobante($socio_id = '') {
+        $result = date('y') . date('m') . date('d') . date('H') . date('i') . date('s') . $socio_id;
+        return $result;
+    }
 
 }
