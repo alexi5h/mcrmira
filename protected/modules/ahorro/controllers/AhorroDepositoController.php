@@ -45,30 +45,12 @@ class AhorroDepositoController extends AweController {
                 $modelAhorroVol = null;
                 $result['ahorro_id'] = $model->ahorro_id;
                 $model->attributes = $_POST['AhorroDeposito'];
-//                if ($modelAhorro->tipo == Ahorro::TIPO_VOLUNTARIO) {
-//                    $modelAhorro->cantidad = $modelAhorro->cantidad + $model->cantidad;
-//                } else {
+
                 if ($model->cantidad <= $modelAhorro->saldo_contra) {
                     $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
                     $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
                     $result['cantidadExtra'] = 0;
                 } else {
-//                        $modelAhorroVol = Ahorro::model()->de_cliente_obligatorio($modelAhorro->socio_id)->findAll();
-//                        if ($modelAhorroVol == null) {
-//                            $modelAhorroVol = new Ahorro;
-//                            $modelAhorroVol->descripcion = 'Creación del ahorro voluntario';
-//                            $modelAhorroVol->socio_id = $modelAhorro->socio_id;
-//                            $modelAhorroVol->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
-//                            $modelAhorroVol->fecha = Util::FechaActual();
-//                            $modelAhorroVol->tipo = Ahorro::TIPO_VOLUNTARIO;
-//                            $modelAhorroVol->save();
-//                        } else {
-//                            Ahorro::model()->updateByPk(($modelAhorroVol[0]->id) + 0, array(
-//                                'cantidad' => $modelAhorroVol[0]->cantidad + $model->cantidad - $modelAhorro->saldo_contra
-//                            ));
-//                        }
-//                        $modelAhorro->cantidad_extra=$model->cantidad - $modelAhorro->saldo_contra;
-//                        
                     //Creación por default de una ahorro extra antes de consultar el destino de la cantidad sobrante
                     $modelAhorroExtra = new AhorroExtra;
                     $modelAhorroExtra->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
@@ -88,10 +70,20 @@ class AhorroDepositoController extends AweController {
                 $model->fecha_comprobante_su = Util::FechaActual();
                 $result['enableButtonSave'] = true;
                 if ($model->save()) {
-                    if ($modelAhorro->saldo_contra == 0) {
-                        if ($modelAhorro->tipo != Ahorro::TIPO_VOLUNTARIO) {
+                    if ($modelAhorro->saldo_contra == 0) { // si el ahorro ya se pago en su totalidad
+                        if ($modelAhorro->tipo != Ahorro::TIPO_VOLUNTARIO) { // si el ahorro  no es voluntario()
                             $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
                         }
+                        if($modelAhorro->tipo==Ahorro::TIPO_PRIMER_PAGO){ //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
+                            Persona::model()->updateByPk($modelAhorro->socio->id, array(
+                                    'usuario_actualizacion_id' => Yii::app()->user->id,
+                                    'fecha_actualizacion' => Util::FechaActual(),
+                                    'aprobado' =>  1
+                                )
+                            );
+
+                        }
+
                         $result['enableButtonSave'] = false;
                     }
                     $result['success'] = $modelAhorro->save();
