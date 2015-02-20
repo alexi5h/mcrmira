@@ -43,7 +43,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <div class="span6">
 <!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
             <?php
 //            echo $form->datepickerRow(
 //                    $model, 'fecha_comprobante_su', array(
