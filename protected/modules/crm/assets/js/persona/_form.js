@@ -19,19 +19,19 @@ $(function () {
         AjaxListaBarrios("Direccion2_parroquia_id", "Direccion2_barrio_id");
     });
 
-    $('#Persona_tipo_identificacion_0').on('click', function () {
-        $('#Persona_cedula').attr({
-            disabled: false,
-        });
-        $('#Persona_cedula').mask('0000000000');
-    });
+//    $('#Persona_tipo_identificacion_0').on('click', function () {
+//        $('#Persona_cedula').attr({
+//            disabled: false,
+//        });
+//        $('#Persona_cedula').mask('0000000000');
+//    });
 
-    $('#Persona_tipo_identificacion_1').on('click', function () {
-        $('#Persona_cedula').attr({
-            disabled: false,
-        });
-        $('#Persona_cedula').unmask();
-    });
+//    $('#Persona_tipo_identificacion_1').on('click', function () {
+//        $('#Persona_cedula').attr({
+//            disabled: false,
+//        });
+//        $('#Persona_cedula').unmask();
+//    });
 });
 function AjaxListaCantones(lista, lista_actualizar)
 {
