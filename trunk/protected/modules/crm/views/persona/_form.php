@@ -46,26 +46,43 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
 
 
-<!--        <div class="control-group">
-            <?php // echo $form->labelEx($model, 'actividad_economica_id', array('class' => 'control-label')); ?>
-            <div class="controls">-->
-                <?php
-                $actividades_eco = ActividadEconomica::model()->activos()->findAll();
+        <!--        <div class="control-group">
+        <?php // echo $form->labelEx($model, 'actividad_economica_id', array('class' => 'control-label')); ?>
+                    <div class="controls">-->
+        <!--<div class="inline">-->
+        <?php
+        $actividades_eco = ActividadEconomica::model()->activos()->findAll();
 
-                echo $form->select2Row($model, 'actividad_economica_id', array(
-                    'asDropDownList' => true,
-                    'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
-                    'options' => array(
-                        'placeholder' => '-- Seleccione --',
-                    )
-                ));
-                ?>
+        echo $form->select2Row($model, 'actividad_economica_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            )
+        ));
+        ?>
+        <?php
+        $this->widget(
+                'bootstrap.widgets.TbButton', array(
+            'label' => 'Top popover',
+            'type' => 'primary',
+            'htmlOptions' => array(
+                'data-title' => 'A Title',
+                'data-placement' => 'right',
+                'data-content' => "And here's some amazing content. It's very engaging. right?",
+                'data-toggle' => 'popover'
+            ),
+                )
+        );
+        ?>
+        <!--</div>-->
+
 <!--                <span class="input-group-addon btn">
                     <a  href="#" id="popover2" class="pop" entidad="actividad_economica_id" data-original-title="" title=""><i class="fa fa-plus"></i></a>
                 </span>-->
-                <?php // echo $form->error($model, 'actividad_economica_id') ?> 
-<!--            </div>                                           
-        </div>-->
+        <?php // echo $form->error($model, 'actividad_economica_id')   ?> 
+        <!--            </div>                                           
+                </div>-->
 
         <?php
         $actividades_eco = ActividadEconomica::model()->activos()->findAll();
@@ -136,12 +153,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')       ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')        ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')       ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')        ?>
 
 
-        <?php // echo $form->textFieldRow($model, 'aprobado')       ?>
+        <?php // echo $form->textFieldRow($model, 'aprobado')         ?>
         <?php
 //        $sucursales = Sucursal::model()->activos()->findAll();
 //        if (!empty($sucursales)) {
@@ -151,7 +168,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                   ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                          ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {
