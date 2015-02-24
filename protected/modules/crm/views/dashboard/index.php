@@ -48,13 +48,13 @@ $this->pageTitle = Yii::app()->name;
 </div>
 <div class="metro-nav">
 
-    <div class="metro-nav-block nav-block-redblack double">
+<!--    <div class="metro-nav-block nav-block-redblack double">
         <a href="<?php // echo Yii::app()->createUrl('/crm/persona/admin')  ?>" data-original-title="">
             <i class="icon-money"></i>
-            <div class="info"><?php echo '$' . Ahorro::model()->getTotalAhorros_extras() ?></div>
+            <div class="info"><?php // echo '$' . Ahorro::model()->getTotalAhorros_extras() ?></div>
             <div class="status">Ahorros Extras</div>
         </a>
-    </div>
+    </div>-->
 
     <div class="metro-nav-block nav-block-grey">
         <a href="<?php // echo Yii::app()->createUrl('/credito/credito/admin')  ?>" data-original-title="">
