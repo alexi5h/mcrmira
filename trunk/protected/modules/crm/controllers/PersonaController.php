@@ -45,10 +45,11 @@ class PersonaController extends AweController {
         $idEtapa = PersonaEtapa::model()->getIdPesoMinimo();
         $model->persona_etapa_id = $idEtapa;
         $model->usuario_creacion_id = Yii::app()->user->id;
-        $model->fecha_creacion = Util::FechaActual();
-        $model->tipo = Persona::TIPO_CLIENTE;
+
+
+        $model->tipo = Persona::TIPO_NUEVO;
         $model->estado = Persona::ESTADO_ACTIVO;
-        $model->discapacidad='NO';
+        $model->discapacidad = 'NO';
         $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
@@ -57,7 +58,7 @@ class PersonaController extends AweController {
             $modelDireccion2->attributes = $_POST['Direccion2'];
             $model->aprobado = 0;
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
-                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion1->tipo = Direccion::TIPO_NUEVO;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id);
                 $modelDireccion1->barrio_id = ($modelDireccion1->barrio_id == 0) ? null : ($modelDireccion1->barrio_id);
                 if ($modelDireccion1->save(false)) {
@@ -65,18 +66,22 @@ class PersonaController extends AweController {
                 }
             }
             if (implode('', array_values($modelDireccion2->attributes)) != '') {
-                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion2->tipo = Direccion::TIPO_NUEVO;
                 $modelDireccion2->parroquia_id = ($modelDireccion2->parroquia_id == 0) ? null : ($modelDireccion2->parroquia_id);
                 $modelDireccion2->barrio_id = ($modelDireccion2->barrio_id == 0) ? null : ($modelDireccion2->barrio_id);
                 if ($modelDireccion2->save(false)) {
                     $model->direccion_negocio_id = $modelDireccion2->id;
                 }
             }
+
+            $model->fecha_creacion = Util::FormatDate($_POST['Persona']['fecha_creacion'], 'Y-m-d');
             $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
 
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
+            $model->fecha_creacion = Util::FormatDate($_POST['Persona']['fecha_creacion'], 'Y-m-d');
+            $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'd/m/Y');
         }
 
         $this->render('create', array(
@@ -105,7 +110,7 @@ class PersonaController extends AweController {
             $modelDireccion1->attributes = $_POST['Direccion1'];
             $modelDireccion2->attributes = $_POST['Direccion2'];
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
-                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion1->tipo = Direccion::TIPO_NUEVO;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id);
                 $modelDireccion1->barrio_id = ($modelDireccion1->barrio_id == 0) ? null : ($modelDireccion1->barrio_id);
                 if ($modelDireccion1->save(false)) {
@@ -113,7 +118,7 @@ class PersonaController extends AweController {
                 }
             }
             if (implode('', array_values($modelDireccion2->attributes)) != '') {
-                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
+                $modelDireccion2->tipo = Direccion::TIPO_NUEVO;
                 $modelDireccion2->parroquia_id = ($modelDireccion2->parroquia_id == 0) ? null : ($modelDireccion2->parroquia_id);
                 $modelDireccion2->barrio_id = ($modelDireccion2->barrio_id == 0) ? null : ($modelDireccion2->barrio_id);
                 if ($modelDireccion2->save(false)) {

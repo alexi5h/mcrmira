@@ -9,14 +9,13 @@ class Persona extends BasePersona {
     const ESTADO_ACTIVO = 'ACTIVO';
     const ESTADO_INACTIVO = 'INACTIVO';
     //tipo: CLIENTE,GARANTE
-    const TIPO_CLIENTE = 'CLIENTE';
-    const TIPO_GARANTE = 'GARANTE';
+    const TIPO_NUEVO = 'NUEVO';
+//    const TIPO_CLIENTE = 'CLIENTE';
+    const TIPO_FUNDADOR = 'FUNDADOR';
+//    const TIPO_GARANTE = 'GARANTE';
     //sexo: MASCULINO,FEMENINO
     const SEXO_MASCULINO = 'MASCULINO';
     const SEXO_FEMENINO = 'FEMENINO';
-    //tipo_identificacion: CEDULA,PASAPORTE
-    const TIPO_CEDULA = 'CEDULA';
-    const TIPO_PASAPORTE = 'PASAPORTE';
     //discapacidad
     const DISCAPASIDAD_SI = 'SI';
     const DISCAPASIDAD_NO = 'NO';
@@ -47,7 +46,7 @@ class Persona extends BasePersona {
             'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
             'actividad_economica' => null,
             'cedula' => Yii::t('app', 'Identificación'),
-            'tipo_identificacion' => Yii::t('app', 'Tipo Identificación'),
+//            'tipo_identificacion' => Yii::t('app', 'Tipo Identificación'),
                 )
         );
     }
@@ -78,7 +77,8 @@ class Persona extends BasePersona {
             array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
             array('nombre_formato', 'safe', 'on' => 'search'),
-            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+//            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
@@ -89,7 +89,7 @@ class Persona extends BasePersona {
             array('tipo', 'length', 'max' => 7),
             array('estado', 'length', 'max' => 8),
             array('descripcion, fecha_actualizacion', 'safe'),
-            array('tipo', 'in', 'range' => array('CLIENTE', 'GARANTE')), // enum,
+            array('tipo', 'in', 'range' => array('FUNDADOR', 'NUEVO')), // enum,
             array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
             array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
@@ -165,14 +165,14 @@ class Persona extends BasePersona {
         return null;
     }
 
-    public function getTipoIdentificacion() {
-        if ($this->tipo_identificacion == 'C') {
-            return self::TIPO_CEDULA;
-        } else {
-            return self::TIPO_PASAPORTE;
-        }
-        return null;
-    }
+//    public function getTipoIdentificacion() {
+//        if ($this->tipo_identificacion == 'C') {
+//            return self::TIPO_CEDULA;
+//        } else {
+//            return self::TIPO_PASAPORTE;
+//        }
+//        return null;
+//    }
 
     public function etapa_activos() {
         $c_activos = Yii::app()->db->createCommand()

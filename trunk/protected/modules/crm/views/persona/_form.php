@@ -33,13 +33,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->textFieldRow($model, 'apellido_materno', array('maxlength' => 30, 'class' => 'span6')) ?>
 
         <?php
-        echo $form->radioButtonListRow(
-                $model, 'tipo_identificacion', array('C' => 'Cédula', 'P' => 'Pasaporte',), array('labelOptions' => array('style' => 'display:inline-block'),
-            'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
-        );
+//        echo $form->radioButtonListRow(
+//                $model, 'tipo_identificacion', array('C' => 'Cédula', 'P' => 'Pasaporte',), array('labelOptions' => array('style' => 'display:inline-block'),
+//            'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
+//        );
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cedula', array('class' => 'span4', 'disabled' => $model->isNewRecord ? true : false)) ?>
+        <?php // echo $form->textFieldRow($model, 'cedula', array('class' => 'span4', 'disabled' => $model->isNewRecord ? true : false)) ?>
+        <?php echo $form->textFieldRow($model, 'cedula', array('class' => 'span4 numeric')) ?>
 
         <?php echo $form->textFieldRow($model, 'ruc', array('maxlength' => 13, 'class' => 'span4')) ?>
 
@@ -53,6 +54,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 'placeholder' => '-- Seleccione --',
             )
         ));
+        ?>
+        <?php
+        $actividades_eco = ActividadEconomica::model()->activos()->findAll();
+
+        echo $form->dropDownListRow($model, 'tipo', array('-- selecione --', 'NUEVO' => 'NUEVO', 'FUNDADOR' => 'FUNDADOR'), array('placeholder' => null)
+        );
         ?>
 
         <?php echo $form->textFieldRow($model, 'telefono', array('maxlength' => 24, 'class' => 'span4')) ?>
@@ -69,13 +76,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'separator' => "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;")
         );
         ?>
-
         <?php
         echo $form->datepickerRow(
                 $model, 'fecha_nacimiento', array(
             'options' => array(
                 'language' => 'es',
                 'format' => 'dd/mm/yyyy',
+                'autoclose' => true,
                 'startView' => 2,
                 'orientation' => 'bottom right',
             ),
@@ -85,6 +92,23 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 )
         );
         ?>
+        <?php
+        echo $form->datepickerRow(
+                $model, 'fecha_creacion', array(
+            'options' => array(
+                'language' => 'es',
+                'format' => 'dd/mm/yyyy',
+                'autoclose' => true,
+//                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
+            )
+                )
+        );
+        ?>
+
 
         <?php
         echo $form->radioButtonListRow(
@@ -100,12 +124,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')    ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')      ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')    ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')      ?>
 
 
-        <?php // echo $form->textFieldRow($model, 'aprobado')    ?>
+        <?php // echo $form->textFieldRow($model, 'aprobado')      ?>
         <?php
 //        $sucursales = Sucursal::model()->activos()->findAll();
 //        if (!empty($sucursales)) {
@@ -115,7 +139,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))    ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {
