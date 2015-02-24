@@ -32,8 +32,8 @@ class CreditoController extends AweController {
      */
     public function actionCreate() {
         $model = new Credito;
-        $idEtapa = CreditoEtapa::model()->getIdPesoMinimo();
-        $model->credito_etapa_id = $idEtapa;
+//        $idEtapa = CreditoEtapa::model()->getIdPesoMinimo();
+//        $model->credito_etapa_id = $idEtapa;
         
         $this->performAjaxValidation($model, 'credito-form');
 
