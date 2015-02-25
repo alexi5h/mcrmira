@@ -22,6 +22,7 @@ class ActividadEconomica extends BaseActividadEconomica
     public function rules() {
         return array_merge(parent::rules(), array(
             array('nombre, estado', 'required'),
+            array('nombre', 'unique','on'=>'create'),
         ));
     }
     

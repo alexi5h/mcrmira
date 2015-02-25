@@ -56,7 +56,7 @@ class ActividadEconomicaController extends AweController {
      */
     public function actionCreate() {
         $result = array();
-        $model = new ActividadEconomica;
+        $model = new ActividadEconomica('create');
         $model->estado = ActividadEconomica::ESTADO_ACTIVO;
 
         $this->ajaxValidation($model, 'actividad-economica-form');
