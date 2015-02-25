@@ -6,14 +6,14 @@ function ajaxValidarFormulario(options)
         url: $(options.formId).attr('action'),
         data: $(options.formId).serialize() + '&' + 'ajax=' + options.formId,
         dataType: 'json',
-        beforeSend: function (xhr) {
+        beforeSend: function(xhr) {
             //Acciones a reaqlizar antes del envio
             if (options.beforeCall)
             {
                 options.beforeCall();
             }
         },
-        success: function (data) {
+        success: function(data) {
             //acciones a realizar cuando la respuesta es positiva 
             if (data.success) {
                 //reiniciar elementos
@@ -38,15 +38,14 @@ function ajaxValidarFormulario(options)
                 //capturar el identificador
 //                console.log(formIdpar.lenght);
                 $count = 0;
-                $.each(formIdpar, function (index, element) {
+                $.each(formIdpar, function(index, element) {
                     ++$count;
                 });
                 formIdpar[$count - 1] = '';
                 formIdent = getLomoCamello(formIdpar);
-                console.log(formIdent);
-                //mostrar errores
-
-                $.each(data.errors, function (parametro, mensaje) {
+                console.log(data.errors);
+                //mostrar errores                
+                $.each(data.errors, function(parametro, mensaje) {
                     //elemento con error
                     selectElementoFormError = "form" + options.formId + ' ' + formIdent + "_" + parametro;
                     //agregar la clase error
@@ -64,9 +63,9 @@ function ajaxValidarFormulario(options)
 /*
  * fucnion para poner la primera letra de un string en mayúscula
  */
-String.prototype.capitalize = function ()
+String.prototype.capitalize = function()
 {
-    return this.replace(/\w+/g, function (a)
+    return this.replace(/\w+/g, function(a)
     {
         return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
     });
@@ -74,7 +73,7 @@ String.prototype.capitalize = function ()
 function getLomoCamello(arrayElement)
 {
     unitElement = '';
-    $.each(arrayElement, function (index, elemento) {
+    $.each(arrayElement, function(index, elemento) {
         unitElement = unitElement + elemento.capitalize();
     });
     return unitElement;
@@ -88,7 +87,7 @@ function reloadControlGroup(formId)
     $('form' + formId + ' span.help-inline').attr('style', 'display: none');
 }
 function addClassSuccess(formId) {
-    $('form' + formId + ' div.control-group').each(function () {
+    $('form' + formId + ' div.control-group').each(function() {
         if (!$(this).hasClass('error')) {
             $(this).addClass('success');
         }

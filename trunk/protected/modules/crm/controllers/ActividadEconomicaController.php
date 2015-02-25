@@ -26,6 +26,30 @@ class ActividadEconomicaController extends AweController {
         ));
     }
 
+    public function actionMini() {
+        $model = new Persona;
+        $result = array();
+        $this->ajaxValidation($model);
+
+//        $this->performAjaxValidation($model, 'persona-form');
+//        var_dump(  $this->performAjaxValidation($model, 'persona-form'));
+        $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'd-m-Y');
+
+        if (isset($_POST['Persona'])) {
+            $model->attributes = $_POST['Persona'];
+            $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
+            $result['success'] = $model->save();
+            if ($result['success']) {
+                $result['attr'] = $model->attributes;
+            }
+            echo CJSON::encode($result);
+        } else {
+            $this->renderPartial('_form_mini', array(
+                'model' => $model,
+                    ), false, true);
+        }
+    }
+
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -35,14 +59,19 @@ class ActividadEconomicaController extends AweController {
         $model = new ActividadEconomica;
         $model->estado = ActividadEconomica::ESTADO_ACTIVO;
 
-        $this->performAjaxValidation($model, 'actividad-economica-form');
+        $this->ajaxValidation($model, 'actividad-economica-form');
 
 //        $validadorPartial = (isset($_GET['popoup']) && boolval($_GET['popoup'])) ? true : false;
         if (Yii::app()->request->isAjaxRequest) {
             if (isset($_POST['ActividadEconomica'])) {
                 $model->attributes = $_POST['ActividadEconomica'];
                 $result['success'] = $model->save();
+
                 $result['seleccion'] = $model->id;
+//                $result['error'] = $model->errors;
+                if ($result['success']) {
+                    $result['attr'] = $model->attributes;
+                }
                 $validadorPartial = TRUE;
                 echo json_encode($result);
             }
@@ -149,6 +178,26 @@ class ActividadEconomicaController extends AweController {
         }
     }
 
+    /**
+     * funcion de validacion por ajax
+     * @param type $model
+     * @param type $form_id
+     */
+    protected function ajaxValidation($model, $form_id) {
+        $portAtt = str_replace('-', ' ', (str_replace('-form', '', $form_id)));
+        $portAtt = ucwords(strtolower($portAtt));
+        $portAtt = str_replace(' ', '', $portAtt);
+        if (isset($_POST['ajax']) && $_POST['ajax'] === '#' . $form_id) {
+            $model->attributes = $_POST[$portAtt];
+            $result['success'] = $model->validate();
+            if (!$result['success']) {
+                $result['errors'] = $model->errors;
+                echo json_encode($result);
+                Yii::app()->end();
+            }
+        }
+    }
+
     /*     * *********AJAX************ */
 
     public function actionAjaxGetActividadesEconomicas() {
@@ -159,20 +208,20 @@ class ActividadEconomicaController extends AweController {
 //                    "condition" => "id =:id ",
 //                    "params" => array(':id' => $_POST['nuevo'],)
 //                ));
-              //  if ($data) {
-                    $data = CHtml::listData($data, 'id', 'nombre');
-                    //echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Actividades -', true);
-                    foreach ($data as $value => $name) {
-                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
-                    }
-              //  } else {
+                //  if ($data) {
+                $data = CHtml::listData($data, 'id', 'nombre');
+                //echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Actividades -', true);
+                foreach ($data as $value => $name) {
+                    echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                }
+                //  } else {
                 //    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
-               // }
-          //  } else {
+                // }
+                //  } else {
                 //echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un Actividad -', true);
-           // }
+                // }
+            }
         }
-    } 
-	}
+    }
 
 }
