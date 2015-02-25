@@ -10,11 +10,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
-        ));
+));
 ?>
 <div class="widget blue">
     <div class="widget-title">
-        <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Registar' : 'Update') . ' ' . Ahorro::label(1); ?></h4>
+        <h4>
+            <i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Registar' : 'Update') . ' ' . Ahorro::label(1); ?>
+        </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->
@@ -23,9 +25,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     <div class="widget-body">
 
 
-
-        <?php echo $form->textFieldRow($model, 'descripcion', array('maxlength' => 50)) ?>
-
         <?php // echo $form->textFieldRow($model, 'socio_id')  ?>
         <?php
         echo $form->select2Row($model, 'socio_id', array(
@@ -33,40 +32,30 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
             'options' => array(
                 'placeholder' => '-- Seleccione --',
+            ),
+            'htmlOptions' => array(
+                'class' => 'span6'
             )
         ));
         ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class'=>'money')) ?>
+        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
         <?php
         echo $form->datepickerRow(
-                $model, 'fecha', array(
-            'options' => array(
-                'language' => 'es',
-                'format' => 'dd/mm/yyyy',
-                'startView' => 2,
-                'orientation' => 'bottom right',
-            ),
-            'htmlOptions' => array(
-                'readonly' => 'readonly',
-            )
+            $model, 'fecha', array(
+                'options' => array(
+                    'language' => 'es',
+                    'format' => 'dd/mm/yyyy',
+                    'startView' => 2,
+                    'orientation' => 'bottom right',
+                ),
+                'htmlOptions' => array(
+                    'readonly' => 'readonly',
                 )
+            )
         );
         ?>
-
-        <?php //echo $form->dropDownListRow($model, 'estado', array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',))  ?>
-
-        <?php // echo $form->dropDownListRow($model, 'tipo', array(OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',)) ?>
-        <?php echo $form->dropDownListRow($model, 'tipo', array('placeholder' => '-- Seleccione --', 'OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO',)) ?>
-
-        <?php //echo $form->textFieldRow($model, 'saldo_contra', array('maxlength' => 10))  ?>
-
-        <?php //echo $form->textFieldRow($model, 'saldo_favor', array('maxlength' => 10))  ?>
-
-        <?php //echo $form->textFieldRow($model, 'saldo_extra', array('maxlength' => 10))  ?>
-
-        <?php // echo $form->dropDownListRow($model, 'anulado', array('placeholder' => '-- Seleccione --','SI'=>'SI','NO'=>'NO'))  ?>
 
         <div class="form-actions">
             <?php

@@ -10,7 +10,6 @@
  * followed by relations of table "ahorro" available as properties of the model.
  *
  * @property integer $id
- * @property string $descripcion
  * @property integer $socio_id
  * @property string $cantidad
  * @property string $fecha
@@ -21,7 +20,6 @@
  * @property string $anulado
  *
  * @property AhorroDeposito[] $ahorroDepositos
- * @property AhorroExtra[] $ahorroExtras
  */
 abstract class BaseAhorro extends AweActiveRecord {
 
@@ -45,19 +43,17 @@ abstract class BaseAhorro extends AweActiveRecord {
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
             array('anulado', 'length', 'max'=>2),
-            array('descripcion', 'safe'),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
-            array('tipo', 'in', 'range' => array('OBLIGATORIO','VOLUNTARIO','PRIMER_PAGO')), // enum,
+            array('tipo', 'in', 'range' => array('OBLIGATORIO','PRIMER_PAGO')), // enum,
             array('anulado', 'in', 'range' => array('SI','NO')), // enum,
-            array('descripcion, estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, descripcion, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
+            array('estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
             'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'ahorro_id'),
-            'ahorroExtras' => array(self::HAS_MANY, 'AhorroExtra', 'ahorro_id'),
         );
     }
 
@@ -67,7 +63,6 @@ abstract class BaseAhorro extends AweActiveRecord {
     public function attributeLabels() {
         return array(
                 'id' => Yii::t('app', 'ID'),
-                'descripcion' => Yii::t('app', 'Descripcion'),
                 'socio_id' => Yii::t('app', 'Socio'),
                 'cantidad' => Yii::t('app', 'Cantidad'),
                 'fecha' => Yii::t('app', 'Fecha'),
@@ -77,7 +72,6 @@ abstract class BaseAhorro extends AweActiveRecord {
                 'saldo_favor' => Yii::t('app', 'Saldo Favor'),
                 'anulado' => Yii::t('app', 'Anulado'),
                 'ahorroDepositos' => null,
-                'ahorroExtras' => null,
         );
     }
 
@@ -85,7 +79,6 @@ abstract class BaseAhorro extends AweActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('descripcion', $this->descripcion, true);
         $criteria->compare('socio_id', $this->socio_id);
         $criteria->compare('cantidad', $this->cantidad, true);
         $criteria->compare('fecha', $this->fecha, true);

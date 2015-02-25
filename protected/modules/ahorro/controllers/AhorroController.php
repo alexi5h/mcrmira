@@ -1,6 +1,7 @@
 <?php
 
-class AhorroController extends AweController {
+class AhorroController extends AweController
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -10,7 +11,8 @@ class AhorroController extends AweController {
     public $defaultAction = 'admin';
     public $admin = false;
 
-    public function filters() {
+    public function filters()
+    {
         return array(
             array('CrugeAccessControlFilter'),
         );
@@ -20,7 +22,8 @@ class AhorroController extends AweController {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -30,70 +33,30 @@ class AhorroController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($ahorro_id = null, $ahorro_extra_id = null) {
+    public function actionCreate($ahorro_id = null, $ahorro_extra_id = null)
+    {
         $model = new Ahorro('create');
-
-        if (Yii::app()->request->isAjaxRequest) {
-            $result = array();
-            $ahorro_extra = AhorroExtra::model()->findByPk($ahorro_extra_id);
-            $validadorPartial = true;
-            $modelVol = new Ahorro;
-            $this->performAjaxValidation($modelVol, 'ahorroVoluntario-form');
-            $modelVol->cantidad = $ahorro_extra->cantidad;
-            $modelVol->tipo = Ahorro::TIPO_VOLUNTARIO;
-            if (isset($_POST['Ahorro'])) {
-                $modelAhorro = Ahorro::model()->findByPk($ahorro_id);
-                $modelVol->attributes = $_POST['Ahorro'];
-                $modelVol->fecha = Util::FormatDate($modelVol->fecha, 'Y-m-d');
-                if ($modelVol->tipo == Ahorro::TIPO_VOLUNTARIO) {
-                    $modelVol->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA;
-                    $modelVol->socio_id = $modelAhorro->socio_id;
-                    $modelVol->fecha = Util::FechaActual();
-                    $modelVol->estado = Ahorro::ESTADO_PAGADO;
-                    $modelVol->saldo_contra = 0;
-                    $modelVol->saldo_favor = $modelVol->cantidad;
-                    $modelVol->anulado = Ahorro::ANULADO_NO;
-                    if ($modelVol->save()) {
-                        AhorroExtra::model()->deleteByPk($ahorro_extra_id);
-                        $result['success'] = true;
-                        $result['message'] = "Ahorro ingresado correctamente";
-                    }
-                    if (!$result['success']) {
-                        $modelVol->delete();
-                        $result['message'] = "Error al registrar el nuevo ahorro.";
-                    }
-                    $validadorPartial = false;
-                    echo json_encode($result);
-                }
+        $model->tipo = Ahorro::TIPO_OBLIGATORIO;
+        $this->performAjaxValidation($model, 'ahorro-form');
+        if (isset($_POST['Ahorro'])) {
+            $model->attributes = $_POST['Ahorro'];
+            $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
+            if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
+                $model->estado = Ahorro::ESTADO_DEUDA;
+                $model->saldo_contra = $model->cantidad;
+                $model->anulado = Ahorro::ANULADO_NO;
             }
-            if ($validadorPartial) {
-                $this->renderPartial('_decision_modal', array(
-                    'modelVol' => $modelVol,
-                        ), false, true);
+            if ($model->save()) {
+                $this->redirect(array('admin'));
             }
-        } else {
-            $this->performAjaxValidation($model, 'ahorro-form');
-            if (isset($_POST['Ahorro'])) {
-                $model->attributes = $_POST['Ahorro'];
-                $model->fecha = Util::FormatDate($model->fecha, 'Y-m-d');
-                if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
-                    $model->estado = Ahorro::ESTADO_DEUDA;
-                    $model->saldo_contra = $model->cantidad;
-                    $model->anulado = Ahorro::ANULADO_NO;
-                } else {
-                    $model->estado = null;
-                }
-                if ($model->save()) {
-                    $this->redirect(array('admin'));
-                }
             }
             $this->render('create', array(
                 'model' => $model,
             ));
-        }
     }
 
-    public function actionCrearVoluntario($socio_id = null, $cantidad = null) {
+    public function actionCrearVoluntario($socio_id = null, $cantidad = null)
+    {
 //        $model = new Ahorro('create');
 
         if (Yii::app()->request->isAjaxRequest) {
@@ -135,7 +98,7 @@ class AhorroController extends AweController {
                 $this->renderPartial('_decision_modal', array(
                     'modelVol' => $modelVol,
                     'identificador' => $identificador,
-                        ), false, true);
+                ), false, true);
             }
         }
     }
@@ -145,7 +108,8 @@ class AhorroController extends AweController {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->loadModel($id);
 
         $this->performAjaxValidation($model, 'ahorro-form');
@@ -169,7 +133,8 @@ class AhorroController extends AweController {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
@@ -184,7 +149,8 @@ class AhorroController extends AweController {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
         $model = new Ahorro('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Ahorro']))
@@ -195,7 +161,8 @@ class AhorroController extends AweController {
         ));
     }
 
-    public function actionAjaxCreateAhorroVoluntario($socio_id) {
+    public function actionAjaxCreateAhorroVoluntario($socio_id)
+    {
         if (Yii::app()->request->isAjaxRequest) {
             $render_form = true;
             $result = array();
@@ -250,7 +217,8 @@ class AhorroController extends AweController {
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id, $modelClass = __CLASS__) {
+    public function loadModel($id, $modelClass = __CLASS__)
+    {
         $model = Ahorro::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
@@ -261,7 +229,8 @@ class AhorroController extends AweController {
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model, $form = null) {
+    protected function performAjaxValidation($model, $form = null)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'ahorro-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();

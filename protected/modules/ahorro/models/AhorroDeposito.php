@@ -12,7 +12,8 @@ class AhorroDeposito extends BaseAhorroDeposito {
     }
 
     public function rules() {
-        return array_merge(parent::rules(), array(//            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->pago->saldo_contra),
+        return array_merge(parent::rules(), array(
+                    array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->ahorro->saldo_contra),
         ));
     }
 
