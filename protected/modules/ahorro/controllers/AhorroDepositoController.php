@@ -45,9 +45,6 @@ class AhorroDepositoController extends AweController
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
 
             if (isset($_POST['AhorroDeposito'])) {
-                $modelAhorro = Ahorro::model()->findByPk($id_ahorro); // model de ahorro
-
-                $modelAhorroVol = null;
                 $result['ahorro_id'] = $model->ahorro_id;
                 $model->attributes = $_POST['AhorroDeposito'];
 
@@ -66,7 +63,7 @@ class AhorroDepositoController extends AweController
                 $result['enableButtonSave'] = true; // habilitado en boton para hacer depositos
                 if ($model->save()) {
                     if ($modelAhorro->saldo_contra == 0) { // si el ahorro ya se pago en su totalidad
-
+                        $modelAhorro->estado= Ahorro::ESTADO_PAGADO;
                         if ($modelAhorro->tipo == Ahorro::TIPO_PRIMER_PAGO) { //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
                             Persona::model()->updateByPk($modelAhorro->socio->id, array(
                                     'usuario_actualizacion_id' => Yii::app()->user->id,
