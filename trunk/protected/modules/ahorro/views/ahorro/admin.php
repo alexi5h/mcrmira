@@ -4,7 +4,6 @@
 Util::tsRegisterAssetJs('admin.js');
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),
-    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
 ?>
@@ -16,7 +15,6 @@ $this->menu = array(
         <h4> <i class="icon-money"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo Ahorro::label(2) ?> </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
-            <!--a href="javascript:;" class="icon-remove"></a-->
         </span>
     </div>
     <div class="widget-body">
@@ -25,7 +23,7 @@ $this->menu = array(
         $this->widget('bootstrap.widgets.TbGridView', array(
             'id' => 'ahorro-grid',
             'type' => 'striped bordered hover advance',
-            'dataProvider' => $model->search(),
+            'dataProvider' => $model->de_tipo(Ahorro::TIPO_OBLIGATORIO)->search(),
             'columns' => array(
                 array(
                     'header' => 'Código',
