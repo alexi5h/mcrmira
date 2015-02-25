@@ -50,6 +50,7 @@ class PersonaController extends AweController {
         $model->tipo = Persona::TIPO_NUEVO;
         $model->estado = Persona::ESTADO_ACTIVO;
         $model->discapacidad = 'NO';
+
         $this->performAjaxValidation(array($model));
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
@@ -83,7 +84,6 @@ class PersonaController extends AweController {
             $model->fecha_creacion = Util::FormatDate($_POST['Persona']['fecha_creacion'], 'Y-m-d');
             $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'd/m/Y');
         }
-
         $this->render('create', array(
             'model' => $model,
             'modelDireccion1' => $modelDireccion1,

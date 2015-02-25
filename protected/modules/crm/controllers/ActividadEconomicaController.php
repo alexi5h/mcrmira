@@ -31,20 +31,39 @@ class ActividadEconomicaController extends AweController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+        $result = array();
         $model = new ActividadEconomica;
         $model->estado = ActividadEconomica::ESTADO_ACTIVO;
+
         $this->performAjaxValidation($model, 'actividad-economica-form');
 
-        if (isset($_POST['ActividadEconomica'])) {
-            $model->attributes = $_POST['ActividadEconomica'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+//        $validadorPartial = (isset($_GET['popoup']) && boolval($_GET['popoup'])) ? true : false;
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['ActividadEconomica'])) {
+                $model->attributes = $_POST['ActividadEconomica'];
+                $result['success'] = $model->save();
+                $result['seleccion'] = $model->id;
+                $validadorPartial = TRUE;
+                echo json_encode($result);
             }
-        }
+//            if (!$validadorPartial) {
+//
+//                $this->renderPartial('_form_modal', array(
+//                    'model' => $model
+//                        ), false, true);
+//            }
+        } else {
+            if (isset($_POST['ActividadEconomica'])) {
+                $model->attributes = $_POST['ActividadEconomica'];
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
+            }
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+            $this->render('create', array(
+                'model' => $model,
+            ));
+        }
     }
 
     /**
@@ -77,12 +96,12 @@ class ActividadEconomicaController extends AweController {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $model=$this->loadModel($id);
-            if(count($model->personas)==0){
+            $model = $this->loadModel($id);
+            if (count($model->personas) == 0) {
                 $model->estado = ActividadEconomica::ESTADO_INACTIVO;
                 $model->save();
                 echo '<div class = "alert alert-success"><button data-dismiss = "alert" class = "close" type = "button">×</button>Borrado Exitosamente.</div>';
-            }else{
+            } else {
                 echo '<div class = "alert alert-error"><button data-dismiss = "alert" class = "close" type = "button">×</button>Imposible eliminar la Actividad Económica, varias personas dependen de ésta.</div>';
             }
 
@@ -129,5 +148,31 @@ class ActividadEconomicaController extends AweController {
             Yii::app()->end();
         }
     }
+
+    /*     * *********AJAX************ */
+
+    public function actionAjaxGetActividadesEconomicas() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['nuevo']) && $_POST['nuevo'] > 0) {
+                $data = ActividadEconomica::model()->findAll();
+//                $data = ActividadEconomica::model()->findAll(array(
+//                    "condition" => "id =:id ",
+//                    "params" => array(':id' => $_POST['nuevo'],)
+//                ));
+              //  if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    //echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Actividades -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+              //  } else {
+                //    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+               // }
+          //  } else {
+                //echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione un Actividad -', true);
+           // }
+        }
+    } 
+	}
 
 }

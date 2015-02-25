@@ -39,7 +39,8 @@ function AjaxListaCantones(lista, lista_actualizar)
     AjaxCargarListas(baseUrl + "crm/canton/ajaxGetCantonByProvincia",
             {provincia_id: $("#" + lista).val()}, function (data) {
         $("#" + lista_actualizar).html(data);
-        $('#s2id_' + lista_actualizar + ' a span').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-arrow').html('<b></b>');
         $("#" + lista_actualizar).selectBox("refresh");
 
     });
@@ -50,7 +51,8 @@ function AjaxListaParroquias(lista, lista_actualizar)
     AjaxCargarListas(baseUrl + "crm/parroquia/ajaxGetParroquiaByCanton",
             {canton_id: $("#" + lista).val()}, function (data) {
         $("#" + lista_actualizar).html(data);
-        $('#s2id_' + lista_actualizar + ' a span').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-arrow').html('<b></b>');
         $("#" + lista_actualizar).selectBox("refresh");
 
     });
@@ -61,7 +63,8 @@ function AjaxListaBarrios(lista, lista_actualizar)
     AjaxCargarListas(baseUrl + "crm/barrio/ajaxGetBarrioByParroquia",
             {parroquia_id: $("#" + lista).val()}, function (data) {
         $("#" + lista_actualizar).html(data);
-        $('#s2id_' + lista_actualizar + ' a span').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-arrow').html('<b></b>');
         $("#" + lista_actualizar).selectBox("refresh");
 
     });
@@ -77,3 +80,40 @@ function AjaxCargarListas(url, data, callBack)
         }
     });
 }
+
+function guardarActividadEconomicaPopouver(formulario, popoup)
+{
+    $.ajax({
+        type: "POST",
+        url: baseUrl + "crm/actividadEconomica/create/popoup/1",
+        data: $(formulario).serialize(),
+        dataType: "json",
+        beforeSend: function () {
+
+//            showModalLoading(tipo);
+        },
+        success: function (data) {
+            lista_actualizar = "Persona_actividad_economica_id";
+
+            if (data.success) {
+                idSelected = data.seleccion;
+                AjaxCargarListas(baseUrl + "crm/actividadEconomica/ajaxGetActividadesEconomicas",
+                        {nuevo: idSelected}, function (data) {
+                    $("#" + lista_actualizar).html(data);
+                    $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + " option[id='p']").html());
+                    $('#s2id_' + lista_actualizar + ' a span.select2-arrow').html('<b></b>');
+                    $("#" + lista_actualizar).selectBox("refresh");
+                    $('#' + lista_actualizar + ' > option[value="' + idSelected + '"]').attr('selected', 'selected');
+                    $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + ' > option[value="' + idSelected + '"]').html());
+
+                });
+
+                $(popoup).popover("hide");
+            }
+
+        }
+    });
+
+
+}
+
