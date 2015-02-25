@@ -32,20 +32,14 @@ class CreditoController extends AweController {
      */
     public function actionCreate() {
         $model = new Credito;
-//        $idEtapa = CreditoEtapa::model()->getIdPesoMinimo();
-//        $model->credito_etapa_id = $idEtapa;
-        
+
         $this->performAjaxValidation($model, 'credito-form');
 
         if (isset($_POST['Credito'])) {
-//            var_dump($_POST['Credito']);
-//            die();
             $model->attributes = $_POST['Credito'];
-//            $model->sucursal_id = 1;
-            $model->fecha_credito = Util::FechaActual();
+            $model->fecha_credito = Util::FormatDate($model->fecha_credito, 'Y-m-d H:i:s');
             $model->estado = Credito::ESTADO_DEUDA;
             $model->interes = Credito::INTERES;
-//            $model->usuario_creacion_id = Yii::app()->user->id;
 
             $fecha_lim = new DateTime(Util::FechaActual());
             $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
@@ -59,8 +53,6 @@ class CreditoController extends AweController {
             $model->anulado = Credito::NO_ANULADO;
 
             $tabla = $info_Amortizacion['tabla'];
-//            var_dump($tabla);
-//            die();
             if ($model->save()) {
                 for ($i = 0; $i < count($tabla); $i++) {
                     $modelAmort = new CreditoAmortizacion;
@@ -157,40 +149,6 @@ class CreditoController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'credito-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
-        }
-    }
-
-    public function actionKanban($id) {
-        $etapas = CreditoEtapa::model()->activos()->orden()->findAll();
-        $this->render('kanban', array(
-            'etapas' => $etapas,
-            'id' => $id,
-        ));
-    }
-
-    public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
-        if (Yii::app()->request->isAjaxRequest) {
-//            $id_etapa_max = CreditoEtapa::model()->getEtapaMaxima();
-//            if ($id_etapa_max == $id_etapa) {
-//                $ahorro = new Ahorro;
-//                $ahorro->descripcion = 'Primer pago por registro en la Mancomunidad';
-//                $ahorro->socio_id = $id_data;
-//                $ahorro->cantidad = Ahorro::VALOR_REGISTRO;
-//                $ahorro->fecha = Util::FechaActual();
-//                $ahorro->estado = Ahorro::ESTADO_DEUDA;
-//                $ahorro->tipo = Ahorro::TIPO_PRIMER_PAGO;
-//                $ahorro->saldo_contra = Ahorro::VALOR_REGISTRO;
-//                $ahorro->saldo_favor = 0;
-//                $ahorro->anulado = Ahorro::ANULADO_NO;
-//                $ahorro->save();
-//            }
-            Credito::model()->updateByPk($id_data, array(
-                'credito_etapa_id' => $id_etapa
-//                'usuario_actualizacion_id' => Yii::app()->user->id,
-//                'fecha_actualizacion' => Util::FechaActual(),
-//                'aprobado' => 0
-                    )
-            );
         }
     }
 

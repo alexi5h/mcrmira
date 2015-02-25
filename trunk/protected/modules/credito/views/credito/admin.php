@@ -51,13 +51,6 @@ $baseUrl = Yii::app()->baseUrl;
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                 ),
 //                array(
-//                    'value'=>'$data->credito_etapa_id==CreditoEtapa::model()->getPesoMaximo() ? "" : CHtml::link("<i class=\"icon-tasks\"></i>", Yii::app()->createUrl("credito/credito/kanban",array("id"=>$data->id)),array("class" => "btn btn-primary","title"=>"Gestionar Etapa"))',
-//                    'htmlOptions' => array(
-//                        'width' => '80px'
-//                    ),
-//                    'type'=>'raw',
-//                ),
-//                array(
 //                    'class' => 'CButtonColumn',
 //                    'template' => '{stagemanage} {delete}',
 //                    'afterDelete' => 'function(link,success,data){ 
