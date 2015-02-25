@@ -13,6 +13,8 @@
  * @property string $nombre
  * @property integer $direccion_id
  * @property string $estado
+ * @property double $valor_inscripcion
+ * @property double $valor_ahorro
  *
  * @property Persona[] $personas
  * @property Direccion $direccion
@@ -33,12 +35,13 @@ abstract class BaseSucursal extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('nombre, direccion_id, estado', 'required'),
+            array('nombre, direccion_id, estado, valor_inscripcion, valor_ahorro', 'required'),
             array('direccion_id', 'numerical', 'integerOnly'=>true),
+            array('valor_inscripcion, valor_ahorro', 'numerical'),
             array('nombre', 'length', 'max'=>45),
             array('estado', 'length', 'max'=>8),
             array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
-            array('id, nombre, direccion_id, estado', 'safe', 'on'=>'search'),
+            array('id, nombre, direccion_id, estado, valor_inscripcion, valor_ahorro', 'safe', 'on'=>'search'),
         );
     }
 
@@ -56,8 +59,10 @@ abstract class BaseSucursal extends AweActiveRecord {
         return array(
                 'id' => Yii::t('app', 'ID'),
                 'nombre' => Yii::t('app', 'Nombre'),
-                'direccion_id' => Yii::t('app', 'Dirección'),
+                'direccion_id' => Yii::t('app', 'Direccion'),
                 'estado' => Yii::t('app', 'Estado'),
+                'valor_inscripcion' => Yii::t('app', 'Valor Inscripcion'),
+                'valor_ahorro' => Yii::t('app', 'Valor Ahorro'),
                 'personas' => null,
                 'direccion' => null,
         );
@@ -70,6 +75,8 @@ abstract class BaseSucursal extends AweActiveRecord {
         $criteria->compare('nombre', $this->nombre, true);
         $criteria->compare('direccion_id', $this->direccion_id);
         $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('valor_inscripcion', $this->valor_inscripcion);
+        $criteria->compare('valor_ahorro', $this->valor_ahorro);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

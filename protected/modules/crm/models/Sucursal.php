@@ -20,12 +20,13 @@ class Sucursal extends BaseSucursal {
 
     public function rules() {
         return array(
-            array('nombre, estado', 'required'),
+            array('nombre, direccion_id, estado, valor_inscripcion, valor_ahorro', 'required'),
+            array('valor_inscripcion, valor_ahorro', 'numerical'),
             array('direccion_id', 'numerical', 'integerOnly' => true),
             array('nombre', 'length', 'max' => 45),
             array('estado', 'length', 'max' => 8),
             array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
-            array('id, nombre, direccion_id, estado', 'safe', 'on' => 'search'),
+            array('id, nombre, direccion_id, estado, valor_inscripcion, valor_ahorro', 'safe', 'on' => 'search'),
         );
     }
 
