@@ -44,7 +44,7 @@ $this->menu = array(
                     'buttons' => array(
                         'update' => array(
                             'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-                            'options' => array('title' => 'Actualizar'),
+                            'options' => array('title' => 'Editar'),
                             'imageUrl' => false,
                              //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                         ),
