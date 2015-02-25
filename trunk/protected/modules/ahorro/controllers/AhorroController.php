@@ -44,6 +44,7 @@ class AhorroController extends AweController
             if ($model->tipo == Ahorro::TIPO_OBLIGATORIO || $model->tipo == Ahorro::TIPO_PRIMER_PAGO) {
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
+                $model->saldo_favor=0;
                 $model->anulado = Ahorro::ANULADO_NO;
             }
             if ($model->save()) {
