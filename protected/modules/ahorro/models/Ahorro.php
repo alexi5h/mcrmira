@@ -159,21 +159,6 @@ class Ahorro extends BaseAhorro {
         return $return;
     }
 
-    public function setAnuladoVoluntario($id, $cantidad = NULL) {
-        $toUpdate = array();
-
-
-
-//        $toUpdate = array('cantidad' => $cantidad, 'saldo_favor' => $cantidad);
-        $toUpdate = array('saldo_contra' => $cant1, 'saldo_favor' => $cantidad);
-//
-        $command = Yii::app()->db->createCommand()
-                ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
-
-
-        return $command == 1 ? true : false;
-    }
-
     public function setAnuladoObligatorio($id, $cantidad = NULL) {
         $toUpdate = array();
         $cant = Yii::app()->db->createCommand()->select('cantidad,id')->from('ahorro')->where('id=:id', array('id' => $id));
@@ -198,25 +183,7 @@ class Ahorro extends BaseAhorro {
         $año = date("Y");
         return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
     }
-
-    public function existPagoObligatorio($attribute, $params) {
-        //    SELECT count(*)as pago FROM  `ahorro` 
-//    WHERE  `socio_id` =1 AND  `tipo` =  'OBLIGATORIO' AND  YEAR(`fecha`) = YEAR('2014-09-13') and MONTH (`fecha`) =MONTH ('2014-09-13')
-        $command = Yii::app()->db->createCommand()->select('count(*) as pago')
-                ->from('ahorro')
-                ->where('socio_id =:socio_id AND  tipo = :tipo AND  YEAR(fecha) = YEAR(:fecha) and MONTH (fecha) = MONTH (:fecha)', array(':socio_id' => $this->socio_id, ':tipo' => self::TIPO_OBLIGATORIO, ':fecha' => $this->fecha)
-        );
-        $command = $command->queryAll();
-
-        $validator = $command['0']['pago'] > 0;
-
-        if ($validator && $this->tipo == self::TIPO_OBLIGATORIO) {
-            $this->addError($attribute, 'Ya existe un pago obligatorio para este mes.');
-        }
-    }
-
-
-    /*     * *Consultas para dashboard* */
+        /*     * *Consultas para dashboard* */
 
     public function getTotalAhorros_Obligatorios_y_Primer_Pago() {
 //        select sum(ad.cantidad) from ahorro a
