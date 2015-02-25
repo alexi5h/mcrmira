@@ -35,7 +35,6 @@ class AhorroDepositoController extends AweController
      */
     public function actionCreate($id_ahorro = null)
     {
-
         if (Yii::app()->request->isAjaxRequest) {// el deposito solo se lo puede hacer mediante un modal
             $result = array();
             $model = new AhorroDeposito;
@@ -64,7 +63,7 @@ class AhorroDepositoController extends AweController
 
                 $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->ahorro->socio_id);
                 $model->fecha_comprobante_su = Util::FechaActual();
-                $result['enableButtonSave'] = true;
+                $result['enableButtonSave'] = true; // habilitado en boton para hacer depositos
                 if ($model->save()) {
                     if ($modelAhorro->saldo_contra == 0) { // si el ahorro ya se pago en su totalidad
 
@@ -77,7 +76,7 @@ class AhorroDepositoController extends AweController
                             );
                         }
 
-                        $result['enableButtonSave'] = false;
+                        $result['enableButtonSave'] = false; // deshabilitado en boton para hacer depositos
                     }
                     $result['success'] = $modelAhorro->save();
                 }
