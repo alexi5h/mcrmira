@@ -9,10 +9,14 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 ?>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4><i class="icon-user"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . AhorroDeposito::label(1); ?></h4>
+    <h4>
+        <i class="icon-user"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . AhorroDeposito::label(1) . '  '; ?>
+        <small class=" alert  alert-info text-info"> Saldo en contra: <?php echo $modelAhorro->saldo_contra ?></small>
+    </h4>
 </div>
 <div class="modal-body">
     <div class="row-fluid">
+
         <div class="span6">
             <?php
             $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
@@ -25,7 +29,7 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
             ?>
 
             <!--<div class="span12 ">-->
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
+            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class'=>'money')) ?>
 
             <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <!--</div>-->
@@ -35,14 +39,14 @@ Util::tsRegisterAssetJs('_form_modal_deposito.js');
 
             <?php
             echo $form->datepickerRow(
-                    $model, 'fecha_comprobante_entidad', array(
-                'options' => array(
-                    'language' => 'es',
-                    'format' => 'dd-mm-yyyy',
-                    'endDate' => 'today',
-                    'readonly' => 'readonly',
-                ),
-                    )
+                $model, 'fecha_comprobante_entidad', array(
+                    'options' => array(
+                        'language' => 'es',
+                        'format' => 'dd-mm-yyyy',
+                        'endDate' => 'today',
+                        'readonly' => 'readonly',
+                    ),
+                )
             );
             ?>
 

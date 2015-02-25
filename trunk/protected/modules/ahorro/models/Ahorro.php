@@ -35,7 +35,6 @@ class Ahorro extends BaseAhorro {
 
     public function relations() {
         return array_merge(parent::relations(), array(
-//            'ahorroDepositoVoluntario' => array(self::HAS_ONE, 'AhorroDeposito', 'ahorro_id'),
             'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
         ));
     }
@@ -43,8 +42,7 @@ class Ahorro extends BaseAhorro {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
-            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
-            array('cantidad', 'cantidadMayor10PagoObligatorio'),
+//            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
 //            array('tipo', 'unique', 'criteria' => array(
 //                    'condition' => 'socio_id=:socio_id',
 //                    'params' => array(
@@ -217,11 +215,6 @@ class Ahorro extends BaseAhorro {
         }
     }
 
-    public function cantidadMayor10PagoObligatorio($attribute, $params) {
-        if ($this->cantidad > 10 && $this->tipo == self::TIPO_OBLIGATORIO) {
-            $this->addError($attribute, 'La cantidad sobrepasa lo establecido para un ahorro obligatorio');
-        }
-    }
 
     /*     * *Consultas para dashboard* */
 
