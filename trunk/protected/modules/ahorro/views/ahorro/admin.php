@@ -50,15 +50,7 @@ $this->menu = array(
                     'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
                 ),
                 'saldo_contra',
-                /*
-                  'saldo_favor',
-                  'saldo_extra',
-                  array(
-                  'name' => 'anulado',
-                  'value' => '($data->anulado === 0) ? Yii::t(\'AweCrud.app\', \'No\') : Yii::t(\'AweCrud.app\', \'Yes\')',
-                  'filter' => array('0' => Yii::t('AweCrud.app', 'No'), '1' => Yii::t('AweCrud.app', 'Yes')),
-                  ),
-                 */
+                
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{pago}',
@@ -76,20 +68,8 @@ $this->menu = array(
                             'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
                             'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
                             'imageUrl' => false,
-                            'visible' => '($data->estado=="PAGADO")?false:true',
+                            'visible' => '($data->saldo_contra==0)||($data->estado=="PAGADO")?false:true',
                         ),
-//                        'update' => array(
-//                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-//                            'options' => array('title' => 'Actualizar'),
-//                            'imageUrl' => false,
-//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-//                        ),
-//                        'delete' => array(
-//                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-//                            'options' => array('title' => 'Eliminar'),
-//                            'imageUrl' => false,
-//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-//                        ),
                     ),
                     'htmlOptions' => array(
                         'width' => '80px'
