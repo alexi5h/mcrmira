@@ -16,7 +16,7 @@ class CreditoAmortizacion extends BaseCreditoAmortizacion {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'CreditoAmortizacion|CreditoAmortizacions', $n);
+        return Yii::t('app', 'Amortización|Amortizaciones', $n);
     }
 
     public function scopes() {

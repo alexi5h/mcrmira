@@ -17,7 +17,15 @@ function AjaxActualizacionInformacion(Formulario)
     BloquearBotonesModal(Formulario);
     AjaxGestionModalDeposito(Formulario, function (list) {
         $.fn.yiiGridView.update('credito-amortizacion-grid');
-        $.fn.yiiGridView.update('credito-grid');
+        if ($('#credito-grid')) {
+            $.fn.yiiGridView.update('credito-grid');
+        }
+        if ($('#credito-amortizacion-big-grid')) {
+            $.fn.yiiGridView.update('credito-amortizacion-big-grid');
+        }
+        if ($('#credito-deposito-grid')) {
+            $.fn.yiiGridView.update('credito-deposito-grid');
+        }
         $('#credito-deposito-form').trigger("reset");
         DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
 //        bootbox.confirm('jjj', function(param) {

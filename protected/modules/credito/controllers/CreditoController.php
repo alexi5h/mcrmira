@@ -45,7 +45,7 @@ class CreditoController extends AweController {
             $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
             $model->fecha_limite = $fecha_lim->format('Y-m-d H:i:s');
 
-            $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos);
+            $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos,$model->fecha_credito);
             $model->total_pagar = $info_Amortizacion['suma_cuota'];
             $model->total_interes = $info_Amortizacion['suma_interes'];
             $model->saldo_contra = $model->total_pagar;

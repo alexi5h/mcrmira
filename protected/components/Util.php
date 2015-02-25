@@ -590,17 +590,17 @@ class Util {
      * @param type $periodos
      * @return type array()
      */
-    public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null) {
+    public static function calculo_amortizacion($cantidad_total = null, $interes = null, $periodos = null,$fecha_credito=null) {
         $tabla = array();
         //Datos de cálculo
         $interes_mensual = ($interes / 12) * 0.01;
         $cuota = ($cantidad_total * $interes_mensual * 100) / (100 * (1 - pow(1 + $interes_mensual, -$periodos)));
 //        $fecha_temp = date("Y-m-d", strtotime(self::FechaActual() . " +1month"));
 
-        $fechaAct = date("Y-m-d", strtotime(self::FechaActual()));
+        $fechaAct = date("Y-m-d", strtotime($fecha_credito));
         $diaAct = date("d", strtotime($fechaAct));
 
-        $fecha = date("Y-m-d", strtotime(self::FechaActual() . " +1month"));
+        $fecha = date("Y-m-d", strtotime($fecha_credito . " +1month"));
         $mes = date("m", strtotime($fecha));
         $dia = date("d", strtotime($fecha));
 
@@ -630,10 +630,10 @@ class Util {
             array_push($tabla, array('nro_cuota' => $i + 1, 'fecha_pago' => $fecha_temp, 'cuota' => round($cuota, 2), 'interes' => round($intereses, 2), 'amortizacion' => round($amortizacion, 2), 'mora' => null, 'estado' => null, 'credito_id' => null));
 //            $fecha_temp = date("Y-m-d", strtotime($fecha_temp . " +1month"));
 
-            $fechaAct = date("Y-m-d", strtotime(self::FechaActual()));
+            $fechaAct = date("Y-m-d", strtotime($fecha_credito));
             $diaAct = date("d", strtotime($fechaAct));
 
-            $fecha = date("Y-m-d", strtotime(self::FechaActual() . " +" . $cont . "month"));
+            $fecha = date("Y-m-d", strtotime($fecha_credito . " +" . $cont . "month"));
             $mes = date("m", strtotime($fecha));
             $dia = date("d", strtotime($fecha));
 

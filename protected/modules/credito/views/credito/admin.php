@@ -28,6 +28,12 @@ $baseUrl = Yii::app()->baseUrl;
             'dataProvider' => $model->search(),
             'columns' => array(
                 array(
+                    'header' => 'Código',
+                    'name' => 'Id',
+                    'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
+                    'type' => 'raw',
+                ),
+                array(
                     'name' => 'socio_id',
                     'value' => '$data->socio->nombre_formato'
                 ),
@@ -35,59 +41,15 @@ $baseUrl = Yii::app()->baseUrl;
                     'name' => 'garante_id',
                     'value' => '$data->garante->nombre_formato'
                 ),
-//                array(
-//                    'name' => 'sucursal_id',
-//                    'value' => '$data->sucursal',
-//                    'type' => 'raw',
-//                ),
                 'fecha_credito',
                 'fecha_limite',
                 'cantidad_total',
                 'total_interes',
                 'total_pagar',
-//                'interes',
                 array(
                     'name' => 'estado',
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                 ),
-//                array(
-//                    'class' => 'CButtonColumn',
-//                    'template' => '{stagemanage} {delete}',
-//                    'afterDelete' => 'function(link,success,data){ 
-//                    if(success) {
-//                         $("#flashMsg").empty();
-//                         $("#flashMsg").css("display","");
-//                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
-//                    }
-//                    }',
-//                    'buttons' => array(
-//                        'stagemanage' => array(
-//                            'label' => '<button class="btn btn-primary"><i class="icon-tasks"></i> Gestionar Etapa</button>',
-//                            'label' => 'CHtml::link(\"<i class=\"icon-tasks\"></i>\", Yii::app()->createUrl("credito/credito/kanban",array("id"=>$data->id)),array("class" => "btn btn-primary","title"=>"Gestionar Etapa"))',
-//                            'options' => array(
-//                                'title' => 'Gestionar Etapa',
-////                                'href'=>$baseUrl.'/credito/credito/kanban?id=$data->id',
-//                            ),
-//                            'imageUrl' => false,
-////                            'url' => '$data->id',
-//                        ),
-////                        'update' => array(
-////                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-////                            'options' => array('title' => 'Actualizar'),
-////                            'imageUrl' => false,
-////                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-////                        ),
-//                        'delete' => array(
-//                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
-//                            'options' => array('title' => 'Eliminar'),
-//                            'imageUrl' => false,
-//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
-//                        ),
-//                    ),
-//                    'htmlOptions' => array(
-//                        'width' => '80px'
-//                    )
-//                ),
             ),
         ));
         ?>
