@@ -17,7 +17,7 @@ Util::tsRegisterAssetJs('view.js');
         <?php $this->renderPartial('portlets/_ahorro_primer_pago', array('model' => $model)); ?>
         <?php $this->renderPartial('portlets/_ahorros_obligatorios', array('model' => $model)); ?>
         <?php $this->renderPartial('portlets/_ahorros_voluntarios', array('model' => $model)); ?>
-        <?php $this->renderPartial('portlets/_ahorros_extras', array('model' => $model)); ?>
+        <?php // $this->renderPartial('portlets/_ahorros_extras', array('model' => $model)); ?>
     </div>
 
 </div>

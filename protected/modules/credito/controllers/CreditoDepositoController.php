@@ -96,18 +96,19 @@ class CreditoDepositoController extends AweController {
                         ));
                     }
                     //Creación de un nuevo ahorro voluntario si existe una cantidad extra
-                    $modelAhorro = new Ahorro;
-                    $modelAhorro->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA_CREDITO;
-                    $modelAhorro->socio_id = $modelCredito->socio_id;
-                    $modelAhorro->cantidad = $result['cantidadExtra'];
-                    $modelAhorro->fecha = Util::FechaActual();
-                    $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
-                    $modelAhorro->tipo = Ahorro::TIPO_VOLUNTARIO;
-                    $modelAhorro->saldo_contra = 0;
-                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
-                    $modelAhorro->anulado = Ahorro::ANULADO_NO;
-                    $modelAhorro->save();
-                    $result['message'] = 'Pago del crédito completo, la cantidad extra de valor $' . $result['cantidadExtra'] . ' se guardó en un nuevo ahorro Voluntario';
+//                    $modelAhorro = new Ahorro;
+//                    $modelAhorro->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA_CREDITO;
+//                    $modelAhorro->socio_id = $modelCredito->socio_id;
+//                    $modelAhorro->cantidad = $result['cantidadExtra'];
+//                    $modelAhorro->fecha = Util::FechaActual();
+//                    $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
+//                    $modelAhorro->tipo = Ahorro::TIPO_VOLUNTARIO;
+//                    $modelAhorro->saldo_contra = 0;
+//                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
+//                    $modelAhorro->anulado = Ahorro::ANULADO_NO;
+//                    $modelAhorro->save();
+//                    $result['message'] = 'Pago del crédito completo, la cantidad extra de valor $' . $result['cantidadExtra'] . ' se guardó en un nuevo ahorro Voluntario';
+                    $result['message'] = 'Pago del crédito completo';
                 }
                 if ($model->save()) {
                     $result['success'] = true;

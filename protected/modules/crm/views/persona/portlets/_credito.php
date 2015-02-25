@@ -3,7 +3,7 @@
 //var_dump($modelAmortizacionesComp);
 $creditos = new Credito;
 ?>
-<?php $validarDataCreditos = $creditos->de_socio($model->id)->en_deuda()->aprobados()->count() > 0 ?>
+<?php $validarDataCreditos = $creditos->de_socio($model->id)->en_deuda()->count() > 0 ?>
 <?php if ($validarDataCreditos): ?>
     <div class="widget black">
         <div class="widget-title">
@@ -21,7 +21,7 @@ $creditos = new Credito;
                     $this->widget('bootstrap.widgets.TbGridView', array(
                         'id' => 'credito-grid',
                         'type' => 'striped bordered hover advance',
-                        'dataProvider' => $creditos->de_socio($model->id)->en_deuda()->aprobados()->search(),
+                        'dataProvider' => $creditos->de_socio($model->id)->en_deuda()->search(),
                         'columns' => array(
 //                            array(
 //                                'name' => 'socio_id',

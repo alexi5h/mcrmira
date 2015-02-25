@@ -1,8 +1,4 @@
 <?php
-//$test=  Persona::model()->activos()->condicion_credito2();
-//$test=Persona::model()->findAll();
-//var_dump($test);
-//var_dump($test->getData());
 Util::tsRegisterAssetJs('_form.js');
 /** @var CreditoController $this */
 /** @var Credito $model */
@@ -52,26 +48,22 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ?>
 
         <?php
-//        echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') +
-//                CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))
+        echo $form->datepickerRow(
+                $model, 'fecha_credito', array(
+            'options' => array(
+                'language' => 'es',
+                'readonly' => 'readonly',
+                'format' => 'dd/mm/yyyy',
+            ),
+                )
+        );
         ?>
 
-        <?php
-//        echo $form->datepickerRow(
-//                $model, 'fecha_limite', array(
-//            'options' => array(
-//                'language' => 'es',
-//                'readonly' => 'readonly',
-//                'format' => 'dd/mm/yyyy',
-//            ),
-//                )
-//        );
-        ?>
+        <?php // echo $form->dropDownListRow($model, 'cantidad_total', array('300' => 300, '700' => 700, '1200' => 1200, '3600' => 3600), array('placeholder' => null)) ?>
 
-        <?php echo $form->dropDownListRow($model, 'cantidad_total', array('300' => 300, '700' => 700, '1200' => 1200, '3600' => 3600), array('placeholder' => null)) ?>
-
-        <?php // echo $form->textFieldRow($model, 'cantidad_total', array('maxlength' => 10)) ?>
+        <?php echo $form->textFieldRow($model, 'cantidad_total', array('maxlength' => 10)) ?>
         <?php echo $form->textFieldRow($model, 'periodos', array('maxlength' => 3)) ?>
+        <?php echo $form->textFieldRow($model, 'numero_cheque', array('maxlength' => 45)) ?>
 
         <div class="form-actions">
             <?php

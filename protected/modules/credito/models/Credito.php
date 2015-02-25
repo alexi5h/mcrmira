@@ -41,6 +41,7 @@ class Credito extends BaseCredito
     {
         return array_merge(parent::attributeLabels(), array(
                 'periodos' => Yii::t('app', 'Plazo (meses)'),
+                'numero_cheque' => Yii::t('app', 'Número Cheque'),
             )
         );
     }
@@ -49,7 +50,7 @@ class Credito extends BaseCredito
     {
         return array_merge(parent::rules(), array(
             array('socio_id, garante_id, sucursal_id, fecha_limite, cantidad_total, periodos', 'required'),
-            array('periodos, cantidad_total', 'numerical'),
+            array('periodos, cantidad_total, numero_cheque', 'numerical'),
         ));
     }
 
@@ -60,12 +61,6 @@ class Credito extends BaseCredito
                 'condition' => 't.estado = :estado',
                 'params' => array(
                     ':estado' => self::ESTADO_DEUDA,
-                ),
-            ),
-            'aprobados' => array(
-                'condition' => 't.credito_etapa_id = :etapa',
-                'params' => array(
-                    ':etapa' => CreditoEtapa::model()->getPesoMaximo(),
                 ),
             ),
         );

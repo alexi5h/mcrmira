@@ -11,10 +11,10 @@
             'data' => $model,
             'attributes' => array(
                 'nombre_formato',
-                array(
-                    'name' => 'tipo_identificacion',
-                    'value' => $model->getTipoIdentificacion()
-                ),
+//                array(
+//                    'name' => 'tipo_identificacion',
+//                    'value' => $model->getTipoIdentificacion()
+//                ),
                 'cedula',
                 'ruc',
                 'telefono',

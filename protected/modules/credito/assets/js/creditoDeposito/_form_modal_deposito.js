@@ -62,22 +62,16 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
             },
             success: function (data) {
                 if (data.success) {
-                    $('#centrado > h4').html('$'+data.saldo_contra+' por pagar');
-//                    if (!data.enableButtonSave) {
-//                        $('#buttondeposito').remove();
-//                    }
+                    $('#centrado > h4').html('$' + data.saldo_contra + ' por pagar');
                     if (data.cantidadExtra != 0) {
                         $("#mainBigModal").modal("hide");
                         bootbox.alert(data.message);
-//                        viewModal('ahorro/ahorro/crearVoluntario/socio_id/' + data.socio_id + '/cantidad/' + data.cantidad_extra, function () {});
-                    }else{
-                        if(data.pagado){
+                    } else {
+                        if (data.pagado) {
                             $("#mainBigModal").modal("hide");
                         }
                     }
-//                    console.log(data.cantidadExtra);
                     callBack(listaActualizar, data);
-
                 } else {
                     DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
                     bootbox.alert(data.message);
