@@ -27,6 +27,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->errorSummary(array($model, $modelDireccion)) ?>
         <?php echo $form->textFieldRow($model, 'nombre', array('maxlength' => 45)) ?>
+        <?php echo $form->textFieldRow($model, 'valor_inscripcion', array('maxlength' => 10, 'class' => 'money')) ?>
+        <?php echo $form->textFieldRow($model, 'valor_ahorro', array('maxlength' => 10, 'class' => 'money')) ?>
         <?php
         if ($model->isNewRecord) {
             $lista_provincia = CHtml::listData(Provincia::model()->findAll(), 'id', 'nombre');
