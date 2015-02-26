@@ -90,6 +90,7 @@ abstract class BaseAhorro extends AweActiveRecord {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+
         ));
     }
 
