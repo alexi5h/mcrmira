@@ -17,16 +17,17 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     <?php
     if ($model->isNewRecord) {
         $model_provincia = Provincia::model()->findAll();
-        $model_canton = new Canton;
-    } else {
-        $model->provincia_id = $model->canton->provincia->id;
-        $model_provincia = Provincia::model()->findAll();
-        $model_canton = Canton::model()->findAll(array(
-            "condition" => "provincia_id =:provincia_id ",
-            "order" => "nombre",
-            "params" => array(':provincia_id' => $model->canton->provincia->id,)
-        ));
+        $model_canton = Canton::model()->findAll();
     }
+//    else {
+//        $model->provincia_id = $model->canton->provincia->id;
+//        $model_provincia = Provincia::model()->findAll();
+//        $model_canton = Canton::model()->findAll(array(
+//            "condition" => "provincia_id =:provincia_id ",
+//            "order" => "nombre",
+//            "params" => array(':provincia_id' => $model->canton->provincia->id,)
+//        ));
+//    }
 
     echo $form->select2Row($model, 'provincia_id', array(
         'asDropDownList' => true,
@@ -50,7 +51,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         $this->widget('bootstrap.widgets.TbButton', array(
             'type' => 'success',
             'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-            'htmlOptions' => array('onclick' => 'guardarActividadEconomicaPopouver("#actividad-economica-form","#nuevaSucursal","Persona_actividad_economica_id")')
+            'htmlOptions' => array('onclick' => 'guardarParroquiaPopouver("#parroquia-form","#' . $buttomId . '","' . $control . '",' . $nro . ')')
         ));
         ?>
         <?php

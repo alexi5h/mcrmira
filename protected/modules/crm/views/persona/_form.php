@@ -184,7 +184,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                                                   ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                                                               ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {
@@ -306,10 +306,10 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //            'type' => 'primary',
                         'htmlOptions' => array(
                             'data-html' => true,
-                            'data-title' => '<i class="icon-dollar"></i> Agregar Parroquia<button type="button" class="close" onclick="$(&quot;#newParroquiaDomicilio&quot;).popover(&quot;hide&quot;)" >&times;',
+                            'data-title' => '<i class="icon-map-marker"></i> Agregar Parroquia<button type="button" class="close" onclick="$(&quot;#newParroquiaDomicilio&quot;).popover(&quot;hide&quot;)" >&times;',
                             'data-placement' => 'left',
                             'data-content' =>
-                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => new Parroquia, 'buttomId' => 'newParroquiaDomicilio'), true, false),
+                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => new Parroquia, 'buttomId' => 'newParroquiaDomicilio', 'control' => 'Direccion1_parroquia_id', 'nro' => 1), true, false),
 //                     true si el resultado de la representación debe ser devuelto en vez de ser mostrado a los usuarios finales.
 //                    flase si el resultado renderizado debe posprocesarlo usando processOutput .
                             'data-toggle' => 'popover'
@@ -460,7 +460,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     );
                     ?>
                     &nbsp;
+
                     <?php
+                    $parroquiaPopover = new Parroquia;
+                    if ($model->isNewRecord) {
+                        $parroquiaPopover->canton_id = $modelDireccion2->canton_id;
+                        $parroquiaPopover->provincia_id = $modelDireccion2->provincia_id;
+                    }
+
                     $this->widget(
                             'bootstrap.widgets.TbButton', array(
 //            'label' => 'Add',
@@ -469,10 +476,10 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //            'type' => 'primary',
                         'htmlOptions' => array(
                             'data-html' => true,
-                            'data-title' => '<i class="icon-dollar"></i> Agregar Actividad<button type="button" class="close" onclick="$(&quot;#newParroquiaNegocio&quot;).popover(&quot;hide&quot;)" >&times;',
+                            'data-title' => '<i class="icon-map-marker"></i> Agregar Actividad<button type="button" class="close" onclick="$(&quot;#newParroquiaNegocio&quot;).popover(&quot;hide&quot;)" >&times;',
                             'data-placement' => 'left',
                             'data-content' =>
-                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => new Parroquia, 'buttomId' => 'newParroquiaNegocio'), true, false),
+                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => $parroquiaPopover, 'buttomId' => 'newParroquiaNegocio', 'control' => 'Direccion2_parroquia_id', 'nro' => 2), true, false),
 //                     true si el resultado de la representación debe ser devuelto en vez de ser mostrado a los usuarios finales.
 //                    flase si el resultado renderizado debe posprocesarlo usando processOutput .
                             'data-toggle' => 'popover'

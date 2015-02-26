@@ -33,18 +33,37 @@ class ParroquiaController extends AweController {
     public function actionCreate() {
         $model = new Parroquia;
 
-        $this->performAjaxValidation($model, 'parroquia-form');
 
-        if (isset($_POST['Parroquia'])) {
-            $model->attributes = $_POST['Parroquia'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+//        $validadorPartial = (isset($_GET['popoup']) && boolval($_GET['popoup'])) ? true : false;
+        if (Yii::app()->request->isAjaxRequest) {
+            $this->ajaxValidation($model, 'parroquia-form');
+            if (isset($_POST['Parroquia'])) {
+                $model->attributes = $_POST['Parroquia'];
+                $result['success'] = $model->save();
+                $result['seleccion'] = $model->attributes;
+                $result['provincia'] = $model->canton->provincia_id;
+
+                if ($result['success']) {
+                    $result['attr'] = $model->attributes;
+                }
+                $validadorPartial = TRUE;
+                echo json_encode($result);
             }
-        }
+        } else {
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+            $this->performAjaxValidation($model, 'parroquia-form');
+
+            if (isset($_POST['Parroquia'])) {
+                $model->attributes = $_POST['Parroquia'];
+                if ($model->save()) {
+                    $this->redirect(array('admin'));
+                }
+            }
+
+            $this->render('create', array(
+                'model' => $model,
+            ));
+        }
     }
 
     /**
@@ -130,8 +149,9 @@ class ParroquiaController extends AweController {
     public function actionAjaxGetParroquiaByCanton() {
         if (Yii::app()->request->isAjaxRequest) {
             if (isset($_POST['canton_id']) && $_POST['canton_id'] > 0) {
+
                 $data = Parroquia::model()->findAll(array(
-                    "condition" => "canton_id =:canton_id ",
+                    "condition" => "canton_id =:canton_id",
                     "order" => "nombre",
                     "params" => array(':canton_id' => $_POST['canton_id'],)
                 ));
@@ -170,6 +190,26 @@ class ParroquiaController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'parroquia-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    /**
+     * funcion de validacion por ajax
+     * @param type $model
+     * @param type $form_id
+     */
+    protected function ajaxValidation($model, $form_id) {
+        $portAtt = str_replace('-', ' ', (str_replace('-form', '', $form_id)));
+        $portAtt = ucwords(strtolower($portAtt));
+        $portAtt = str_replace(' ', '', $portAtt);
+        if (isset($_POST['ajax']) && $_POST['ajax'] === '#' . $form_id) {
+            $model->attributes = $_POST[$portAtt];
+            $result['success'] = $model->validate();
+            if (!$result['success']) {
+                $result['errors'] = $model->errors;
+                echo json_encode($result);
+                Yii::app()->end();
+            }
         }
     }
 

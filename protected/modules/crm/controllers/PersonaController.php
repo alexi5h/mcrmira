@@ -59,7 +59,7 @@ class PersonaController extends AweController {
             $modelDireccion2->attributes = $_POST['Direccion2'];
             $model->aprobado = 0;
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
-                $modelDireccion1->tipo = Direccion::TIPO_NUEVO;
+                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id);
                 $modelDireccion1->barrio_id = ($modelDireccion1->barrio_id == 0) ? null : ($modelDireccion1->barrio_id);
                 if ($modelDireccion1->save(false)) {
@@ -67,7 +67,7 @@ class PersonaController extends AweController {
                 }
             }
             if (implode('', array_values($modelDireccion2->attributes)) != '') {
-                $modelDireccion2->tipo = Direccion::TIPO_NUEVO;
+                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion2->parroquia_id = ($modelDireccion2->parroquia_id == 0) ? null : ($modelDireccion2->parroquia_id);
                 $modelDireccion2->barrio_id = ($modelDireccion2->barrio_id == 0) ? null : ($modelDireccion2->barrio_id);
                 if ($modelDireccion2->save(false)) {
@@ -110,7 +110,7 @@ class PersonaController extends AweController {
             $modelDireccion1->attributes = $_POST['Direccion1'];
             $modelDireccion2->attributes = $_POST['Direccion2'];
             if (implode('', array_values($modelDireccion1->attributes)) != '') {
-                $modelDireccion1->tipo = Direccion::TIPO_NUEVO;
+                $modelDireccion1->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion1->parroquia_id = ($modelDireccion1->parroquia_id == 0) ? null : ($modelDireccion1->parroquia_id);
                 $modelDireccion1->barrio_id = ($modelDireccion1->barrio_id == 0) ? null : ($modelDireccion1->barrio_id);
                 if ($modelDireccion1->save(false)) {
@@ -118,7 +118,7 @@ class PersonaController extends AweController {
                 }
             }
             if (implode('', array_values($modelDireccion2->attributes)) != '') {
-                $modelDireccion2->tipo = Direccion::TIPO_NUEVO;
+                $modelDireccion2->tipo = Direccion::TIPO_CLIENTE;
                 $modelDireccion2->parroquia_id = ($modelDireccion2->parroquia_id == 0) ? null : ($modelDireccion2->parroquia_id);
                 $modelDireccion2->barrio_id = ($modelDireccion2->barrio_id == 0) ? null : ($modelDireccion2->barrio_id);
                 if ($modelDireccion2->save(false)) {
