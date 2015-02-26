@@ -53,13 +53,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     <?php
                     $actividades_eco = ActividadEconomica::model()->activos()->findAll();
 
-//                    echo $form->select2Row($model, 'actividad_economica_id', array(
-//                        'asDropDownList' => true,
-//                        'data' => CHtml::listData($actividades_eco, 'id', 'nombre'),
-//                        'options' => array(
-//                            'placeholder' => '-- Seleccione --',
-//                        )
-//                    ));
+
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
 //                        'asDropDownList' => false,
@@ -87,9 +81,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                         'htmlOptions' => array(
                             'data-html' => true,
                             'data-title' => '<i class="icon-dollar"></i> Agregar Actividad<button type="button" class="close" onclick="$(&quot;#nuevaSucursal&quot;).popover(&quot;hide&quot;)" >&times;',
-//                            'data-placement' => 'right',
+                            'data-placement' => 'left',
                             'data-content' =>
-                            $this->renderPartial("crm.views.persona._formActividadEconomicaCreate", array("model" => new ActividadEconomica), true, false),
+                            $this->renderPartial("crm.views.persona.popovers._formActividadEconomicaCreate", array("model" => new ActividadEconomica), true, false),
 //                     true si el resultado de la representación debe ser devuelto en vez de ser mostrado a los usuarios finales.
 //                    flase si el resultado renderizado debe posprocesarlo usando processOutput .
                             'data-toggle' => 'popover'
@@ -175,12 +169,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')              ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')               ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')              ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')               ?>
 
 
-        <?php // echo $form->textFieldRow($model, 'aprobado')               ?>
+        <?php // echo $form->textFieldRow($model, 'aprobado')                ?>
         <?php
 //        $sucursales = Sucursal::model()->activos()->findAll();
 //        if (!empty($sucursales)) {
@@ -190,7 +184,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                        ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                                                   ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {
@@ -243,8 +237,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     <?php echo $form->textField($modelDireccion1, 'numero', array('name' => 'Direccion1[numero]', 'maxlength' => 20, 'class' => 'span10', 'placeholder' => 'Número')) ?>  
                 </div>
             </div>
-            <div class="controls controls-row">
-                <div class=" control-group span4">
+            <div class="controls controls-row ">
+                <div class=" control-group span5">
                     <?php
 //                            var_dump($modelDireccion1);
                     $this->widget(
@@ -263,7 +257,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     ?>
                     <?php echo $form->error($modelDireccion1, 'provincia_id'); ?>
                 </div>
-                <div class=" control-group span4">
+                <div class=" control-group span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -280,11 +274,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     );
 //                        
                     ?>
+
                     <?php echo $form->error($modelDireccion1, 'canton_id'); ?>
                 </div>
             </div>
             <div class="controls controls-row">
-                <div class="control-group span4">
+                <div class="control-group span5 row-fluid">
+                    <!--<div class="span10">-->
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -295,14 +291,36 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                         'val' => $modelDireccion1->parroquia_id,
                         'options' => array(
                             'placeholder' => '-- Parroquia --',
-                            'width' => '100%',
+                            'width' => '77%',
                         )
                             )
                     );
                     ?>
+                    &nbsp;
+                    <?php
+                    $this->widget(
+                            'bootstrap.widgets.TbButton', array(
+//            'label' => 'Add',
+                        'id' => 'newParroquiaDomicilio',
+                        'icon' => 'plus',
+//            'type' => 'primary',
+                        'htmlOptions' => array(
+                            'data-html' => true,
+                            'data-title' => '<i class="icon-dollar"></i> Agregar Parroquia<button type="button" class="close" onclick="$(&quot;#newParroquiaDomicilio&quot;).popover(&quot;hide&quot;)" >&times;',
+                            'data-placement' => 'left',
+                            'data-content' =>
+                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => new Parroquia, 'buttomId' => 'newParroquiaDomicilio'), true, false),
+//                     true si el resultado de la representación debe ser devuelto en vez de ser mostrado a los usuarios finales.
+//                    flase si el resultado renderizado debe posprocesarlo usando processOutput .
+                            'data-toggle' => 'popover'
+                        ),
+                            )
+                    );
+                    ?>
+
                     <?php echo $form->error($modelDireccion1, 'parroquia_id'); ?>
                 </div>
-                <div class="control-group  success span4">
+                <div class="control-group  success span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -321,6 +339,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     <?php echo $form->error($modelDireccion1, 'barrio_id'); ?>
                 </div>
             </div>
+            <!--</div>-->
             <div class="control-group" >
                 <div class="controls controls-row">
                     <div class="control-group span8">
@@ -385,7 +404,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 </div>
             </div>
             <div class="controls controls-row">
-                <div class=" control-group span4">
+                <div class=" control-group span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -403,7 +422,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     ?>
                     <?php echo $form->error($modelDireccion2, 'provincia_id'); ?>
                 </div>
-                <div class=" control-group span4">
+                <div class=" control-group span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -424,7 +443,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 </div>
             </div>
             <div class="controls controls-row">
-                <div class="control-group span4">
+                <div class="control-group span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
@@ -435,14 +454,35 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                         'val' => $modelDireccion2->parroquia_id,
                         'options' => array(
                             'placeholder' => '-- Parroquia --',
-                            'width' => '100%',
+                            'width' => '77%',
                         )
+                            )
+                    );
+                    ?>
+                    &nbsp;
+                    <?php
+                    $this->widget(
+                            'bootstrap.widgets.TbButton', array(
+//            'label' => 'Add',
+                        'id' => 'newParroquiaNegocio',
+                        'icon' => 'plus',
+//            'type' => 'primary',
+                        'htmlOptions' => array(
+                            'data-html' => true,
+                            'data-title' => '<i class="icon-dollar"></i> Agregar Actividad<button type="button" class="close" onclick="$(&quot;#newParroquiaNegocio&quot;).popover(&quot;hide&quot;)" >&times;',
+                            'data-placement' => 'left',
+                            'data-content' =>
+                            $this->renderPartial("crm.views.persona.popovers._formParroquiaCreate", array("model" => new Parroquia, 'buttomId' => 'newParroquiaNegocio'), true, false),
+//                     true si el resultado de la representación debe ser devuelto en vez de ser mostrado a los usuarios finales.
+//                    flase si el resultado renderizado debe posprocesarlo usando processOutput .
+                            'data-toggle' => 'popover'
+                        ),
                             )
                     );
                     ?>
                     <?php echo $form->error($modelDireccion2, 'parroquia_id'); ?>
                 </div>
-                <div class="control-group  success span4">
+                <div class="control-group  success span5">
                     <?php
                     $this->widget(
                             'bootstrap.widgets.TbSelect2', array(
