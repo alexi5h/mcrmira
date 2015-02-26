@@ -6,7 +6,7 @@ Util::tsRegisterAssetJs('_form_modal.js');
 <?php
 $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
-    'id' => 'ahorro-deposito-form',
+    'id' => 'ahorro-form',
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
@@ -15,52 +15,29 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 <div class="modal-header">
 
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4><i class="icon-user"></i> Registrar Ahorro Voluntario</h4>
+    <h4><i class="icon-user"></i> Registrar Ahorro</h4>
 </div>
 <div class="modal-body">
-    <div class="row-fluid">
-        <div class="span6">
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
-            <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-            <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
-            <?php
-            echo $form->datepickerRow(
-                    $model, 'fecha_comprobante_entidad', array(
-                'options' => array(
-                    'language' => 'es',
-                    'language' => 'es',
-                    'format' => 'dd-mm-yyyy',
-                    'endDate' => 'today',
-                    'autoclose' => 'true',
-                    'weekStart' => 1,
-                    'keyboardNavigation' => true,
-                    'forceParse' => false,
-                ),
-                    )
-            );
-            ?>
-        </div>
-        <div class="span6">
-            <!--            --><?php //echo $form->dropDownListRow($model, 'sucursal_comprobante_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => ''))    ?>
+    <?php echo $form->hiddenField($model,'socio_id');?>
 
-            <?php
-//            echo $form->datepickerRow(
-//                    $model, 'fecha_comprobante_su', array(
-//                'options' => array(
-//                    'language' => 'es',
-//                    'language' => 'es',
-//                    'format' => 'dd/mm/yyyy',
-//                    'autoclose' => 'true',
-//                    'weekStart' => 1,
-//                    'keyboardNavigation' => true,
-//                    'forceParse' => false,
-//                ),
-//                    )
-//            );
-            ?>
-            <?php echo $form->textAreaRow($model, 'observaciones') ?>
-        </div>
-    </div>
+    <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
+
+    <?php
+    echo $form->datepickerRow(
+        $model, 'fecha', array(
+            'options' => array(
+                'language' => 'es',
+                'format' => 'dd/mm/yyyy',
+                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
+                'style'=>'cursor:pointer;'
+            )
+        )
+    );
+    ?>
 </div>
 <div class="modal-footer">
     <?php
@@ -69,7 +46,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         'icon' => 'ok',
         'label' => Yii::t('AweCrud.app', 'Save'),
         'htmlOptions' => array(
-            'onClick' => 'js:save("#ahorro-deposito-form")'
+            'onClick' => 'js:save("#ahorro-form")'
         ),
     ));
     ?>

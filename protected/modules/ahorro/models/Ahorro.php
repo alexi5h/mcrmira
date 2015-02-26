@@ -245,4 +245,24 @@ class Ahorro extends BaseAhorro {
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
+    public function search() {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('socio_id', $this->socio_id);
+        $criteria->compare('cantidad', $this->cantidad, true);
+        $criteria->compare('fecha', $this->fecha, true);
+        $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('tipo', $this->tipo, true);
+        $criteria->compare('saldo_contra', $this->saldo_contra, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
+        $criteria->compare('anulado', $this->anulado, true);
+        $criteria->order=('saldo_contra DESC,fecha ASC');
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+
+
+        ));
+    }
 }

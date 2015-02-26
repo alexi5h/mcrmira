@@ -72,8 +72,8 @@
         $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();
 //        var_dump($model->personaEtapa->id);
 //        var_dump($etapa_max_id);
-        if ($etapa_max_id != $model->personaEtapa->id) // valida si la etapa ya esa la ultima no se debe gestionar mas
-            echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('kanban', 'id' => $model->id), array('class' => 'btn'));
+//        if ($etapa_max_id != $model->personaEtapa->id) // valida si la etapa ya esa la ultima no se debe gestionar mas
+//            echo Chtml::link('<i class="icon-tasks"></i> Gestionar Etapa', array('kanban', 'id' => $model->id), array('class' => 'btn'));
         ?>
     </div>
 </div>

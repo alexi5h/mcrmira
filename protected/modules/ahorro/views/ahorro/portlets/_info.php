@@ -12,7 +12,6 @@
 
 
         <?php
-//        var_dump($model->socio);
         $this->widget('bootstrap.widgets.TbDetailView', array(
             'data' => $model,
             'attributes' => array(
@@ -26,11 +25,6 @@
                 'tipo',
                 'saldo_contra',
                 'saldo_favor',
-                array(
-                    'name' => 'anulado',
-                    'type' => 'boolean'
-                ),
-                'descripcion',
             ),
         ));
         ?>

@@ -24,8 +24,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="widget-body">
 
-
-        <?php // echo $form->textFieldRow($model, 'socio_id')  ?>
         <?php
         echo $form->select2Row($model, 'socio_id', array(
             'asDropDownList' => true,
@@ -52,6 +50,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 ),
                 'htmlOptions' => array(
                     'readonly' => 'readonly',
+                    'style'=>'cursor:pointer;'
+
                 )
             )
         );
