@@ -7,12 +7,13 @@ $this->menu = array(
     ),
 );
 ?>
-<div id="flashMsg"  class="flash-messages">
+<div id="flashMsg" class="flash-messages">
 
-</div> 
+</div>
 <div class="widget blue">
     <div class="widget-title">
-        <h4> <i class="icon-money"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo Ahorro::label(2) ?> </h4>
+        <h4><i class="icon-money"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo Ahorro::label(2) ?>
+        </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
         </span>
@@ -50,7 +51,7 @@ $this->menu = array(
                     'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
                 ),
                 'saldo_contra',
-                
+
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{pago}',
