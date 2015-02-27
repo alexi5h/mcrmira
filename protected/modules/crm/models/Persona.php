@@ -28,6 +28,7 @@ class Persona extends BasePersona {
     private $nombre_formato;
     private $cedula_nombre_formato;
     private $nombre_corto;
+    public $madre_soltera;
 
     /**
      * @return Persona
@@ -113,7 +114,10 @@ class Persona extends BasePersona {
 
     public function search() {
         $criteria = new CDbCriteria;
+
         $criteria->with = array('actividad_economica', 'sucursal', 'personaEtapa');
+        $criteria->join = 'LEFT JOIN direccion ON direccion.id = t.direccion_domicilio_id';
+        $criteria->join.= ' LEFT JOIN parroquia ON parroquia.id = direccion.parroquia_id';
 
 
 //        $criteria->compare('t.id', $this->id, true, 'OR');
@@ -127,6 +131,11 @@ class Persona extends BasePersona {
         $criteria->compare('t.telefono', $this->telefono, true, 'OR');
         $criteria->compare('t.celular', $this->celular, true, 'OR');
         $criteria->compare('t.email', $this->email, true, 'OR');
+
+        $criteria->compare('sexo', $this->sexo, true);
+        $criteria->compare('estado_civil', $this->estado_civil, true);
+        $criteria->compare('discapacidad', $this->discapacidad, true);
+//        $criteria->compare('parroquia.canton_id', $this->direccion_domicilio_id, true, 'OR');
 //        $criteria->compare('descripcion', $this->descripcion, true,'OR');
 //        $criteria->compare('tipo', $this->tipo, true,'OR');
 //        $criteria->compare('estado', $this->estado, true,'OR');
@@ -154,7 +163,24 @@ class Persona extends BasePersona {
                     ':estado' => self::ESTADO_ACTIVO,
                 ),
             ),
+            'madreSoltera' => array(
+                'condition' => 't.sexo = :sexo AND t.carga_familiar > 0 AND t.estado_civil=:estado_civil',
+                'params' => array(
+                    ':sexo' => 'F',
+                    ':estado_civil' => self::ESTADO_CIVIL_SOLTERO,
+                ),
+            ),
         );
+    }
+
+    public function de_canton($cantones) {
+        $cantones = implode(',', $cantones);
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => "parroquia.canton_id in( $cantones)",
+                )
+        );
+        return $this;
     }
 
     public function getGenero() {
@@ -166,14 +192,14 @@ class Persona extends BasePersona {
         return null;
     }
 
-//    public function getTipoIdentificacion() {
-//        if ($this->tipo_identificacion == 'C') {
-//            return self::TIPO_CEDULA;
-//        } else {
-//            return self::TIPO_PASAPORTE;
-//        }
-//        return null;
-//    }
+    //    public function getTipoIdentificacion() {
+    //        if ($this->tipo_identificacion == 'C') {
+    //            return self::TIPO_CEDULA;
+    //        } else {
+    //            return self::TIPO_PASAPORTE;
+    //        }
+    //        return null;
+    //    }
 
     public function etapa_activos() {
         $c_activos = Yii::app()->db->createCommand()
