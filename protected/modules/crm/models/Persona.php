@@ -81,6 +81,7 @@ class Persona extends BasePersona {
             array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
+            array('cedula,ruc', 'unique'),
             array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
             array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
             array('telefono, celular', 'length', 'max' => 10),
