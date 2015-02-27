@@ -149,10 +149,10 @@ class PersonaController extends AweController {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
+// we only allow deletion via POST request
             Persona::model()->updateByPk($id, array('estado' => Persona::ESTADO_INACTIVO));
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         } else
@@ -169,8 +169,30 @@ class PersonaController extends AweController {
         if (isset($_GET['search'])) {
             $model->attributes = $this->assignParams($_GET['search']);
         }
-        if (isset($_GET['Persona']))
-            $model->attributes = $_GET['Persona'];
+        if (!empty($_GET)) {
+//            var_dump($_GET['Persona']['madre_soltera']);
+//            die();
+            if (isset($_GET['Persona']) && !empty($_GET['Persona'])) {
+
+                if (isset($_GET['Persona']['direccion_domicilio_id']) && $_GET['Persona']['direccion_domicilio_id'][0] !== "0") {
+                    $model = $model->de_canton($_GET['Persona']['direccion_domicilio_id']);
+                }
+                if (isset($_GET['Persona']['sexo']) && $_GET['Persona']['sexo'] !== "0") {
+                    $model->sexo = $_GET['Persona']['sexo'];
+                }
+                if (isset($_GET['Persona']['estado_civil']) && $_GET['Persona']['estado_civil'] !== "0") {
+                    $model->estado_civil = $_GET['Persona']['estado_civil'];
+                }
+                if (isset($_GET['Persona']['madre_soltera']) && $_GET['Persona']['madre_soltera'] !== "0") {
+                    $model = $model->madreSoltera();
+                }
+                if (isset($_GET['Persona']['discapacidad']) && $_GET['Persona']['discapacidad'] !== "0") {
+                    $model->discapacidad = $_GET['Persona']['discapacidad'];
+                }
+            }
+        }
+//        if (isset($_GET['Persona']))
+//            $model->attributes = $_GET['Persona'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -192,7 +214,7 @@ class PersonaController extends AweController {
                 ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
                 ->where(array('and', 'e.id=3', 'p.aprobado=0'))
                 ->queryAll();
-        //return $c_activos;
+//return $c_activos;
         $c_activos_data = new CArrayDataProvider($c_activos, array(
             'keyField' => 'id',
             'sort' => array(
