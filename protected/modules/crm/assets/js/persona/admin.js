@@ -3,7 +3,6 @@ $(function () {
         select2vacio("s2id_Persona_direccion_domicilio_id");
     });
 });
-
 function select2vacio(id) {
 //    if (id == 0) {
 //        $("#s2id_Contacto_provincia").select2("val", "");
@@ -52,7 +51,7 @@ function btnStatus(btn_id, loading, accion) {
     }
 }
 function generarGridAdminPersonas(Formulario) {
-    //capturar en la variable accion el modod e click()
+//capturar en la variable accion el modod e click()
     var accion = $('#buttonbuscar').attr('onclick');
     //poner valores automaticamente de indice 0 no existen valores solo en provincia y ciudad
     if (!$("#Persona_direccion_domicilio_id").val()) {
@@ -63,8 +62,8 @@ function generarGridAdminPersonas(Formulario) {
     window.console.log(ms);
     //recoger los valores si todos son 0000 esque los valores no han sidos escogidos
     var condicion = 0 + $('#Persona_direccion_domicilio_id').val() + $('#Persona_sexo').val() + $('#Persona_estado_civil').val() + $('#Persona_discapacidad').val() + ms;
-    window.console.log(condicion);
-    window.console.log(condicion != '000000');
+//    window.console.log(condicion);
+//    window.console.log(condicion != '000000');
     if (condicion !== '000000') {
         btnStatus('#buttonbuscar', true);
         $.fn.yiiGridView.update("persona-grid", {
@@ -93,9 +92,7 @@ function generarGridAdminPersonasTodos(Formulario) {
     $("#Persona_estado_civil").val("0");
     $("#Persona_discapacidad").val("0")
     $("#s2id_Persona_direccion_domicilio_id").select2("val", "0");
-
     $('#Persona_madre_soltera').removeAttr('checked');
-
 //    AjaxResetSelects2("Contacto_region", "Contacto_provincia", "Contacto_ciudad");
 
     $.fn.yiiGridView.update("persona-grid", {
@@ -112,4 +109,21 @@ function generarGridAdminPersonasTodos(Formulario) {
             }
         }
     });
+}
+
+function exporCont(Formulario) {
+
+//    $.ajax({
+//        type: "POST",
+//        url: baseUrl + 'crm/persona/exportExcel',
+//        data: $(Formulario).serialize(),
+//    }
+//    );
+
+    $(Formulario).attr('target', "blank");
+    $(Formulario).attr('action', baseUrl + 'crm/persona/exportExcel');
+    $('.truulo-search').clone().appendTo(Formulario);
+    window.console.log($(Formulario).attr('action'));
+    $(Formulario).submit();
+    $(Formulario + ' >.truulo-search').remove();
 }
