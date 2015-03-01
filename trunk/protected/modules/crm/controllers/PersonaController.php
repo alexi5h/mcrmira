@@ -165,7 +165,9 @@ class PersonaController extends AweController {
     public function actionAdmin() {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
-
+//        var_dump($_GET);
+//        die();
+//         var_dump($_POST);
         if (isset($_GET['search'])) {
             $model->attributes = $this->assignParams($_GET['search']);
         }
@@ -197,6 +199,101 @@ class PersonaController extends AweController {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionExportExcel() {
+
+        if (isset($_POST)) {
+//            die();
+            $parametros = array_merge($this->assignParams($_POST['search']), $_POST['Persona']);
+
+            $reporte = Persona::model()->generateExcel($parametros);
+
+            //genera el reporte de excel
+            $objExcel = new PHPExcel();
+
+
+            //carga la consulta en la hoja 0 con el contenido de la busqueda, empezando desde la seguna fila
+            $objExcel->setActiveSheetIndex(0)->fromArray($reporte, null, 'A2');
+            //agrega las cabeceras 
+            $objExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'Nombres y Apellidos')
+                    ->setCellValue('B1', 'Identificación')
+                    ->setCellValue('C1', ' Ruc')
+                    ->setCellValue('D1', 'Actividad Económica')
+                    ->setCellValue('E1', 'Tipo')
+                    ->setCellValue('F1', 'Teléfono')
+                    ->setCellValue('G1', 'Celular')
+                    ->setCellValue('H1', 'E-mail')
+                    ->setCellValue('I1', 'Carga Familiar')
+                    ->setCellValue('J1', 'Discapacidad')
+                    ->setCellValue('K1', 'Fecha Nacimiento')
+                    ->setCellValue('L1', 'Fecha Creación')
+                    ->setCellValue('M1', 'Estado Civil')
+                    ->setCellValue('N1', 'Género')
+                    ->setCellValue('O1', 'Descripción')
+//                ->setCellValue('P1', '')
+//                ->setCellValue('Q1', '')
+//                ->setCellValue('R1', '')
+//                ->setCellValue('S1', 'CHASIS')
+//                ->setCellValue('T1', 'MOTOR')
+//                ->setCellValue('U1', 'TIPO DE VEHICULO')
+//                ->setCellValue('V1', 'COLOR')
+//                ->setCellValue('W1', 'DISPOSITIVO')
+//                ->setCellValue('X1', 'PLACA')
+//                ->setCellValue('Y1', 'VIGENCIA DESDE ')
+//                ->setCellValue('Z1', 'VIGENCIA HASTA')
+//                ->setCellValue('AA1', 'VALOR ASEGURADO')
+//                ->setCellValue('AB1', 'ACCESORIOS')
+//                ->setCellValue('AC1', 'TASA NETA% TODO RIESGO')
+//                ->setCellValue('AD1', 'PRIMA NETA')
+//                ->setCellValue('AE1', '3.5% SUPER DE BANCOS')
+//                ->setCellValue('AF1', '0.5%IMPUESTO CAMPESINO')
+//                ->setCellValue('AG1', 'DERECHOS DE EMISION')
+//                ->setCellValue('AH1', '12% IVA')
+//                ->setCellValue('AI1', 'PRIMA TOTAL')
+//                ->setCellValue('AJ1', 'TASA NETA %SEGURO DEDUCIBLE')
+//                ->setCellValue('AK1', 'PRIMA NETA DC')
+//                ->setCellValue('AL1', 'IMPUESTO CAMPESINO DC')
+//                ->setCellValue('AM1', '3.5% SUPER DE BANCOS DC')
+//                ->setCellValue('AN1', 'DERECHOS DE EMISION DC')
+//                ->setCellValue('AO1', '12% IVA DC')
+//                ->setCellValue('AP1', 'PRIMA TOTAL DC')
+//                ->setCellValue('AQ1', 'TOTAL A DEBITAR')
+//                ->setCellValue('AR1', 'MESES PLAZO')
+//                ->setCellValue('AS1', 'VALOR CUOTAS')
+//                ->setCellValue('AT1', 'ENTIDAD BANCARIA TARJETA DE CREDITO')
+//                ->setCellValue('AU1', 'TIPO')
+//                ->setCellValue('AV1', 'NUMERO')
+//                ->setCellValue('AW1', 'TITULAR CUENTA')
+//                ->setCellValue('AX1', 'OBSERVACION')
+//                ->setCellValue('AY1', 'LEER OBSERVACION')
+//                ->setCellValue('AZ1', 'TIPO SEGURO')
+            ;
+
+            for ($i = 'A'; $i <= 'Z'; $i++) {
+                $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
+            }
+//titulo de la hoja 0
+            $objExcel->getActiveSheet()->setTitle('Socios');
+
+//// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
+            $objExcel->setActiveSheetIndex(0);
+//// Inmovilizar paneles
+            $objExcel->getActiveSheet(0)->freezePane('A2');
+//                $objExcel->getActiveSheet(0)->freezePaneByColumnAndRow(1, 2);
+// Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//crea el archivo con el siguiente formato: Incidencias <fecha inicial> hasta <fecha final>.xlsx
+            header('Content-Disposition: attachment;filename="Reporte de Socios.xlsx"');
+            header('Cache-Control: max-age=0');
+//genera el archivo con formato excel 2007
+            $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+
+            $objWriter->save('php://output');
+
+//        exit();
+        }
     }
 
     public function actionEtapa_aprobado() {

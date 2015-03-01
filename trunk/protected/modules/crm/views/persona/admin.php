@@ -7,6 +7,17 @@ $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Create') . ' ' . Persona::label(), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
+    array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
+//        'url' => '#', 
+        'htmlOptions' => array(
+            'onclick' => 'exporCont("#persona-form")',)
+//        'items' => array(
+//            array('label' => 'Todos', 'url' => '#', 'linkOptions' => array(
+//                    'onclick' => 'ExporCont2(true)',),),
+//            array('label' => 'Seleccionados', 'url' => '#', 'linkOptions' => array(
+//                    'onclick' => 'ExporCont2(false)',),)
+//        )
+    ),
 );
 ?>
 
@@ -22,17 +33,7 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
-        <?php
-        $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
-            'id' => 'persona-form',
-//                'type' => 'horizontal',
-//    'action' =>Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
-//    'action' => $model->isNewRecord ? Yii::app()->createUrl('/campanias/campania/create') : Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
-            'enableAjaxValidation' => true,
-            'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
-            'enableClientValidation' => false,
-        ));
-        ?>
+
         <div class="row-fluid">
             <div class="row-fluid">
                 <div class="span4">
@@ -41,8 +42,20 @@ $this->menu = array(
 
                     <?php
                     $this->widget('ext.search.TruuloModuleSearch', array(
+                        'id' => 'persona-search',
                         'model' => $model,
                         'grid_id' => 'persona-grid',
+                    ));
+                    ?>
+                    <?php
+                    $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
+                        'id' => 'persona-form',
+//                'type' => 'horizontal',
+//    'action' =>Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
+//    'action' => $model->isNewRecord ? Yii::app()->createUrl('/campanias/campania/create') : Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
+                        'enableAjaxValidation' => true,
+                        'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
+                        'enableClientValidation' => false,
                     ));
                     ?>
                 </div>

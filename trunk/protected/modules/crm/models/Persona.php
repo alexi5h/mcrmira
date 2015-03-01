@@ -135,6 +135,7 @@ class Persona extends BasePersona {
         $criteria->compare('sexo', $this->sexo, true);
         $criteria->compare('estado_civil', $this->estado_civil, true);
         $criteria->compare('discapacidad', $this->discapacidad, true);
+
 //        $criteria->compare('parroquia.canton_id', $this->direccion_domicilio_id, true, 'OR');
 //        $criteria->compare('descripcion', $this->descripcion, true,'OR');
 //        $criteria->compare('tipo', $this->tipo, true,'OR');
@@ -308,6 +309,65 @@ class Persona extends BasePersona {
     public function getNombre_corto() {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
+    }
+
+    public function generateExcel($parametros) {
+
+        $commad = Yii::app()->db->createCommand()
+                ->select(
+                        'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
+        p.cedula,
+        p.ruc,
+        ae.nombre,
+        p.tipo,
+        p.telefono,
+        p.celular,
+        p.email,
+        p.carga_familiar,
+        p.discapacidad,
+        p.fecha_nacimiento,
+        p.fecha_creacion,
+        p.estado_civil,
+        p.sexo,
+        p.descripcion')
+                ->from('persona p')
+                ->join('actividad_economica ae', 'ae.id = p.actividad_economica_id')
+                ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
+                ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
+                ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
+
+//        array (size = 7)
+//        'direccion_domicilio_id' =>
+//        array (size = 1)
+//        0 => string '0' (length = 1)
+//        'sexo' => string '0' (length = 1)
+//        'estado_civil' => string '0' (length = 1)
+//        'discapacidad' => string '0' (length = 1)
+//        'madre_soltera' => string '0' (length = 1)
+        if ($parametros['nombre_formato'] || $parametros['cedula']) {
+            $commad->andWhere('(CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")) like :param OR p.cedula like :param)', array(':param' => "%" . $parametros['nombre_formato'] . "%"));
+        }
+
+        if ($parametros['direccion_domicilio_id'] && $parametros['direccion_domicilio_id'][0] !== "0") {
+            $cantones = implode(',', $parametros['direccion_domicilio_id']);
+            $commad->andWhere("parroquia.canton_id in($cantones)");
+        }
+        if ($parametros['sexo'] && $parametros['sexo'] !== "0") {
+            $commad->andWhere('p.sexo =:sexo', array(':sexo' => $parametros['sexo']));
+        }
+        if ($parametros['estado_civil'] && $parametros['estado_civil'] !== "0") {
+            $commad->andWhere('p.estado_civil =:estado_civil', array(':estado_civil' => $parametros['estado_civil']));
+        }
+        if ($parametros['discapacidad'] && $parametros['discapacidad'] !== "0") {
+            $commad->andWhere('p.discapacidad =:discapacidad', array(':discapacidad' => $parametros['discapacidad']));
+        }
+        if ($parametros['madre_soltera'] && $parametros['madre_soltera'] !== "0") {
+            $commad->andWhere('p.sexo = :sexo AND p.carga_familiar > 0 AND p.estado_civil=:estado_civil', array(
+                ':sexo' => 'F',
+                ':estado_civil' => self::ESTADO_CIVIL_SOLTERO,
+            ));
+        }
+        return $commad->queryAll();
     }
 
 }
