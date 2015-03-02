@@ -71,7 +71,7 @@
                 $this->widget('bootstrap.widgets.TbButton', array(
                     'type' => 'default',
                     'icon' => 'plus',
-                    'label' => 'Agregar',
+                    'label' => 'Depositar',
                     'htmlOptions' => array(
 //                        'href' => 'ahorro/ahorroDeposito/create?id_ahorro=' . $model->id,
                         'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro=' . $model->id . '",function() {maskAttributes();}); ',

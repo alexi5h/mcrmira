@@ -37,6 +37,11 @@ $this->menu = array(
                     'value' => 'CHtml::link($data->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view",array("id"=>$data->socio->id)))',
                     'type' => 'raw',
                 ),
+                array(
+                    'header'=>'Cédula',
+                    'value' => '$data->socio->cedula',
+                    'type' => 'raw',
+                ),
                 'cantidad',
                 array(
                     'name' => 'fecha',
@@ -46,10 +51,10 @@ $this->menu = array(
                     'name' => 'estado',
                     'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
                 ),
-                array(
-                    'name' => 'tipo',
-                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
-                ),
+//                array(
+//                    'name' => 'tipo',
+//                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
+//                ),
                 'saldo_contra',
 
                 array(
