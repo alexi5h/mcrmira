@@ -29,9 +29,9 @@ class DefaultController extends Controller {
 
 //                    $data = fgetcsv($file, 1000, ",");
                     $data = fgetcsv($file, 1000, ";");
-                    if ($entidad_tipo == ImportForm::TIPO_ENTIDAD_SOCIO) {
+                    if ($entidad_tipo == ImportForm::TIPO_ENTIDAD_SOCIO) {// a que tabla
 
-                        if (in_array("CEDULA/PASAPORTE", $data)) {
+                        if (in_array("CEDULA/PASAPORTE", $data)) {// para saber si ay una cedula
                             $this->cargaCsvSocio($file);
                         } else {
                             Yii::app()->user->setFlash('error', "Archivo no corresponde a Socios.Por favor reviselo y vuelva a intentar.");
@@ -123,10 +123,7 @@ class DefaultController extends Controller {
                         $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[13])));
 
 
-                        if (!$modelPersona->save()) {
-                            var_dump($contador);
-                            var_dump($modelPersona);
-                            die();
+                        if (!$modelPersona->save()) {//
                         }
                     } else {
                         /* actualizacion de Socio */
@@ -156,8 +153,8 @@ class DefaultController extends Controller {
                         $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[13])));
 
                         if (!$modelPersona->save()) {
-                            var_dump($modelPersona);
-                            die();
+//                            var_dump($modelPersona);
+//                            die();
                         }
                     }
                 }
@@ -169,8 +166,8 @@ class DefaultController extends Controller {
         } catch (Exception $ex) {
 // Si hay error hago rollback de la transaccion y no guardo nada
             echo $ex;
-            var_dump($modelPersona);
-            die();
+//            var_dump($modelPersona);
+//            die();
             $transaction->rollback();
             Yii::app()->user->setFlash('error', "El archivo tiene datos erroneos. Por favor corrijalos vuelva a intentar.");
         }
