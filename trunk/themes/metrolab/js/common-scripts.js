@@ -405,3 +405,10 @@ function rotateCoin(degree, speed, orientation) {
     $('#moneda').css({'-transition': speed + 's'});
     $('#moneda').css({'-transform-style': 'preserve-3d'});
 }
+function isEmptyGrid(id) {
+    if ($(id + " .empty").length > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
