@@ -130,23 +130,27 @@ function updateGrid($params) {
         data: $params
     });
 }
-function getParamsSearch(){
+function getParamsSearch() {
     return {
-        'Persona':{
-            'id':inputPersonaId.val(),
-            'canton_ids':inputPersonaCanton.val(),
-            'discapacidad':inputPersonaDiscapacidad.val(),
-            'estado_civil':inputPersonaEstadoCivil.val(),
-            'sexo':inputPersonaSexo.val(),
-            'madreSoltera':inputPersonaMadreSoltera.prop('checked')
+        'Persona': {
+            'id': inputPersonaId.val(),
+            'canton_ids': inputPersonaCanton.val(),
+            'discapacidad': inputPersonaDiscapacidad.val(),
+            'estado_civil': inputPersonaEstadoCivil.val(),
+            'sexo': inputPersonaSexo.val(),
+            'madreSoltera': inputPersonaMadreSoltera.prop('checked')
         }
     };
 
 }
 
 function exporSocio(Formulario) {
-    $(Formulario).attr('target', "blank");
-    $(Formulario).attr('action', baseUrl + 'crm/persona/exportarSocio');
-    $(Formulario).submit();
-    //$.post(baseUrl+"crm/persona/exportarSocio",getParamsSearch());
+    if (!isEmptyGrid("#persona-grid")) //Cuando no este vacio
+    {
+        $(Formulario).attr('target', "blank");
+        $(Formulario).attr('action', baseUrl + 'crm/persona/exportarSocio');
+        $(Formulario).submit();
+    } else {
+        bootbox.alert('No hay datos para exportar');
+    }
 }
