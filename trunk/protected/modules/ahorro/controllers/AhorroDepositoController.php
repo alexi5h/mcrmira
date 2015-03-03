@@ -1,7 +1,6 @@
 <?php
 
-class AhorroDepositoController extends AweController
-{
+class AhorroDepositoController extends AweController {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -11,8 +10,7 @@ class AhorroDepositoController extends AweController
     public $defaultAction = 'admin';
     public $admin = false;
 
-    public function filters()
-    {
+    public function filters() {
         return array(
             array('CrugeAccessControlFilter'),
         );
@@ -22,8 +20,7 @@ class AhorroDepositoController extends AweController
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -33,8 +30,7 @@ class AhorroDepositoController extends AweController
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($id_ahorro = null)
-    {
+    public function actionCreate($id_ahorro = null) {
         if (Yii::app()->request->isAjaxRequest) {// el deposito solo se lo puede hacer mediante un modal
             $result = array();
             $model = new AhorroDeposito;
@@ -63,13 +59,13 @@ class AhorroDepositoController extends AweController
                 $result['enableButtonSave'] = true; // habilitado en boton para hacer depositos
                 if ($model->save()) {
                     if ($modelAhorro->saldo_contra == 0) { // si el ahorro ya se pago en su totalidad
-                        $modelAhorro->estado= Ahorro::ESTADO_PAGADO;
+                        $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
                         if ($modelAhorro->tipo == Ahorro::TIPO_PRIMER_PAGO) { //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
                             Persona::model()->updateByPk($modelAhorro->socio->id, array(
-                                    'usuario_actualizacion_id' => Yii::app()->user->id,
-                                    'fecha_actualizacion' => Util::FechaActual(),
-                                    'aprobado' => 1
-                                )
+                                'usuario_actualizacion_id' => Yii::app()->user->id,
+                                'fecha_actualizacion' => Util::FechaActual(),
+                                'aprobado' => 1
+                                    )
                             );
                         }
 
@@ -83,12 +79,68 @@ class AhorroDepositoController extends AweController
                 }
                 echo json_encode($result);
                 Yii::app()->end();
-
             }
             $this->renderPartial('_form_modal_deposito', array(
                 'model' => $model,
                 'modelAhorro' => $modelAhorro,
-            ), false, true);
+                    ), false, true);
+        }
+    }
+
+    /**
+     * Creates a new model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreateDepositoAhorro() {
+        if (Yii::app()->request->isAjaxRequest) {// el deposito solo se lo puede hacer mediante un modal
+            $result = array();
+            $model = new AhorroDeposito;
+
+            $this->performAjaxValidation($model, 'ahorro-deposito-form');
+
+            if (isset($_POST['AhorroDeposito'])) {
+                $model->attributes = $_POST['AhorroDeposito'];
+
+//                if ($model->cantidad <= $modelAhorro->saldo_contra) {// saber si se supera la cantidad
+//                    $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
+//                    $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
+//                    $result['cantidadExtra'] = 0;
+//                } else {
+//                    $modelAhorro->saldo_contra = 0;
+//                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
+//                }
+                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
+
+//                $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->ahorro->socio_id);
+                $model->fecha_comprobante_su = Util::FechaActual();
+                $result['enableButtonSave'] = true; // habilitado en boton para hacer depositos
+                $result['success'] = $model->save();
+//                if ($model->save()) {
+//                    if ($modelAhorro->saldo_contra == 0) { // si el ahorro ya se pago en su totalidad
+//                        $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
+//                        if ($modelAhorro->tipo == Ahorro::TIPO_PRIMER_PAGO) { //  si el ahorro  es tipo  primer pago y se pago en su totalidad; el socio debe pasar a aprobado  para registrarle ahorros obligatorio
+//                            Persona::model()->updateByPk($modelAhorro->socio->id, array(
+//                                'usuario_actualizacion_id' => Yii::app()->user->id,
+//                                'fecha_actualizacion' => Util::FechaActual(),
+//                                'aprobado' => 1
+//                                    )
+//                            );
+//                        }
+//
+//                        $result['enableButtonSave'] = false; // deshabilitado en boton para hacer depositos
+//                    }
+//                    $result['success'] = $modelAhorro->save();
+//                }
+                if (!$result['success']) { // cuando ocurre un problema al guardar en ahorro el deposito debe borrarse
+                    $model->delete();
+                    $result['message'] = "Error al registrar el deposito.";
+                }
+                echo json_encode($result);
+                Yii::app()->end();
+            }
+            $this->renderPartial('_form_moda_deposito_ahorro', array(
+                'model' => $model,
+                    ), false, true);
         }
     }
 
@@ -97,8 +149,7 @@ class AhorroDepositoController extends AweController
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
         $this->performAjaxValidation($model, 'ahorro-deposito-form');
@@ -122,8 +173,7 @@ class AhorroDepositoController extends AweController
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
@@ -138,8 +188,7 @@ class AhorroDepositoController extends AweController
     /**
      * Lists all models.
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $dataProvider = new CActiveDataProvider('AhorroDeposito');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
@@ -149,8 +198,7 @@ class AhorroDepositoController extends AweController
     /**
      * Manages all models.
      */
-    public function actionAdmin()
-    {
+    public function actionAdmin() {
         $model = new AhorroDeposito('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['AhorroDeposito']))
@@ -166,8 +214,7 @@ class AhorroDepositoController extends AweController
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id, $modelClass = __CLASS__)
-    {
+    public function loadModel($id, $modelClass = __CLASS__) {
         $model = AhorroDeposito::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
@@ -178,8 +225,7 @@ class AhorroDepositoController extends AweController
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model, $form = null)
-    {
+    protected function performAjaxValidation($model, $form = null) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'ahorro-deposito-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();

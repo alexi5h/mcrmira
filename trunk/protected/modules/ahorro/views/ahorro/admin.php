@@ -3,7 +3,9 @@
 /** @var Ahorro $model */
 Util::tsRegisterAssetJs('admin.js');
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),),
+    array('label' => Yii::t('AweCrud.app', 'Depositar'), 'icon' => 'plus', 'htmlOptions' => array(
+            'onclick' => ' viewModal("ahorro/ahorroDeposito/createDepositoAhorro",function() {maskAttributes();})',)
     ),
 );
 ?>
@@ -38,7 +40,7 @@ $this->menu = array(
                     'type' => 'raw',
                 ),
                 array(
-                    'header'=>'Cédula',
+                    'header' => 'Cédula',
                     'value' => '$data->socio->cedula',
                     'type' => 'raw',
                 ),
@@ -56,31 +58,30 @@ $this->menu = array(
 //                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
 //                ),
                 'saldo_contra',
-
-                array(
-                    'class' => 'CButtonColumn',
-                    'template' => '{pago}',
-                    'afterDelete' => 'function(link,success,data){ 
-                    if(success) {
-                         $("#flashMsg").empty();
-                         $("#flashMsg").css("display","");
-                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
-                    }
-                    }',
-                    'buttons' => array(
-                        'pago' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
-                            'options' => array('title' => 'Realizar deposito'),
-                            'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
-                            'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
-                            'imageUrl' => false,
-                            'visible' => '($data->saldo_contra==0)||($data->estado=="PAGADO")?false:true',
-                        ),
-                    ),
-                    'htmlOptions' => array(
-                        'width' => '80px'
-                    )
-                ),
+//                array(
+//                    'class' => 'CButtonColumn',
+//                    'template' => '{pago}',
+//                    'afterDelete' => 'function(link,success,data){ 
+//                    if(success) {
+//                         $("#flashMsg").empty();
+//                         $("#flashMsg").css("display","");
+//                         $("#flashMsg").html(data).animate({opacity: 1.0}, 5500).fadeOut("slow");
+//                    }
+//                    }',
+//                    'buttons' => array(
+//                        'pago' => array(
+//                            'label' => '<button class="btn btn-primary"><i class="icon-dollar"></i></button>',
+//                            'options' => array('title' => 'Realizar deposito'),
+//                            'url' => '"ahorro/ahorroDeposito/create?id_ahorro=".$data->id',
+//                            'click' => 'function(e){e.preventDefault(); viewModalWidth($(this).attr("href"),function() {maskAttributes();});  return false; }',
+//                            'imageUrl' => false,
+//                            'visible' => '($data->saldo_contra==0)||($data->estado=="PAGADO")?false:true',
+//                        ),
+//                    ),
+//                    'htmlOptions' => array(
+//                        'width' => '80px'
+//                    )
+//                ),
             ),
         ));
         ?>
