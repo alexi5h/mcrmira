@@ -169,5 +169,11 @@ class CantonController extends AweController {
             Yii::app()->end();
         }
     }
+    public function actionAjaxlistCantones($search_value = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            echo CJSON::encode(Canton::model()->getListSelect2($search_value));
+        }
+    }
+
 
 }
