@@ -46,7 +46,6 @@ class AhorroController extends AweController
                 $model->estado = Ahorro::ESTADO_DEUDA;
                 $model->saldo_contra = $model->cantidad;
                 $model->saldo_favor = 0;
-                $model->anulado = Ahorro::ANULADO_NO;
             }
             if ($model->save()) {
                 $this->redirect(array('admin'));
@@ -74,7 +73,6 @@ class AhorroController extends AweController
                     $model->estado = Ahorro::ESTADO_DEUDA;
                     $model->saldo_contra = $model->cantidad;
                     $model->saldo_favor = 0;
-                    $model->anulado = Ahorro::ANULADO_NO;
                 }
                 $result['success'] = $model->save();
                 if (!$result['success'])
@@ -183,7 +181,6 @@ class AhorroController extends AweController
                 $model->saldo_favor = $_POST['AhorroDeposito']['cantidad'];
                 $model->cantidad = $_POST['AhorroDeposito']['cantidad'];
                 $model->descripcion = $_POST['AhorroDeposito']['observaciones'];
-                $model->anulado = Ahorro::ANULADO_NO;
                 $result['success'] = $model->save();
                 if ($result['success']) {
                     $modelDeposito->ahorro_id = $model->id;

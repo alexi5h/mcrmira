@@ -35,7 +35,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                                 
                                         <?php echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
                                 
-                                        <?php echo $form->dropDownListRow($model, 'pago_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Ahorro::model()->findAll(), 'id', Ahorro::representingColumn())) ?>
+                                        <?php echo $form->textFieldRow($model, 'usuario_creacion_id') ?>
                                                         <div class="form-actions">
                         <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

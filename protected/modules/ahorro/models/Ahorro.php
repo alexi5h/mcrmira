@@ -14,8 +14,8 @@ class Ahorro extends BaseAhorro {
     //Valor a pagar por registro en la mancomunidad
     const VALOR_REGISTRO = 70;
     //anulacion
-    const ANULADO_SI = 'SI';
-    const ANULADO_NO = 'NO';
+//    const ANULADO_SI = 'SI';
+//    const ANULADO_NO = 'NO';
     //descripciones
     const DESCRIPCION_CANTIDAD_EXTRA = 'Ahorro Voluntario creado por cantidad sobrante en un depósito';
     const DESCRIPCION_CANTIDAD_EXTRA_CREDITO = 'Ahorro Voluntario creado por cantidad sobrante en un depósito de crédito';
@@ -108,8 +108,8 @@ class Ahorro extends BaseAhorro {
         $command = Yii::app()->db->createCommand()
                 ->select('sum(cantidad)as total')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO, 'anulado' => self::ANULADO_NO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
 
         $return = $command->queryAll();
 
@@ -121,8 +121,8 @@ class Ahorro extends BaseAhorro {
         $command = Yii::app()->db->createCommand()
                 ->select('sum(saldo_favor)as total')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO, 'anulado' => self::ANULADO_NO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO);
 
         $return = $command->queryAll();
 
@@ -138,8 +138,8 @@ class Ahorro extends BaseAhorro {
         $command = Yii::app()->db->createCommand()
                 ->select('id,cantidad')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO, 'anulado' => self::ANULADO_NO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
 
         $return = $command->queryAll();
 
@@ -151,8 +151,8 @@ class Ahorro extends BaseAhorro {
         $command = Yii::app()->db->createCommand()
                 ->select('id,saldo_favor')
                 ->from('ahorro ')
-                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo', 'anulado=:anulado'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO, 'anulado' => self::ANULADO_NO);
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO);
 
         $return = $command->queryAll();
 
@@ -224,8 +224,9 @@ class Ahorro extends BaseAhorro {
                 ->select('sum(ae.cantidad) as total')
                 ->from('ahorro a')
                 ->join('ahorro_extra ae', 'a.id = ae.ahorro_id')
-                ->where('ae.anulado =:anulado_no'
-                , array(':anulado_no' => self::ANULADO_NO));
+//                ->where('ae.anulado =:anulado_no'
+//                , array(':anulado_no' => self::ANULADO_NO))
+                ;
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
@@ -239,8 +240,8 @@ class Ahorro extends BaseAhorro {
         $command = Yii::app()->db->createCommand()
                 ->select('sum(a.saldo_contra) as total')
                 ->from('ahorro a')
-                ->where('a.anulado =:anulado_no and a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
-                , array(':anulado_no' => self::ANULADO_NO, ':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
+                ->where(' a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
+                , array( ':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
@@ -255,8 +256,7 @@ class Ahorro extends BaseAhorro {
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
-        $criteria->compare('saldo_favor', $this->saldo_favor, true);
-        $criteria->compare('anulado', $this->anulado, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);    
         $criteria->order=('saldo_contra DESC,fecha ASC');
 
         return new CActiveDataProvider($this, array(
