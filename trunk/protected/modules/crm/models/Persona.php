@@ -3,7 +3,8 @@
 Yii::import('crm.models._base.BasePersona');
 Yii::import('ahorro.models.*');
 
-class Persona extends BasePersona {
+class Persona extends BasePersona
+{
 
     //estado: ACTIVO,INACTIVO
     const ESTADO_ACTIVO = 'ACTIVO';
@@ -33,73 +34,81 @@ class Persona extends BasePersona {
     /**
      * @return Persona
      */
-    public static function model($className = __CLASS__) {
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
-    public static function label($n = 1) {
+    public static function label($n = 1)
+    {
         return Yii::t('app', 'Socio|Socios', $n);
     }
 
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array_merge(parent::attributeLabels(), array(
-            'nombre_formato' => Yii::t('app', 'Nombre Completo'),
-            'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
-            'actividad_economica' => null,
-            'cedula' => Yii::t('app', 'Identificación'),
+                'nombre_formato' => Yii::t('app', 'Nombre Completo'),
+                'actividad_economica_id' => Yii::t('app', 'Actividad Económica'),
+                'actividad_economica' => null,
+                'cedula' => Yii::t('app', 'Identificación'),
 //            'tipo_identificacion' => Yii::t('app', 'Tipo Identificación'),
-                )
+            )
         );
     }
 
-    public function relations() {
+    public function relations()
+    {
         return array_merge(parent::relations(), array(
-            'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
-            'ahorros' => array(self::HAS_MANY, 'Ahorro', 'socio_id'),
-                )
+                'actividad_economica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
+                'ahorros' => array(self::HAS_MANY, 'Ahorro', 'socio_id'),
+            )
         );
     }
 
-    public function beforeSave() {
+    public function beforeSave()
+    {
         if (!$this->sucursal_id)
             $this->sucursal_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
-    public function beforeValidate() {
+    public function beforeValidate()
+    {
         if (!$this->sucursal_id)
             $this->sucursal_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
-    public function rules() {
+    public function rules()
+    {
         return array_merge(parent::rules(), array(
-            array('cedula', 'ext.Validations.CampoCedula'),
-            array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
-            array('ruc', 'ext.Validations.CampoRuc'),
-            array('nombre_formato', 'safe', 'on' => 'search'),
+                array('cedula', 'ext.Validations.CampoCedula'),
+                array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
+                array('ruc', 'ext.Validations.CampoRuc'),
+                array('nombre_formato', 'safe', 'on' => 'search'),
 //            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
-            array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
-            array('email', 'email'),
-            array('cedula,ruc', 'unique'),
-            array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
-            array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
-            array('telefono, celular', 'length', 'max' => 10),
-            array('email', 'length', 'max' => 255),
-            array('carga_familiar', 'numerical'),
-            array('tipo', 'length', 'max' => 7),
-            array('estado', 'length', 'max' => 8),
-            array('descripcion, fecha_actualizacion', 'safe'),
-            array('tipo', 'in', 'range' => array('FUNDADOR', 'NUEVO')), // enum,
-            array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
-            array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
-                )
+                array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+                array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
+                array('email', 'email'),
+                array('cedula,ruc', 'unique'),
+                array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
+                array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
+                array('telefono, celular', 'length', 'max' => 10),
+                array('email', 'length', 'max' => 255),
+                array('carga_familiar', 'numerical'),
+                array('tipo', 'length', 'max' => 7),
+                array('estado', 'length', 'max' => 8),
+                array('descripcion, fecha_actualizacion', 'safe'),
+                array('tipo', 'in', 'range' => array('FUNDADOR', 'NUEVO')), // enum,
+                array('estado', 'in', 'range' => array('ACTIVO', 'INACTIVO')), // enum,
+                array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
+                array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id', 'safe', 'on' => 'search'),
+            )
         );
     }
 
-    public function searchParams() {
+    public function searchParams()
+    {
         return array(
             'nombre_formato',
             'cedula',
@@ -112,12 +121,13 @@ class Persona extends BasePersona {
         );
     }
 
-    public function search() {
+    public function search()
+    {
         $criteria = new CDbCriteria;
 
         $criteria->with = array('actividad_economica', 'sucursal', 'personaEtapa');
         $criteria->join = 'LEFT JOIN direccion ON direccion.id = t.direccion_domicilio_id';
-        $criteria->join.= ' LEFT JOIN parroquia ON parroquia.id = direccion.parroquia_id';
+        $criteria->join .= ' LEFT JOIN parroquia ON parroquia.id = direccion.parroquia_id';
 
 
 //        $criteria->compare('t.id', $this->id, true, 'OR');
@@ -156,7 +166,8 @@ class Persona extends BasePersona {
         ));
     }
 
-    public function scopes() {
+    public function scopes()
+    {
         return array(
             'activos' => array(
                 'condition' => 't.estado = :estado',
@@ -174,17 +185,21 @@ class Persona extends BasePersona {
         );
     }
 
-    public function de_canton($cantones) {
+    public function de_canton($cantones)
+    {
+        if ($cantones){
         $cantones = implode(',', $cantones);
         $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => "parroquia.canton_id in( $cantones)",
-                )
+            array(
+                'condition' => "parroquia.canton_id in( $cantones)",
+            )
         );
+        }
         return $this;
     }
 
-    public function getGenero() {
+    public function getGenero()
+    {
         if ($this->sexo == 'M') {
             return self::SEXO_MASCULINO;
         } else {
@@ -202,13 +217,14 @@ class Persona extends BasePersona {
     //        return null;
     //    }
 
-    public function etapa_activos() {
+    public function etapa_activos()
+    {
         $c_activos = Yii::app()->db->createCommand()
-                ->select('*')
-                ->from('persona p')
-                ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
-                ->where(array('and', 'e.id=3', 'p.aprobado=0'))
-                ->queryAll();
+            ->select('*')
+            ->from('persona p')
+            ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
+            ->where(array('and', 'e.id=3', 'p.aprobado=0'))
+            ->queryAll();
         //return $c_activos;
         $c_activos_data = new CArrayDataProvider($c_activos, array(
             'keyField' => 'id',
@@ -221,7 +237,8 @@ class Persona extends BasePersona {
      * devuelve los socios activos que pueden acceder a un crédito (que estén al día en sus pagos)
      */
 
-    public function condicion_socio_credito() {
+    public function condicion_socio_credito()
+    {
         /* select * from persona pe
           where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
           and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
@@ -239,7 +256,8 @@ class Persona extends BasePersona {
      * devuelve los socios activos que pueden ser garantes para dar un crédito (que estén al día en sus pagos)
      */
 
-    public function condicion_garante_credito($socio_id = null) {
+    public function condicion_garante_credito($socio_id = null)
+    {
         /* select * from persona pe
           where (id not in (select ah.socio_id from ahorro ah where ah.estado='DEUDA'))
           and (id not in (select cr.socio_id from credito cr where cr.estado='DEUDA')) */
@@ -254,31 +272,34 @@ class Persona extends BasePersona {
         return $garantes;
     }
 
-    public function de_tipo($tipo) {
+    public function de_tipo($tipo)
+    {
         $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => 'tipo = :tipo',
-                    'params' => array(
-                        ':tipo' => $tipo
-                    ),
-                )
+            array(
+                'condition' => 'tipo = :tipo',
+                'params' => array(
+                    ':tipo' => $tipo
+                ),
+            )
         );
         return $this;
     }
 
-    public function de_etapa($etapa_id) {
+    public function de_etapa($etapa_id)
+    {
         $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => 'persona_etapa_id = :persona_etapa_id',
-                    'params' => array(
-                        ':persona_etapa_id' => $etapa_id
-                    ),
-                )
+            array(
+                'condition' => 'persona_etapa_id = :persona_etapa_id',
+                'params' => array(
+                    ':persona_etapa_id' => $etapa_id
+                ),
+            )
         );
         return $this;
     }
 
-    public function getNombre_formato() {
+    public function getNombre_formato()
+    {
         $return = $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
@@ -287,12 +308,14 @@ class Persona extends BasePersona {
         return $this->nombre_formato;
     }
 
-    public function setNombre_formato($nombre_formato) {
+    public function setNombre_formato($nombre_formato)
+    {
         $this->nombre_formato = $nombre_formato;
         return $this->nombre_formato;
     }
 
-    public function getCedula_nombre_formato() {
+    public function getCedula_nombre_formato()
+    {
         $return = $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
@@ -301,21 +324,24 @@ class Persona extends BasePersona {
         return $this->cedula_nombre_formato;
     }
 
-    public function setcedula_nombre_formato($cedula_nombre_formato) {
+    public function setcedula_nombre_formato($cedula_nombre_formato)
+    {
         $this->cedula_nombre_formato = $cedula_nombre_formato;
         return $this->cedula_nombre_formato;
     }
 
-    public function getNombre_corto() {
+    public function getNombre_corto()
+    {
         $return = $this->primer_nombre . ' ' . $this->apellido_paterno;
         return $return;
     }
 
-    public function generateExcel($parametros) {
+    public function generateExcel($parametros)
+    {
 
         $commad = Yii::app()->db->createCommand()
-                ->select(
-                        'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
+            ->select(
+                'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
         p.cedula,
         p.ruc,
         ae.nombre,
@@ -330,20 +356,11 @@ class Persona extends BasePersona {
         p.estado_civil,
         p.sexo,
         p.descripcion')
-                ->from('persona p')
-                ->join('actividad_economica ae', 'ae.id = p.actividad_economica_id')
-                ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
-                ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
-                ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
-
-//        array (size = 7)
-//        'direccion_domicilio_id' =>
-//        array (size = 1)
-//        0 => string '0' (length = 1)
-//        'sexo' => string '0' (length = 1)
-//        'estado_civil' => string '0' (length = 1)
-//        'discapacidad' => string '0' (length = 1)
-//        'madre_soltera' => string '0' (length = 1)
+            ->from('persona p')
+            ->join('actividad_economica ae', 'ae.id = p.actividad_economica_id')
+            ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
+            ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
+            ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
         if ($parametros['nombre_formato'] || $parametros['cedula']) {
             $commad->andWhere('(CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")) like :param OR p.cedula like :param)', array(':param' => "%" . $parametros['nombre_formato'] . "%"));
         }
