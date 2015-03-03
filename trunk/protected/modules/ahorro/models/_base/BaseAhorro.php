@@ -17,9 +17,8 @@
  * @property string $tipo
  * @property string $saldo_contra
  * @property string $saldo_favor
- * @property string $anulado
  *
- * @property AhorroDeposito[] $ahorroDepositos
+ * @property AhorroDetalle[] $ahorroDetalles
  */
 abstract class BaseAhorro extends AweActiveRecord {
 
@@ -42,18 +41,16 @@ abstract class BaseAhorro extends AweActiveRecord {
             array('cantidad, saldo_contra, saldo_favor', 'length', 'max'=>10),
             array('estado', 'length', 'max'=>6),
             array('tipo', 'length', 'max'=>11),
-            array('anulado', 'length', 'max'=>2),
             array('estado', 'in', 'range' => array('DEUDA','PAGADO')), // enum,
             array('tipo', 'in', 'range' => array('OBLIGATORIO','PRIMER_PAGO')), // enum,
-            array('anulado', 'in', 'range' => array('SI','NO')), // enum,
-            array('estado, saldo_contra, saldo_favor, anulado', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor, anulado', 'safe', 'on'=>'search'),
+            array('estado, saldo_contra, saldo_favor', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, socio_id, cantidad, fecha, estado, tipo, saldo_contra, saldo_favor', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'ahorroDepositos' => array(self::HAS_MANY, 'AhorroDeposito', 'ahorro_id'),
+            'ahorroDetalles' => array(self::HAS_MANY, 'AhorroDetalle', 'ahorro_id'),
         );
     }
 
@@ -70,8 +67,7 @@ abstract class BaseAhorro extends AweActiveRecord {
                 'tipo' => Yii::t('app', 'Tipo'),
                 'saldo_contra' => Yii::t('app', 'Saldo Contra'),
                 'saldo_favor' => Yii::t('app', 'Saldo Favor'),
-                'anulado' => Yii::t('app', 'Anulado'),
-                'ahorroDepositos' => null,
+                'ahorroDetalles' => null,
         );
     }
 
@@ -86,11 +82,9 @@ abstract class BaseAhorro extends AweActiveRecord {
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
         $criteria->compare('saldo_favor', $this->saldo_favor, true);
-        $criteria->compare('anulado', $this->anulado, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-
         ));
     }
 
