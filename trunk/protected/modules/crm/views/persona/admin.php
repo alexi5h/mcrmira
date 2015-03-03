@@ -1,6 +1,16 @@
 <?php
 /** @var PersonaController $this */
 /** @var Persona $model */
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
+
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+
 Util::tsRegisterAssetJs('admin.js');
 
 $this->menu = array(
@@ -25,123 +35,92 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
-
+        <?php
+        $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
+            'id' => 'persona-form',
+            'enableAjaxValidation' => true,
+            'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
+            'enableClientValidation' => false,
+        ));
+        ?>
         <div class="row-fluid">
-            <div class="row-fluid">
-                <div class="span4">
-                    <br>
-
-                    <?php
-                    $this->widget('ext.search.TruuloModuleSearch', array(
-                        'id' => 'persona-search',
-                        'model' => $model,
-                        'grid_id' => 'persona-grid',
-                    ));
-                    ?>
-                    <?php
-                    $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
-                        'id' => 'persona-form',
-                        'enableAjaxValidation' => true,
-                        'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
-                        'enableClientValidation' => false,
-                    ));
-                    ?>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_id">Socio</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_id_em_" style="display: none"></span>
+                    </div>
                 </div>
-
-
-                <div class="span4">
-                    <div class="control-label">Cant&oacute;n </div>
-
-                    <?php
-                    $this->widget(
-                            'ext.bootstrap.widgets.TbSelect2', array('model' => $model,
-                        'attribute' => 'direccion_domicilio_id',
-                        'data' => (CHtml::listData(Canton::model()->findAll(), 'id', Canton::representingColumn())) ? array('0' => '- Todos -') + CHtml::listData(Canton::model()->findAll(), 'id', Canton::representingColumn()) : array(null),
-                        'options' => array(),
-                        'htmlOptions' => array(
-                            'multiple' => 'multiple',
-                        ),
-                        'events' => array(
-                            'change' => 'js: function(e) {select2validar(e,"s2id_Persona_direccion_domicilio_id");}',
-                        )
-                            )
-                    );
-                    ?>
-                </div>
-                <div class="span4">
-                    <div class="control-label">Género </div>
-
-                    <?php
-                    echo $form->dropDownList($model, 'sexo', array('null'=>'-- Ambos --', 'M' => 'Masculino', 'F' => 'Femenino',));
-                    ?>
-                </div>
-
-
             </div>
-            <div class="row-fluid">
-                <div class="span4">
-                    <div class="control-label">Estado Civ&iacute;l </div>
-
-                    <?php
-                    echo $form->dropDownList(
-                            $model, 'estado_civil', array('-- Todos --', 'SOLTERO' => 'Soltero', 'CASADO' => 'Casado', 'DIVORCIADO' => 'Divorciado', 'VIUDO' => 'Viudo',));
-                    ?>
+            <div class="span4">
+                    <div class="control-group ">
+                        <label class="control-label" for="Persona_canton_ids">Cantón</label>
+                        <div class="controls">
+                            <?php
+                            $htmlOptions = array('class' => "span12");
+                            echo $form->hiddenField($model, 'canton_ids', $htmlOptions);
+                            ?>
+                            <span class="help-inline error" id="Persona_canton_ids_em_" style="display: none"></span>
+                        </div>
+                    </div>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_sexo">Género</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'sexo', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_sexo_em_" style="display: none"></span>
+                    </div>
                 </div>
-                <div class="span4">
-                    <div class="control-label">Discapacidad </div>
-
-                    <?php
-                    echo $form->dropDownList(
-                            $model, 'discapacidad', array('-- Todos --', 'SI' => 'SI', 'NO' => 'NO'));
-                    ?>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_estado_civil">Estado Civil</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'estado_civil', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_estado_civil_em_" style="display: none"></span>
+                    </div>
                 </div>
-                <div class="span4">
-                    <br>
-                    Madre Soltera&nbsp;&nbsp;
-
-                    <?php
-                    echo $form->checkBox($model, 'madre_soltera');
-                    ?>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_discapacidad">Discapacidad</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'discapacidad', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_discapacidad_em_" style="display: none"></span>
+                    </div>
                 </div>
-
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_madre_soltera">Madre Soltera</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->checkbox($model, 'madre_soltera', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_madre_soltera_em_" style="display: none"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <?php $this->endWidget(); ?>
-        <div class="row-fluid">
-            <!--BOTON DE BUSCAR--> 
-            <div class="pull-right">
-                <?php
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'icon' => 'icon-search',
-                    'type' => 'primary',
-                    'label' => Yii::t('AweCrud.app', 'Buscar'),
-                    'htmlOptions' => array(
-                        'id' => 'buttonbuscar',
-                        'onClick' => 'js:generarGridAdminPersonas("#persona-form");',
-                    ),
-                ));
-                ?>
-            </div>
 
-            <!--FIN BUSCAR-->
-
-            <!--BOTON DE QUITAR FILTROS--> 
-            <div class="pull-right span2">
-                <?php
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'icon' => 'icon-refresh',
-                    'type' => 'danger',
-                    'label' => Yii::t('AweCrud.app', 'Quitar Filtros'),
-                    'htmlOptions' => array(
-                        'id' => 'buttonquitar',
-                        'onClick' => 'js:generarGridAdminPersonasTodos("#persona-form");',
-                        'class' => 'hidden'
-                    ),
-                ));
-                ?>
-            </div>
-        </div>
-        <!--FIN QUITAR FILTROS-->
 
         <div class="space20"></div>
         <div style='overflow:auto'> 
@@ -150,7 +129,6 @@ $this->menu = array(
                 'id' => 'persona-grid',
                 'type' => 'striped bordered hover advance',
                 'dataProvider' => $model->activos()->search(),
-//                'dataProvider' => $model->de_tipo(Persona::TIPO_CLIENTE)->activos()->search(),
                 'columns' => array(
                     array(
                         'name' => 'nombre_formato',
@@ -161,18 +139,12 @@ $this->menu = array(
                     //'ruc',
                     'telefono',
                     'celular',
-//                    'email',
-//                    array(
-//                        'name' => 'persona_etapa_id',
-//                        'value' => '$data->personaEtapa',
-//                        'type' => 'raw',
-//                    ),
+
                     array(
                         'name' => 'sucursal_id',
                         'value' => '$data->sucursal',
                         'type' => 'raw',
                     ),
-//                    'aprobado',
                     array(
                         'class' => 'CButtonColumn',
                         'template' => '{update} {delete}',

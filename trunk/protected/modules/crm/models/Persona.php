@@ -30,6 +30,7 @@ class Persona extends BasePersona
     private $cedula_nombre_formato;
     private $nombre_corto;
     public $madre_soltera;
+    public $canton_ids;
 
     /**
      * @return Persona
@@ -362,7 +363,7 @@ class Persona extends BasePersona
             ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
             ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
         if ($parametros['nombre_formato'] || $parametros['cedula']) {
-            $commad->andWhere('(CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")) like :param OR p.cedula like :param)', array(':param' => "%" . $parametros['nombre_formato'] . "%"));
+                $commad->andWhere('(CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")) like :param OR p.cedula like :param)', array(':param' => "%" . $parametros['nombre_formato'] . "%"));
         }
 
         if ($parametros['direccion_domicilio_id'] && $parametros['direccion_domicilio_id'][0] !== "0") {
@@ -385,6 +386,21 @@ class Persona extends BasePersona
             ));
         }
         return $commad->queryAll();
+    }
+
+    public function getListSelect2($search_value=null){
+
+        $command = Yii::app()->db->createCommand()
+            ->select("p.id as id,
+             (CONCAT(p.cedula,' - ',p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) as text")
+            ->from('persona p')
+            ->where('p.estado = :estado', array(':estado' => self::ESTADO_ACTIVO));
+        if ($search_value) {
+            $command->where("p.cedula like '$search_value%' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '$search_value%'");
+        }
+        $command->limit(10);
+        return $command->queryAll();
+
     }
 
 }

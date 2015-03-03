@@ -405,4 +405,10 @@ class PersonaController extends AweController {
         }
     }
 
+    public function actionAjaxlistSocios($search_value = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            echo CJSON::encode(Persona::model()->getListSelect2($search_value));
+        }
+    }
+
 }

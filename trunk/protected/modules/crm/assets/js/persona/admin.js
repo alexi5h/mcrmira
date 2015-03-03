@@ -1,6 +1,96 @@
 $(function () {
         select2vacio("s2id_Persona_direccion_domicilio_id");
+    initSelect();
 });
+function initSelect(){
+    //select2
+    $("#Persona_id").select2({
+        placeholder: "Seleccione un Socio",
+        initSelection: function(element, callback) {
+            if ($(element).val()) {
+                var data = {id: element.val(), text: $(element).attr('selected-text')};
+                callback(data);
+            }
+        },
+        ajax: {// instead of writing the function to execute the request we use Select2's convenient helper
+            url: baseUrl + "crm/persona/ajaxlistSocios",
+            type: "get",
+            dataType: 'json',
+            data: function(term, page) {
+                return {
+                    search_value: term // search term
+                };
+            },
+            results: function(data, page) { // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to alter remote JSON data
+                return {results: data};
+            }
+        }
+    });
+    $("#Persona_canton_ids").select2({
+        placeholder: "Seleccione un cantón",
+        multiple: true,
+        initSelection: function(element, callback) {
+            if ($(element).val()) {
+                var data = {id: element.val(), text: $(element).attr('selected-text')};
+                callback(data);
+            }
+        },
+        ajax: {// instead of writing the function to execute the request we use Select2's convenient helper
+            url: baseUrl + "crm/canton/ajaxlistCantones",
+            type: "get",
+            dataType: 'json',
+            data: function(term, page) {
+                return {
+                    search_value: term // search term
+                };
+            },
+            results: function(data, page) { // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to alter remote JSON data
+                return {results: data};
+            }
+        }
+    });
+    $("#Persona_sexo").select2({
+        placeholder: "Seleccione un género",
+        multiple: false,
+        data:[{id:null,text:'Ambos'},{id:'F',text:'Mujeres'},{id:'M',text:'Hombres'}],
+        initSelection: function(element, callback) {
+            if ($(element).val()) {
+                var data = {id: element.val(), text: $(element).attr('selected-text')};
+                callback(data);
+            }
+        }
+    });
+    $("#Persona_estado_civil").select2({
+        placeholder: "Seleccione un estado civil",
+        multiple: false,
+        data:[{id:null,text:'Todos'},{id:'SOLTERO',text:'Soltero'},{id:'CASADO',text:'Casado'},{id:'DIVORCIADO',text:'Divorsiado'},{id:'VIUDO',text:'Viudo'}],
+        initSelection: function(element, callback) {
+            if ($(element).val()) {
+                var data = {id: element.val(), text: $(element).attr('selected-text')};
+                callback(data);
+            }
+        }
+    });
+    $("#Persona_discapacidad").select2({
+        placeholder: "Seleccione un una",
+        multiple: false,
+        data:[{id:null,text:'Todos'},{id:'SI',text:'Si'},{id:'NO',text:'No'}],
+        initSelection: function(element, callback) {
+            if ($(element).val()) {
+                var data = {id: element.val(), text: $(element).attr('selected-text')};
+                callback(data);
+            }
+        }
+    });
+    $('#Persona_madre_soltera').bootstrapToggle({
+        on: 'SI',
+        off: 'NO',
+        onstyle:'primary',
+        offstyle:'warning',
+    });
+}
 function select2vacio(id) {
     $('#' + id).select2("val", "");
     $('#' + id).select2("val", "0");
