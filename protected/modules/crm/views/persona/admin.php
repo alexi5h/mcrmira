@@ -18,7 +18,7 @@ $this->menu = array(
     ),
     array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
         'htmlOptions' => array(
-            'onclick' => 'exporCont("#persona-form")',)
+            'onclick' => 'exporSocio("#persona-form")',)
     ),
 );
 ?>

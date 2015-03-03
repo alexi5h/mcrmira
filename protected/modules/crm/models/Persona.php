@@ -177,10 +177,19 @@ class Persona extends BasePersona {
 
     public function de_canton($cantones) {
         if ($cantones) {
-            $cantones = implode(',', $cantones);
             $this->getDbCriteria()->mergeWith(
                     array(
-                        'condition' => "parroquia.canton_id in( $cantones)",
+                        'condition' => "parroquia.canton_id in({$cantones})",
+                    )
+            );
+        }
+        return $this;
+    }
+    public function de_ids($ids) {
+        if ($ids) {
+            $this->getDbCriteria()->mergeWith(
+                    array(
+                        'condition' => "t.id in({$ids})",
                     )
             );
         }
@@ -338,24 +347,25 @@ class Persona extends BasePersona {
                 ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
                 ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
                 ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
-        if ($parametros['nombre_formato'] || $parametros['cedula']) {
-                $commad->andWhere('(CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")) like :param OR p.cedula like :param)', array(':param' => "%" . $parametros['nombre_formato'] . "%"));
+        if ($parametros['id'] ) {
+            $ids=$parametros['id'];
+            $commad->andWhere("p.id in($ids)");
         }
 
-        if (isset($parametros['direccion_domicilio_id']) && $parametros['direccion_domicilio_id'][0] !== "0") {
-            $cantones = implode(',', $parametros['direccion_domicilio_id']);
+        if ( $parametros['canton_ids']) {
+            $cantones=$parametros['canton_ids'];
             $commad->andWhere("parroquia.canton_id in($cantones)");
         }
-        if (isset($parametros['sexo']) && $parametros['sexo'] !== "0") {
+        if ( $parametros['sexo']) {
             $commad->andWhere('p.sexo =:sexo', array(':sexo' => $parametros['sexo']));
         }
-        if (isset($parametros['estado_civil']) && $parametros['estado_civil'] !== "0") {
+        if ( $parametros['estado_civil']) {
             $commad->andWhere('p.estado_civil =:estado_civil', array(':estado_civil' => $parametros['estado_civil']));
         }
-        if (isset($parametros['discapacidad']) && $parametros['discapacidad'] !== "0") {
+        if ($parametros['discapacidad']) {
             $commad->andWhere('p.discapacidad =:discapacidad', array(':discapacidad' => $parametros['discapacidad']));
         }
-        if (isset($parametros['madre_soltera']) && $parametros['madre_soltera'] !== "0") {
+        if ( $parametros['madre_soltera']=='true') {
             $commad->andWhere('p.sexo = :sexo AND p.carga_familiar > 0 AND p.estado_civil=:estado_civil', array(
                 ':sexo' => 'F',
                 ':estado_civil' => self::ESTADO_CIVIL_SOLTERO,
