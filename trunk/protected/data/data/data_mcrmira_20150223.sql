@@ -134,18 +134,18 @@ INSERT INTO `parroquia` (`id`,`nombre`,`canton_id`) VALUES (1,'Atuntaqui',1),(2,
 # Data for table "direccion"
 #
 
-INSERT INTO `direccion` (`id`,`calle_1`,`calle_2`,`numero`,`referencia`,`tipo`,`barrio_id`,`parroquia_id`) VALUES (1,'Calle 1','Calle 2','123456',NULL,'S',NULL,15),(2,'Calle 1','Calle 2','123456',NULL,'S',NULL,9);
+-- INSERT INTO `direccion` (`id`,`calle_1`,`calle_2`,`numero`,`referencia`,`tipo`,`barrio_id`,`parroquia_id`) VALUES (1,'Calle 1','Calle 2','123456',NULL,'S',NULL,15),(2,'Calle 1','Calle 2','123456',NULL,'S',NULL,9);
 
 #
 # Data for table "entidad_bancaria"
 #
 
-INSERT INTO `entidad_bancaria` (`id`,`nombre`,`direccion_id`,`estado`,`num_cuenta`,`tipo_cuenta`) VALUES (1,'Pichincha',1,'ACTIVO','2201133485','AHORRO');
+-- INSERT INTO `entidad_bancaria` (`id`,`nombre`,`direccion_id`,`estado`,`num_cuenta`,`tipo_cuenta`) VALUES (1,'Pichincha',1,'ACTIVO','2201133485','AHORRO');
 
 #
 # Data for table "sucursal"
 #
 
-INSERT INTO `sucursal` (`id`,`nombre`,`direccion_id`,`estado`) VALUES (1,'Mira',1,'ACTIVO'),(2,'Espejo',2,'ACTIVO');
-
+-- INSERT INTO `sucursal` (`id`,`nombre`,`direccion_id`,`estado`) VALUES (1,'Mira',1,'ACTIVO'),(2,'Espejo',2,'ACTIVO');
+--
 

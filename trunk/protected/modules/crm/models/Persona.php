@@ -7,7 +7,8 @@ class Persona extends BasePersona {
 
     //estado: ACTIVO,INACTIVO
     const ESTADO_ACTIVO = 'ACTIVO';
-    const ESTADO_INACTIVO = 'INACTIVO';
+    const ESTADO_INACTIVO =  'INACTIVO';
+    const ESTADO_RETIRADO =  'RETIRADO';
     //tipo: CLIENTE,GARANTE
     const TIPO_NUEVO = 'NUEVO';
 //    const TIPO_CLIENTE = 'CLIENTE';
