@@ -1,24 +1,12 @@
 $(function () {
-    $(document).ready(function () {
         select2vacio("s2id_Persona_direccion_domicilio_id");
-    });
 });
 function select2vacio(id) {
-//    if (id == 0) {
-//        $("#s2id_Contacto_provincia").select2("val", "");
-//        $("#s2id_Contacto_provincia").select2("val", "0");
-//    }
-//    else {
     $('#' + id).select2("val", "");
     $('#' + id).select2("val", "0");
-//    }
-
 }
 function select2validar(event, id) {
-//    console.log(event);
-//        console.log(  $('#'.id).select2("val"));
     var seleccionados = $('#' + id).select2("val");
-//    console.log(seleccionados);
     if (seleccionados.length == 0)
     {
         $('#' + id).select2("val", "0");
@@ -59,7 +47,7 @@ function generarGridAdminPersonas(Formulario) {
 //        $("#Contacto_ciudad").val("0");
     }
     ms = $('#Persona_madre_soltera').is(':checked') ? 1 : 0;
-    window.console.log(ms);
+    //window.console.log(ms);
     //recoger los valores si todos son 0000 esque los valores no han sidos escogidos
     var condicion = 0 + $('#Persona_direccion_domicilio_id').val() + $('#Persona_sexo').val() + $('#Persona_estado_civil').val() + $('#Persona_discapacidad').val() + ms;
 //    window.console.log(condicion);
@@ -88,12 +76,12 @@ function generarGridAdminPersonasTodos(Formulario) {
     var accion = $('#buttonquitar').attr('onclick');
     btnStatus('#buttonquitar', true);
     //resetar los campos en indice en 0
-    $("#Persona_sexo").select2("val", "0");
-    $("#Persona_estado_civil").val("0");
-    $("#Persona_discapacidad").val("0")
-    $("#s2id_Persona_direccion_domicilio_id").select2("val", "0");
-    $('#Persona_madre_soltera').removeAttr('checked');
-//    AjaxResetSelects2("Contacto_region", "Contacto_provincia", "Contacto_ciudad");
+    //$("#Persona_sexo").select2("val", "");
+    //$("#Persona_estado_civil").val("0");
+    //$("#Persona_discapacidad").val("0")
+    //$("#s2id_Persona_direccion_domicilio_id").select2("val", "0");
+    //$('#Persona_madre_soltera').removeAttr('checked');
+    $(Formulario).trigger("reset");
 
     $.fn.yiiGridView.update("persona-grid", {
         type: 'GET',
@@ -113,17 +101,10 @@ function generarGridAdminPersonasTodos(Formulario) {
 
 function exporCont(Formulario) {
 
-//    $.ajax({
-//        type: "POST",
-//        url: baseUrl + 'crm/persona/exportExcel',
-//        data: $(Formulario).serialize(),
-//    }
-//    );
-
     $(Formulario).attr('target', "blank");
     $(Formulario).attr('action', baseUrl + 'crm/persona/exportExcel');
     $('.truulo-search').clone().appendTo(Formulario);
-    window.console.log($(Formulario).attr('action'));
+    //window.console.log($(Formulario).attr('action'));
     $(Formulario).submit();
     $(Formulario + ' >.truulo-search').remove();
 }

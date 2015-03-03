@@ -5,18 +5,10 @@ Util::tsRegisterAssetJs('admin.js');
 
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Create') . ' ' . Persona::label(), 'icon' => 'plus', 'url' => array('create'),
-    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
     array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
-//        'url' => '#', 
         'htmlOptions' => array(
             'onclick' => 'exporCont("#persona-form")',)
-//        'items' => array(
-//            array('label' => 'Todos', 'url' => '#', 'linkOptions' => array(
-//                    'onclick' => 'ExporCont2(true)',),),
-//            array('label' => 'Seleccionados', 'url' => '#', 'linkOptions' => array(
-//                    'onclick' => 'ExporCont2(false)',),)
-//        )
     ),
 );
 ?>
@@ -37,7 +29,6 @@ $this->menu = array(
         <div class="row-fluid">
             <div class="row-fluid">
                 <div class="span4">
-                    <!--<div class="control-label">&nbsp;</div>-->
                     <br>
 
                     <?php
@@ -50,9 +41,6 @@ $this->menu = array(
                     <?php
                     $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                         'id' => 'persona-form',
-//                'type' => 'horizontal',
-//    'action' =>Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
-//    'action' => $model->isNewRecord ? Yii::app()->createUrl('/campanias/campania/create') : Yii::app()->createUrl('/campanias/campania/update', array('id' => $model->id)),
                         'enableAjaxValidation' => true,
                         'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
                         'enableClientValidation' => false,
@@ -72,7 +60,6 @@ $this->menu = array(
                         'options' => array(),
                         'htmlOptions' => array(
                             'multiple' => 'multiple',
-//                    'style' => 'width:100%',
                         ),
                         'events' => array(
                             'change' => 'js: function(e) {select2validar(e,"s2id_Persona_direccion_domicilio_id");}',
@@ -82,10 +69,10 @@ $this->menu = array(
                     ?>
                 </div>
                 <div class="span4">
-                    <div class="control-label">G&eacute;nero </div>
+                    <div class="control-label">Género </div>
 
                     <?php
-                    echo $form->dropDownList($model, 'sexo', array('-- seleccione --', 'M' => 'Masculino', 'F' => 'Femenino',));
+                    echo $form->dropDownList($model, 'sexo', array('null'=>'-- Ambos --', 'M' => 'Masculino', 'F' => 'Femenino',));
                     ?>
                 </div>
 
@@ -97,7 +84,7 @@ $this->menu = array(
 
                     <?php
                     echo $form->dropDownList(
-                            $model, 'estado_civil', array('-- seleccione --', 'SOLTERO' => 'Soltero', 'CASADO' => 'Casado', 'DIVORCIADO' => 'Divorciado', 'VIUDO' => 'Viudo',));
+                            $model, 'estado_civil', array('-- Todos --', 'SOLTERO' => 'Soltero', 'CASADO' => 'Casado', 'DIVORCIADO' => 'Divorciado', 'VIUDO' => 'Viudo',));
                     ?>
                 </div>
                 <div class="span4">
@@ -105,13 +92,12 @@ $this->menu = array(
 
                     <?php
                     echo $form->dropDownList(
-                            $model, 'discapacidad', array('-- seleccione --', 'SI' => 'SI', 'NO' => 'NO'));
+                            $model, 'discapacidad', array('-- Todos --', 'SI' => 'SI', 'NO' => 'NO'));
                     ?>
                 </div>
                 <div class="span4">
-                    <!--<div class="control-label">Made Soltera</div>-->
                     <br>
-                    Made Soltera&nbsp;&nbsp;
+                    Madre Soltera&nbsp;&nbsp;
 
                     <?php
                     echo $form->checkBox($model, 'madre_soltera');
