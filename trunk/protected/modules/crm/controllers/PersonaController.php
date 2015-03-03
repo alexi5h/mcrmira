@@ -166,42 +166,20 @@ class PersonaController extends AweController {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
 
-        if (isset($_GET['search'])) {
-            $model->attributes = $this->assignParams($_GET['search']);
+        if(isset($_GET['Persona'])){
+            $model->attributes=$_GET['Persona'];
+            $model->de_ids($model->id);
+            $model->de_canton($_GET['Persona']['canton_ids']);
+            $_GET['Persona']['madreSoltera']=='true'?$model->madreSoltera():'';
         }
-        if (!empty($_GET)) {
-
-            if (isset($_GET['Persona']) && !empty($_GET['Persona'])) {
-
-                if (isset($_GET['Persona']['direccion_domicilio_id']) && $_GET['Persona']['direccion_domicilio_id'][0] !== "0") {
-                    $model = $model->de_canton($_GET['Persona']['direccion_domicilio_id']);
-                }
-                if (isset($_GET['Persona']['sexo']) && $_GET['Persona']['sexo'] !== "0") {
-                    $model->sexo = $_GET['Persona']['sexo'];
-                }
-                if (isset($_GET['Persona']['estado_civil']) && $_GET['Persona']['estado_civil'] !== "0") {
-                    $model->estado_civil = $_GET['Persona']['estado_civil'];
-                }
-                if (isset($_GET['Persona']['madre_soltera']) && $_GET['Persona']['madre_soltera'] !== "0") {
-                    $model = $model->madreSoltera();
-                }
-                if (isset($_GET['Persona']['discapacidad']) && $_GET['Persona']['discapacidad'] !== "0") {
-                    $model->discapacidad = $_GET['Persona']['discapacidad'];
-                }
-            }
-        }
-
         $this->render('admin', array(
             'model' => $model,
         ));
     }
 
-    public function actionExportExcel() {
-
-        if (isset($_POST)) {
-//            die();
-            $parametros = array_merge($this->assignParams($_POST['search']), $_POST['Persona']);
-
+    public function actionExportarSocio() {
+        if (isset($_POST['Persona'])) {
+            $parametros=$_POST['Persona'];
             $reporte = Persona::model()->generateExcel($parametros);
 
             //genera el reporte de excel
