@@ -55,10 +55,10 @@ class Menu {
                     array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
                     array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
                 )),
-            array('label' => '<i class="icon-tasks"></i>  Etapa Gestión', 'url' => '#', 'items' => array(
-                    array('label' => 'Etapa Registro', 'url' => array('/crm/personaEtapa/admin'), 'access' => 'action_personaEtapa_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'personaEtapa')),
-                    array('label' => 'Etapa Crédito', 'url' => array('/credito/creditoEtapa/admin'), 'access' => 'action_creditoEtapa_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoEtapa')),
-                )),
+//            array('label' => '<i class="icon-tasks"></i>  Etapa Gestión', 'url' => '#', 'items' => array(
+//                    array('label' => 'Etapa Registro', 'url' => array('/crm/personaEtapa/admin'), 'access' => 'action_personaEtapa_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'personaEtapa')),
+//                    array('label' => 'Etapa Crédito', 'url' => array('/credito/creditoEtapa/admin'), 'access' => 'action_creditoEtapa_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoEtapa')),
+//                )),
             array('label' => '<i class="icon-leaf"></i> Actividad Económica', 'url' => array('/crm/actividadEconomica/admin'), 'access' => 'action_actividadEconomica_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'actividadEconomica')),
             array('label' => '<i class="icon-upload-alt"></i> Importar CSV', 'url' => array('/importCsv/'), 'access' => 'action_actividadEconomica_admin', 'active_rules' => array('module' => 'importCsv', 'controller' => 'default')),
         );
