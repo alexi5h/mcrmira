@@ -73,7 +73,7 @@ function initSelect() {
         data: [{id: null, text: 'Todos'}, {id: 'SOLTERO', text: 'Soltero'}, {
             id: 'CASADO',
             text: 'Casado'
-        }, {id: 'DIVORCIADO', text: 'Divorsiado'}, {id: 'VIUDO', text: 'Viudo'}],
+        }, {id: 'DIVORCIADO', text: 'Divorciado'}, {id: 'VIUDO', text: 'Viudo'}],
         initSelection: function (element, callback) {
             if ($(element).val()) {
                 var data = {id: element.val(), text: $(element).attr('selected-text')};
