@@ -4,8 +4,6 @@ Yii::import('ahorro.models._base.BaseAhorroDeposito');
 
 class AhorroDeposito extends BaseAhorroDeposito {
 
-    public $socio_id;
-
     /**
      * @return AhorroDeposito
      */

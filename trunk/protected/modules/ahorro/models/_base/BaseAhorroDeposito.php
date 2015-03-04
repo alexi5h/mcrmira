@@ -18,6 +18,7 @@
  * @property string $cod_comprobante_su
  * @property string $fecha_comprobante_su
  * @property integer $usuario_creacion_id
+ * @property integer $socio_id
  *
  */
 abstract class BaseAhorroDeposito extends AweActiveRecord {
@@ -36,11 +37,11 @@ abstract class BaseAhorroDeposito extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, usuario_creacion_id', 'required'),
-            array('entidad_bancaria_id, sucursal_comprobante_id, usuario_creacion_id', 'numerical', 'integerOnly'=>true),
+            array('cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, usuario_creacion_id, socio_id', 'required'),
+            array('entidad_bancaria_id, sucursal_comprobante_id, usuario_creacion_id, socio_id', 'numerical', 'integerOnly'=>true),
             array('cantidad', 'length', 'max'=>10),
             array('cod_comprobante_entidad, cod_comprobante_su', 'length', 'max'=>45),
-            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, usuario_creacion_id', 'safe', 'on'=>'search'),
+            array('id, cantidad, entidad_bancaria_id, cod_comprobante_entidad, fecha_comprobante_entidad, sucursal_comprobante_id, cod_comprobante_su, fecha_comprobante_su, usuario_creacion_id, socio_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -63,6 +64,7 @@ abstract class BaseAhorroDeposito extends AweActiveRecord {
                 'cod_comprobante_su' => Yii::t('app', 'Cod Comprobante Su'),
                 'fecha_comprobante_su' => Yii::t('app', 'Fecha Comprobante Su'),
                 'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
+                'socio_id' => Yii::t('app', 'Socio'),
         );
     }
 
@@ -78,6 +80,7 @@ abstract class BaseAhorroDeposito extends AweActiveRecord {
         $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
         $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
         $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+        $criteria->compare('socio_id', $this->socio_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
