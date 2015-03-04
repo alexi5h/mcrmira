@@ -116,13 +116,15 @@ class Ahorro extends BaseAhorro {
         return $return[0]['total'];
     }
 
+
+
     public function socioAhorroObligatorioTotal($id_socio) {
 //        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='OBLIGATORIO' and anulado='SI'
         $command = Yii::app()->db->createCommand()
                 ->select('sum(saldo_favor)as total')
                 ->from('ahorro ')
                 ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
-        $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO);
+        $command->params = array(':id_socio' => $id_socio, ':tipo' => self::TIPO_OBLIGATORIO);
 
         $return = $command->queryAll();
 
@@ -183,7 +185,8 @@ class Ahorro extends BaseAhorro {
         $año = date("Y");
         return "C_" . $id_cliente . "_" . $meses[$mes - 1] . "_" . $año;
     }
-        /*     * *Consultas para dashboard* */
+
+    /*     * *Consultas para dashboard* */
 
     public function getTotalAhorros_Obligatorios_y_Primer_Pago() {
 //        select sum(ad.cantidad) from ahorro a
@@ -226,7 +229,7 @@ class Ahorro extends BaseAhorro {
                 ->join('ahorro_extra ae', 'a.id = ae.ahorro_id')
 //                ->where('ae.anulado =:anulado_no'
 //                , array(':anulado_no' => self::ANULADO_NO))
-                ;
+        ;
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
@@ -241,7 +244,7 @@ class Ahorro extends BaseAhorro {
                 ->select('sum(a.saldo_contra) as total')
                 ->from('ahorro a')
                 ->where(' a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
-                , array( ':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
+                , array(':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
@@ -256,13 +259,12 @@ class Ahorro extends BaseAhorro {
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
-        $criteria->compare('saldo_favor', $this->saldo_favor, true);    
-        $criteria->order=('saldo_contra DESC,fecha ASC');
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
+        $criteria->order = ('saldo_contra DESC,fecha ASC');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-
-
         ));
     }
+
 }
