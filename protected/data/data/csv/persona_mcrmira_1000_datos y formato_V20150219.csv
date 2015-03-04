@@ -1,1001 +1,1001 @@
-PRIMER NOMBRE;SEGUNDO NOMBRE;APELLIDO PATERNO;APELLIDO MATERNO;TIPO IDENTIFICACION;CEDULA/PASAPORTE;TIPO DE SOCIO;SUCURSAL REGISTRO;FECHA NACIMIENTO;GENERO;DISCAPACIDAD;ESTADO CIVIL;Nro CARGAS FAMILIARES;ACTIVIDAD ECONOMICA
-Andrea;Anna;Foster;Gray;C;1004002000;GARANTE;Mira;02/03/2014;F;;CASADO;2;Tendero
-Michael;Ashley;Shaw;Gardner;C;1002003000;CLIENTE;Mira;06/04/2014;M;NO;CASADO;0;Tendero
-Gloria;Gerald;Wright;Willis;C;1002003000;CLIENTE;Mira;14/04/2014;M;NO;CASADO;3;Artesano
-Gregory;Norma;Nguyen;Evans;C;1004002000;CLIENTE;Pimampiro;23/07/2014;F;SI;SOLTERO;3;Costurero
-Albert;;Ortiz;Jackson;C;1002003000;CLIENTE;Mira;25/07/2014;M;NO;SOLTERO;2;Heladero
-Theresa;Patricia;Foster;Palmer;C;1002003000;CLIENTE;Urcuqui;17/12/2013;F;NO;SOLTERO;1;Heladero
-Russell;Barbara;Bowman;Riley;C;1002003000;GARANTE;Mira;08/07/2014;M;NO;SOLTERO;;Digitado
-John;Sean;Hunt;Martinez;C;1002003000;GARANTE;Pimampiro;18/04/2014;M;NO;DIVORCIADO;0;Costurero
-Lisa;Mary;Perkins;Torres;C;1004002000;CLIENTE;El Angel;22/05/2014;M;NO;SOLTERO;0;Digitado
-Annie;Harry;Murphy;Alvarez;C;1002003000;GARANTE;Mira;29/06/2014;M;NO;SOLTERO;2;Panadero
-Wanda;Jeffrey;Barnes;Warren;C;1004002000;CLIENTE;Mira;18/06/2014;M;NO;SOLTERO;1;Mecánico
-Doris;Louis;Hayes;Freeman;C;1002003000;CLIENTE;El Angel;03/09/2014;F;NO;SOLTERO;1;Tendero
-Jeffrey;Adam;Webb;Hamilton;C;1002003000;CLIENTE;Mira;13/10/2014;M;NO;SOLTERO;;Mecánico
-Timothy;Linda;Ramos;Gonzales;C;1002003000;CLIENTE;Mira;04/03/2014;M;NO;SOLTERO;1;Mecánico
-Kathy;Judy;Cunningham;Ross;C;1004002000;CLIENTE;Urcuqui;02/09/2014;M;NO;SOLTERO;0;Comerciante
-Julie;Jane;White;Marshall;C;1002003000;CLIENTE;Mira;24/06/2014;M;NO;DIVORCIADO;3;Comerciante
-Scott;Earl;James;Gardner;C;1004002000;CLIENTE;Pimampiro;28/11/2013;F;;SOLTERO;;Comerciante
-Justin;Phillip;Gibson;Bennett;C;1002003000;CLIENTE;El Angel;15/07/2014;M;SI;CASADO;3;Tendero
-Tina;Anne;Riley;Castillo;C;1002003000;CLIENTE;Mira;18/08/2014;M;NO;CASADO;3;Mecánico
-Ronald;Ruby;Wallace;Oliver;C;1004002000;CLIENTE;El Angel;30/03/2014;F;SI;SOLTERO;;Lechero
-Betty;Carolyn;Butler;Barnes;C;1002003000;CLIENTE;Urcuqui;25/11/2013;M;NO;DIVORCIADO;1;Escultor
-Jessica;;Johnston;Berry;C;1004002000;CLIENTE;Pimampiro;13/04/2014;M;SI;VIUDO;3;Costurero
-Jerry;Nicholas;Mitchell;Wagner;P;1002003000;CLIENTE;Mira;09/04/2014;M;NO;SOLTERO;2;Mecánico
-Lori;Keith;Palmer;Fisher;C;1004002000;CLIENTE;El Angel;12/02/2014;F;NO;VIUDO;4;Heladero
-Lisa;Andrew;Walker;Oliver;C;1004002000;CLIENTE;Pimampiro;26/01/2014;M;NO;CASADO;1;Mecánico
-Russell;Ruth;Gutierrez;;C;1002003000;CLIENTE;El Angel;09/09/2014;F;NO;CASADO;1;Carnicero
-Steve;Juan;Fernandez;Hansen;C;1004002000;CLIENTE;Pimampiro;30/03/2014;F;NO;CASADO;1;Heladero
-Paul;Deborah;Moore;Butler;C;1004002000;CLIENTE;Pimampiro;03/02/2014;M;NO;DIVORCIADO;2;Heladero
-Cheryl;Kevin;Cox;Jenkins;C;1002003000;CLIENTE;El Angel;12/04/2014;M;NO;SOLTERO;3;Artesano
-Kelly;;Moore;Simmons;C;1002003000;GARANTE;Urcuqui;24/12/2013;M;SI;SOLTERO;4;Digitado
-Edward;Juan;Nguyen;Murphy;C;1004002000;CLIENTE;Urcuqui;13/06/2014;F;NO;SOLTERO;0;Comerciante
-Angela;Joe;Day;Jacobs;C;1002003000;CLIENTE;Mira;24/11/2013;M;;CASADO;0;Heladero
-Debra;Nicole;Gomez;Gardner;C;1004002000;CLIENTE;Pimampiro;;F;SI;CASADO;0;Carnicero
-Larry;Linda;Franklin;Lewis;C;1004002000;CLIENTE;Pimampiro;08/08/2014;M;NO;DIVORCIADO;2;Costurero
-Tina;Jacqueline;Welch;Gutierrez;C;1004002000;CLIENTE;Urcuqui;16/01/2014;M;NO;DIVORCIADO;3;Costurero
-Nicholas;Sandra;Clark;Murphy;C;1002003000;CLIENTE;Urcuqui;07/07/2014;F;NO;CASADO;;Carnicero
-Sara;Cheryl;James;Hunter;C;1004002000;CLIENTE;Pimampiro;10/07/2014;F;SI;SOLTERO;1;Comerciante
-Lawrence;Victor;Vasquez;Carroll;P;1002003000;CLIENTE;Pimampiro;21/11/2013;F;NO;SOLTERO;4;Digitado
-Linda;Stephanie;Ferguson;Clark;C;1004002000;GARANTE;Urcuqui;02/07/2014;F;NO;DIVORCIADO;2;Heladero
-Jimmy;Joan;Romero;Rivera;C;1004002000;CLIENTE;Mira;02/02/2014;M;NO;DIVORCIADO;0;Comerciante
-Samuel;Phyllis;Lynch;Warren;C;1002003000;GARANTE;Mira;22/06/2014;M;NO;SOLTERO;2;Lechero
-Kimberly;Patrick;Campbell;Marshall;C;1002003000;GARANTE;El Angel;26/12/2013;M;NO;CASADO;0;Digitado
-Julia;Phillip;Tucker;Meyer;C;1002003000;CLIENTE;El Angel;20/04/2014;M;NO;CASADO;2;Digitado
-Charles;Thomas;Knight;Scott;P;1002003000;CLIENTE;Mira;16/03/2014;M;SI;CASADO;;Tendero
-Nicole;Donald;Pierce;;C;1004002000;CLIENTE;Mira;15/05/2014;M;NO;SOLTERO;1;Costurero
-Diana;Kenneth;Hawkins;Dean;P;1004002000;CLIENTE;Urcuqui;14/03/2014;M;NO;VIUDO;;Mecánico
-Jennifer;Phillip;Mcdonald;Wells;C;1004002000;CLIENTE;Mira;02/02/2014;F;NO;CASADO;;Costurero
-Arthur;Heather;Wood;;C;1002003000;CLIENTE;Mira;27/02/2014;F;NO;DIVORCIADO;3;Digitado
-Jane;Louis;Cunningham;Wallace;C;1002003000;CLIENTE;Pimampiro;21/12/2013;M;NO;SOLTERO;2;Heladero
-Jean;;Ramirez;Mendoza;C;1002003000;CLIENTE;Urcuqui;04/04/2014;F;NO;;;Mecánico
-Andrew;Justin;Long;Miller;C;1004002000;CLIENTE;El Angel;03/05/2014;M;NO;SOLTERO;2;Comerciante
-Marie;Tammy;Rodriguez;Bradley;C;1004002000;CLIENTE;Urcuqui;06/06/2014;F;SI;CASADO;;Artesano
-Phillip;Philip;Meyer;Morris;C;1002003000;CLIENTE;El Angel;27/10/2014;F;NO;CASADO;3;Panadero
-Adam;John;Ortiz;Long;C;1002003000;CLIENTE;El Angel;21/05/2014;M;NO;CASADO;;Panadero
-Catherine;Kelly;Butler;Howell;C;1002003000;GARANTE;Urcuqui;17/09/2014;M;NO;SOLTERO;3;Digitado
-Kenneth;Robin;Morris;Franklin;P;1002003000;CLIENTE;Pimampiro;21/02/2014;F;NO;DIVORCIADO;2;Digitado
-Ashley;Betty;Jenkins;Johnston;C;1004002000;CLIENTE;El Angel;25/09/2014;F;NO;DIVORCIADO;2;Heladero
-Gary;Beverly;Black;Powell;C;1002003000;GARANTE;Pimampiro;13/06/2014;M;SI;SOLTERO;3;Heladero
-Daniel;Brian;Lewis;Morris;C;1004002000;CLIENTE;Urcuqui;07/11/2014;M;NO;VIUDO;;Lechero
-David;Larry;Pierce;George;C;1002003000;CLIENTE;Urcuqui;18/03/2014;F;NO;CASADO;;Heladero
-Dennis;Michelle;Wagner;Hunt;C;1004002000;CLIENTE;Urcuqui;18/07/2014;M;NO;CASADO;0;Panadero
-Kathryn;Heather;Jordan;Vasquez;C;1004002000;CLIENTE;Urcuqui;22/06/2014;F;NO;DIVORCIADO;;Mecánico
-Kathryn;Eugene;Fox;Gomez;C;1004002000;CLIENTE;Pimampiro;31/10/2014;F;NO;SOLTERO;2;Comerciante
-Peter;Anne;Berry;Gomez;C;1002003000;CLIENTE;Pimampiro;31/03/2014;F;NO;;1;Lechero
-Kathy;Scott;Rogers;Morris;C;1004002000;CLIENTE;Pimampiro;22/08/2014;M;NO;SOLTERO;2;Escultor
-Brenda;Julia;Miller;Baker;C;1004002000;CLIENTE;Mira;24/05/2014;F;NO;SOLTERO;3;Comerciante
-Jane;Anthony;Willis;Murray;C;1004002000;GARANTE;Pimampiro;03/04/2014;M;NO;VIUDO;;Lechero
-Jean;Norma;Bishop;Jenkins;C;1004002000;GARANTE;Pimampiro;20/12/2013;F;SI;VIUDO;3;Artesano
-Doris;Howard;Hudson;Ford;P;1002003000;CLIENTE;El Angel;08/06/2014;F;NO;CASADO;1;Lechero
-Robin;Jane;Hughes;Marshall;C;1004002000;CLIENTE;Urcuqui;05/11/2014;F;NO;VIUDO;;Artesano
-Rose;Betty;Morgan;Watson;C;1004002000;CLIENTE;Mira;09/07/2014;M;NO;CASADO;2;Tendero
-Theresa;Julie;Cook;Long;C;1002003000;GARANTE;Urcuqui;25/07/2014;M;NO;DIVORCIADO;3;Comerciante
-Henry;Gregory;Allen;Lopez;C;1002003000;CLIENTE;Urcuqui;15/12/2013;M;NO;CASADO;0;Artesano
-Victor;William;Lopez;Cole;C;1002003000;CLIENTE;Pimampiro;08/11/2014;F;SI;VIUDO;;Artesano
-Gloria;Susan;Arnold;Fernandez;C;1002003000;GARANTE;Pimampiro;16/03/2014;M;NO;CASADO;;Mecánico
-Ryan;Clarence;Wagner;White;C;1002003000;CLIENTE;Urcuqui;;F;;CASADO;;Mecánico
-Carol;Ruth;Hawkins;Ortiz;P;1002003000;CLIENTE;El Angel;03/07/2014;F;NO;CASADO;;Mecánico
-Louise;Wanda;Thomas;Dunn;C;1004002000;GARANTE;Pimampiro;31/01/2014;F;NO;CASADO;3;Carnicero
-Jacqueline;Heather;Stewart;Patterson;C;1004002000;CLIENTE;Urcuqui;11/04/2014;M;NO;VIUDO;1;Carnicero
-Philip;William;Rodriguez;Campbell;C;1002003000;CLIENTE;Pimampiro;28/07/2014;M;NO;SOLTERO;3;Panadero
-Samuel;Aaron;Hudson;;C;1002003000;CLIENTE;El Angel;10/04/2014;M;NO;CASADO;;Panadero
-Raymond;Virginia;Lopez;Nelson;C;1004002000;CLIENTE;Urcuqui;15/10/2014;M;NO;CASADO;0;Tendero
-Samuel;Kenneth;Diaz;Owens;C;1004002000;CLIENTE;Pimampiro;10/10/2014;F;NO;VIUDO;1;Comerciante
-Patrick;Julia;Romero;Washington;C;1004002000;CLIENTE;El Angel;16/07/2014;F;SI;CASADO;3;Mecánico
-Carlos;Alice;Williams;Perez;C;1004002000;CLIENTE;El Angel;;M;NO;SOLTERO;1;Costurero
-James;Rose;Rice;Price;C;1004002000;CLIENTE;Mira;19/02/2014;F;NO;DIVORCIADO;;Mecánico
-Richard;Albert;Hudson;Owens;C;1002003000;CLIENTE;El Angel;18/02/2014;F;NO;CASADO;;Digitado
-Eric;Diana;Martinez;Barnes;C;1002003000;CLIENTE;El Angel;08/09/2014;F;NO;VIUDO;1;Artesano
-Kathy;Bonnie;Collins;Hayes;C;1002003000;CLIENTE;Urcuqui;;M;NO;SOLTERO;3;Mecánico
-Ernest;Fred;Hawkins;Lawrence;C;1002003000;CLIENTE;Mira;16/06/2014;M;NO;DIVORCIADO;;Tendero
-Dennis;Peter;Peters;Stephens;C;1002003000;CLIENTE;El Angel;25/04/2014;F;NO;SOLTERO;2;Digitado
-Arthur;Jacqueline;Lawrence;Matthews;C;1002003000;GARANTE;Mira;25/05/2014;F;NO;SOLTERO;;Escultor
-Alan;Jason;Gonzalez;Snyder;C;1004002000;CLIENTE;Mira;31/07/2014;M;SI;SOLTERO;;Heladero
-Justin;Jesse;Smith;White;C;1004002000;CLIENTE;Pimampiro;14/01/2014;M;NO;CASADO;1;Digitado
-Lawrence;Cynthia;Ward;Wood;C;1004002000;CLIENTE;Mira;22/05/2014;M;NO;CASADO;2;Escultor
-Paul;Teresa;Nguyen;Stanley;P;1004002000;GARANTE;El Angel;19/10/2014;F;NO;CASADO;3;Lechero
-Frank;Lisa;Young;Carroll;C;1002003000;CLIENTE;Urcuqui;12/11/2014;M;NO;CASADO;0;Heladero
-Betty;Timothy;Mccoy;Fernandez;C;1004002000;CLIENTE;Urcuqui;29/06/2014;F;NO;SOLTERO;;Escultor
-Richard;Alan;Porter;Gardner;C;1002003000;CLIENTE;Urcuqui;18/10/2014;F;SI;DIVORCIADO;;Comerciante
-Robert;Edward;Jones;Carr;C;1004002000;CLIENTE;Mira;20/12/2013;M;NO;DIVORCIADO;;Digitado
-George;Lawrence;Nelson;Holmes;P;1004002000;CLIENTE;Mira;15/10/2014;M;NO;CASADO;;Comerciante
-Joe;Jason;Hayes;Fuller;C;1004002000;CLIENTE;Urcuqui;20/03/2014;M;NO;CASADO;2;Mecánico
-Justin;Paula;Reyes;Harrison;P;1002003000;CLIENTE;Pimampiro;12/09/2014;M;NO;VIUDO;1;Tendero
-Emily;Roger;Scott;Gilbert;P;1002003000;CLIENTE;Urcuqui;08/02/2014;F;NO;;2;Artesano
-Harry;Lillian;Lane;Walker;C;1002003000;CLIENTE;Pimampiro;30/10/2014;M;NO;;2;Comerciante
-Eugene;Harry;Griffin;Morris;C;1004002000;CLIENTE;Urcuqui;27/11/2013;F;SI;SOLTERO;3;Digitado
-Emily;Samuel;Lawrence;Mccoy;C;1002003000;CLIENTE;El Angel;22/05/2014;M;NO;CASADO;1;Digitado
-Anna;Lois;Gutierrez;Mason;C;1004002000;CLIENTE;El Angel;13/10/2014;F;NO;SOLTERO;;Mecánico
-Betty;;Boyd;Reed;C;1004002000;CLIENTE;Pimampiro;06/01/2014;F;NO;CASADO;2;Comerciante
-Steven;Jessica;Fowler;Hunter;C;1004002000;CLIENTE;El Angel;15/02/2014;M;NO;SOLTERO;;Panadero
-Diana;Diane;Jones;Cole;C;1004002000;CLIENTE;Urcuqui;10/11/2014;M;NO;CASADO;;Digitado
-Carolyn;Harry;Banks;Griffin;C;1002003000;CLIENTE;El Angel;22/07/2014;F;NO;CASADO;;Panadero
-Larry;Howard;Carr;Rose;C;1002003000;CLIENTE;Urcuqui;08/01/2014;F;NO;DIVORCIADO;;Lechero
-Henry;Sean;Cunningham;Hunt;C;1002003000;CLIENTE;Pimampiro;21/12/2013;M;NO;SOLTERO;0;Panadero
-Phyllis;Julie;Watkins;Ward;C;1002003000;CLIENTE;Mira;13/01/2014;M;NO;CASADO;2;Heladero
-Kathleen;Virginia;Rose;Ruiz;C;1004002000;CLIENTE;Urcuqui;09/11/2014;M;NO;CASADO;3;Carnicero
-Marilyn;Johnny;Mendoza;Brown;C;1002003000;CLIENTE;Urcuqui;28/12/2013;M;NO;CASADO;3;Heladero
-Steve;Gary;Gibson;Coleman;C;1004002000;GARANTE;El Angel;26/02/2014;M;NO;SOLTERO;2;Carnicero
-Kenneth;Robin;Wagner;Ryan;C;1002003000;CLIENTE;Urcuqui;09/09/2014;M;NO;CASADO;3;Heladero
-Carolyn;Ruby;Marshall;Kelly;C;1004002000;CLIENTE;Pimampiro;22/04/2014;M;NO;DIVORCIADO;;Carnicero
-Barbara;Martin;Cooper;King;C;1002003000;CLIENTE;El Angel;03/07/2014;F;SI;SOLTERO;0;Artesano
-George;Victor;Matthews;Porter;C;1002003000;CLIENTE;Urcuqui;17/06/2014;M;SI;CASADO;;Digitado
-Lori;Maria;Jenkins;Bennett;C;1002003000;CLIENTE;El Angel;21/04/2014;F;NO;SOLTERO;3;Panadero
-Benjamin;Lois;Duncan;Crawford;C;1002003000;GARANTE;El Angel;06/12/2013;M;NO;CASADO;3;Mecánico
-Jesse;Billy;Fields;Wilson;P;1002003000;CLIENTE;El Angel;03/11/2014;F;NO;CASADO;;Costurero
-Susan;Lillian;Davis;Collins;P;1002003000;CLIENTE;El Angel;10/12/2013;M;;SOLTERO;;Mecánico
-Matthew;Lillian;Butler;Fox;C;1004002000;CLIENTE;El Angel;20/02/2014;F;NO;DIVORCIADO;;Costurero
-Nicole;Albert;Scott;Thompson;C;1002003000;GARANTE;Urcuqui;27/06/2014;M;NO;CASADO;1;Digitado
-Justin;Cynthia;Gonzalez;Olson;C;1002003000;CLIENTE;Urcuqui;10/05/2014;F;NO;CASADO;;Artesano
-Joan;Joyce;Russell;Moore;C;1004002000;CLIENTE;El Angel;21/09/2014;F;NO;SOLTERO;;Tendero
-Thomas;Aaron;Hawkins;;C;1002003000;CLIENTE;Mira;08/10/2014;M;NO;CASADO;;Panadero
-Ronald;Margaret;Daniels;Jones;C;1004002000;CLIENTE;;07/12/2013;M;SI;CASADO;2;Heladero
-Gary;Emily;Tucker;Lynch;C;1004002000;CLIENTE;Pimampiro;31/03/2014;F;NO;CASADO;;Carnicero
-Charles;Charles;Carter;Bailey;C;1002003000;CLIENTE;El Angel;13/01/2014;M;;CASADO;2;Mecánico
-Edward;Pamela;Ryan;Burke;P;1002003000;GARANTE;Pimampiro;20/04/2014;M;NO;CASADO;;Heladero
-Denise;William;Nguyen;Harrison;C;1002003000;CLIENTE;El Angel;11/06/2014;F;NO;VIUDO;1;Digitado
-Doris;Theresa;Fernandez;Watkins;C;1004002000;GARANTE;Mira;16/01/2014;M;SI;CASADO;;Costurero
-Jesse;Beverly;Snyder;Ruiz;C;1002003000;CLIENTE;Mira;25/06/2014;F;NO;SOLTERO;1;Comerciante
-Edward;Helen;Freeman;Smith;C;1004002000;CLIENTE;Pimampiro;28/04/2014;M;NO;DIVORCIADO;;Panadero
-Roy;Aaron;Kennedy;Fowler;C;1004002000;GARANTE;Mira;12/02/2014;M;NO;SOLTERO;1;Tendero
-Jerry;Lawrence;Dixon;Jacobs;C;1004002000;CLIENTE;Pimampiro;15/07/2014;F;NO;VIUDO;;Lechero
-Lois;Eugene;Powell;Little;C;1002003000;CLIENTE;Pimampiro;15/06/2014;M;NO;CASADO;3;Mecánico
-Douglas;Marie;Garza;Garza;C;1004002000;CLIENTE;Pimampiro;04/04/2014;M;NO;CASADO;3;Costurero
-Ashley;Ann;Wood;Smith;C;1004002000;CLIENTE;Pimampiro;30/03/2014;F;NO;SOLTERO;1;Mecánico
-Frank;Brian;Torres;Harper;C;1004002000;CLIENTE;Mira;28/10/2014;F;;CASADO;1;Comerciante
-Nicholas;Stephanie;Wilson;Morales;C;1002003000;CLIENTE;Pimampiro;17/06/2014;F;NO;;3;Escultor
-Denise;Jerry;Vasquez;Warren;C;1002003000;CLIENTE;El Angel;26/09/2014;M;NO;SOLTERO;3;Escultor
-Douglas;Jane;Ryan;Bell;C;1002003000;CLIENTE;Urcuqui;14/09/2014;M;NO;CASADO;;Panadero
-Patricia;;West;Hughes;C;1002003000;GARANTE;Mira;19/12/2013;M;NO;;4;Digitado
-Scott;Sean;Matthews;Johnston;P;1004002000;CLIENTE;Mira;02/06/2014;F;NO;CASADO;;Heladero
-Joan;Angela;Wagner;Barnes;C;1004002000;CLIENTE;El Angel;19/10/2014;F;NO;SOLTERO;2;Comerciante
-Jack;Sharon;Mills;Arnold;C;1002003000;CLIENTE;El Angel;14/05/2014;F;NO;SOLTERO;2;Artesano
-Anthony;Teresa;Nichols;Rivera;C;1002003000;CLIENTE;El Angel;;F;NO;CASADO;2;Tendero
-Carolyn;Ann;Cooper;Harper;C;1004002000;CLIENTE;El Angel;28/04/2014;F;NO;CASADO;1;Digitado
-Eric;Virginia;Harper;Warren;C;1004002000;CLIENTE;El Angel;02/02/2014;F;NO;SOLTERO;;Escultor
-Samuel;Jacqueline;Gray;Harris;P;1002003000;CLIENTE;Pimampiro;07/02/2014;F;NO;DIVORCIADO;3;Tendero
-Katherine;Judy;Lawrence;Perkins;C;1004002000;CLIENTE;Mira;25/08/2014;M;NO;SOLTERO;;Panadero
-Thomas;Robin;Stanley;Clark;C;1002003000;CLIENTE;Urcuqui;14/04/2014;F;NO;CASADO;;Carnicero
-Wanda;Ruby;Davis;Fernandez;C;1002003000;CLIENTE;Urcuqui;04/11/2014;M;NO;VIUDO;2;Tendero
-Jonathan;Lawrence;Scott;Duncan;C;1004002000;GARANTE;Mira;20/11/2013;M;NO;VIUDO;;Costurero
-Peter;Andrew;Bennett;Adams;C;1002003000;CLIENTE;Pimampiro;14/01/2014;M;NO;DIVORCIADO;3;Costurero
-Peter;Carlos;Stone;Burton;C;1002003000;CLIENTE;Pimampiro;17/08/2014;M;NO;SOLTERO;;Escultor
-Andrew;Charles;Hanson;Nelson;C;1004002000;CLIENTE;Urcuqui;29/08/2014;F;NO;CASADO;3;Digitado
-Jeremy;Larry;Owens;Ellis;C;1002003000;CLIENTE;Pimampiro;17/10/2014;M;NO;CASADO;2;Tendero
-Katherine;Frank;Armstrong;Snyder;C;1002003000;CLIENTE;Mira;28/10/2014;M;NO;SOLTERO;2;Tendero
-Irene;Amy;Butler;;C;1002003000;CLIENTE;Urcuqui;18/03/2014;F;NO;DIVORCIADO;1;Escultor
-Brenda;Steve;Lawrence;;P;1004002000;CLIENTE;Mira;04/12/2013;M;NO;CASADO;2;Mecánico
-Louise;Mark;Turner;Hansen;P;1004002000;CLIENTE;;16/02/2014;M;NO;SOLTERO;;Artesano
-Thomas;Lois;Griffin;King;C;1004002000;GARANTE;El Angel;26/07/2014;M;NO;DIVORCIADO;;Costurero
-Daniel;Andrea;Morris;Kim;C;1002003000;CLIENTE;Mira;08/04/2014;M;NO;CASADO;;Digitado
-Teresa;Patrick;Armstrong;Hamilton;C;1004002000;CLIENTE;Pimampiro;12/02/2014;M;NO;DIVORCIADO;0;Heladero
-Rose;Joyce;Robertson;Kelley;C;1002003000;CLIENTE;Mira;26/08/2014;F;NO;DIVORCIADO;3;Lechero
-Sara;Elizabeth;Mcdonald;Ramirez;C;1004002000;CLIENTE;Pimampiro;08/02/2014;M;NO;VIUDO;0;Tendero
-Howard;Charles;Watson;Phillips;C;1002003000;CLIENTE;Pimampiro;29/04/2014;F;SI;CASADO;;Comerciante
-Jeremy;Nicole;Martin;Hamilton;C;1004002000;CLIENTE;Urcuqui;26/05/2014;F;NO;CASADO;0;Lechero
-Jeffrey;Teresa;Wright;Rodriguez;P;1002003000;CLIENTE;Pimampiro;01/07/2014;M;;SOLTERO;0;Costurero
-Martha;Nancy;Morales;Crawford;C;1004002000;CLIENTE;El Angel;10/02/2014;M;;SOLTERO;3;Digitado
-Janet;Ralph;Hayes;Welch;C;1002003000;CLIENTE;Urcuqui;22/12/2013;F;NO;CASADO;;Escultor
-Joshua;Jessica;Bradley;Welch;C;1002003000;CLIENTE;El Angel;18/05/2014;F;NO;SOLTERO;0;Heladero
-Joseph;Judy;Gibson;Hughes;C;1004002000;CLIENTE;Mira;04/02/2014;F;NO;CASADO;2;Costurero
-Heather;Antonio;Crawford;Marshall;C;1004002000;CLIENTE;Mira;07/09/2014;M;NO;CASADO;1;Lechero
-Alice;Carolyn;Montgomery;Mason;C;1004002000;CLIENTE;Mira;01/09/2014;M;NO;CASADO;;Digitado
-Adam;Bobby;Daniels;Mccoy;C;1002003000;CLIENTE;El Angel;;F;NO;CASADO;4;Heladero
-Victor;Diana;Hart;James;C;1002003000;CLIENTE;Urcuqui;22/04/2014;F;NO;SOLTERO;3;Digitado
-Matthew;Nancy;Clark;Robertson;P;1004002000;CLIENTE;Mira;09/06/2014;M;NO;SOLTERO;0;Digitado
-Joe;Antonio;Kim;George;P;1002003000;GARANTE;El Angel;22/05/2014;M;NO;CASADO;;Mecánico
-Ralph;Matthew;Berry;Perry;C;1004002000;CLIENTE;Urcuqui;30/11/2013;M;SI;SOLTERO;0;Digitado
-Jason;Ruth;Walker;Willis;C;1002003000;CLIENTE;El Angel;28/05/2014;M;NO;DIVORCIADO;;Panadero
-Susan;Gary;Reid;Morales;C;1002003000;CLIENTE;Mira;01/08/2014;F;SI;SOLTERO;3;Digitado
-Jesse;Gary;Wagner;Dunn;C;1004002000;CLIENTE;Urcuqui;18/05/2014;M;NO;CASADO;;Panadero
-Craig;Jose;Cook;Graham;C;1004002000;CLIENTE;El Angel;26/02/2014;F;NO;CASADO;1;Panadero
-Arthur;;Welch;Johnson;C;1002003000;GARANTE;Urcuqui;15/08/2014;F;NO;CASADO;0;Comerciante
-Craig;Virginia;Black;Bowman;C;1002003000;CLIENTE;Urcuqui;10/11/2014;F;NO;DIVORCIADO;0;Mecánico
-Larry;Harry;Long;Mason;C;1002003000;CLIENTE;Mira;03/02/2014;M;NO;SOLTERO;4;Heladero
-Ann;Steve;Kelly;Campbell;C;1002003000;CLIENTE;Urcuqui;25/09/2014;M;;SOLTERO;1;Comerciante
-Alice;Rebecca;Morgan;Diaz;C;1004002000;CLIENTE;Urcuqui;16/02/2014;M;NO;SOLTERO;;Digitado
-Arthur;Jessica;Allen;Ramirez;C;1002003000;CLIENTE;El Angel;23/08/2014;M;NO;CASADO;1;Mecánico
-Jose;Gloria;Ramos;Holmes;C;1002003000;CLIENTE;Urcuqui;17/06/2014;M;NO;SOLTERO;;Artesano
-Carl;Scott;Snyder;Harvey;C;1002003000;GARANTE;El Angel;30/11/2013;F;NO;VIUDO;;Artesano
-Louise;Tina;Mccoy;Jenkins;P;1004002000;CLIENTE;El Angel;19/04/2014;F;NO;SOLTERO;3;Costurero
-Johnny;;Thompson;Rivera;C;1004002000;GARANTE;Pimampiro;02/10/2014;F;NO;DIVORCIADO;3;Panadero
-Jeffrey;Benjamin;Anderson;Thompson;C;1004002000;CLIENTE;Pimampiro;11/07/2014;M;NO;CASADO;1;Tendero
-Tammy;Jennifer;Wells;Baker;C;1002003000;CLIENTE;Mira;09/09/2014;F;NO;CASADO;;Mecánico
-Gloria;Daniel;Welch;Jackson;C;1002003000;CLIENTE;El Angel;05/10/2014;F;NO;SOLTERO;2;Digitado
-Steven;Keith;Mitchell;Green;C;1002003000;CLIENTE;Pimampiro;;M;NO;SOLTERO;0;Tendero
-Samuel;Susan;Woods;Schmidt;P;1004002000;GARANTE;El Angel;13/12/2013;F;NO;CASADO;1;Digitado
-Joshua;Harold;Fisher;Bennett;C;1004002000;GARANTE;Mira;07/02/2014;M;NO;SOLTERO;1;Lechero
-Janice;Cheryl;Allen;Medina;C;1002003000;GARANTE;El Angel;;M;NO;CASADO;3;Costurero
-Peter;Maria;Spencer;Ramos;C;1004002000;CLIENTE;Urcuqui;21/01/2014;F;NO;SOLTERO;1;Heladero
-Irene;Matthew;Fowler;George;C;1002003000;CLIENTE;Pimampiro;29/12/2013;F;NO;DIVORCIADO;;Comerciante
-Karen;Nicholas;Hunter;Ryan;C;1002003000;CLIENTE;Mira;31/05/2014;M;NO;;4;Comerciante
-Kathryn;Anne;Evans;Anderson;C;1004002000;CLIENTE;Mira;13/01/2014;F;NO;VIUDO;2;Artesano
-Julie;Alan;Hernandez;Coleman;C;1004002000;CLIENTE;Urcuqui;12/02/2014;M;NO;CASADO;3;Mecánico
-Rebecca;David;Hansen;Wagner;C;1004002000;CLIENTE;El Angel;22/02/2014;M;NO;SOLTERO;;Escultor
-Lisa;Ryan;Crawford;Lee;C;1004002000;CLIENTE;Pimampiro;29/08/2014;M;NO;VIUDO;;Carnicero
-Dorothy;;Burke;Parker;C;1002003000;CLIENTE;;;F;NO;SOLTERO;0;Panadero
-Lori;Judy;Long;Campbell;C;1004002000;CLIENTE;Pimampiro;27/06/2014;M;NO;CASADO;0;Panadero
-Todd;Kevin;Stephens;Price;C;1004002000;CLIENTE;El Angel;07/06/2014;M;NO;SOLTERO;2;Carnicero
-Brenda;Elizabeth;Richards;Hudson;C;1004002000;CLIENTE;El Angel;23/01/2014;F;NO;CASADO;4;Digitado
-Lawrence;Jennifer;Jones;Lawrence;C;1004002000;CLIENTE;El Angel;27/05/2014;M;SI;VIUDO;3;Comerciante
-Aaron;Laura;Stone;Warren;C;1002003000;CLIENTE;El Angel;09/06/2014;F;NO;CASADO;;Comerciante
-Donald;Wayne;Elliott;Long;C;1004002000;CLIENTE;El Angel;28/07/2014;F;NO;CASADO;;Escultor
-Joe;Andrea;Cox;Baker;C;1002003000;CLIENTE;Mira;11/03/2014;F;NO;SOLTERO;3;Costurero
-George;Judith;Rice;Thomas;C;1004002000;CLIENTE;Urcuqui;22/08/2014;M;NO;SOLTERO;2;Lechero
-Helen;Gerald;Moreno;Thomas;C;1004002000;CLIENTE;Urcuqui;09/03/2014;F;NO;DIVORCIADO;;Tendero
-Joseph;Anthony;Kim;Mendoza;C;1004002000;CLIENTE;Urcuqui;29/03/2014;M;NO;DIVORCIADO;1;Costurero
-Elizabeth;Rose;Wood;Thomas;P;1004002000;CLIENTE;Pimampiro;03/03/2014;F;SI;;4;Carnicero
-Benjamin;Jeremy;Porter;Diaz;P;1002003000;CLIENTE;Mira;31/07/2014;F;NO;SOLTERO;0;Mecánico
-Richard;Janice;Hughes;Carpenter;C;1004002000;CLIENTE;Mira;09/01/2014;M;NO;CASADO;;Mecánico
-Jesse;Albert;Matthews;Butler;C;1002003000;CLIENTE;El Angel;27/12/2013;M;NO;CASADO;;Tendero
-Steven;Timothy;Roberts;Moreno;P;1002003000;CLIENTE;Mira;17/05/2014;F;NO;VIUDO;0;Heladero
-Sharon;Peter;Ramirez;Patterson;C;1004002000;CLIENTE;Urcuqui;16/12/2013;F;NO;SOLTERO;0;Heladero
-Joe;Jacqueline;Allen;Hanson;C;1004002000;CLIENTE;Pimampiro;02/05/2014;M;NO;SOLTERO;2;Comerciante
-Melissa;Steve;Gray;Bradley;C;1004002000;CLIENTE;Mira;17/08/2014;M;NO;VIUDO;3;Costurero
-Benjamin;Julia;Payne;Johnston;C;1004002000;CLIENTE;Pimampiro;08/08/2014;M;NO;SOLTERO;2;Costurero
-Frank;Carlos;Gutierrez;Evans;C;1002003000;CLIENTE;El Angel;21/09/2014;M;NO;VIUDO;1;Lechero
-Gary;Margaret;Gordon;Kennedy;C;1002003000;CLIENTE;Pimampiro;07/12/2013;M;NO;SOLTERO;1;Panadero
-Lois;Carlos;Diaz;Richardson;C;1002003000;CLIENTE;Mira;01/12/2013;M;NO;VIUDO;;Mecánico
-Philip;Carlos;Hudson;Johnson;C;1004002000;CLIENTE;Pimampiro;15/09/2014;M;NO;VIUDO;1;Escultor
-Frank;Gerald;Cruz;Hanson;C;1002003000;CLIENTE;Urcuqui;07/05/2014;M;NO;SOLTERO;;Carnicero
-Emily;Justin;Hanson;Allen;C;1004002000;CLIENTE;El Angel;17/03/2014;F;NO;CASADO;;Mecánico
-Steve;Billy;Edwards;Dunn;P;1002003000;CLIENTE;Pimampiro;21/02/2014;M;NO;CASADO;1;Digitado
-Joyce;;Hawkins;Murphy;C;1002003000;CLIENTE;El Angel;;M;SI;CASADO;3;Lechero
-Carlos;Sean;Bradley;Carter;C;1004002000;CLIENTE;Urcuqui;15/05/2014;M;NO;CASADO;2;Comerciante
-Julie;Angela;Hawkins;Jones;P;1004002000;CLIENTE;El Angel;12/01/2014;F;NO;SOLTERO;3;Digitado
-Nicholas;Sandra;Garrett;Davis;C;1004002000;CLIENTE;Urcuqui;03/11/2014;M;NO;SOLTERO;3;Lechero
-Sharon;Gloria;Matthews;Mason;C;1004002000;CLIENTE;Mira;21/12/2013;M;;CASADO;2;Comerciante
-Paul;Antonio;Alvarez;Carroll;C;1002003000;CLIENTE;Urcuqui;09/04/2014;M;;SOLTERO;;Lechero
-Barbara;Thomas;Ward;Mitchell;C;1004002000;CLIENTE;Urcuqui;29/05/2014;M;NO;VIUDO;0;Carnicero
-Doris;Paula;Watkins;Edwards;C;1004002000;CLIENTE;Mira;10/10/2014;F;SI;CASADO;;Tendero
-Norma;Larry;Hart;Owens;C;1004002000;GARANTE;Pimampiro;26/01/2014;M;NO;CASADO;1;Digitado
-Martin;Linda;Rogers;;C;1002003000;CLIENTE;El Angel;07/02/2014;F;NO;SOLTERO;4;Panadero
-Judith;Judy;Wright;Scott;P;1002003000;CLIENTE;;;F;SI;CASADO;3;Costurero
-Alice;Willie;Lewis;Wagner;C;1004002000;CLIENTE;El Angel;29/07/2014;F;NO;CASADO;0;Mecánico
-Peter;Anna;Morris;Pierce;C;1002003000;CLIENTE;El Angel;28/05/2014;M;NO;CASADO;1;Costurero
-Anne;Brandon;Pierce;James;P;1002003000;CLIENTE;Pimampiro;11/09/2014;M;SI;SOLTERO;0;Costurero
-Beverly;Albert;Schmidt;Reynolds;C;1002003000;CLIENTE;Mira;19/09/2014;M;NO;VIUDO;1;Mecánico
-Doris;Patrick;Fox;Richardson;C;1002003000;CLIENTE;Urcuqui;24/12/2013;M;NO;CASADO;0;Tendero
-Joe;Ryan;Turner;Martin;C;1002003000;CLIENTE;El Angel;09/07/2014;M;SI;SOLTERO;3;Carnicero
-Randy;Scott;Lawson;Johnston;C;1004002000;CLIENTE;El Angel;08/01/2014;F;NO;DIVORCIADO;4;Heladero
-Angela;Carol;Boyd;Parker;P;1004002000;CLIENTE;;20/03/2014;F;NO;;;Tendero
-Nicole;Mary;Rivera;Warren;C;1002003000;CLIENTE;Mira;19/09/2014;M;NO;;0;Mecánico
-Christina;Roy;Reynolds;Mason;C;1004002000;CLIENTE;Pimampiro;21/03/2014;M;NO;SOLTERO;;Comerciante
-Rebecca;Jack;Crawford;Kennedy;C;1004002000;CLIENTE;El Angel;17/03/2014;M;NO;CASADO;;Heladero
-Sarah;Donald;Ramirez;Montgomery;C;1002003000;CLIENTE;Mira;02/02/2014;M;NO;VIUDO;2;Lechero
-Ronald;Kimberly;Hill;Porter;C;1002003000;CLIENTE;Urcuqui;13/11/2014;F;NO;SOLTERO;3;Mecánico
-Gary;Aaron;Austin;Robinson;C;1002003000;CLIENTE;Mira;26/09/2014;M;NO;SOLTERO;2;Escultor
-Jesse;Jessica;Kelly;Rodriguez;C;1002003000;CLIENTE;El Angel;07/07/2014;F;NO;DIVORCIADO;1;Carnicero
-Keith;Roger;Lane;Young;C;1004002000;CLIENTE;Pimampiro;06/10/2014;F;NO;DIVORCIADO;4;Comerciante
-Jennifer;Diane;Adams;Garrett;C;1004002000;CLIENTE;Mira;;M;NO;VIUDO;3;Escultor
-Phillip;Jason;George;Wheeler;C;1004002000;CLIENTE;Pimampiro;20/03/2014;M;NO;CASADO;1;Carnicero
-Theresa;Mary;Fuller;Gibson;C;1002003000;CLIENTE;Pimampiro;13/01/2014;M;NO;CASADO;1;Artesano
-Brian;Joe;Bailey;Ray;C;1004002000;CLIENTE;Pimampiro;19/09/2014;F;NO;CASADO;;Panadero
-Charles;Carol;Williamson;Marshall;C;1004002000;CLIENTE;El Angel;19/08/2014;M;NO;VIUDO;3;Comerciante
-Timothy;Adam;Kelley;Butler;C;1002003000;CLIENTE;Urcuqui;03/01/2014;M;;VIUDO;3;Lechero
-Steven;;Spencer;Moore;C;1002003000;CLIENTE;Urcuqui;18/09/2014;F;NO;SOLTERO;4;Artesano
-Nicholas;Wanda;Collins;Carter;C;1002003000;GARANTE;Pimampiro;31/03/2014;F;NO;DIVORCIADO;2;Escultor
-Rebecca;Clarence;King;Daniels;C;1004002000;CLIENTE;Mira;27/07/2014;F;NO;CASADO;2;Panadero
-Cynthia;Thomas;Bowman;Nichols;C;1004002000;CLIENTE;El Angel;10/03/2014;F;NO;VIUDO;2;Digitado
-Daniel;Carolyn;Meyer;Mills;C;1002003000;CLIENTE;Urcuqui;25/02/2014;F;NO;SOLTERO;1;Comerciante
-Tammy;Maria;Shaw;Alvarez;C;1004002000;CLIENTE;Mira;06/12/2013;M;NO;VIUDO;;Costurero
-Ashley;Alan;Adams;Ray;C;1004002000;CLIENTE;El Angel;16/07/2014;M;NO;SOLTERO;4;Costurero
-Larry;Jesse;Morris;Ford;C;1002003000;CLIENTE;Mira;16/12/2013;M;NO;DIVORCIADO;3;Digitado
-James;Thomas;Morris;Kim;C;1004002000;CLIENTE;El Angel;25/01/2014;M;NO;CASADO;4;Lechero
-Laura;Walter;Vasquez;Rivera;C;1004002000;CLIENTE;El Angel;02/06/2014;M;;SOLTERO;3;Digitado
-Russell;Jeremy;Hawkins;Andrews;C;1004002000;CLIENTE;;03/12/2013;F;NO;SOLTERO;0;Carnicero
-Jason;Donna;Larson;Turner;C;1002003000;CLIENTE;Mira;13/07/2014;F;NO;DIVORCIADO;;Mecánico
-Sandra;Juan;Wheeler;Walker;C;1004002000;CLIENTE;Mira;24/04/2014;M;NO;CASADO;;Lechero
-Heather;Eric;Ramirez;Webb;C;1004002000;CLIENTE;Mira;04/03/2014;F;NO;DIVORCIADO;;Mecánico
-Joan;Christine;King;;C;1004002000;CLIENTE;El Angel;29/03/2014;M;SI;VIUDO;;Escultor
-Jerry;Louise;Garcia;Lawson;C;1004002000;CLIENTE;Mira;23/09/2014;M;NO;DIVORCIADO;1;Carnicero
-Kimberly;Carol;Mccoy;;P;1002003000;CLIENTE;Mira;29/04/2014;M;NO;SOLTERO;1;Mecánico
-Jennifer;Andrew;Ramirez;Taylor;C;1002003000;CLIENTE;Pimampiro;31/01/2014;M;NO;CASADO;;Escultor
-Laura;Emily;Daniels;Arnold;C;1002003000;CLIENTE;Urcuqui;07/11/2014;M;NO;SOLTERO;3;Comerciante
-Kimberly;Jeffrey;White;Warren;C;1004002000;CLIENTE;;31/08/2014;F;NO;SOLTERO;2;Lechero
-Doris;Scott;Morales;Young;C;1002003000;CLIENTE;Pimampiro;27/04/2014;M;NO;VIUDO;0;Tendero
-Phyllis;Rebecca;Richardson;Walker;C;1002003000;CLIENTE;Mira;17/04/2014;F;NO;CASADO;0;Mecánico
-Teresa;Samuel;Lewis;Jones;C;1004002000;CLIENTE;Mira;03/01/2014;M;NO;SOLTERO;3;Escultor
-Justin;Cheryl;Alvarez;Cooper;C;1002003000;CLIENTE;Pimampiro;13/09/2014;M;NO;DIVORCIADO;1;Carnicero
-Jean;Mary;Simmons;Berry;C;1004002000;CLIENTE;Mira;17/01/2014;M;NO;SOLTERO;4;Mecánico
-Cynthia;Benjamin;Hunt;Alexander;C;1002003000;CLIENTE;Mira;08/02/2014;M;NO;DIVORCIADO;0;Costurero
-Rose;Ryan;Vasquez;;C;1004002000;CLIENTE;El Angel;28/02/2014;F;NO;SOLTERO;4;Heladero
-Melissa;Susan;Tucker;Hanson;C;1004002000;CLIENTE;Mira;31/10/2014;M;NO;SOLTERO;3;Tendero
-Phyllis;Tina;Hunter;Spencer;P;1002003000;CLIENTE;Mira;21/04/2014;M;NO;CASADO;3;Tendero
-Gerald;Adam;George;Chavez;C;1002003000;CLIENTE;Pimampiro;22/03/2014;M;NO;VIUDO;2;Carnicero
-Gary;Joan;Russell;Burton;P;1004002000;CLIENTE;Mira;14/07/2014;F;NO;CASADO;0;Panadero
-Gregory;Ronald;Henderson;Rice;C;1004002000;CLIENTE;Mira;26/07/2014;M;NO;SOLTERO;;Costurero
-Robert;Cynthia;Weaver;Armstrong;C;1004002000;CLIENTE;;04/02/2014;M;SI;SOLTERO;3;Costurero
-Brian;Steven;King;Ford;C;1004002000;CLIENTE;Mira;25/02/2014;F;NO;SOLTERO;3;Artesano
-Joyce;Mark;Sullivan;Cooper;C;1004002000;CLIENTE;Urcuqui;04/05/2014;F;NO;CASADO;;Comerciante
-Kathy;Cynthia;Barnes;Williams;P;1002003000;CLIENTE;Mira;13/05/2014;F;SI;VIUDO;;Costurero
-Anne;Christine;Spencer;Hayes;C;1002003000;GARANTE;;18/01/2014;M;NO;VIUDO;3;Carnicero
-Evelyn;Louise;Wheeler;Larson;P;1004002000;CLIENTE;Urcuqui;07/04/2014;M;NO;SOLTERO;2;Carnicero
-Kathleen;Ernest;Torres;Mills;C;1004002000;CLIENTE;Mira;05/06/2014;M;NO;CASADO;;Artesano
-Gary;Peter;Martinez;Ray;C;1004002000;CLIENTE;El Angel;06/11/2014;M;NO;SOLTERO;;Escultor
-Peter;Helen;Griffin;Sims;P;1004002000;CLIENTE;El Angel;25/08/2014;F;NO;CASADO;1;Panadero
-Kathleen;Rose;Kim;Henderson;P;1004002000;CLIENTE;Mira;18/05/2014;F;NO;CASADO;3;Lechero
-Emily;Robin;Cunningham;Powell;C;1004002000;CLIENTE;Pimampiro;10/03/2014;F;NO;CASADO;;Panadero
-Michelle;Frances;Garza;Mendoza;C;1002003000;CLIENTE;Urcuqui;18/04/2014;M;NO;SOLTERO;;Digitado
-Walter;Karen;Howard;Hall;C;1004002000;CLIENTE;Pimampiro;;M;SI;VIUDO;1;Lechero
-Phillip;Patricia;Peterson;Stewart;C;1004002000;CLIENTE;Urcuqui;01/02/2014;M;NO;VIUDO;2;Carnicero
-Ralph;Raymond;Riley;Morris;C;1004002000;CLIENTE;Urcuqui;01/10/2014;M;NO;SOLTERO;;Comerciante
-Joseph;;Davis;Jenkins;C;1004002000;CLIENTE;Urcuqui;21/01/2014;F;NO;SOLTERO;;Carnicero
-Christopher;Ruby;Bishop;Miller;P;1004002000;CLIENTE;Mira;02/10/2014;F;NO;CASADO;0;Costurero
-Kenneth;Diane;Garza;Lewis;C;1004002000;CLIENTE;Urcuqui;20/11/2013;M;NO;DIVORCIADO;;Carnicero
-Jason;Terry;Black;Russell;C;1002003000;CLIENTE;El Angel;12/03/2014;F;NO;VIUDO;3;Mecánico
-Bonnie;;Cook;;C;1002003000;GARANTE;Pimampiro;19/08/2014;M;NO;CASADO;;Escultor
-Denise;Victor;Howard;Cook;C;1004002000;CLIENTE;Mira;24/01/2014;F;NO;CASADO;1;Digitado
-Roger;Melissa;Duncan;Anderson;C;1004002000;CLIENTE;El Angel;11/06/2014;M;NO;SOLTERO;4;Carnicero
-Sean;Anna;Lawson;Fowler;C;1004002000;CLIENTE;Pimampiro;03/08/2014;M;NO;CASADO;3;Costurero
-Randy;Ashley;Myers;Hawkins;C;1004002000;CLIENTE;Pimampiro;29/03/2014;F;NO;VIUDO;;Artesano
-Jonathan;Tammy;Morgan;Price;C;1004002000;GARANTE;Pimampiro;03/09/2014;M;NO;SOLTERO;4;Digitado
-Julie;Scott;Fuller;Martinez;C;1004002000;CLIENTE;Mira;28/12/2013;M;NO;SOLTERO;4;Mecánico
-Ryan;Thomas;Chavez;Thomas;C;1002003000;CLIENTE;Urcuqui;18/05/2014;F;NO;VIUDO;3;Digitado
-Terry;Lawrence;Carr;Alexander;C;1002003000;CLIENTE;Pimampiro;01/04/2014;M;NO;CASADO;3;Lechero
-Wayne;Jeffrey;Scott;Henderson;C;1002003000;CLIENTE;Pimampiro;13/10/2014;M;NO;DIVORCIADO;0;Carnicero
-Janet;Julia;Howard;;C;1002003000;CLIENTE;Pimampiro;12/09/2014;F;SI;CASADO;1;Mecánico
-Nancy;Martin;Rice;Daniels;C;1002003000;CLIENTE;Urcuqui;14/09/2014;M;NO;SOLTERO;1;Tendero
-Joyce;Jean;Owens;Lawrence;C;1004002000;CLIENTE;El Angel;13/02/2014;F;;VIUDO;;Escultor
-Robin;William;Bell;Ryan;C;1004002000;CLIENTE;Urcuqui;15/11/2013;M;NO;DIVORCIADO;2;Tendero
-Alan;Dorothy;Henry;Kelly;P;1004002000;CLIENTE;Pimampiro;16/07/2014;F;NO;SOLTERO;2;Heladero
-Denise;Scott;Walker;Larson;C;1004002000;CLIENTE;Urcuqui;24/10/2014;M;NO;CASADO;2;Heladero
-Scott;Ruby;Fisher;Mason;C;1002003000;CLIENTE;Mira;10/06/2014;M;NO;CASADO;2;Digitado
-Rachel;John;Howard;Morales;C;1002003000;GARANTE;Urcuqui;14/07/2014;M;NO;CASADO;;Comerciante
-Fred;Angela;Stewart;Hawkins;C;1004002000;GARANTE;Mira;13/11/2014;F;NO;CASADO;;Carnicero
-Shawn;Willie;Lawrence;Riley;C;1004002000;GARANTE;El Angel;09/08/2014;M;NO;VIUDO;;Lechero
-Nicole;Barbara;Ramos;Romero;C;1002003000;CLIENTE;;08/12/2013;F;NO;CASADO;3;Mecánico
-Willie;Lori;Howard;Cruz;C;1002003000;CLIENTE;El Angel;30/03/2014;M;NO;SOLTERO;3;Panadero
-Ashley;Kathy;Austin;Boyd;P;1004002000;CLIENTE;El Angel;07/01/2014;F;NO;CASADO;3;Escultor
-Walter;Bruce;Ward;Frazier;P;1004002000;CLIENTE;Mira;22/09/2014;M;NO;VIUDO;0;Carnicero
-Samuel;Cynthia;Lawson;Berry;P;1002003000;CLIENTE;El Angel;05/10/2014;M;NO;CASADO;2;Panadero
-Michael;Peter;Spencer;Carpenter;C;1002003000;CLIENTE;Urcuqui;26/06/2014;M;NO;SOLTERO;0;Costurero
-Angela;Andrea;Harrison;Perkins;P;1002003000;GARANTE;El Angel;05/06/2014;F;;SOLTERO;0;Artesano
-Walter;Julie;Morgan;Jacobs;C;1004002000;GARANTE;Urcuqui;16/06/2014;F;NO;CASADO;1;Costurero
-Jennifer;Ann;Armstrong;Smith;C;1002003000;CLIENTE;El Angel;03/05/2014;F;NO;VIUDO;0;Panadero
-Anthony;Judy;Kelly;Bryant;C;1004002000;CLIENTE;Pimampiro;05/04/2014;F;NO;VIUDO;1;Tendero
-Beverly;Aaron;Willis;Powell;C;1004002000;CLIENTE;El Angel;11/11/2014;M;NO;VIUDO;;Panadero
-Judy;Dorothy;Stone;;C;1004002000;CLIENTE;Mira;06/11/2014;M;NO;SOLTERO;;Lechero
-Samuel;Martin;Rice;Little;C;1002003000;CLIENTE;Pimampiro;30/09/2014;M;NO;CASADO;2;Mecánico
-Maria;Willie;Shaw;Rice;C;1004002000;CLIENTE;Urcuqui;08/06/2014;M;SI;CASADO;1;Carnicero
-Jacqueline;Samuel;Hall;Scott;C;1002003000;CLIENTE;Mira;05/10/2014;M;NO;CASADO;;Mecánico
-Richard;Wanda;Long;Hanson;C;1004002000;CLIENTE;Pimampiro;08/01/2014;M;;DIVORCIADO;;Tendero
-Thomas;Kelly;Cooper;Sims;C;1004002000;CLIENTE;Pimampiro;08/12/2013;M;NO;SOLTERO;1;Heladero
-Gerald;Chris;Hunter;Davis;C;1004002000;CLIENTE;Pimampiro;14/01/2014;M;NO;DIVORCIADO;4;Digitado
-Denise;John;Roberts;Walker;C;1002003000;GARANTE;El Angel;11/04/2014;M;NO;SOLTERO;3;Comerciante
-Jessica;Ralph;Jenkins;Bradley;C;1002003000;CLIENTE;;25/11/2013;F;NO;CASADO;1;Tendero
-Janice;Tammy;Fowler;Cox;C;1004002000;CLIENTE;El Angel;29/07/2014;F;NO;SOLTERO;3;Heladero
-Anna;Diane;Robinson;Harvey;C;1002003000;CLIENTE;Mira;17/11/2013;M;NO;SOLTERO;3;Digitado
-Kathryn;Mildred;Vasquez;Price;C;1004002000;CLIENTE;Pimampiro;03/06/2014;F;SI;CASADO;3;Digitado
-Marie;Ronald;Collins;Mccoy;C;1004002000;CLIENTE;Mira;20/09/2014;F;NO;CASADO;2;Escultor
-Joyce;Rachel;Martinez;Hicks;C;1004002000;CLIENTE;Mira;20/12/2013;M;NO;VIUDO;;Heladero
-Ralph;Douglas;Nichols;Price;C;1004002000;CLIENTE;Urcuqui;24/07/2014;F;SI;CASADO;3;Carnicero
-Marilyn;Andrea;Bradley;Sims;C;1004002000;CLIENTE;Mira;07/10/2014;F;NO;VIUDO;3;Heladero
-Maria;Julia;Wagner;Watson;C;1004002000;CLIENTE;Pimampiro;14/08/2014;F;NO;CASADO;;Comerciante
-Walter;Douglas;Howell;Snyder;P;1004002000;CLIENTE;Mira;27/07/2014;F;NO;SOLTERO;;Carnicero
-Jennifer;Laura;Knight;Torres;C;1002003000;GARANTE;Pimampiro;10/01/2014;M;NO;VIUDO;0;Digitado
-Peter;Jeremy;Parker;Campbell;C;1002003000;CLIENTE;Mira;02/09/2014;F;SI;CASADO;0;Comerciante
-Albert;Frank;Kim;Hudson;C;1004002000;CLIENTE;El Angel;25/03/2014;F;SI;CASADO;4;Carnicero
-Steve;Sarah;Rogers;;C;1002003000;CLIENTE;Mira;16/08/2014;M;NO;CASADO;1;Carnicero
-Nicole;Catherine;Mendoza;Ryan;C;1004002000;CLIENTE;El Angel;29/12/2013;M;NO;SOLTERO;;Escultor
-Linda;Kelly;Burns;Griffin;P;1004002000;GARANTE;Pimampiro;04/08/2014;F;;CASADO;2;Escultor
-Terry;Steve;Scott;Ruiz;C;1002003000;CLIENTE;Urcuqui;30/05/2014;M;NO;CASADO;;Tendero
-Adam;Joseph;Burns;Medina;C;1004002000;CLIENTE;Mira;26/04/2014;M;NO;SOLTERO;2;Heladero
-Sean;Elizabeth;Frazier;Hughes;C;1002003000;CLIENTE;Urcuqui;21/08/2014;F;NO;SOLTERO;2;Tendero
-Jimmy;Wayne;Hughes;Austin;C;1004002000;CLIENTE;El Angel;15/06/2014;M;NO;SOLTERO;3;Costurero
-Deborah;Ann;Hawkins;Morales;C;1004002000;CLIENTE;Urcuqui;12/08/2014;M;NO;SOLTERO;;Heladero
-Judith;Justin;Lopez;Cruz;C;1004002000;CLIENTE;;29/03/2014;F;NO;SOLTERO;1;Artesano
-Shirley;Ruth;Young;Taylor;C;1004002000;CLIENTE;Pimampiro;17/12/2013;M;NO;SOLTERO;2;Tendero
-Michael;William;Kelley;Elliott;C;1004002000;CLIENTE;El Angel;25/08/2014;M;NO;CASADO;3;Tendero
-Martin;Harold;Harvey;Franklin;C;1002003000;CLIENTE;Urcuqui;06/08/2014;M;NO;SOLTERO;3;Artesano
-Wanda;Bobby;Clark;Perry;C;1004002000;CLIENTE;Mira;25/08/2014;M;NO;CASADO;4;Mecánico
-Jessica;Kathy;Lawrence;Morris;P;1002003000;GARANTE;El Angel;01/04/2014;M;NO;SOLTERO;0;Digitado
-Anne;Jacqueline;Frazier;Marshall;C;1002003000;CLIENTE;Mira;13/06/2014;M;NO;SOLTERO;1;Comerciante
-Shirley;Robert;Wagner;Butler;C;1002003000;CLIENTE;El Angel;26/10/2014;M;NO;SOLTERO;;Tendero
-Ruth;Willie;Gilbert;Scott;C;1004002000;CLIENTE;El Angel;19/03/2014;M;SI;SOLTERO;3;Escultor
-Donald;Christina;Lewis;Sullivan;C;1002003000;CLIENTE;Pimampiro;30/11/2013;M;NO;VIUDO;;Costurero
-Matthew;John;Johnston;Moore;C;1004002000;CLIENTE;Pimampiro;30/10/2014;M;NO;DIVORCIADO;2;Tendero
-Jeffrey;Gloria;Scott;Murray;C;1004002000;CLIENTE;Mira;30/07/2014;M;;SOLTERO;3;Comerciante
-Pamela;Johnny;Day;Ross;C;1002003000;GARANTE;Pimampiro;20/03/2014;M;;CASADO;;Mecánico
-Brandon;Russell;Wallace;Richards;P;1004002000;CLIENTE;El Angel;25/05/2014;F;NO;SOLTERO;2;Tendero
-Walter;Nicholas;Carroll;Romero;C;1002003000;CLIENTE;El Angel;13/05/2014;F;NO;CASADO;0;Lechero
-Ryan;Shawn;Thompson;;C;1004002000;CLIENTE;Mira;08/02/2014;M;NO;SOLTERO;;Escultor
-Joshua;Helen;Banks;Wagner;C;1004002000;GARANTE;Pimampiro;17/08/2014;F;NO;DIVORCIADO;3;Tendero
-Jose;Norma;Sullivan;Thompson;C;1004002000;CLIENTE;Urcuqui;24/12/2013;M;NO;CASADO;1;Comerciante
-Stephanie;Janice;Torres;Chapman;C;1002003000;CLIENTE;Mira;15/07/2014;M;NO;CASADO;;Lechero
-Chris;Anna;Jordan;Riley;C;1004002000;CLIENTE;El Angel;28/03/2014;M;NO;DIVORCIADO;1;Mecánico
-Christina;Donald;Cunningham;Stanley;C;1004002000;GARANTE;Pimampiro;26/12/2013;F;NO;SOLTERO;0;Mecánico
-Judith;Justin;Evans;Shaw;C;1004002000;CLIENTE;;07/02/2014;F;NO;CASADO;3;Panadero
-Scott;Lisa;Hernandez;Harvey;C;1002003000;CLIENTE;Pimampiro;11/08/2014;M;SI;CASADO;1;Heladero
-Michelle;Debra;Miller;Bell;C;1002003000;GARANTE;Urcuqui;22/08/2014;M;NO;CASADO;;Panadero
-Louis;Timothy;Greene;Riley;C;1002003000;CLIENTE;Mira;17/05/2014;M;NO;VIUDO;4;Lechero
-Carol;Beverly;Nichols;Ford;C;1004002000;CLIENTE;El Angel;15/07/2014;M;NO;SOLTERO;3;Tendero
-Betty;Charles;Perez;Gordon;C;1004002000;CLIENTE;Pimampiro;06/10/2014;F;NO;;3;Heladero
-Jane;Charles;White;Moreno;C;1004002000;GARANTE;El Angel;18/06/2014;M;NO;CASADO;1;Panadero
-Todd;Wayne;Griffin;Chapman;C;1004002000;CLIENTE;Pimampiro;07/03/2014;M;NO;SOLTERO;4;Carnicero
-Christopher;Wanda;Jones;Turner;C;1002003000;CLIENTE;Urcuqui;05/04/2014;M;SI;CASADO;;Tendero
-Lawrence;Victor;Parker;Martin;C;1002003000;CLIENTE;El Angel;21/11/2013;F;NO;DIVORCIADO;4;Digitado
-Donald;Jimmy;Ortiz;;P;1004002000;CLIENTE;Pimampiro;19/05/2014;F;NO;CASADO;;Mecánico
-Kevin;Victor;Castillo;Jacobs;P;1004002000;CLIENTE;Mira;09/12/2013;M;NO;DIVORCIADO;1;Panadero
-Marie;Scott;Peterson;Barnes;C;1002003000;CLIENTE;Pimampiro;08/07/2014;F;NO;VIUDO;1;Tendero
-Elizabeth;Robin;Nelson;Burke;C;1004002000;CLIENTE;Urcuqui;22/02/2014;F;NO;CASADO;2;Digitado
-Joshua;Juan;Ward;Spencer;C;1004002000;GARANTE;Urcuqui;06/05/2014;M;NO;DIVORCIADO;2;Artesano
-Julia;Gerald;Marshall;Fernandez;C;1004002000;CLIENTE;Urcuqui;24/11/2013;M;NO;DIVORCIADO;4;Costurero
-Donna;Mary;Montgomery;Harrison;C;1004002000;CLIENTE;Mira;27/02/2014;F;NO;CASADO;;Carnicero
-Patrick;Gloria;Myers;Taylor;C;1002003000;CLIENTE;El Angel;24/07/2014;M;NO;CASADO;0;Lechero
-Paula;Rebecca;Burns;Ramirez;C;1004002000;GARANTE;Urcuqui;08/03/2014;M;NO;;;Comerciante
-Heather;Antonio;Diaz;Evans;C;1002003000;CLIENTE;El Angel;06/02/2014;M;SI;CASADO;1;Tendero
-Ralph;Timothy;Kennedy;Ruiz;C;1002003000;CLIENTE;Pimampiro;30/04/2014;F;NO;CASADO;0;Escultor
-Bobby;Joshua;Rogers;Montgomery;C;1002003000;CLIENTE;El Angel;29/03/2014;M;NO;SOLTERO;2;Tendero
-James;Heather;Hudson;Alexander;C;1002003000;CLIENTE;Pimampiro;15/11/2013;M;NO;DIVORCIADO;2;Digitado
-Teresa;Kathy;Stewart;Hughes;C;1004002000;CLIENTE;Pimampiro;23/02/2014;F;SI;DIVORCIADO;;Artesano
-Albert;Fred;Peters;Sanchez;C;1002003000;CLIENTE;Mira;27/06/2014;F;SI;DIVORCIADO;3;Digitado
-Catherine;Willie;Stone;Knight;C;1004002000;GARANTE;El Angel;21/07/2014;M;NO;CASADO;4;Panadero
-Teresa;Kathryn;Wood;Perry;C;1002003000;CLIENTE;Pimampiro;09/05/2014;F;NO;DIVORCIADO;0;Carnicero
-Debra;Ralph;Kim;Murphy;C;1004002000;CLIENTE;;14/03/2014;M;NO;SOLTERO;1;Digitado
-Jimmy;Maria;Harrison;Boyd;C;1002003000;CLIENTE;Mira;05/06/2014;F;SI;SOLTERO;;Carnicero
-Christine;Andrea;Cruz;Day;C;1002003000;CLIENTE;El Angel;22/02/2014;M;NO;SOLTERO;4;Artesano
-Laura;Ernest;Adams;Hanson;C;1002003000;CLIENTE;Urcuqui;07/06/2014;M;NO;CASADO;3;Lechero
-Virginia;Victor;Castillo;Romero;C;1004002000;CLIENTE;Pimampiro;02/09/2014;M;NO;CASADO;0;Lechero
-Arthur;Walter;Jenkins;Burke;C;1002003000;CLIENTE;Mira;18/10/2014;F;SI;CASADO;;Costurero
-Kathryn;Sharon;Montgomery;Hill;C;1004002000;CLIENTE;El Angel;02/08/2014;F;NO;CASADO;3;Carnicero
-John;Bonnie;King;Stevens;C;1004002000;CLIENTE;El Angel;11/01/2014;M;NO;SOLTERO;1;Heladero
-Jean;Carlos;Anderson;Martin;C;1004002000;CLIENTE;Pimampiro;21/08/2014;M;NO;SOLTERO;;Artesano
-Wayne;Anna;Richards;Johnston;C;1004002000;CLIENTE;Urcuqui;09/01/2014;M;SI;DIVORCIADO;2;Costurero
-Carol;Pamela;Boyd;Ferguson;C;1002003000;CLIENTE;Mira;02/06/2014;F;;CASADO;1;Comerciante
-Tina;Jeffrey;Harper;Rodriguez;C;1004002000;CLIENTE;Mira;05/06/2014;M;NO;SOLTERO;0;Panadero
-Robin;;Wells;Stone;C;1002003000;GARANTE;Urcuqui;26/10/2014;M;NO;CASADO;1;Digitado
-Mark;Ashley;Perkins;Taylor;C;1004002000;GARANTE;Pimampiro;07/05/2014;M;NO;CASADO;;Escultor
-Emily;Diana;Watson;Russell;C;1004002000;CLIENTE;Pimampiro;16/07/2014;M;NO;SOLTERO;1;Lechero
-Ryan;Janet;Bishop;Fisher;C;1002003000;CLIENTE;El Angel;09/08/2014;M;NO;SOLTERO;;Lechero
-Juan;Ernest;Warren;Walker;C;1004002000;CLIENTE;Mira;27/09/2014;M;NO;CASADO;0;Tendero
-Eric;Susan;Spencer;Sims;P;1004002000;CLIENTE;Mira;03/04/2014;F;NO;SOLTERO;1;Carnicero
-Gloria;Kathy;Wheeler;;C;1002003000;CLIENTE;Urcuqui;21/09/2014;M;NO;SOLTERO;2;Lechero
-Matthew;Andrew;Adams;Montgomery;C;1004002000;CLIENTE;Mira;25/02/2014;F;NO;CASADO;2;Heladero
-Frank;Juan;Porter;Elliott;C;1004002000;CLIENTE;Mira;31/05/2014;M;NO;VIUDO;2;Artesano
-Rose;Johnny;Grant;;P;1004002000;CLIENTE;Pimampiro;11/07/2014;F;NO;SOLTERO;;Lechero
-Nicole;Gerald;Daniels;Arnold;C;1002003000;CLIENTE;Pimampiro;20/02/2014;M;NO;CASADO;;Mecánico
-Julie;Henry;Edwards;Knight;C;1002003000;CLIENTE;Urcuqui;25/04/2014;M;SI;CASADO;4;Mecánico
-Antonio;Louis;Cook;Kennedy;C;1004002000;GARANTE;Mira;28/09/2014;F;NO;DIVORCIADO;;Lechero
-Ryan;Dennis;Greene;Hall;P;1002003000;CLIENTE;El Angel;19/08/2014;M;NO;SOLTERO;1;Artesano
-Annie;Theresa;Peters;Harper;C;1002003000;CLIENTE;Urcuqui;16/02/2014;F;NO;CASADO;2;Digitado
-Brian;Katherine;Kelly;Roberts;C;1002003000;CLIENTE;El Angel;03/12/2013;F;NO;CASADO;;Tendero
-Jeffrey;Ryan;Cole;Robertson;C;1004002000;CLIENTE;Mira;06/07/2014;M;NO;CASADO;1;Mecánico
-Jason;Juan;Butler;Collins;C;1004002000;GARANTE;;14/03/2014;M;NO;SOLTERO;0;Costurero
-Shirley;Carl;Alvarez;Davis;C;1002003000;CLIENTE;Urcuqui;07/07/2014;M;NO;SOLTERO;;Tendero
-James;Adam;Garcia;Ferguson;C;1004002000;CLIENTE;El Angel;20/03/2014;M;NO;VIUDO;2;Lechero
-Sharon;Tina;Garrett;Wood;C;1002003000;CLIENTE;El Angel;15/12/2013;M;NO;CASADO;;Tendero
-David;Rachel;Wood;Hart;C;1002003000;CLIENTE;Urcuqui;16/05/2014;M;NO;SOLTERO;2;Mecánico
-Lisa;Kimberly;Jackson;Meyer;C;1004002000;CLIENTE;;19/02/2014;M;SI;SOLTERO;2;Lechero
-Russell;Eric;Medina;Patterson;P;1004002000;CLIENTE;El Angel;13/12/2013;M;NO;DIVORCIADO;;Costurero
-Diana;Martha;Davis;;C;1004002000;CLIENTE;Pimampiro;04/08/2014;M;NO;VIUDO;2;Carnicero
-Bruce;Denise;Perez;King;C;1004002000;CLIENTE;Mira;03/05/2014;M;NO;VIUDO;;Tendero
-Rose;Katherine;Tucker;Sanchez;C;1002003000;GARANTE;Urcuqui;24/12/2013;M;NO;SOLTERO;1;Lechero
-Virginia;Arthur;Cox;Cruz;C;1004002000;CLIENTE;Mira;01/11/2014;F;SI;SOLTERO;;Tendero
-Theresa;Stephanie;Pierce;Wheeler;C;1004002000;CLIENTE;Mira;11/01/2014;M;NO;SOLTERO;2;Digitado
-Eugene;Nicholas;Hicks;Cruz;C;1002003000;CLIENTE;;28/09/2014;M;NO;CASADO;;Escultor
-Billy;Martha;Roberts;Holmes;C;1004002000;CLIENTE;Urcuqui;26/03/2014;F;NO;CASADO;4;Escultor
-Ronald;Shirley;Perry;Morris;C;1002003000;CLIENTE;Mira;26/06/2014;F;SI;VIUDO;3;Tendero
-Lori;Ryan;Ray;Garcia;C;1002003000;CLIENTE;Mira;03/02/2014;F;NO;DIVORCIADO;0;Escultor
-Ashley;Patricia;Frazier;Austin;C;1004002000;CLIENTE;Pimampiro;02/10/2014;F;NO;VIUDO;3;Artesano
-Janet;Scott;Green;;C;1004002000;CLIENTE;Mira;17/05/2014;F;SI;CASADO;;Artesano
-Randy;Johnny;Garza;Fox;C;1002003000;CLIENTE;Mira;31/12/2013;M;SI;DIVORCIADO;0;Escultor
-Julia;Dorothy;Flores;Richardson;C;1002003000;CLIENTE;El Angel;19/07/2014;F;NO;VIUDO;0;Tendero
-Andrea;Nancy;Freeman;Gray;P;1002003000;GARANTE;Pimampiro;25/02/2014;M;NO;DIVORCIADO;;Mecánico
-James;Norma;Sanchez;Williams;C;1004002000;GARANTE;Pimampiro;04/08/2014;F;NO;;1;Panadero
-Ruby;Johnny;Young;Greene;P;1002003000;CLIENTE;Pimampiro;23/03/2014;M;NO;DIVORCIADO;;Carnicero
-Robin;Edward;Romero;Robertson;P;1002003000;CLIENTE;Pimampiro;22/11/2013;M;NO;DIVORCIADO;0;Digitado
-Virginia;Jonathan;Boyd;Garrett;C;1002003000;CLIENTE;El Angel;26/01/2014;M;NO;VIUDO;2;Mecánico
-Roger;James;Stone;Medina;C;1002003000;CLIENTE;El Angel;02/02/2014;M;NO;VIUDO;;Panadero
-Annie;Jean;Roberts;Nguyen;C;1002003000;CLIENTE;El Angel;11/09/2014;M;NO;CASADO;0;Comerciante
-Jason;Harry;Bailey;Smith;C;1004002000;GARANTE;Urcuqui;31/05/2014;M;NO;VIUDO;;Lechero
-Gerald;Alan;Chavez;Riley;P;1002003000;CLIENTE;Mira;22/07/2014;M;NO;CASADO;;Heladero
-Patrick;Terry;Ray;Parker;C;1002003000;CLIENTE;El Angel;26/09/2014;F;NO;CASADO;3;Panadero
-Nicholas;Catherine;Oliver;;C;1002003000;CLIENTE;;02/08/2014;F;NO;VIUDO;2;Digitado
-Raymond;Susan;Perry;Ray;P;1002003000;CLIENTE;El Angel;27/12/2013;M;NO;;3;Escultor
-Denise;Louis;Ferguson;Berry;C;1002003000;CLIENTE;Mira;28/08/2014;M;SI;DIVORCIADO;1;Artesano
-Patrick;Diana;Carr;Perez;C;1002003000;CLIENTE;Mira;10/04/2014;F;NO;DIVORCIADO;0;Lechero
-Denise;Joseph;Mills;Bryant;P;1004002000;CLIENTE;Pimampiro;19/08/2014;M;NO;CASADO;;Escultor
-Margaret;Sandra;Sanchez;Lane;C;1002003000;CLIENTE;Urcuqui;19/06/2014;M;NO;SOLTERO;0;Carnicero
-Michael;Matthew;Taylor;Simpson;P;1002003000;CLIENTE;Urcuqui;29/03/2014;F;NO;CASADO;1;Carnicero
-Earl;Katherine;Harvey;Murphy;C;1002003000;CLIENTE;Urcuqui;12/10/2014;M;NO;CASADO;3;Tendero
-Howard;Maria;Thomas;Ramos;C;1004002000;CLIENTE;Mira;21/07/2014;M;SI;CASADO;;Costurero
-Gloria;Ralph;Riley;Hill;C;1004002000;CLIENTE;El Angel;18/02/2014;F;SI;VIUDO;1;Panadero
-Larry;Ann;Arnold;Ray;C;1002003000;CLIENTE;Pimampiro;16/09/2014;F;NO;CASADO;1;Costurero
-Chris;Harry;Gray;Woods;C;1004002000;CLIENTE;Mira;09/11/2014;F;NO;SOLTERO;;Carnicero
-Pamela;Doris;Romero;Gibson;C;1002003000;CLIENTE;Pimampiro;11/04/2014;M;NO;CASADO;1;Costurero
-Dennis;Edward;Bishop;Richards;C;1004002000;CLIENTE;Mira;16/10/2014;M;;CASADO;2;Comerciante
-Ernest;Marilyn;Sims;Mills;C;1002003000;CLIENTE;;17/11/2013;M;;SOLTERO;2;Lechero
-Paula;Laura;Cook;Wheeler;C;1002003000;CLIENTE;Mira;29/04/2014;F;NO;CASADO;3;Panadero
-Kimberly;Carolyn;Payne;Evans;C;1002003000;CLIENTE;Mira;12/06/2014;M;NO;SOLTERO;3;Mecánico
-Rachel;Pamela;Carroll;Murphy;C;1002003000;CLIENTE;Pimampiro;11/10/2014;M;NO;SOLTERO;;Heladero
-Roy;Ashley;Coleman;Carpenter;C;1004002000;CLIENTE;El Angel;16/06/2014;M;NO;CASADO;2;Carnicero
-Russell;Mark;Wheeler;West;C;1004002000;CLIENTE;Pimampiro;10/02/2014;M;NO;VIUDO;3;Panadero
-Dorothy;Peter;Rodriguez;Robinson;C;1002003000;CLIENTE;Urcuqui;05/12/2013;F;NO;SOLTERO;4;Digitado
-David;Adam;Hughes;Green;C;1004002000;CLIENTE;El Angel;03/05/2014;F;NO;CASADO;1;Tendero
-Clarence;Kathleen;Reed;Lawrence;C;1002003000;CLIENTE;;28/08/2014;M;NO;CASADO;;Digitado
-Johnny;Dorothy;Harper;Ward;C;1004002000;GARANTE;El Angel;27/02/2014;M;NO;DIVORCIADO;4;Carnicero
-Joe;Frank;Snyder;Turner;C;1002003000;CLIENTE;Urcuqui;12/08/2014;F;NO;SOLTERO;2;Comerciante
-Michelle;Johnny;Roberts;Hawkins;C;1004002000;CLIENTE;Pimampiro;22/09/2014;M;SI;VIUDO;4;Artesano
-Antonio;Julie;Jenkins;Hanson;C;1004002000;CLIENTE;El Angel;28/05/2014;F;NO;SOLTERO;1;Artesano
-Heather;Andrea;Kelly;Brooks;C;1002003000;GARANTE;Mira;03/04/2014;F;SI;CASADO;0;Digitado
-Nicole;Judith;Mcdonald;Nichols;P;1002003000;CLIENTE;Mira;09/12/2013;M;NO;CASADO;2;Mecánico
-Laura;Frank;Richards;Crawford;C;1002003000;CLIENTE;El Angel;04/10/2014;F;NO;SOLTERO;0;Digitado
-Robert;Lillian;Lopez;Freeman;C;1004002000;GARANTE;Urcuqui;05/10/2014;M;;CASADO;1;Artesano
-Mildred;Robert;Phillips;Williams;C;1004002000;CLIENTE;Pimampiro;26/09/2014;M;NO;SOLTERO;4;Tendero
-Gerald;Lillian;Gardner;Rivera;C;1002003000;CLIENTE;Mira;17/05/2014;M;NO;SOLTERO;0;Carnicero
-Carl;Pamela;Berry;Russell;C;1002003000;CLIENTE;Pimampiro;17/03/2014;F;NO;CASADO;0;Tendero
-Catherine;Earl;Parker;Crawford;C;1004002000;CLIENTE;Pimampiro;26/08/2014;F;NO;CASADO;0;Escultor
-Anthony;Harry;Ramos;Parker;C;1002003000;CLIENTE;El Angel;08/04/2014;M;SI;CASADO;1;Panadero
-Frances;Arthur;Dean;Ryan;C;1002003000;GARANTE;Urcuqui;14/12/2013;M;NO;SOLTERO;;Digitado
-Jack;Julie;Watkins;Ford;C;1002003000;CLIENTE;El Angel;01/03/2014;M;NO;SOLTERO;;Panadero
-Richard;Beverly;Romero;Kelly;P;1004002000;CLIENTE;Urcuqui;31/07/2014;M;NO;;;Comerciante
-Martha;Eric;Russell;Edwards;C;1002003000;CLIENTE;Mira;17/12/2013;F;NO;CASADO;0;Panadero
-Carolyn;Diane;Stone;Nelson;C;1002003000;CLIENTE;Mira;23/04/2014;M;NO;CASADO;1;Costurero
-Carlos;Nancy;Sims;Nguyen;C;1004002000;CLIENTE;Pimampiro;18/05/2014;M;;SOLTERO;;Costurero
-Julie;Michelle;Gonzalez;Pierce;C;1004002000;CLIENTE;Pimampiro;03/04/2014;M;NO;VIUDO;;Panadero
-Lori;Maria;Harper;Fields;C;1004002000;CLIENTE;Urcuqui;29/12/2013;F;NO;SOLTERO;;Tendero
-Brian;Tina;Little;Garcia;C;1004002000;CLIENTE;Mira;19/03/2014;F;NO;CASADO;;Tendero
-Randy;Steve;Henderson;Gardner;C;1002003000;CLIENTE;Mira;18/12/2013;F;NO;SOLTERO;1;Panadero
-Donna;Thomas;Hansen;Roberts;C;1004002000;CLIENTE;Mira;15/09/2014;F;SI;SOLTERO;3;Panadero
-Beverly;Emily;Burns;Pierce;P;1004002000;CLIENTE;Mira;30/08/2014;F;NO;VIUDO;3;Escultor
-Marilyn;Todd;Montgomery;Ross;C;1002003000;CLIENTE;El Angel;15/01/2014;M;NO;SOLTERO;;Panadero
-Jeffrey;Heather;Ford;Perry;C;1004002000;CLIENTE;Urcuqui;17/03/2014;F;NO;SOLTERO;4;Tendero
-Maria;Nicholas;Tucker;Stevens;C;1004002000;CLIENTE;El Angel;03/10/2014;F;NO;CASADO;;Panadero
-Anna;John;Clark;Weaver;C;1002003000;CLIENTE;Pimampiro;14/12/2013;M;NO;SOLTERO;3;Escultor
-Randy;Lawrence;Dean;Ellis;C;1004002000;CLIENTE;El Angel;14/01/2014;M;NO;CASADO;1;Costurero
-Julia;Kathryn;Simmons;Washington;C;1004002000;CLIENTE;Pimampiro;08/05/2014;M;NO;;;Escultor
-Nicole;Joyce;Hanson;Wright;C;1002003000;GARANTE;El Angel;23/12/2013;F;NO;CASADO;1;Panadero
-Russell;Janet;Owens;Elliott;C;1002003000;CLIENTE;Pimampiro;21/11/2013;M;NO;CASADO;;Digitado
-Earl;Robert;Porter;Campbell;C;1002003000;CLIENTE;Mira;09/01/2014;M;NO;VIUDO;2;Tendero
-Helen;Susan;Henry;Willis;C;1004002000;GARANTE;Mira;11/12/2013;M;NO;SOLTERO;2;Tendero
-Beverly;Jean;Torres;Owens;C;1002003000;CLIENTE;Urcuqui;16/10/2014;M;SI;CASADO;2;Costurero
-Raymond;Johnny;Carroll;Dean;C;1002003000;CLIENTE;El Angel;29/09/2014;M;NO;DIVORCIADO;4;Lechero
-Shawn;Dennis;Hanson;;C;1002003000;CLIENTE;Urcuqui;11/03/2014;F;NO;SOLTERO;2;Mecánico
-Dennis;Diana;Stevens;Wilson;P;1002003000;CLIENTE;Urcuqui;07/04/2014;M;NO;DIVORCIADO;1;Tendero
-Diana;Joseph;Castillo;Harrison;P;1002003000;CLIENTE;Pimampiro;25/09/2014;F;NO;CASADO;0;Mecánico
-Bobby;Robert;Sanchez;Long;C;1004002000;CLIENTE;Urcuqui;24/02/2014;F;NO;;;Tendero
-Shawn;Katherine;King;Crawford;P;1004002000;CLIENTE;;08/12/2013;F;NO;SOLTERO;;Comerciante
-Ruby;Debra;Lane;Montgomery;C;1002003000;GARANTE;Pimampiro;02/01/2014;M;SI;SOLTERO;;Tendero
-Christina;Benjamin;Graham;Ross;P;1002003000;CLIENTE;Urcuqui;20/01/2014;M;NO;CASADO;0;Carnicero
-Martha;Dennis;Ray;Gardner;C;1002003000;CLIENTE;Pimampiro;26/02/2014;F;SI;CASADO;0;Artesano
-Joe;Alice;Medina;Bennett;C;1004002000;CLIENTE;El Angel;07/11/2014;M;NO;;4;Lechero
-Paula;Billy;Mason;Cole;C;1002003000;GARANTE;Pimampiro;15/01/2014;F;NO;VIUDO;;Comerciante
-Amy;Cheryl;Thomas;Meyer;C;1004002000;CLIENTE;Urcuqui;12/12/2013;M;NO;CASADO;2;Costurero
-Irene;Norma;Carroll;Johnson;C;1002003000;CLIENTE;Mira;26/08/2014;M;SI;SOLTERO;;Carnicero
-Frances;Amanda;Nichols;Reynolds;C;1002003000;CLIENTE;Urcuqui;30/09/2014;M;NO;SOLTERO;1;Escultor
-Norma;Teresa;Wood;Alexander;C;1004002000;CLIENTE;Urcuqui;29/12/2013;M;NO;CASADO;;Costurero
-Joshua;Jesse;Robertson;Palmer;C;1002003000;CLIENTE;El Angel;21/09/2014;F;NO;SOLTERO;3;Panadero
-Sharon;Margaret;Hanson;Hawkins;C;1004002000;CLIENTE;Pimampiro;25/02/2014;F;NO;CASADO;1;Comerciante
-Kathy;Joan;Harper;Adams;C;1002003000;CLIENTE;Mira;;F;NO;VIUDO;0;Panadero
-Harry;Clarence;Wheeler;Bell;C;1004002000;CLIENTE;El Angel;20/12/2013;F;NO;DIVORCIADO;1;Carnicero
-Jennifer;Jesse;Gonzales;Henderson;C;1002003000;CLIENTE;El Angel;24/04/2014;M;NO;SOLTERO;3;Mecánico
-Janet;Shirley;Stanley;Davis;C;1002003000;CLIENTE;El Angel;18/11/2013;M;NO;DIVORCIADO;2;Artesano
-Ashley;Stephen;Ford;Young;C;1002003000;CLIENTE;Urcuqui;23/12/2013;M;NO;CASADO;;Escultor
-Teresa;Adam;Morales;Harvey;C;1002003000;CLIENTE;El Angel;20/10/2014;F;NO;CASADO;;Panadero
-Diana;Michael;Griffin;Garcia;P;1004002000;CLIENTE;El Angel;02/08/2014;M;SI;DIVORCIADO;0;Comerciante
-Anthony;Jose;Harvey;Price;C;1004002000;CLIENTE;Urcuqui;03/02/2014;F;NO;CASADO;2;Escultor
-Kathryn;Jeremy;George;Kennedy;C;1002003000;CLIENTE;El Angel;26/01/2014;M;NO;SOLTERO;;Mecánico
-Bruce;Jessica;Garcia;Carter;C;1004002000;GARANTE;Mira;31/12/2013;M;NO;SOLTERO;2;Artesano
-Katherine;Lisa;Kim;Jacobs;C;1002003000;CLIENTE;Pimampiro;29/09/2014;F;NO;VIUDO;1;Digitado
-Lawrence;Andrew;Turner;Alexander;C;1002003000;GARANTE;El Angel;05/01/2014;F;NO;SOLTERO;;Carnicero
-Alice;Kathy;Foster;Rice;P;1002003000;CLIENTE;Pimampiro;17/11/2013;F;NO;SOLTERO;0;Mecánico
-Frances;Margaret;Young;Nichols;C;1002003000;GARANTE;Urcuqui;24/10/2014;F;NO;VIUDO;;Artesano
-Jose;Larry;Crawford;Day;C;1004002000;CLIENTE;Mira;28/06/2014;M;SI;CASADO;1;Tendero
-Betty;Alan;Marshall;Warren;C;1002003000;CLIENTE;Mira;21/01/2014;F;;VIUDO;1;Digitado
-Amy;Brenda;Jacobs;Turner;C;1004002000;CLIENTE;Pimampiro;22/04/2014;F;NO;CASADO;0;Heladero
-Donna;Peter;Rodriguez;Hansen;P;1004002000;CLIENTE;Urcuqui;30/10/2014;M;NO;DIVORCIADO;4;Carnicero
-Raymond;Richard;Johnston;Boyd;C;1004002000;CLIENTE;Pimampiro;11/08/2014;F;NO;VIUDO;2;Heladero
-Gregory;Martin;Baker;White;P;1002003000;CLIENTE;Pimampiro;31/08/2014;M;NO;CASADO;1;Tendero
-Anne;Alan;Howard;Hansen;C;1002003000;CLIENTE;Pimampiro;01/01/2014;F;NO;VIUDO;;Artesano
-Shawn;Matthew;Fernandez;Hughes;C;1004002000;CLIENTE;Mira;21/02/2014;M;NO;CASADO;;Mecánico
-Juan;Benjamin;Porter;Howell;C;1002003000;CLIENTE;Urcuqui;20/01/2014;F;NO;CASADO;0;Lechero
-Terry;Kathleen;Hawkins;Cooper;C;1004002000;CLIENTE;El Angel;18/01/2014;M;NO;CASADO;;Carnicero
-Christina;Annie;Boyd;Holmes;C;1004002000;CLIENTE;Urcuqui;29/12/2013;M;NO;DIVORCIADO;2;Lechero
-Lois;Diana;Thomas;Foster;C;1002003000;CLIENTE;El Angel;17/10/2014;M;NO;CASADO;1;Carnicero
-Denise;Chris;Hughes;Ryan;C;1004002000;CLIENTE;;29/08/2014;M;NO;DIVORCIADO;1;Heladero
-Ralph;Sandra;Harvey;Frazier;C;1002003000;CLIENTE;Mira;;M;NO;CASADO;0;Heladero
-Christine;Rebecca;Simmons;Rogers;C;1004002000;GARANTE;;12/02/2014;F;NO;DIVORCIADO;;Panadero
-Frank;Billy;Roberts;Garza;C;1002003000;CLIENTE;Pimampiro;15/03/2014;M;SI;DIVORCIADO;;Lechero
-Elizabeth;Kenneth;Harris;Mason;C;1004002000;CLIENTE;Mira;03/03/2014;F;NO;VIUDO;1;Costurero
-Albert;Lawrence;Lopez;Sullivan;C;1004002000;CLIENTE;Mira;28/04/2014;M;NO;SOLTERO;;Heladero
-Stephanie;Virginia;Taylor;Williams;C;1004002000;CLIENTE;Urcuqui;05/06/2014;M;NO;DIVORCIADO;;Escultor
-Alice;Judy;Cooper;Ward;P;1004002000;CLIENTE;Urcuqui;18/08/2014;M;NO;SOLTERO;2;Digitado
-Sarah;Cynthia;Henderson;Foster;P;1002003000;CLIENTE;El Angel;31/10/2014;M;NO;CASADO;;Escultor
-Heather;Keith;Jordan;King;P;1002003000;GARANTE;El Angel;31/10/2014;M;NO;VIUDO;;Artesano
-Philip;Annie;Gonzales;Ryan;C;1002003000;CLIENTE;Mira;;M;NO;SOLTERO;;Mecánico
-John;Diana;Henry;Ellis;C;1004002000;CLIENTE;Urcuqui;29/01/2014;M;NO;CASADO;4;Heladero
-Maria;George;Palmer;Ruiz;C;1004002000;CLIENTE;El Angel;22/04/2014;M;NO;CASADO;2;Artesano
-Samuel;Antonio;Bradley;Stanley;C;1002003000;CLIENTE;Pimampiro;19/09/2014;F;NO;DIVORCIADO;0;Costurero
-Nicholas;Louis;White;Lee;C;1002003000;GARANTE;El Angel;;F;NO;VIUDO;3;Escultor
-Sandra;Doris;Armstrong;Fisher;C;1002003000;CLIENTE;Urcuqui;;F;NO;VIUDO;1;Panadero
-Anna;Kathryn;Walker;Campbell;C;1004002000;CLIENTE;Mira;06/03/2014;F;NO;CASADO;;Mecánico
-Paula;Michael;Meyer;Knight;C;1004002000;CLIENTE;El Angel;30/03/2014;M;NO;VIUDO;1;Escultor
-Shawn;Samuel;Day;Rogers;C;1004002000;CLIENTE;Urcuqui;;F;NO;CASADO;3;Panadero
-Jerry;Tammy;Reed;Butler;C;1002003000;GARANTE;El Angel;27/09/2014;M;NO;CASADO;;Mecánico
-Sarah;Janice;Ray;Sims;C;1004002000;CLIENTE;El Angel;16/03/2014;M;NO;CASADO;1;Mecánico
-Alice;Mark;Hudson;Rodriguez;C;1002003000;CLIENTE;Mira;04/03/2014;M;NO;SOLTERO;;Artesano
-Willie;Julia;Cook;Riley;C;1004002000;CLIENTE;Mira;13/01/2014;F;;SOLTERO;3;Panadero
-Arthur;Amanda;Morgan;Campbell;C;1004002000;CLIENTE;El Angel;;F;NO;CASADO;0;Lechero
-Lisa;George;Martinez;Sims;C;1002003000;CLIENTE;El Angel;21/11/2013;F;NO;SOLTERO;3;Digitado
-Sharon;Shawn;Henderson;Castillo;C;1004002000;CLIENTE;El Angel;30/12/2013;F;NO;DIVORCIADO;;Tendero
-Jack;Phyllis;Wheeler;Watson;C;1002003000;CLIENTE;El Angel;22/05/2014;M;NO;SOLTERO;4;Artesano
-Keith;Ruth;Fuller;Pierce;C;1002003000;CLIENTE;Pimampiro;21/07/2014;M;NO;CASADO;1;Digitado
-Justin;;Cruz;Gilbert;C;1004002000;CLIENTE;Urcuqui;25/08/2014;M;SI;CASADO;2;Digitado
-Sharon;Jessica;Greene;Fisher;C;1004002000;GARANTE;Mira;18/06/2014;M;NO;VIUDO;3;Carnicero
-Eric;Shawn;Reed;Weaver;C;1002003000;CLIENTE;Mira;01/09/2014;M;NO;SOLTERO;;Escultor
-Joan;Alan;Brown;Shaw;C;1002003000;CLIENTE;El Angel;05/06/2014;F;NO;SOLTERO;0;Artesano
-Susan;Gary;Lawson;Stevens;P;1002003000;CLIENTE;Urcuqui;17/04/2014;M;NO;SOLTERO;;Lechero
-Dorothy;Edward;Wright;Harris;C;1002003000;CLIENTE;;02/12/2013;M;NO;CASADO;;Heladero
-Wayne;Wayne;Collins;Thompson;C;1002003000;CLIENTE;El Angel;15/09/2014;F;NO;CASADO;2;Panadero
-Angela;Ruth;Young;Bell;C;1004002000;CLIENTE;Mira;16/09/2014;M;NO;VIUDO;3;Comerciante
-Louise;Juan;Bennett;Day;C;1004002000;GARANTE;El Angel;10/08/2014;M;NO;VIUDO;3;Carnicero
-Christina;Angela;Rice;Long;C;1002003000;CLIENTE;Urcuqui;26/07/2014;F;NO;CASADO;;Panadero
-Rebecca;Jacqueline;Stewart;Young;C;1004002000;GARANTE;El Angel;09/01/2014;M;NO;SOLTERO;3;Carnicero
-Teresa;Doris;Warren;;C;1002003000;CLIENTE;Urcuqui;11/02/2014;M;NO;SOLTERO;;Digitado
-Sandra;Adam;Anderson;Diaz;P;1004002000;CLIENTE;Pimampiro;10/02/2014;M;NO;SOLTERO;;Mecánico
-Roger;Jessica;Murphy;Morgan;C;1004002000;GARANTE;Urcuqui;06/06/2014;M;NO;CASADO;1;Escultor
-Russell;Todd;Ramos;Fisher;P;1002003000;CLIENTE;El Angel;29/12/2013;M;NO;CASADO;;Digitado
-Gregory;Brenda;Campbell;Price;C;1004002000;CLIENTE;El Angel;01/02/2014;F;NO;;;Comerciante
-Virginia;Sharon;Cole;Elliott;C;1002003000;CLIENTE;Urcuqui;25/12/2013;F;;CASADO;;Carnicero
-Lawrence;Julie;Hansen;Ramirez;C;1002003000;CLIENTE;Pimampiro;30/07/2014;F;NO;SOLTERO;3;Tendero
-Michelle;Jennifer;Stewart;Jordan;C;1002003000;GARANTE;El Angel;28/06/2014;F;NO;;1;Costurero
-Ralph;Virginia;Olson;Harrison;C;1002003000;CLIENTE;Urcuqui;15/06/2014;F;NO;DIVORCIADO;1;Heladero
-Amy;Samuel;Hayes;Thompson;C;1004002000;CLIENTE;El Angel;02/10/2014;M;NO;SOLTERO;1;Carnicero
-Paula;Lois;Howard;Kim;C;1004002000;CLIENTE;Mira;06/07/2014;M;;SOLTERO;2;Escultor
-Paula;;Dunn;Hall;C;1002003000;GARANTE;Pimampiro;25/10/2014;F;NO;DIVORCIADO;3;Lechero
-Theresa;Nicholas;Gonzalez;Burke;P;1004002000;CLIENTE;El Angel;02/05/2014;M;NO;CASADO;0;Lechero
-Phillip;Juan;Arnold;Thompson;C;1004002000;CLIENTE;Urcuqui;02/11/2014;M;NO;CASADO;2;Comerciante
-Justin;Susan;Reynolds;Fowler;C;1002003000;CLIENTE;Pimampiro;16/08/2014;F;NO;CASADO;;Artesano
-James;Kimberly;Holmes;;C;1002003000;GARANTE;Urcuqui;13/01/2014;M;SI;CASADO;2;Digitado
-Karen;Christopher;Hicks;Hall;C;1002003000;CLIENTE;El Angel;11/01/2014;M;;CASADO;;Panadero
-Anne;Andrea;Hamilton;Fuller;C;1002003000;CLIENTE;;01/07/2014;F;NO;VIUDO;;Tendero
-Shirley;Gregory;Williams;Snyder;C;1002003000;GARANTE;Urcuqui;01/09/2014;F;NO;CASADO;;Artesano
-Raymond;Amanda;Harvey;Armstrong;C;1004002000;CLIENTE;Mira;09/01/2014;M;NO;SOLTERO;0;Panadero
-Carol;Stephanie;Mcdonald;Ortiz;P;1002003000;CLIENTE;Pimampiro;25/07/2014;M;NO;CASADO;4;Heladero
-Rose;Wanda;Riley;Mcdonald;C;1002003000;CLIENTE;;12/08/2014;M;NO;CASADO;;Costurero
-Frank;Joyce;Adams;;C;1004002000;CLIENTE;Mira;12/03/2014;F;NO;DIVORCIADO;;Artesano
-Nancy;Kevin;Clark;Kennedy;C;1002003000;CLIENTE;Mira;09/08/2014;F;NO;SOLTERO;1;Lechero
-Carlos;Anne;Miller;Arnold;C;1004002000;CLIENTE;Urcuqui;28/03/2014;F;NO;SOLTERO;;Mecánico
-Michelle;Judy;Harper;Bowman;C;1004002000;CLIENTE;Mira;15/03/2014;M;NO;SOLTERO;1;Tendero
-Willie;Joe;Armstrong;Patterson;C;1002003000;CLIENTE;Mira;17/12/2013;F;NO;SOLTERO;1;Heladero
-Robin;Ralph;Sanders;Bailey;C;1002003000;CLIENTE;Urcuqui;25/08/2014;F;NO;CASADO;2;Carnicero
-Stephen;Matthew;Little;Franklin;C;1002003000;CLIENTE;Mira;30/05/2014;M;NO;SOLTERO;;Digitado
-Jeffrey;Ashley;Kelly;Austin;C;1004002000;CLIENTE;Mira;14/06/2014;F;NO;CASADO;3;Tendero
-Jesse;Catherine;Wells;Austin;C;1004002000;CLIENTE;Pimampiro;20/03/2014;M;NO;CASADO;3;Costurero
-Jennifer;Mildred;Garrett;Reynolds;C;1002003000;CLIENTE;El Angel;02/03/2014;M;SI;CASADO;2;Panadero
-Louise;Mark;Meyer;Long;C;1002003000;CLIENTE;El Angel;20/11/2013;M;NO;SOLTERO;0;Costurero
-Joyce;Martha;Lawrence;Holmes;C;1004002000;CLIENTE;Urcuqui;25/11/2013;M;NO;VIUDO;;Mecánico
-Ryan;Judith;Hughes;Palmer;C;1004002000;CLIENTE;Pimampiro;27/04/2014;F;NO;DIVORCIADO;4;Escultor
-Alan;Sean;Banks;Grant;P;1002003000;GARANTE;Pimampiro;11/07/2014;M;NO;CASADO;;Tendero
-Norma;Larry;Simmons;Carroll;P;1004002000;CLIENTE;El Angel;27/05/2014;F;NO;VIUDO;4;Tendero
-Aaron;;Chavez;Woods;C;1004002000;CLIENTE;Urcuqui;28/05/2014;M;NO;SOLTERO;;Digitado
-Gregory;Adam;Morales;Washington;C;1002003000;CLIENTE;Pimampiro;27/06/2014;M;NO;SOLTERO;;Digitado
-Sara;Joyce;Welch;Hall;C;1002003000;CLIENTE;El Angel;30/06/2014;F;NO;CASADO;;Artesano
-Kathy;Peter;Clark;Ramirez;C;1004002000;GARANTE;El Angel;09/06/2014;F;NO;DIVORCIADO;2;Mecánico
-Billy;Terry;Kelley;Hayes;C;1004002000;GARANTE;;06/09/2014;F;NO;DIVORCIADO;;Carnicero
-Debra;Ernest;Bishop;Kennedy;C;1002003000;CLIENTE;Urcuqui;03/01/2014;M;;CASADO;3;Panadero
-Kathy;Elizabeth;Gilbert;Robertson;C;1002003000;CLIENTE;Urcuqui;13/07/2014;M;SI;CASADO;1;Costurero
-Joshua;Alice;Harris;Myers;C;1002003000;CLIENTE;Urcuqui;29/08/2014;M;NO;SOLTERO;0;Digitado
-Todd;Christopher;Murphy;Simmons;C;1002003000;CLIENTE;El Angel;23/03/2014;M;NO;DIVORCIADO;2;Comerciante
-Lois;Margaret;Carroll;Hawkins;C;1002003000;CLIENTE;Mira;25/03/2014;M;SI;SOLTERO;;Costurero
-Marilyn;Lori;Hill;Matthews;C;1002003000;CLIENTE;El Angel;07/01/2014;M;SI;CASADO;;Comerciante
-Joan;Emily;Gonzales;Flores;C;1002003000;GARANTE;El Angel;13/05/2014;M;SI;CASADO;3;Carnicero
-Laura;Rachel;Sanders;Lawson;C;1002003000;CLIENTE;Pimampiro;08/05/2014;M;NO;CASADO;1;Tendero
-Janice;Keith;Black;Fuller;C;1004002000;CLIENTE;El Angel;08/09/2014;F;NO;SOLTERO;;Tendero
-Patrick;Jack;Hamilton;Wright;C;1004002000;CLIENTE;Pimampiro;18/05/2014;M;NO;SOLTERO;;Costurero
-Stephen;Jessica;Ferguson;Riley;C;1004002000;CLIENTE;;28/08/2014;M;NO;CASADO;;Artesano
-Angela;Laura;Wilson;Jackson;P;1002003000;CLIENTE;El Angel;07/11/2014;M;NO;CASADO;3;Panadero
-Katherine;Linda;White;Day;C;1002003000;CLIENTE;Mira;06/11/2014;M;NO;SOLTERO;2;Tendero
-Frank;Larry;Burns;Rogers;C;1004002000;CLIENTE;Mira;21/04/2014;M;NO;CASADO;3;Tendero
-Kenneth;Gerald;Bell;Rogers;P;1004002000;GARANTE;Mira;28/10/2014;F;NO;SOLTERO;1;Artesano
-Sarah;;Nichols;Stewart;C;1004002000;CLIENTE;Mira;16/06/2014;M;NO;DIVORCIADO;;Heladero
-Johnny;Ryan;Morris;Rose;C;1004002000;CLIENTE;Mira;09/11/2014;M;NO;SOLTERO;3;Carnicero
-Stephen;Lisa;Meyer;Watkins;P;1002003000;CLIENTE;Urcuqui;;F;NO;SOLTERO;3;Costurero
-Lisa;Rose;Robertson;Johnson;C;1002003000;CLIENTE;Mira;11/12/2013;M;SI;CASADO;3;Digitado
-Patricia;Shirley;Powell;Olson;P;1002003000;CLIENTE;El Angel;04/09/2014;M;SI;SOLTERO;;Costurero
-Ruth;Heather;Medina;Jackson;C;1004002000;CLIENTE;Urcuqui;10/03/2014;M;SI;CASADO;3;Panadero
-Kelly;Dorothy;Nguyen;Willis;C;1002003000;CLIENTE;Pimampiro;11/05/2014;M;NO;SOLTERO;;Costurero
-Tina;James;Kennedy;Dixon;P;1004002000;CLIENTE;Mira;18/12/2013;M;NO;CASADO;;Heladero
-Joyce;Edward;Gutierrez;Kelly;C;1004002000;CLIENTE;El Angel;15/02/2014;M;NO;SOLTERO;;Artesano
-Philip;Martha;Butler;Dixon;C;1002003000;CLIENTE;Pimampiro;07/05/2014;M;NO;CASADO;0;Lechero
-Jason;Jeffrey;Freeman;Bennett;C;1002003000;CLIENTE;Urcuqui;15/05/2014;M;;CASADO;2;Tendero
-Phillip;Christopher;Patterson;Wilson;C;1004002000;CLIENTE;Urcuqui;27/05/2014;F;NO;VIUDO;;Escultor
-Harry;Brian;Ramos;Hamilton;C;1004002000;CLIENTE;Pimampiro;05/12/2013;F;SI;CASADO;;Carnicero
-Ann;Ryan;Washington;Martin;C;1002003000;CLIENTE;Urcuqui;25/09/2014;F;SI;CASADO;3;Heladero
-Diane;Peter;Allen;Fox;C;1002003000;CLIENTE;El Angel;02/08/2014;F;NO;CASADO;1;Costurero
-Mary;Ernest;Sims;Woods;C;1004002000;CLIENTE;El Angel;01/02/2014;F;NO;SOLTERO;2;Panadero
-Tina;Frances;Clark;Reynolds;C;1004002000;CLIENTE;Urcuqui;20/03/2014;M;NO;VIUDO;2;Mecánico
-Anna;Donald;Willis;;C;1004002000;CLIENTE;Mira;28/02/2014;M;NO;SOLTERO;;Tendero
-Rachel;William;Smith;Smith;C;1002003000;CLIENTE;Mira;16/03/2014;M;NO;CASADO;;Carnicero
-Paul;Wayne;Wood;Ward;P;1004002000;GARANTE;Pimampiro;13/02/2014;M;NO;SOLTERO;0;Panadero
-Annie;Katherine;Washington;Perry;C;1002003000;CLIENTE;Mira;22/06/2014;F;NO;SOLTERO;1;Escultor
-Jonathan;Eugene;Gilbert;Berry;P;1002003000;CLIENTE;El Angel;16/03/2014;M;NO;VIUDO;;Heladero
-Melissa;Barbara;Jenkins;James;C;1002003000;CLIENTE;Pimampiro;14/01/2014;F;NO;;2;Artesano
-Anna;Michelle;Sims;Cook;C;1004002000;CLIENTE;Pimampiro;31/08/2014;M;SI;SOLTERO;2;Heladero
-Richard;Aaron;Morales;Fowler;C;1002003000;CLIENTE;Urcuqui;01/12/2013;M;NO;SOLTERO;;Lechero
-Dorothy;Andrew;Gomez;Wright;C;1002003000;CLIENTE;Pimampiro;29/06/2014;M;NO;VIUDO;4;Lechero
-Kenneth;Marilyn;Ortiz;Cole;P;1004002000;CLIENTE;Pimampiro;08/06/2014;M;NO;SOLTERO;1;Tendero
-Amy;;Franklin;Mcdonald;C;1004002000;CLIENTE;Mira;30/09/2014;M;NO;CASADO;4;Digitado
-Arthur;Frank;Diaz;Fuller;C;1002003000;CLIENTE;El Angel;23/02/2014;F;NO;SOLTERO;1;Comerciante
-Jerry;Paul;Weaver;Watson;C;1004002000;GARANTE;Pimampiro;05/06/2014;M;SI;SOLTERO;;Costurero
-Arthur;Stephen;Oliver;Gilbert;C;1002003000;CLIENTE;Urcuqui;13/09/2014;M;NO;SOLTERO;;Digitado
-Jacqueline;Evelyn;Ryan;Parker;C;1002003000;CLIENTE;Urcuqui;14/04/2014;F;NO;CASADO;1;Artesano
-Heather;Adam;Carroll;Reynolds;C;1002003000;CLIENTE;Urcuqui;12/08/2014;F;NO;SOLTERO;3;Lechero
-Jimmy;;Chavez;Garcia;P;1004002000;CLIENTE;;29/09/2014;F;NO;DIVORCIADO;2;Lechero
-Irene;Roger;Elliott;Jackson;C;1002003000;CLIENTE;Mira;18/11/2013;M;NO;SOLTERO;2;Escultor
-Janet;Andrea;Hunter;Sims;C;1004002000;CLIENTE;Urcuqui;03/06/2014;F;NO;CASADO;1;Comerciante
-Sandra;Justin;Stanley;Medina;C;1002003000;CLIENTE;El Angel;;F;NO;SOLTERO;3;Escultor
-Patrick;Russell;Watson;Duncan;C;1002003000;CLIENTE;Mira;27/03/2014;M;NO;SOLTERO;0;Artesano
-Kathy;Steve;Welch;Howell;C;1002003000;CLIENTE;Pimampiro;05/04/2014;F;SI;CASADO;;Mecánico
-Richard;Janice;Alexander;Ward;C;1004002000;CLIENTE;Urcuqui;22/12/2013;M;SI;CASADO;3;Costurero
-Antonio;Bonnie;Pierce;Castillo;C;1002003000;CLIENTE;Pimampiro;17/02/2014;M;NO;CASADO;1;Digitado
-Betty;Jeffrey;Riley;Dixon;C;1004002000;GARANTE;El Angel;13/04/2014;M;NO;SOLTERO;3;Digitado
-Ralph;Donald;Mitchell;Torres;C;1004002000;GARANTE;El Angel;18/06/2014;M;SI;SOLTERO;;Panadero
-Rebecca;Jennifer;Morales;Carr;C;1004002000;CLIENTE;Mira;03/08/2014;M;SI;SOLTERO;4;Mecánico
-Jonathan;Ernest;Nichols;Cruz;C;1002003000;CLIENTE;Urcuqui;09/10/2014;F;NO;DIVORCIADO;;Digitado
-Michael;Paula;Lewis;Franklin;C;1002003000;CLIENTE;El Angel;02/04/2014;M;NO;CASADO;;Comerciante
-Rebecca;Amanda;Garza;Rogers;C;1004002000;GARANTE;Pimampiro;27/05/2014;F;SI;SOLTERO;3;Escultor
-Ruth;Jimmy;Rice;Austin;C;1002003000;CLIENTE;Pimampiro;30/09/2014;M;NO;CASADO;;Mecánico
-Brandon;;Murray;Gonzales;C;1004002000;GARANTE;Pimampiro;19/03/2014;M;NO;DIVORCIADO;2;Panadero
-Lawrence;Carolyn;Warren;Nelson;C;1002003000;CLIENTE;Urcuqui;28/10/2014;M;NO;CASADO;1;Panadero
-Sarah;Paul;Dixon;Perry;C;1004002000;CLIENTE;Mira;23/12/2013;M;SI;CASADO;2;Artesano
-Anna;Brian;Hicks;Robinson;C;1002003000;CLIENTE;Mira;21/07/2014;F;NO;SOLTERO;;Digitado
-Jimmy;Cheryl;Knight;Carr;C;1002003000;CLIENTE;Mira;17/11/2013;F;NO;SOLTERO;;Lechero
-Robin;Katherine;Frazier;Fernandez;C;1002003000;CLIENTE;El Angel;13/07/2014;F;SI;VIUDO;2;Costurero
-Rebecca;Jennifer;Adams;Gomez;C;1004002000;CLIENTE;Urcuqui;31/01/2014;F;NO;SOLTERO;2;Digitado
-Lawrence;Patricia;Moreno;George;C;1004002000;CLIENTE;Urcuqui;22/01/2014;M;NO;VIUDO;3;Mecánico
-Douglas;Helen;Kim;Larson;C;1002003000;CLIENTE;Mira;22/08/2014;F;NO;SOLTERO;;Heladero
-Bobby;Justin;Lee;Scott;C;1002003000;CLIENTE;El Angel;08/07/2014;M;SI;SOLTERO;0;Escultor
-Steve;Jessica;Cruz;Thompson;C;1004002000;CLIENTE;Pimampiro;05/03/2014;F;NO;VIUDO;2;Heladero
-Kimberly;Phillip;Carter;Fernandez;C;1002003000;CLIENTE;El Angel;10/04/2014;F;NO;CASADO;;Costurero
-Michelle;;Robinson;Romero;C;1004002000;CLIENTE;Pimampiro;15/07/2014;M;NO;VIUDO;1;Tendero
-Todd;Irene;Barnes;George;C;1002003000;CLIENTE;Urcuqui;02/10/2014;M;NO;SOLTERO;0;Artesano
-Frances;Marie;Butler;Hall;C;1004002000;GARANTE;El Angel;26/02/2014;F;NO;;2;Artesano
-Janet;Elizabeth;Bennett;Young;C;1002003000;CLIENTE;Pimampiro;19/04/2014;M;NO;CASADO;3;Digitado
-Gregory;Jennifer;Mendoza;Stephens;C;1002003000;CLIENTE;Mira;28/07/2014;F;NO;SOLTERO;4;Carnicero
-Carlos;Alice;West;Carr;P;1002003000;GARANTE;Mira;13/03/2014;M;NO;SOLTERO;3;Mecánico
-Sarah;Jane;Patterson;Wallace;C;1002003000;CLIENTE;Mira;07/08/2014;M;NO;CASADO;1;Carnicero
-Scott;Julie;Johnson;Washington;C;1004002000;GARANTE;Pimampiro;13/06/2014;M;SI;SOLTERO;;Lechero
-Jacqueline;Russell;Kennedy;Kennedy;C;1004002000;CLIENTE;Pimampiro;29/01/2014;M;NO;CASADO;3;Comerciante
-Joseph;Rose;Cook;Cunningham;P;1002003000;GARANTE;Pimampiro;23/09/2014;M;NO;SOLTERO;;Digitado
-Michael;Jose;Ryan;Larson;C;1004002000;CLIENTE;Mira;01/09/2014;M;NO;SOLTERO;;Escultor
-Angela;Jeffrey;Bennett;Ellis;P;1004002000;CLIENTE;Pimampiro;18/04/2014;M;NO;DIVORCIADO;;Escultor
-Howard;Eric;Kelly;Cook;C;1004002000;CLIENTE;El Angel;24/01/2014;M;NO;CASADO;1;Escultor
-Alan;Kathleen;Woods;Wood;C;1002003000;CLIENTE;Urcuqui;08/07/2014;F;NO;SOLTERO;3;Mecánico
-Ruby;Michael;Nichols;Fernandez;C;1004002000;CLIENTE;Urcuqui;02/05/2014;M;NO;CASADO;3;Digitado
-Kathleen;Christopher;Frazier;;C;1002003000;CLIENTE;Urcuqui;29/11/2013;M;SI;CASADO;;Lechero
-Frances;Jessica;Dixon;Mitchell;P;1002003000;GARANTE;Mira;;M;SI;CASADO;3;Tendero
-Jesse;Frances;Gomez;Mendoza;C;1002003000;CLIENTE;El Angel;04/06/2014;F;NO;SOLTERO;1;Artesano
-George;Juan;James;Stevens;C;1002003000;CLIENTE;Urcuqui;18/03/2014;F;NO;CASADO;;Mecánico
-Raymond;;Mills;Green;C;1002003000;CLIENTE;El Angel;05/04/2014;M;NO;SOLTERO;3;Escultor
-Martha;John;Mccoy;Richardson;C;1002003000;GARANTE;Mira;06/07/2014;M;NO;SOLTERO;1;Costurero
-Denise;Chris;White;Garrett;C;1002003000;CLIENTE;Mira;09/09/2014;M;NO;VIUDO;3;Costurero
-Michelle;Laura;Ferguson;Ortiz;C;1004002000;CLIENTE;Urcuqui;20/04/2014;M;NO;CASADO;;Panadero
-Todd;Bonnie;Morris;Collins;C;1004002000;CLIENTE;Pimampiro;09/11/2014;M;NO;DIVORCIADO;2;Artesano
-James;;Jacobs;White;P;1002003000;CLIENTE;El Angel;12/02/2014;F;NO;CASADO;;Escultor
-Harold;Paula;Morrison;Gray;C;1004002000;CLIENTE;Urcuqui;01/05/2014;F;;SOLTERO;2;Lechero
-Louise;Jonathan;Brown;Carroll;C;1002003000;CLIENTE;Mira;21/01/2014;F;NO;VIUDO;;Tendero
-Marie;Maria;Cooper;Flores;C;1004002000;GARANTE;El Angel;12/06/2014;F;SI;CASADO;2;Mecánico
-Christina;Bruce;Smith;Black;C;1002003000;CLIENTE;Urcuqui;16/10/2014;F;NO;SOLTERO;;Panadero
-William;Lois;Brooks;Perkins;C;1002003000;CLIENTE;Urcuqui;11/06/2014;M;NO;VIUDO;0;Heladero
-Jose;Doris;Daniels;Payne;C;1004002000;CLIENTE;Mira;28/05/2014;M;NO;SOLTERO;3;Comerciante
-Anne;Stephen;Woods;Davis;C;1004002000;CLIENTE;El Angel;31/01/2014;M;NO;VIUDO;4;Mecánico
-Jimmy;Barbara;Hart;Bishop;C;1002003000;CLIENTE;Pimampiro;04/08/2014;M;NO;DIVORCIADO;0;Artesano
-Jimmy;Johnny;Fisher;West;C;1002003000;CLIENTE;Mira;31/01/2014;M;NO;CASADO;4;Costurero
-Bruce;Christina;Austin;Bradley;C;1004002000;CLIENTE;Mira;03/07/2014;F;NO;CASADO;0;Lechero
-Ruth;Melissa;Cruz;Green;C;1004002000;CLIENTE;Pimampiro;14/06/2014;M;NO;SOLTERO;1;Lechero
-Kevin;Mark;Lopez;Ramirez;C;1002003000;CLIENTE;Mira;08/11/2014;M;SI;CASADO;1;Panadero
-Marie;Clarence;Murphy;Stewart;C;1004002000;CLIENTE;Mira;19/07/2014;M;NO;SOLTERO;2;Digitado
-Jose;John;Armstrong;Fuller;P;1004002000;CLIENTE;Pimampiro;02/11/2014;F;NO;DIVORCIADO;;Heladero
-Howard;Kathryn;Griffin;Webb;C;1002003000;CLIENTE;Urcuqui;09/09/2014;M;NO;SOLTERO;2;Lechero
-Anna;Bruce;Brown;Jones;C;1004002000;CLIENTE;Mira;21/10/2014;M;NO;CASADO;;Costurero
-Norma;Raymond;Gomez;Warren;C;1002003000;CLIENTE;Mira;04/01/2014;M;NO;SOLTERO;;Tendero
-Harry;Fred;Foster;Johnson;C;1002003000;CLIENTE;Mira;31/10/2014;M;NO;CASADO;2;Panadero
-Carlos;Linda;Rogers;Thomas;C;1002003000;CLIENTE;Urcuqui;10/01/2014;F;NO;CASADO;2;Costurero
-Ralph;Willie;Elliott;Morales;C;1002003000;GARANTE;Mira;24/09/2014;M;NO;VIUDO;3;Costurero
-Antonio;Jack;Bell;Collins;C;1002003000;CLIENTE;Pimampiro;26/12/2013;M;NO;DIVORCIADO;2;Costurero
-Ashley;Heather;Lynch;Allen;C;1004002000;GARANTE;El Angel;27/08/2014;M;NO;SOLTERO;;Tendero
-Bruce;Walter;Henry;Mcdonald;C;1002003000;CLIENTE;Pimampiro;18/02/2014;F;NO;SOLTERO;2;Lechero
-Shirley;Elizabeth;Lee;Gonzalez;C;1004002000;CLIENTE;Pimampiro;06/04/2014;M;SI;SOLTERO;1;Escultor
-Stephen;Katherine;Cook;Williamson;C;1004002000;CLIENTE;Urcuqui;06/05/2014;F;SI;VIUDO;4;Comerciante
-George;Martha;Vasquez;George;C;1002003000;CLIENTE;Pimampiro;20/05/2014;F;NO;VIUDO;;Carnicero
-Katherine;Nicole;Hayes;Riley;C;1004002000;CLIENTE;Urcuqui;23/04/2014;F;NO;SOLTERO;2;Costurero
-Virginia;Carolyn;Rodriguez;Wagner;C;1002003000;CLIENTE;Pimampiro;15/02/2014;F;NO;SOLTERO;2;Costurero
-Elizabeth;Ashley;Murphy;Watkins;C;1002003000;CLIENTE;Mira;;M;NO;SOLTERO;;Comerciante
-Daniel;Katherine;Henry;Perkins;C;1002003000;CLIENTE;Urcuqui;18/07/2014;M;NO;DIVORCIADO;0;Digitado
-Frances;Melissa;Owens;Andrews;P;1002003000;CLIENTE;Urcuqui;01/12/2013;F;NO;CASADO;;Comerciante
-Kathy;Harry;Ramos;Johnson;C;1002003000;CLIENTE;Pimampiro;25/10/2014;M;NO;CASADO;2;Carnicero
-Dennis;Terry;Carr;Marshall;C;1004002000;CLIENTE;Urcuqui;20/12/2013;F;NO;VIUDO;3;Panadero
-Wayne;Amanda;Watkins;Ellis;C;1004002000;CLIENTE;El Angel;26/08/2014;F;NO;VIUDO;;Mecánico
-Bruce;Eugene;Thompson;Mason;C;1002003000;CLIENTE;El Angel;04/11/2014;F;NO;CASADO;1;Escultor
-Marilyn;Lois;Morales;Stanley;C;1002003000;GARANTE;El Angel;26/05/2014;F;NO;VIUDO;;Digitado
-Joan;Alan;Ramos;Nelson;C;1002003000;CLIENTE;Urcuqui;05/04/2014;M;SI;CASADO;;Heladero
-Jessica;Adam;Austin;Hall;C;1002003000;CLIENTE;Pimampiro;23/10/2014;F;NO;CASADO;;Digitado
-Angela;Louise;Reid;Frazier;C;1002003000;CLIENTE;Pimampiro;18/06/2014;F;SI;CASADO;3;Artesano
-Maria;Donna;Perkins;Moreno;C;1004002000;CLIENTE;Pimampiro;23/06/2014;M;NO;CASADO;0;Carnicero
-Katherine;Robert;Lawson;Grant;C;1004002000;CLIENTE;El Angel;25/02/2014;F;SI;CASADO;1;Mecánico
-Willie;Jacqueline;Ray;Elliott;C;1002003000;CLIENTE;Mira;09/09/2014;M;NO;CASADO;3;Artesano
-Chris;Denise;Carroll;Mendoza;C;1004002000;GARANTE;Mira;22/08/2014;M;NO;CASADO;1;Panadero
-Brandon;Jessica;Alexander;Holmes;C;1002003000;CLIENTE;Urcuqui;21/05/2014;M;NO;VIUDO;1;Artesano
-Juan;John;Hughes;Sanchez;C;1004002000;CLIENTE;Mira;10/03/2014;F;NO;VIUDO;;Carnicero
-Beverly;Kathy;Howard;Mitchell;C;1002003000;CLIENTE;Urcuqui;14/12/2013;F;NO;CASADO;4;Tendero
-Douglas;Jack;Gibson;Price;C;1002003000;CLIENTE;Mira;12/06/2014;M;NO;VIUDO;1;Escultor
-Lisa;Laura;Watkins;Hunter;C;1004002000;CLIENTE;El Angel;24/05/2014;F;NO;SOLTERO;;Digitado
-Joan;Jose;Kelley;Olson;C;1002003000;GARANTE;Urcuqui;26/10/2014;F;NO;VIUDO;1;Comerciante
-Sara;Donna;Armstrong;Jordan;C;1002003000;CLIENTE;Urcuqui;06/12/2013;M;NO;SOLTERO;0;Carnicero
-Rose;Christopher;Ray;James;C;1004002000;CLIENTE;Pimampiro;;M;SI;SOLTERO;;Costurero
-Tina;Clarence;Owens;Perkins;C;1004002000;CLIENTE;Pimampiro;12/01/2014;M;NO;CASADO;;Escultor
-Tina;Kathryn;Turner;Willis;C;1002003000;CLIENTE;El Angel;27/07/2014;M;NO;VIUDO;1;Digitado
-Doris;Donald;Hawkins;Kim;C;1002003000;GARANTE;Urcuqui;01/02/2014;F;SI;SOLTERO;4;Lechero
-Martha;Kimberly;Hunter;Greene;C;1004002000;CLIENTE;Pimampiro;21/05/2014;M;SI;CASADO;1;Costurero
-Amy;Earl;Wilson;;C;1004002000;CLIENTE;Mira;29/04/2014;M;NO;SOLTERO;2;Comerciante
-Brenda;Dennis;Gonzalez;Fernandez;C;1002003000;CLIENTE;El Angel;29/10/2014;M;;SOLTERO;;Tendero
-Ruth;Janice;Berry;Thomas;C;1004002000;CLIENTE;Mira;30/07/2014;M;NO;CASADO;0;Lechero
-Larry;Patricia;Weaver;Burton;C;1002003000;CLIENTE;Mira;18/08/2014;F;NO;SOLTERO;1;Panadero
-Karen;Tammy;Ortiz;Gilbert;C;1004002000;CLIENTE;Mira;06/02/2014;F;NO;DIVORCIADO;;Escultor
-Judith;Laura;Hunt;Thompson;C;1004002000;CLIENTE;Pimampiro;26/04/2014;F;NO;SOLTERO;1;Digitado
-Louise;Laura;Peters;Castillo;C;1002003000;CLIENTE;El Angel;02/04/2014;M;NO;SOLTERO;0;Escultor
-Martin;Brian;Brooks;Freeman;P;1002003000;CLIENTE;El Angel;08/11/2014;M;NO;CASADO;3;Comerciante
-Brandon;David;Bennett;Russell;C;1004002000;CLIENTE;El Angel;12/04/2014;M;NO;SOLTERO;;Escultor
-Nicholas;Clarence;Richardson;Lewis;C;1004002000;CLIENTE;Mira;04/09/2014;M;SI;CASADO;2;Panadero
-Ruth;Anna;Allen;Little;C;1004002000;CLIENTE;Pimampiro;05/11/2014;M;NO;SOLTERO;;Digitado
-Bruce;Sara;Stephens;Evans;P;1004002000;CLIENTE;Pimampiro;;F;NO;CASADO;1;Mecánico
-Kevin;Kathleen;Nguyen;Brooks;C;1002003000;CLIENTE;Urcuqui;26/09/2014;M;SI;;;Artesano
-Amy;Nancy;Hernandez;Brooks;C;1002003000;CLIENTE;Mira;19/10/2014;M;NO;DIVORCIADO;;Mecánico
-Helen;Gerald;Armstrong;Walker;C;1002003000;GARANTE;Mira;25/01/2014;M;NO;SOLTERO;;Costurero
-Benjamin;Philip;Reynolds;Brooks;C;1002003000;CLIENTE;;14/12/2013;M;NO;CASADO;1;Panadero
-George;Joan;Nguyen;Wright;C;1002003000;GARANTE;Urcuqui;10/11/2014;F;NO;VIUDO;0;Digitado
-Maria;Roy;Fuller;Garcia;C;1002003000;CLIENTE;Mira;08/07/2014;M;NO;CASADO;;Lechero
-Randy;Steven;Jordan;Franklin;C;1002003000;GARANTE;Mira;05/12/2013;M;;SOLTERO;1;Heladero
-Jason;John;Bradley;Carter;C;1004002000;CLIENTE;Pimampiro;24/09/2014;F;NO;VIUDO;;Comerciante
-Rose;Janice;Butler;Rose;C;1004002000;CLIENTE;Pimampiro;28/10/2014;M;NO;VIUDO;2;Heladero
-Nancy;Jacqueline;Hudson;Green;C;1004002000;CLIENTE;Mira;24/03/2014;F;NO;VIUDO;2;Heladero
-Harry;Frances;Henderson;Barnes;P;1002003000;CLIENTE;Urcuqui;03/10/2014;F;;SOLTERO;4;Carnicero
-Larry;Antonio;Moore;Sims;C;1002003000;CLIENTE;Urcuqui;12/03/2014;M;NO;DIVORCIADO;;Costurero
-Bobby;Lawrence;Snyder;Flores;C;1002003000;CLIENTE;El Angel;19/01/2014;M;NO;SOLTERO;4;Digitado
-Catherine;Doris;Willis;Lee;C;1004002000;CLIENTE;;;M;NO;VIUDO;3;Mecánico
-Douglas;Tammy;Perry;Burke;C;1002003000;CLIENTE;Pimampiro;01/05/2014;M;SI;SOLTERO;2;Costurero
-Nicole;Henry;Gordon;Sims;C;1002003000;CLIENTE;Pimampiro;06/04/2014;M;NO;VIUDO;1;Mecánico
-Alice;Stephen;Ford;Morales;C;1002003000;GARANTE;Pimampiro;31/07/2014;M;;DIVORCIADO;;Lechero
-Bruce;Kathy;Mcdonald;Wagner;C;1002003000;CLIENTE;El Angel;30/11/2013;F;NO;CASADO;3;Tendero
-Ronald;Norma;Sims;Hawkins;C;1002003000;CLIENTE;Mira;06/10/2014;M;NO;DIVORCIADO;;Digitado
-Irene;Rebecca;Marshall;Ward;P;1004002000;CLIENTE;Urcuqui;07/07/2014;M;NO;CASADO;2;Artesano
-Clarence;Alice;Cox;Foster;C;1002003000;CLIENTE;Pimampiro;24/11/2013;F;;DIVORCIADO;2;Comerciante
-Billy;Irene;Perkins;Lawson;C;1004002000;CLIENTE;El Angel;29/11/2013;M;NO;SOLTERO;;Lechero
-Kathleen;Andrea;Gonzales;Simmons;C;1004002000;CLIENTE;Mira;29/07/2014;F;NO;SOLTERO;2;Heladero
-Henry;Wanda;Lynch;Lopez;P;1002003000;CLIENTE;Mira;05/04/2014;M;NO;DIVORCIADO;;Heladero
-Ryan;Tammy;Henry;Elliott;C;1002003000;CLIENTE;El Angel;07/05/2014;F;SI;CASADO;;Heladero
-Jonathan;Clarence;Webb;Ward;C;1002003000;CLIENTE;;29/01/2014;M;NO;CASADO;4;Digitado
-Debra;Evelyn;Scott;Williamson;C;1004002000;CLIENTE;El Angel;01/11/2014;F;NO;CASADO;0;Escultor
-Gary;Andrea;Anderson;Moreno;C;1004002000;CLIENTE;Mira;10/11/2014;M;NO;SOLTERO;1;Costurero
-Joshua;Lois;Perkins;Castillo;C;1004002000;CLIENTE;Pimampiro;23/08/2014;F;SI;CASADO;;Carnicero
-Jean;Carolyn;James;Gray;C;1002003000;CLIENTE;Pimampiro;28/11/2013;M;NO;SOLTERO;;Mecánico
-Jack;Victor;Carroll;Hamilton;C;1004002000;GARANTE;Mira;18/11/2013;M;NO;SOLTERO;3;Lechero
-Carol;Christopher;Nelson;Ward;C;1004002000;CLIENTE;El Angel;16/02/2014;F;SI;SOLTERO;0;Mecánico
-Katherine;Walter;Cole;Simmons;C;1004002000;CLIENTE;Pimampiro;31/01/2014;M;NO;CASADO;;Tendero
-Roger;Karen;Little;Green;C;1004002000;CLIENTE;Pimampiro;03/11/2014;M;NO;DIVORCIADO;1;Comerciante
-Barbara;Chris;Anderson;Bowman;C;1004002000;CLIENTE;Mira;28/08/2014;F;NO;SOLTERO;;Costurero
-Judith;;Ryan;Mendoza;C;1002003000;CLIENTE;Mira;03/09/2014;M;SI;SOLTERO;3;Digitado
-Kenneth;Anna;Knight;Simpson;P;1002003000;CLIENTE;Mira;07/08/2014;M;NO;CASADO;1;Tendero
-Pamela;Catherine;Clark;Brown;C;1004002000;CLIENTE;Pimampiro;11/08/2014;M;NO;CASADO;2;Comerciante
-Laura;Eugene;Mcdonald;Powell;C;1002003000;CLIENTE;El Angel;16/06/2014;F;NO;DIVORCIADO;1;Heladero
-Paul;Louis;Fuller;Graham;C;1002003000;CLIENTE;Pimampiro;12/07/2014;F;NO;VIUDO;;Heladero
-Mary;Russell;Willis;Butler;C;1004002000;GARANTE;Pimampiro;19/07/2014;F;NO;VIUDO;;Carnicero
-John;Diane;Anderson;Franklin;P;1002003000;CLIENTE;Pimampiro;21/01/2014;M;SI;SOLTERO;4;Panadero
-Beverly;Jimmy;White;Ross;C;1004002000;CLIENTE;El Angel;31/01/2014;M;NO;CASADO;1;Artesano
-Frances;Eugene;Coleman;Bryant;C;1004002000;GARANTE;Mira;02/05/2014;F;NO;SOLTERO;4;Mecánico
-Debra;Willie;Burke;Lopez;C;1004002000;CLIENTE;Pimampiro;01/01/2014;M;NO;CASADO;;Digitado
-Anna;Bruce;Stone;Hawkins;C;1002003000;CLIENTE;Mira;10/08/2014;F;NO;VIUDO;2;Mecánico
-Paul;Rose;Carr;Wood;C;1004002000;CLIENTE;Pimampiro;07/06/2014;M;NO;SOLTERO;;Digitado
-Carol;Philip;Rodriguez;Rogers;C;1004002000;CLIENTE;Mira;03/04/2014;M;NO;SOLTERO;1;Carnicero
-David;Mildred;Lee;Allen;C;1002003000;CLIENTE;El Angel;27/02/2014;F;NO;CASADO;;Costurero
-Ralph;Christine;Mendoza;Murphy;C;1002003000;CLIENTE;Pimampiro;02/03/2014;F;NO;DIVORCIADO;1;Heladero
-Sharon;Gerald;Shaw;Banks;C;1004002000;CLIENTE;Mira;08/11/2014;F;NO;CASADO;;Digitado
-Amanda;Jacqueline;Howard;Wells;P;1002003000;CLIENTE;El Angel;08/04/2014;F;NO;DIVORCIADO;0;Comerciante
-Melissa;Nicholas;Dean;Morgan;C;1002003000;CLIENTE;El Angel;27/12/2013;F;NO;SOLTERO;0;Heladero
-Kimberly;;Porter;Dixon;C;1002003000;CLIENTE;Urcuqui;12/05/2014;F;NO;VIUDO;;Heladero
-Clarence;Carolyn;Austin;Smith;C;1004002000;CLIENTE;Pimampiro;16/09/2014;M;NO;CASADO;2;Costurero
-Joan;Sean;Richardson;Jacobs;C;1002003000;CLIENTE;El Angel;30/05/2014;F;NO;SOLTERO;;Escultor
-Anne;Lawrence;Rice;;C;1004002000;CLIENTE;Pimampiro;14/08/2014;M;NO;VIUDO;0;Costurero
-Sharon;Juan;Palmer;;P;1004002000;CLIENTE;El Angel;11/04/2014;F;SI;VIUDO;0;Artesano
-Dennis;Amy;Lawson;Lawson;C;1004002000;CLIENTE;Mira;31/10/2014;M;SI;CASADO;1;Comerciante
-Anthony;Sean;Rose;Rivera;C;1002003000;CLIENTE;Pimampiro;18/02/2014;F;NO;DIVORCIADO;2;Comerciante
-Cheryl;Wayne;Stewart;Freeman;C;1004002000;CLIENTE;El Angel;28/07/2014;F;NO;DIVORCIADO;;Tendero
-Jane;Ruth;Hudson;Wood;C;1004002000;CLIENTE;Pimampiro;15/11/2013;M;NO;SOLTERO;2;Tendero
-Peter;Jean;Jones;Garcia;C;1004002000;CLIENTE;Pimampiro;07/06/2014;M;NO;CASADO;;Costurero
-James;Janice;Johnson;Taylor;C;1004002000;GARANTE;Pimampiro;25/11/2013;M;NO;CASADO;;Comerciante
-Phillip;Catherine;Ryan;Nelson;C;1004002000;CLIENTE;;22/04/2014;F;NO;SOLTERO;;Comerciante
-Andrew;Donald;Kelley;Edwards;P;1002003000;CLIENTE;Mira;18/05/2014;M;NO;SOLTERO;0;Lechero
-Craig;Walter;Duncan;Spencer;C;1004002000;CLIENTE;Pimampiro;03/05/2014;M;NO;CASADO;4;Digitado
-Nicole;Tina;White;Ramos;C;1002003000;CLIENTE;El Angel;15/05/2014;F;NO;SOLTERO;4;Costurero
-Lori;Russell;Fields;Frazier;C;1002003000;CLIENTE;Urcuqui;19/04/2014;M;NO;SOLTERO;0;Carnicero
-Sean;Karen;Hawkins;Rice;C;1004002000;CLIENTE;El Angel;29/08/2014;M;NO;VIUDO;3;Costurero
-Dennis;Randy;Fowler;Rogers;C;1004002000;CLIENTE;Pimampiro;10/03/2014;M;NO;SOLTERO;0;Carnicero
-Clarence;;Welch;Howell;C;1002003000;GARANTE;El Angel;10/02/2014;F;SI;CASADO;1;Lechero
-Linda;Arthur;Garza;Grant;C;1004002000;CLIENTE;Pimampiro;17/04/2014;M;SI;CASADO;;Artesano
-Deborah;Marilyn;Hart;Powell;P;1004002000;CLIENTE;El Angel;29/03/2014;F;NO;CASADO;3;Digitado
-Bonnie;Steven;Mcdonald;Cruz;C;1004002000;CLIENTE;Urcuqui;11/02/2014;M;NO;SOLTERO;;Panadero
-William;Brian;Diaz;Carter;C;1002003000;GARANTE;Pimampiro;22/10/2014;F;NO;SOLTERO;2;Artesano
-Julia;Steve;Porter;;C;1004002000;CLIENTE;Mira;15/10/2014;M;NO;VIUDO;3;Digitado
-Roger;Willie;Foster;Bishop;C;1002003000;CLIENTE;Urcuqui;09/11/2014;F;NO;VIUDO;;Heladero
-Nicholas;James;Barnes;Burns;P;1002003000;GARANTE;Pimampiro;31/01/2014;F;NO;SOLTERO;4;Artesano
-Marilyn;Melissa;Hunter;Ruiz;P;1004002000;CLIENTE;El Angel;11/05/2014;M;NO;SOLTERO;0;Panadero
-Terry;Lillian;Perry;Richards;P;1004002000;CLIENTE;Mira;15/08/2014;M;NO;SOLTERO;2;Lechero
-Ruby;Carlos;Robertson;Lawson;C;1002003000;CLIENTE;Mira;20/01/2014;M;NO;CASADO;;Escultor
-Charles;Julie;Ford;Gibson;C;1002003000;CLIENTE;El Angel;04/09/2014;M;NO;CASADO;;Escultor
-Lori;Ruth;Reyes;Johnson;P;1004002000;CLIENTE;El Angel;08/01/2014;M;NO;DIVORCIADO;2;Escultor
-Antonio;Lawrence;Robinson;Ross;P;1002003000;CLIENTE;Pimampiro;27/09/2014;M;NO;;3;Costurero
-Joe;Marilyn;Stanley;Black;C;1004002000;CLIENTE;Pimampiro;17/12/2013;M;NO;CASADO;;Carnicero
-Sara;Wayne;Chavez;Romero;P;1002003000;GARANTE;Urcuqui;24/04/2014;M;NO;CASADO;3;Escultor
-Catherine;Alice;Armstrong;Rose;C;1002003000;CLIENTE;Urcuqui;18/10/2014;M;NO;SOLTERO;;Comerciante
-David;;Gomez;Ruiz;C;1004002000;CLIENTE;Pimampiro;01/01/2014;F;NO;SOLTERO;3;Panadero
-Annie;Lillian;Ford;Thompson;C;1002003000;CLIENTE;Pimampiro;23/12/2013;M;NO;VIUDO;2;Escultor
-Susan;Paula;Fernandez;Carpenter;C;1004002000;CLIENTE;Mira;27/12/2013;M;NO;CASADO;2;Tendero
-Kevin;Adam;Boyd;Andrews;C;1004002000;CLIENTE;Mira;11/09/2014;F;NO;VIUDO;;Lechero
-Craig;Daniel;Olson;Castillo;C;1004002000;CLIENTE;Urcuqui;10/11/2014;M;NO;CASADO;3;Artesano
-Kevin;Carolyn;Moore;Williamson;C;1002003000;CLIENTE;Mira;18/08/2014;M;NO;CASADO;;Comerciante
-Lori;Albert;Freeman;Ruiz;C;1002003000;CLIENTE;Urcuqui;30/12/2013;M;NO;SOLTERO;2;Panadero
-Todd;Janice;Webb;Collins;C;1002003000;CLIENTE;Urcuqui;24/10/2014;F;SI;CASADO;;Mecánico
-Karen;Kevin;Bishop;Austin;C;1002003000;CLIENTE;Pimampiro;28/09/2014;F;NO;CASADO;3;Tendero
-Adam;Kathleen;Williamson;Myers;C;1002003000;CLIENTE;El Angel;;M;;VIUDO;;Lechero
-Sarah;Phyllis;Richardson;Cruz;C;1004002000;CLIENTE;Urcuqui;14/03/2014;M;NO;DIVORCIADO;0;Digitado
-Ralph;Jessica;Pierce;Reyes;C;1002003000;CLIENTE;Pimampiro;21/12/2013;F;SI;CASADO;;Artesano
-Stephen;James;Long;Ward;C;1002003000;CLIENTE;El Angel;03/08/2014;M;SI;;;Carnicero
-Tammy;Laura;Jackson;Stephens;C;1004002000;GARANTE;Pimampiro;08/08/2014;M;SI;CASADO;0;Heladero
-Judith;Patrick;Sanders;Hart;C;1002003000;CLIENTE;El Angel;21/12/2013;M;NO;CASADO;;Digitado
-Patrick;Jonathan;Gonzales;Rivera;C;1004002000;CLIENTE;El Angel;19/09/2014;F;NO;CASADO;4;Carnicero
-Sean;Matthew;Day;Arnold;C;1004002000;CLIENTE;Pimampiro;22/06/2014;M;NO;SOLTERO;2;Digitado
-Arthur;Patricia;Carter;Owens;P;1002003000;GARANTE;Urcuqui;10/04/2014;M;NO;SOLTERO;3;Digitado
-Matthew;Raymond;Rivera;Austin;C;1004002000;CLIENTE;Mira;07/07/2014;F;SI;CASADO;;Carnicero
-Russell;Margaret;Turner;Perry;C;1004002000;CLIENTE;Pimampiro;20/04/2014;F;NO;CASADO;1;Artesano
-Joan;Jesse;Jordan;Patterson;C;1002003000;CLIENTE;Pimampiro;03/05/2014;M;NO;SOLTERO;1;Heladero
-Richard;Raymond;Ortiz;Peterson;C;1002003000;CLIENTE;Urcuqui;28/05/2014;M;SI;SOLTERO;;Panadero
-Samuel;Larry;Snyder;Castillo;C;1002003000;CLIENTE;Pimampiro;12/01/2014;F;NO;CASADO;2;Comerciante
-Deborah;Philip;Bell;;C;1002003000;CLIENTE;Mira;25/04/2014;F;NO;SOLTERO;2;Escultor
-Norma;Gerald;Patterson;Chavez;P;1004002000;CLIENTE;Pimampiro;04/07/2014;F;NO;VIUDO;2;Carnicero
-Justin;Amy;Austin;Chapman;C;1004002000;GARANTE;El Angel;13/04/2014;F;SI;CASADO;2;Tendero
-Rebecca;Kimberly;Stone;Henderson;C;1004002000;CLIENTE;El Angel;20/12/2013;M;NO;VIUDO;2;Comerciante
-Jimmy;Rachel;Reynolds;Cox;C;1002003000;CLIENTE;El Angel;13/08/2014;F;NO;SOLTERO;;Lechero
-Phyllis;Martha;Gonzalez;Nelson;C;1002003000;CLIENTE;El Angel;03/11/2014;F;NO;CASADO;;Carnicero
-Terry;Russell;Kennedy;Murray;C;1002003000;GARANTE;El Angel;12/09/2014;F;NO;SOLTERO;;Costurero
-Ronald;;Ward;Gibson;C;1004002000;CLIENTE;Pimampiro;22/02/2014;M;NO;CASADO;3;Tendero
-Phyllis;Kathryn;Morris;Morris;C;1004002000;CLIENTE;Pimampiro;02/03/2014;F;NO;CASADO;0;Digitado
-Frank;Craig;Stevens;;C;1002003000;CLIENTE;El Angel;07/05/2014;M;NO;CASADO;1;Mecánico
-Anne;Wanda;Ortiz;Palmer;C;1004002000;CLIENTE;Pimampiro;11/05/2014;M;NO;CASADO;1;Comerciante
-Adam;Steve;Payne;Medina;P;1002003000;CLIENTE;Mira;16/01/2014;F;NO;CASADO;;Lechero
-Brenda;Norma;Dunn;Sanders;C;1004002000;CLIENTE;Urcuqui;05/07/2014;M;NO;SOLTERO;2;Lechero
-Chris;Heather;Wright;Reynolds;C;1004002000;CLIENTE;Urcuqui;19/12/2013;F;SI;SOLTERO;0;Heladero
-Andrea;Deborah;Perry;Ryan;C;1004002000;CLIENTE;Mira;05/03/2014;M;NO;VIUDO;2;Artesano
-Mildred;Sharon;Taylor;King;C;1002003000;GARANTE;Pimampiro;17/11/2013;M;NO;SOLTERO;0;Artesano
-Melissa;Cheryl;Reyes;Hanson;C;1004002000;CLIENTE;El Angel;26/12/2013;F;NO;SOLTERO;0;Tendero
-Roy;Joan;Young;Austin;C;1002003000;CLIENTE;Pimampiro;12/03/2014;F;NO;DIVORCIADO;4;Costurero
-Elizabeth;Gerald;Hill;Bowman;C;1004002000;GARANTE;;23/07/2014;F;NO;CASADO;;Lechero
-Patricia;Bobby;Harris;Sanchez;P;1004002000;CLIENTE;El Angel;06/05/2014;F;SI;;2;Mecánico
-Patricia;Brenda;Dixon;Reid;C;1002003000;CLIENTE;Mira;13/11/2014;M;NO;CASADO;;Carnicero
-Barbara;Annie;Tucker;Perry;C;1002003000;CLIENTE;;06/09/2014;M;NO;VIUDO;2;Mecánico
-Jane;Andrew;Ford;Wilson;C;1004002000;CLIENTE;El Angel;07/08/2014;M;NO;SOLTERO;2;Panadero
-Brenda;Joan;Daniels;Adams;C;1002003000;CLIENTE;Pimampiro;17/01/2014;M;NO;CASADO;;Heladero
-Heather;Wanda;Brown;Barnes;C;1004002000;CLIENTE;El Angel;24/07/2014;M;NO;SOLTERO;4;Heladero
-Irene;Theresa;Smith;Boyd;C;1004002000;CLIENTE;;12/12/2013;F;NO;SOLTERO;1;Digitado
-Nancy;Victor;Reid;Carpenter;C;1002003000;CLIENTE;Pimampiro;11/03/2014;F;SI;SOLTERO;;Mecánico
-Jeremy;Albert;Peterson;Gray;C;1004002000;CLIENTE;El Angel;22/04/2014;M;NO;CASADO;3;Carnicero
-Marilyn;Jose;Banks;Ramirez;C;1004002000;CLIENTE;El Angel;17/06/2014;F;NO;DIVORCIADO;3;Digitado
-Howard;Kelly;Alexander;Morales;C;1002003000;CLIENTE;El Angel;09/07/2014;M;NO;CASADO;3;Carnicero
-Teresa;Todd;West;Hansen;C;1002003000;CLIENTE;El Angel;16/05/2014;F;NO;CASADO;1;Comerciante
-Carl;Laura;Freeman;Tucker;C;1002003000;CLIENTE;El Angel;05/12/2013;M;NO;CASADO;3;Tendero
-Tina;Roger;Chapman;Shaw;C;1004002000;CLIENTE;Pimampiro;21/03/2014;M;NO;CASADO;;Lechero
-Albert;Paul;Reid;Ray;C;1004002000;CLIENTE;;05/05/2014;M;NO;SOLTERO;;Mecánico
-Johnny;Stephanie;Kelley;Harris;C;1004002000;CLIENTE;El Angel;12/07/2014;M;NO;DIVORCIADO;4;Panadero
-Ashley;Thomas;Hicks;Boyd;C;1004002000;CLIENTE;Urcuqui;04/11/2014;F;NO;CASADO;3;Costurero
-Melissa;Joshua;Peterson;Cox;C;1004002000;CLIENTE;Urcuqui;02/05/2014;M;NO;;1;Artesano
-Amanda;Phillip;Rodriguez;Ruiz;C;1002003000;CLIENTE;Urcuqui;09/11/2014;M;NO;SOLTERO;;Carnicero
-Phyllis;Cheryl;Morrison;Lee;P;1004002000;GARANTE;El Angel;26/02/2014;F;NO;CASADO;;Digitado
-Theresa;Juan;Mcdonald;Barnes;P;1002003000;CLIENTE;Urcuqui;17/05/2014;F;NO;VIUDO;3;Heladero
-Craig;Lillian;Coleman;;C;1002003000;CLIENTE;Urcuqui;11/03/2014;M;NO;SOLTERO;;Digitado
-Carolyn;Andrea;Howard;Stevens;P;1002003000;CLIENTE;Urcuqui;15/03/2014;M;NO;SOLTERO;2;Comerciante
-Anna;Shirley;Rice;Gray;C;1004002000;CLIENTE;Mira;17/10/2014;M;NO;CASADO;2;Escultor
-Mary;Phillip;Moore;Ward;C;1002003000;CLIENTE;Urcuqui;22/04/2014;F;NO;SOLTERO;0;Lechero
-Charles;Timothy;Stewart;Tucker;C;1004002000;CLIENTE;Pimampiro;06/08/2014;M;NO;VIUDO;;Escultor
-Rachel;Doris;Young;Richards;P;1002003000;CLIENTE;;20/11/2013;F;NO;CASADO;2;Tendero
+PRIMER NOMBRE;SEGUNDO NOMBRE;APELLIDO PATERNO;APELLIDO MATERNO;CEDULA/PASAPORTE;SUCURSAL
+Andrea;Anna;Foster;Gray;1004002000;
+Michael;Ashley;Shaw;Gardner;1002003000;
+Gloria;Gerald;Wright;Willis;1002003000;
+Gregory;Norma;Nguyen;Evans;1004002000;
+Albert;;Ortiz;Jackson;1002003000;
+Theresa;Patricia;Foster;Palmer;1002003000;
+Russell;Barbara;Bowman;Riley;1002003000;
+John;Sean;Hunt;Martinez;1002003000;
+Lisa;Mary;Perkins;Torres;1004002000;
+Annie;Harry;Murphy;Alvarez;1002003000;
+Wanda;Jeffrey;Barnes;Warren;1004002000;
+Doris;Louis;Hayes;Freeman;1002003000;
+Jeffrey;Adam;Webb;Hamilton;1002003000;
+Timothy;Linda;Ramos;Gonzales;1002003000;
+Kathy;Judy;Cunningham;Ross;1004002000;
+Julie;Jane;White;Marshall;1002003000;
+Scott;Earl;James;Gardner;1004002000;
+Justin;Phillip;Gibson;Bennett;1002003000;
+Tina;Anne;Riley;Castillo;1002003000;
+Ronald;Ruby;Wallace;Oliver;1004002000;
+Betty;Carolyn;Butler;Barnes;1002003000;
+Jessica;;Johnston;Berry;1004002000;
+Jerry;Nicholas;Mitchell;Wagner;1002003000;
+Lori;Keith;Palmer;Fisher;1004002000;
+Lisa;Andrew;Walker;Oliver;1004002000;
+Russell;Ruth;Gutierrez;;1002003000;
+Steve;Juan;Fernandez;Hansen;1004002000;
+Paul;Deborah;Moore;Butler;1004002000;
+Cheryl;Kevin;Cox;Jenkins;1002003000;
+Kelly;;Moore;Simmons;1002003000;
+Edward;Juan;Nguyen;Murphy;1004002000;
+Angela;Joe;Day;Jacobs;1002003000;
+Debra;Nicole;Gomez;Gardner;1004002000;
+Larry;Linda;Franklin;Lewis;1004002000;
+Tina;Jacqueline;Welch;Gutierrez;1004002000;
+Nicholas;Sandra;Clark;Murphy;1002003000;
+Sara;Cheryl;James;Hunter;1004002000;
+Lawrence;Victor;Vasquez;Carroll;1002003000;
+Linda;Stephanie;Ferguson;Clark;1004002000;
+Jimmy;Joan;Romero;Rivera;1004002000;
+Samuel;Phyllis;Lynch;Warren;1002003000;
+Kimberly;Patrick;Campbell;Marshall;1002003000;
+Julia;Phillip;Tucker;Meyer;1002003000;
+Charles;Thomas;Knight;Scott;1002003000;
+Nicole;Donald;Pierce;;1004002000;
+Diana;Kenneth;Hawkins;Dean;1004002000;
+Jennifer;Phillip;Mcdonald;Wells;1004002000;
+Arthur;Heather;Wood;;1002003000;
+Jane;Louis;Cunningham;Wallace;1002003000;
+Jean;;Ramirez;Mendoza;1002003000;
+Andrew;Justin;Long;Miller;1004002000;
+Marie;Tammy;Rodriguez;Bradley;1004002000;
+Phillip;Philip;Meyer;Morris;1002003000;
+Adam;John;Ortiz;Long;1002003000;
+Catherine;Kelly;Butler;Howell;1002003000;
+Kenneth;Robin;Morris;Franklin;1002003000;
+Ashley;Betty;Jenkins;Johnston;1004002000;
+Gary;Beverly;Black;Powell;1002003000;
+Daniel;Brian;Lewis;Morris;1004002000;
+David;Larry;Pierce;George;1002003000;
+Dennis;Michelle;Wagner;Hunt;1004002000;
+Kathryn;Heather;Jordan;Vasquez;1004002000;
+Kathryn;Eugene;Fox;Gomez;1004002000;
+Peter;Anne;Berry;Gomez;1002003000;
+Kathy;Scott;Rogers;Morris;1004002000;
+Brenda;Julia;Miller;Baker;1004002000;
+Jane;Anthony;Willis;Murray;1004002000;
+Jean;Norma;Bishop;Jenkins;1004002000;
+Doris;Howard;Hudson;Ford;1002003000;
+Robin;Jane;Hughes;Marshall;1004002000;
+Rose;Betty;Morgan;Watson;1004002000;
+Theresa;Julie;Cook;Long;1002003000;
+Henry;Gregory;Allen;Lopez;1002003000;
+Victor;William;Lopez;Cole;1002003000;
+Gloria;Susan;Arnold;Fernandez;1002003000;
+Ryan;Clarence;Wagner;White;1002003000;
+Carol;Ruth;Hawkins;Ortiz;1002003000;
+Louise;Wanda;Thomas;Dunn;1004002000;
+Jacqueline;Heather;Stewart;Patterson;1004002000;
+Philip;William;Rodriguez;Campbell;1002003000;
+Samuel;Aaron;Hudson;;1002003000;
+Raymond;Virginia;Lopez;Nelson;1004002000;
+Samuel;Kenneth;Diaz;Owens;1004002000;
+Patrick;Julia;Romero;Washington;1004002000;
+Carlos;Alice;Williams;Perez;1004002000;
+James;Rose;Rice;Price;1004002000;
+Richard;Albert;Hudson;Owens;1002003000;
+Eric;Diana;Martinez;Barnes;1002003000;
+Kathy;Bonnie;Collins;Hayes;1002003000;
+Ernest;Fred;Hawkins;Lawrence;1002003000;
+Dennis;Peter;Peters;Stephens;1002003000;
+Arthur;Jacqueline;Lawrence;Matthews;1002003000;
+Alan;Jason;Gonzalez;Snyder;1004002000;
+Justin;Jesse;Smith;White;1004002000;
+Lawrence;Cynthia;Ward;Wood;1004002000;
+Paul;Teresa;Nguyen;Stanley;1004002000;
+Frank;Lisa;Young;Carroll;1002003000;
+Betty;Timothy;Mccoy;Fernandez;1004002000;
+Richard;Alan;Porter;Gardner;1002003000;
+Robert;Edward;Jones;Carr;1004002000;
+George;Lawrence;Nelson;Holmes;1004002000;
+Joe;Jason;Hayes;Fuller;1004002000;
+Justin;Paula;Reyes;Harrison;1002003000;
+Emily;Roger;Scott;Gilbert;1002003000;
+Harry;Lillian;Lane;Walker;1002003000;
+Eugene;Harry;Griffin;Morris;1004002000;
+Emily;Samuel;Lawrence;Mccoy;1002003000;
+Anna;Lois;Gutierrez;Mason;1004002000;
+Betty;;Boyd;Reed;1004002000;
+Steven;Jessica;Fowler;Hunter;1004002000;
+Diana;Diane;Jones;Cole;1004002000;
+Carolyn;Harry;Banks;Griffin;1002003000;
+Larry;Howard;Carr;Rose;1002003000;
+Henry;Sean;Cunningham;Hunt;1002003000;
+Phyllis;Julie;Watkins;Ward;1002003000;
+Kathleen;Virginia;Rose;Ruiz;1004002000;
+Marilyn;Johnny;Mendoza;Brown;1002003000;
+Steve;Gary;Gibson;Coleman;1004002000;
+Kenneth;Robin;Wagner;Ryan;1002003000;
+Carolyn;Ruby;Marshall;Kelly;1004002000;
+Barbara;Martin;Cooper;King;1002003000;
+George;Victor;Matthews;Porter;1002003000;
+Lori;Maria;Jenkins;Bennett;1002003000;
+Benjamin;Lois;Duncan;Crawford;1002003000;
+Jesse;Billy;Fields;Wilson;1002003000;
+Susan;Lillian;Davis;Collins;1002003000;
+Matthew;Lillian;Butler;Fox;1004002000;
+Nicole;Albert;Scott;Thompson;1002003000;
+Justin;Cynthia;Gonzalez;Olson;1002003000;
+Joan;Joyce;Russell;Moore;1004002000;
+Thomas;Aaron;Hawkins;;1002003000;
+Ronald;Margaret;Daniels;Jones;1004002000;
+Gary;Emily;Tucker;Lynch;1004002000;
+Charles;Charles;Carter;Bailey;1002003000;
+Edward;Pamela;Ryan;Burke;1002003000;
+Denise;William;Nguyen;Harrison;1002003000;
+Doris;Theresa;Fernandez;Watkins;1004002000;
+Jesse;Beverly;Snyder;Ruiz;1002003000;
+Edward;Helen;Freeman;Smith;1004002000;
+Roy;Aaron;Kennedy;Fowler;1004002000;
+Jerry;Lawrence;Dixon;Jacobs;1004002000;
+Lois;Eugene;Powell;Little;1002003000;
+Douglas;Marie;Garza;Garza;1004002000;
+Ashley;Ann;Wood;Smith;1004002000;
+Frank;Brian;Torres;Harper;1004002000;
+Nicholas;Stephanie;Wilson;Morales;1002003000;
+Denise;Jerry;Vasquez;Warren;1002003000;
+Douglas;Jane;Ryan;Bell;1002003000;
+Patricia;;West;Hughes;1002003000;
+Scott;Sean;Matthews;Johnston;1004002000;
+Joan;Angela;Wagner;Barnes;1004002000;
+Jack;Sharon;Mills;Arnold;1002003000;
+Anthony;Teresa;Nichols;Rivera;1002003000;
+Carolyn;Ann;Cooper;Harper;1004002000;
+Eric;Virginia;Harper;Warren;1004002000;
+Samuel;Jacqueline;Gray;Harris;1002003000;
+Katherine;Judy;Lawrence;Perkins;1004002000;
+Thomas;Robin;Stanley;Clark;1002003000;
+Wanda;Ruby;Davis;Fernandez;1002003000;
+Jonathan;Lawrence;Scott;Duncan;1004002000;
+Peter;Andrew;Bennett;Adams;1002003000;
+Peter;Carlos;Stone;Burton;1002003000;
+Andrew;Charles;Hanson;Nelson;1004002000;
+Jeremy;Larry;Owens;Ellis;1002003000;
+Katherine;Frank;Armstrong;Snyder;1002003000;
+Irene;Amy;Butler;;1002003000;
+Brenda;Steve;Lawrence;;1004002000;
+Louise;Mark;Turner;Hansen;1004002000;
+Thomas;Lois;Griffin;King;1004002000;
+Daniel;Andrea;Morris;Kim;1002003000;
+Teresa;Patrick;Armstrong;Hamilton;1004002000;
+Rose;Joyce;Robertson;Kelley;1002003000;
+Sara;Elizabeth;Mcdonald;Ramirez;1004002000;
+Howard;Charles;Watson;Phillips;1002003000;
+Jeremy;Nicole;Martin;Hamilton;1004002000;
+Jeffrey;Teresa;Wright;Rodriguez;1002003000;
+Martha;Nancy;Morales;Crawford;1004002000;
+Janet;Ralph;Hayes;Welch;1002003000;
+Joshua;Jessica;Bradley;Welch;1002003000;
+Joseph;Judy;Gibson;Hughes;1004002000;
+Heather;Antonio;Crawford;Marshall;1004002000;
+Alice;Carolyn;Montgomery;Mason;1004002000;
+Adam;Bobby;Daniels;Mccoy;1002003000;
+Victor;Diana;Hart;James;1002003000;
+Matthew;Nancy;Clark;Robertson;1004002000;
+Joe;Antonio;Kim;George;1002003000;
+Ralph;Matthew;Berry;Perry;1004002000;
+Jason;Ruth;Walker;Willis;1002003000;
+Susan;Gary;Reid;Morales;1002003000;
+Jesse;Gary;Wagner;Dunn;1004002000;
+Craig;Jose;Cook;Graham;1004002000;
+Arthur;;Welch;Johnson;1002003000;
+Craig;Virginia;Black;Bowman;1002003000;
+Larry;Harry;Long;Mason;1002003000;
+Ann;Steve;Kelly;Campbell;1002003000;
+Alice;Rebecca;Morgan;Diaz;1004002000;
+Arthur;Jessica;Allen;Ramirez;1002003000;
+Jose;Gloria;Ramos;Holmes;1002003000;
+Carl;Scott;Snyder;Harvey;1002003000;
+Louise;Tina;Mccoy;Jenkins;1004002000;
+Johnny;;Thompson;Rivera;1004002000;
+Jeffrey;Benjamin;Anderson;Thompson;1004002000;
+Tammy;Jennifer;Wells;Baker;1002003000;
+Gloria;Daniel;Welch;Jackson;1002003000;
+Steven;Keith;Mitchell;Green;1002003000;
+Samuel;Susan;Woods;Schmidt;1004002000;
+Joshua;Harold;Fisher;Bennett;1004002000;
+Janice;Cheryl;Allen;Medina;1002003000;
+Peter;Maria;Spencer;Ramos;1004002000;
+Irene;Matthew;Fowler;George;1002003000;
+Karen;Nicholas;Hunter;Ryan;1002003000;
+Kathryn;Anne;Evans;Anderson;1004002000;
+Julie;Alan;Hernandez;Coleman;1004002000;
+Rebecca;David;Hansen;Wagner;1004002000;
+Lisa;Ryan;Crawford;Lee;1004002000;
+Dorothy;;Burke;Parker;1002003000;
+Lori;Judy;Long;Campbell;1004002000;
+Todd;Kevin;Stephens;Price;1004002000;
+Brenda;Elizabeth;Richards;Hudson;1004002000;
+Lawrence;Jennifer;Jones;Lawrence;1004002000;
+Aaron;Laura;Stone;Warren;1002003000;
+Donald;Wayne;Elliott;Long;1004002000;
+Joe;Andrea;Cox;Baker;1002003000;
+George;Judith;Rice;Thomas;1004002000;
+Helen;Gerald;Moreno;Thomas;1004002000;
+Joseph;Anthony;Kim;Mendoza;1004002000;
+Elizabeth;Rose;Wood;Thomas;1004002000;
+Benjamin;Jeremy;Porter;Diaz;1002003000;
+Richard;Janice;Hughes;Carpenter;1004002000;
+Jesse;Albert;Matthews;Butler;1002003000;
+Steven;Timothy;Roberts;Moreno;1002003000;
+Sharon;Peter;Ramirez;Patterson;1004002000;
+Joe;Jacqueline;Allen;Hanson;1004002000;
+Melissa;Steve;Gray;Bradley;1004002000;
+Benjamin;Julia;Payne;Johnston;1004002000;
+Frank;Carlos;Gutierrez;Evans;1002003000;
+Gary;Margaret;Gordon;Kennedy;1002003000;
+Lois;Carlos;Diaz;Richardson;1002003000;
+Philip;Carlos;Hudson;Johnson;1004002000;
+Frank;Gerald;Cruz;Hanson;1002003000;
+Emily;Justin;Hanson;Allen;1004002000;
+Steve;Billy;Edwards;Dunn;1002003000;
+Joyce;;Hawkins;Murphy;1002003000;
+Carlos;Sean;Bradley;Carter;1004002000;
+Julie;Angela;Hawkins;Jones;1004002000;
+Nicholas;Sandra;Garrett;Davis;1004002000;
+Sharon;Gloria;Matthews;Mason;1004002000;
+Paul;Antonio;Alvarez;Carroll;1002003000;
+Barbara;Thomas;Ward;Mitchell;1004002000;
+Doris;Paula;Watkins;Edwards;1004002000;
+Norma;Larry;Hart;Owens;1004002000;
+Martin;Linda;Rogers;;1002003000;
+Judith;Judy;Wright;Scott;1002003000;
+Alice;Willie;Lewis;Wagner;1004002000;
+Peter;Anna;Morris;Pierce;1002003000;
+Anne;Brandon;Pierce;James;1002003000;
+Beverly;Albert;Schmidt;Reynolds;1002003000;
+Doris;Patrick;Fox;Richardson;1002003000;
+Joe;Ryan;Turner;Martin;1002003000;
+Randy;Scott;Lawson;Johnston;1004002000;
+Angela;Carol;Boyd;Parker;1004002000;
+Nicole;Mary;Rivera;Warren;1002003000;
+Christina;Roy;Reynolds;Mason;1004002000;
+Rebecca;Jack;Crawford;Kennedy;1004002000;
+Sarah;Donald;Ramirez;Montgomery;1002003000;
+Ronald;Kimberly;Hill;Porter;1002003000;
+Gary;Aaron;Austin;Robinson;1002003000;
+Jesse;Jessica;Kelly;Rodriguez;1002003000;
+Keith;Roger;Lane;Young;1004002000;
+Jennifer;Diane;Adams;Garrett;1004002000;
+Phillip;Jason;George;Wheeler;1004002000;
+Theresa;Mary;Fuller;Gibson;1002003000;
+Brian;Joe;Bailey;Ray;1004002000;
+Charles;Carol;Williamson;Marshall;1004002000;
+Timothy;Adam;Kelley;Butler;1002003000;
+Steven;;Spencer;Moore;1002003000;
+Nicholas;Wanda;Collins;Carter;1002003000;
+Rebecca;Clarence;King;Daniels;1004002000;
+Cynthia;Thomas;Bowman;Nichols;1004002000;
+Daniel;Carolyn;Meyer;Mills;1002003000;
+Tammy;Maria;Shaw;Alvarez;1004002000;
+Ashley;Alan;Adams;Ray;1004002000;
+Larry;Jesse;Morris;Ford;1002003000;
+James;Thomas;Morris;Kim;1004002000;
+Laura;Walter;Vasquez;Rivera;1004002000;
+Russell;Jeremy;Hawkins;Andrews;1004002000;
+Jason;Donna;Larson;Turner;1002003000;
+Sandra;Juan;Wheeler;Walker;1004002000;
+Heather;Eric;Ramirez;Webb;1004002000;
+Joan;Christine;King;;1004002000;
+Jerry;Louise;Garcia;Lawson;1004002000;
+Kimberly;Carol;Mccoy;;1002003000;
+Jennifer;Andrew;Ramirez;Taylor;1002003000;
+Laura;Emily;Daniels;Arnold;1002003000;
+Kimberly;Jeffrey;White;Warren;1004002000;
+Doris;Scott;Morales;Young;1002003000;
+Phyllis;Rebecca;Richardson;Walker;1002003000;
+Teresa;Samuel;Lewis;Jones;1004002000;
+Justin;Cheryl;Alvarez;Cooper;1002003000;
+Jean;Mary;Simmons;Berry;1004002000;
+Cynthia;Benjamin;Hunt;Alexander;1002003000;
+Rose;Ryan;Vasquez;;1004002000;
+Melissa;Susan;Tucker;Hanson;1004002000;
+Phyllis;Tina;Hunter;Spencer;1002003000;
+Gerald;Adam;George;Chavez;1002003000;
+Gary;Joan;Russell;Burton;1004002000;
+Gregory;Ronald;Henderson;Rice;1004002000;
+Robert;Cynthia;Weaver;Armstrong;1004002000;
+Brian;Steven;King;Ford;1004002000;
+Joyce;Mark;Sullivan;Cooper;1004002000;
+Kathy;Cynthia;Barnes;Williams;1002003000;
+Anne;Christine;Spencer;Hayes;1002003000;
+Evelyn;Louise;Wheeler;Larson;1004002000;
+Kathleen;Ernest;Torres;Mills;1004002000;
+Gary;Peter;Martinez;Ray;1004002000;
+Peter;Helen;Griffin;Sims;1004002000;
+Kathleen;Rose;Kim;Henderson;1004002000;
+Emily;Robin;Cunningham;Powell;1004002000;
+Michelle;Frances;Garza;Mendoza;1002003000;
+Walter;Karen;Howard;Hall;1004002000;
+Phillip;Patricia;Peterson;Stewart;1004002000;
+Ralph;Raymond;Riley;Morris;1004002000;
+Joseph;;Davis;Jenkins;1004002000;
+Christopher;Ruby;Bishop;Miller;1004002000;
+Kenneth;Diane;Garza;Lewis;1004002000;
+Jason;Terry;Black;Russell;1002003000;
+Bonnie;;Cook;;1002003000;
+Denise;Victor;Howard;Cook;1004002000;
+Roger;Melissa;Duncan;Anderson;1004002000;
+Sean;Anna;Lawson;Fowler;1004002000;
+Randy;Ashley;Myers;Hawkins;1004002000;
+Jonathan;Tammy;Morgan;Price;1004002000;
+Julie;Scott;Fuller;Martinez;1004002000;
+Ryan;Thomas;Chavez;Thomas;1002003000;
+Terry;Lawrence;Carr;Alexander;1002003000;
+Wayne;Jeffrey;Scott;Henderson;1002003000;
+Janet;Julia;Howard;;1002003000;
+Nancy;Martin;Rice;Daniels;1002003000;
+Joyce;Jean;Owens;Lawrence;1004002000;
+Robin;William;Bell;Ryan;1004002000;
+Alan;Dorothy;Henry;Kelly;1004002000;
+Denise;Scott;Walker;Larson;1004002000;
+Scott;Ruby;Fisher;Mason;1002003000;
+Rachel;John;Howard;Morales;1002003000;
+Fred;Angela;Stewart;Hawkins;1004002000;
+Shawn;Willie;Lawrence;Riley;1004002000;
+Nicole;Barbara;Ramos;Romero;1002003000;
+Willie;Lori;Howard;Cruz;1002003000;
+Ashley;Kathy;Austin;Boyd;1004002000;
+Walter;Bruce;Ward;Frazier;1004002000;
+Samuel;Cynthia;Lawson;Berry;1002003000;
+Michael;Peter;Spencer;Carpenter;1002003000;
+Angela;Andrea;Harrison;Perkins;1002003000;
+Walter;Julie;Morgan;Jacobs;1004002000;
+Jennifer;Ann;Armstrong;Smith;1002003000;
+Anthony;Judy;Kelly;Bryant;1004002000;
+Beverly;Aaron;Willis;Powell;1004002000;
+Judy;Dorothy;Stone;;1004002000;
+Samuel;Martin;Rice;Little;1002003000;
+Maria;Willie;Shaw;Rice;1004002000;
+Jacqueline;Samuel;Hall;Scott;1002003000;
+Richard;Wanda;Long;Hanson;1004002000;
+Thomas;Kelly;Cooper;Sims;1004002000;
+Gerald;Chris;Hunter;Davis;1004002000;
+Denise;John;Roberts;Walker;1002003000;
+Jessica;Ralph;Jenkins;Bradley;1002003000;
+Janice;Tammy;Fowler;Cox;1004002000;
+Anna;Diane;Robinson;Harvey;1002003000;
+Kathryn;Mildred;Vasquez;Price;1004002000;
+Marie;Ronald;Collins;Mccoy;1004002000;
+Joyce;Rachel;Martinez;Hicks;1004002000;
+Ralph;Douglas;Nichols;Price;1004002000;
+Marilyn;Andrea;Bradley;Sims;1004002000;
+Maria;Julia;Wagner;Watson;1004002000;
+Walter;Douglas;Howell;Snyder;1004002000;
+Jennifer;Laura;Knight;Torres;1002003000;
+Peter;Jeremy;Parker;Campbell;1002003000;
+Albert;Frank;Kim;Hudson;1004002000;
+Steve;Sarah;Rogers;;1002003000;
+Nicole;Catherine;Mendoza;Ryan;1004002000;
+Linda;Kelly;Burns;Griffin;1004002000;
+Terry;Steve;Scott;Ruiz;1002003000;
+Adam;Joseph;Burns;Medina;1004002000;
+Sean;Elizabeth;Frazier;Hughes;1002003000;
+Jimmy;Wayne;Hughes;Austin;1004002000;
+Deborah;Ann;Hawkins;Morales;1004002000;
+Judith;Justin;Lopez;Cruz;1004002000;
+Shirley;Ruth;Young;Taylor;1004002000;
+Michael;William;Kelley;Elliott;1004002000;
+Martin;Harold;Harvey;Franklin;1002003000;
+Wanda;Bobby;Clark;Perry;1004002000;
+Jessica;Kathy;Lawrence;Morris;1002003000;
+Anne;Jacqueline;Frazier;Marshall;1002003000;
+Shirley;Robert;Wagner;Butler;1002003000;
+Ruth;Willie;Gilbert;Scott;1004002000;
+Donald;Christina;Lewis;Sullivan;1002003000;
+Matthew;John;Johnston;Moore;1004002000;
+Jeffrey;Gloria;Scott;Murray;1004002000;
+Pamela;Johnny;Day;Ross;1002003000;
+Brandon;Russell;Wallace;Richards;1004002000;
+Walter;Nicholas;Carroll;Romero;1002003000;
+Ryan;Shawn;Thompson;;1004002000;
+Joshua;Helen;Banks;Wagner;1004002000;
+Jose;Norma;Sullivan;Thompson;1004002000;
+Stephanie;Janice;Torres;Chapman;1002003000;
+Chris;Anna;Jordan;Riley;1004002000;
+Christina;Donald;Cunningham;Stanley;1004002000;
+Judith;Justin;Evans;Shaw;1004002000;
+Scott;Lisa;Hernandez;Harvey;1002003000;
+Michelle;Debra;Miller;Bell;1002003000;
+Louis;Timothy;Greene;Riley;1002003000;
+Carol;Beverly;Nichols;Ford;1004002000;
+Betty;Charles;Perez;Gordon;1004002000;
+Jane;Charles;White;Moreno;1004002000;
+Todd;Wayne;Griffin;Chapman;1004002000;
+Christopher;Wanda;Jones;Turner;1002003000;
+Lawrence;Victor;Parker;Martin;1002003000;
+Donald;Jimmy;Ortiz;;1004002000;
+Kevin;Victor;Castillo;Jacobs;1004002000;
+Marie;Scott;Peterson;Barnes;1002003000;
+Elizabeth;Robin;Nelson;Burke;1004002000;
+Joshua;Juan;Ward;Spencer;1004002000;
+Julia;Gerald;Marshall;Fernandez;1004002000;
+Donna;Mary;Montgomery;Harrison;1004002000;
+Patrick;Gloria;Myers;Taylor;1002003000;
+Paula;Rebecca;Burns;Ramirez;1004002000;
+Heather;Antonio;Diaz;Evans;1002003000;
+Ralph;Timothy;Kennedy;Ruiz;1002003000;
+Bobby;Joshua;Rogers;Montgomery;1002003000;
+James;Heather;Hudson;Alexander;1002003000;
+Teresa;Kathy;Stewart;Hughes;1004002000;
+Albert;Fred;Peters;Sanchez;1002003000;
+Catherine;Willie;Stone;Knight;1004002000;
+Teresa;Kathryn;Wood;Perry;1002003000;
+Debra;Ralph;Kim;Murphy;1004002000;
+Jimmy;Maria;Harrison;Boyd;1002003000;
+Christine;Andrea;Cruz;Day;1002003000;
+Laura;Ernest;Adams;Hanson;1002003000;
+Virginia;Victor;Castillo;Romero;1004002000;
+Arthur;Walter;Jenkins;Burke;1002003000;
+Kathryn;Sharon;Montgomery;Hill;1004002000;
+John;Bonnie;King;Stevens;1004002000;
+Jean;Carlos;Anderson;Martin;1004002000;
+Wayne;Anna;Richards;Johnston;1004002000;
+Carol;Pamela;Boyd;Ferguson;1002003000;
+Tina;Jeffrey;Harper;Rodriguez;1004002000;
+Robin;;Wells;Stone;1002003000;
+Mark;Ashley;Perkins;Taylor;1004002000;
+Emily;Diana;Watson;Russell;1004002000;
+Ryan;Janet;Bishop;Fisher;1002003000;
+Juan;Ernest;Warren;Walker;1004002000;
+Eric;Susan;Spencer;Sims;1004002000;
+Gloria;Kathy;Wheeler;;1002003000;
+Matthew;Andrew;Adams;Montgomery;1004002000;
+Frank;Juan;Porter;Elliott;1004002000;
+Rose;Johnny;Grant;;1004002000;
+Nicole;Gerald;Daniels;Arnold;1002003000;
+Julie;Henry;Edwards;Knight;1002003000;
+Antonio;Louis;Cook;Kennedy;1004002000;
+Ryan;Dennis;Greene;Hall;1002003000;
+Annie;Theresa;Peters;Harper;1002003000;
+Brian;Katherine;Kelly;Roberts;1002003000;
+Jeffrey;Ryan;Cole;Robertson;1004002000;
+Jason;Juan;Butler;Collins;1004002000;
+Shirley;Carl;Alvarez;Davis;1002003000;
+James;Adam;Garcia;Ferguson;1004002000;
+Sharon;Tina;Garrett;Wood;1002003000;
+David;Rachel;Wood;Hart;1002003000;
+Lisa;Kimberly;Jackson;Meyer;1004002000;
+Russell;Eric;Medina;Patterson;1004002000;
+Diana;Martha;Davis;;1004002000;
+Bruce;Denise;Perez;King;1004002000;
+Rose;Katherine;Tucker;Sanchez;1002003000;
+Virginia;Arthur;Cox;Cruz;1004002000;
+Theresa;Stephanie;Pierce;Wheeler;1004002000;
+Eugene;Nicholas;Hicks;Cruz;1002003000;
+Billy;Martha;Roberts;Holmes;1004002000;
+Ronald;Shirley;Perry;Morris;1002003000;
+Lori;Ryan;Ray;Garcia;1002003000;
+Ashley;Patricia;Frazier;Austin;1004002000;
+Janet;Scott;Green;;1004002000;
+Randy;Johnny;Garza;Fox;1002003000;
+Julia;Dorothy;Flores;Richardson;1002003000;
+Andrea;Nancy;Freeman;Gray;1002003000;
+James;Norma;Sanchez;Williams;1004002000;
+Ruby;Johnny;Young;Greene;1002003000;
+Robin;Edward;Romero;Robertson;1002003000;
+Virginia;Jonathan;Boyd;Garrett;1002003000;
+Roger;James;Stone;Medina;1002003000;
+Annie;Jean;Roberts;Nguyen;1002003000;
+Jason;Harry;Bailey;Smith;1004002000;
+Gerald;Alan;Chavez;Riley;1002003000;
+Patrick;Terry;Ray;Parker;1002003000;
+Nicholas;Catherine;Oliver;;1002003000;
+Raymond;Susan;Perry;Ray;1002003000;
+Denise;Louis;Ferguson;Berry;1002003000;
+Patrick;Diana;Carr;Perez;1002003000;
+Denise;Joseph;Mills;Bryant;1004002000;
+Margaret;Sandra;Sanchez;Lane;1002003000;
+Michael;Matthew;Taylor;Simpson;1002003000;
+Earl;Katherine;Harvey;Murphy;1002003000;
+Howard;Maria;Thomas;Ramos;1004002000;
+Gloria;Ralph;Riley;Hill;1004002000;
+Larry;Ann;Arnold;Ray;1002003000;
+Chris;Harry;Gray;Woods;1004002000;
+Pamela;Doris;Romero;Gibson;1002003000;
+Dennis;Edward;Bishop;Richards;1004002000;
+Ernest;Marilyn;Sims;Mills;1002003000;
+Paula;Laura;Cook;Wheeler;1002003000;
+Kimberly;Carolyn;Payne;Evans;1002003000;
+Rachel;Pamela;Carroll;Murphy;1002003000;
+Roy;Ashley;Coleman;Carpenter;1004002000;
+Russell;Mark;Wheeler;West;1004002000;
+Dorothy;Peter;Rodriguez;Robinson;1002003000;
+David;Adam;Hughes;Green;1004002000;
+Clarence;Kathleen;Reed;Lawrence;1002003000;
+Johnny;Dorothy;Harper;Ward;1004002000;
+Joe;Frank;Snyder;Turner;1002003000;
+Michelle;Johnny;Roberts;Hawkins;1004002000;
+Antonio;Julie;Jenkins;Hanson;1004002000;
+Heather;Andrea;Kelly;Brooks;1002003000;
+Nicole;Judith;Mcdonald;Nichols;1002003000;
+Laura;Frank;Richards;Crawford;1002003000;
+Robert;Lillian;Lopez;Freeman;1004002000;
+Mildred;Robert;Phillips;Williams;1004002000;
+Gerald;Lillian;Gardner;Rivera;1002003000;
+Carl;Pamela;Berry;Russell;1002003000;
+Catherine;Earl;Parker;Crawford;1004002000;
+Anthony;Harry;Ramos;Parker;1002003000;
+Frances;Arthur;Dean;Ryan;1002003000;
+Jack;Julie;Watkins;Ford;1002003000;
+Richard;Beverly;Romero;Kelly;1004002000;
+Martha;Eric;Russell;Edwards;1002003000;
+Carolyn;Diane;Stone;Nelson;1002003000;
+Carlos;Nancy;Sims;Nguyen;1004002000;
+Julie;Michelle;Gonzalez;Pierce;1004002000;
+Lori;Maria;Harper;Fields;1004002000;
+Brian;Tina;Little;Garcia;1004002000;
+Randy;Steve;Henderson;Gardner;1002003000;
+Donna;Thomas;Hansen;Roberts;1004002000;
+Beverly;Emily;Burns;Pierce;1004002000;
+Marilyn;Todd;Montgomery;Ross;1002003000;
+Jeffrey;Heather;Ford;Perry;1004002000;
+Maria;Nicholas;Tucker;Stevens;1004002000;
+Anna;John;Clark;Weaver;1002003000;
+Randy;Lawrence;Dean;Ellis;1004002000;
+Julia;Kathryn;Simmons;Washington;1004002000;
+Nicole;Joyce;Hanson;Wright;1002003000;
+Russell;Janet;Owens;Elliott;1002003000;
+Earl;Robert;Porter;Campbell;1002003000;
+Helen;Susan;Henry;Willis;1004002000;
+Beverly;Jean;Torres;Owens;1002003000;
+Raymond;Johnny;Carroll;Dean;1002003000;
+Shawn;Dennis;Hanson;;1002003000;
+Dennis;Diana;Stevens;Wilson;1002003000;
+Diana;Joseph;Castillo;Harrison;1002003000;
+Bobby;Robert;Sanchez;Long;1004002000;
+Shawn;Katherine;King;Crawford;1004002000;
+Ruby;Debra;Lane;Montgomery;1002003000;
+Christina;Benjamin;Graham;Ross;1002003000;
+Martha;Dennis;Ray;Gardner;1002003000;
+Joe;Alice;Medina;Bennett;1004002000;
+Paula;Billy;Mason;Cole;1002003000;
+Amy;Cheryl;Thomas;Meyer;1004002000;
+Irene;Norma;Carroll;Johnson;1002003000;
+Frances;Amanda;Nichols;Reynolds;1002003000;
+Norma;Teresa;Wood;Alexander;1004002000;
+Joshua;Jesse;Robertson;Palmer;1002003000;
+Sharon;Margaret;Hanson;Hawkins;1004002000;
+Kathy;Joan;Harper;Adams;1002003000;
+Harry;Clarence;Wheeler;Bell;1004002000;
+Jennifer;Jesse;Gonzales;Henderson;1002003000;
+Janet;Shirley;Stanley;Davis;1002003000;
+Ashley;Stephen;Ford;Young;1002003000;
+Teresa;Adam;Morales;Harvey;1002003000;
+Diana;Michael;Griffin;Garcia;1004002000;
+Anthony;Jose;Harvey;Price;1004002000;
+Kathryn;Jeremy;George;Kennedy;1002003000;
+Bruce;Jessica;Garcia;Carter;1004002000;
+Katherine;Lisa;Kim;Jacobs;1002003000;
+Lawrence;Andrew;Turner;Alexander;1002003000;
+Alice;Kathy;Foster;Rice;1002003000;
+Frances;Margaret;Young;Nichols;1002003000;
+Jose;Larry;Crawford;Day;1004002000;
+Betty;Alan;Marshall;Warren;1002003000;
+Amy;Brenda;Jacobs;Turner;1004002000;
+Donna;Peter;Rodriguez;Hansen;1004002000;
+Raymond;Richard;Johnston;Boyd;1004002000;
+Gregory;Martin;Baker;White;1002003000;
+Anne;Alan;Howard;Hansen;1002003000;
+Shawn;Matthew;Fernandez;Hughes;1004002000;
+Juan;Benjamin;Porter;Howell;1002003000;
+Terry;Kathleen;Hawkins;Cooper;1004002000;
+Christina;Annie;Boyd;Holmes;1004002000;
+Lois;Diana;Thomas;Foster;1002003000;
+Denise;Chris;Hughes;Ryan;1004002000;
+Ralph;Sandra;Harvey;Frazier;1002003000;
+Christine;Rebecca;Simmons;Rogers;1004002000;
+Frank;Billy;Roberts;Garza;1002003000;
+Elizabeth;Kenneth;Harris;Mason;1004002000;
+Albert;Lawrence;Lopez;Sullivan;1004002000;
+Stephanie;Virginia;Taylor;Williams;1004002000;
+Alice;Judy;Cooper;Ward;1004002000;
+Sarah;Cynthia;Henderson;Foster;1002003000;
+Heather;Keith;Jordan;King;1002003000;
+Philip;Annie;Gonzales;Ryan;1002003000;
+John;Diana;Henry;Ellis;1004002000;
+Maria;George;Palmer;Ruiz;1004002000;
+Samuel;Antonio;Bradley;Stanley;1002003000;
+Nicholas;Louis;White;Lee;1002003000;
+Sandra;Doris;Armstrong;Fisher;1002003000;
+Anna;Kathryn;Walker;Campbell;1004002000;
+Paula;Michael;Meyer;Knight;1004002000;
+Shawn;Samuel;Day;Rogers;1004002000;
+Jerry;Tammy;Reed;Butler;1002003000;
+Sarah;Janice;Ray;Sims;1004002000;
+Alice;Mark;Hudson;Rodriguez;1002003000;
+Willie;Julia;Cook;Riley;1004002000;
+Arthur;Amanda;Morgan;Campbell;1004002000;
+Lisa;George;Martinez;Sims;1002003000;
+Sharon;Shawn;Henderson;Castillo;1004002000;
+Jack;Phyllis;Wheeler;Watson;1002003000;
+Keith;Ruth;Fuller;Pierce;1002003000;
+Justin;;Cruz;Gilbert;1004002000;
+Sharon;Jessica;Greene;Fisher;1004002000;
+Eric;Shawn;Reed;Weaver;1002003000;
+Joan;Alan;Brown;Shaw;1002003000;
+Susan;Gary;Lawson;Stevens;1002003000;
+Dorothy;Edward;Wright;Harris;1002003000;
+Wayne;Wayne;Collins;Thompson;1002003000;
+Angela;Ruth;Young;Bell;1004002000;
+Louise;Juan;Bennett;Day;1004002000;
+Christina;Angela;Rice;Long;1002003000;
+Rebecca;Jacqueline;Stewart;Young;1004002000;
+Teresa;Doris;Warren;;1002003000;
+Sandra;Adam;Anderson;Diaz;1004002000;
+Roger;Jessica;Murphy;Morgan;1004002000;
+Russell;Todd;Ramos;Fisher;1002003000;
+Gregory;Brenda;Campbell;Price;1004002000;
+Virginia;Sharon;Cole;Elliott;1002003000;
+Lawrence;Julie;Hansen;Ramirez;1002003000;
+Michelle;Jennifer;Stewart;Jordan;1002003000;
+Ralph;Virginia;Olson;Harrison;1002003000;
+Amy;Samuel;Hayes;Thompson;1004002000;
+Paula;Lois;Howard;Kim;1004002000;
+Paula;;Dunn;Hall;1002003000;
+Theresa;Nicholas;Gonzalez;Burke;1004002000;
+Phillip;Juan;Arnold;Thompson;1004002000;
+Justin;Susan;Reynolds;Fowler;1002003000;
+James;Kimberly;Holmes;;1002003000;
+Karen;Christopher;Hicks;Hall;1002003000;
+Anne;Andrea;Hamilton;Fuller;1002003000;
+Shirley;Gregory;Williams;Snyder;1002003000;
+Raymond;Amanda;Harvey;Armstrong;1004002000;
+Carol;Stephanie;Mcdonald;Ortiz;1002003000;
+Rose;Wanda;Riley;Mcdonald;1002003000;
+Frank;Joyce;Adams;;1004002000;
+Nancy;Kevin;Clark;Kennedy;1002003000;
+Carlos;Anne;Miller;Arnold;1004002000;
+Michelle;Judy;Harper;Bowman;1004002000;
+Willie;Joe;Armstrong;Patterson;1002003000;
+Robin;Ralph;Sanders;Bailey;1002003000;
+Stephen;Matthew;Little;Franklin;1002003000;
+Jeffrey;Ashley;Kelly;Austin;1004002000;
+Jesse;Catherine;Wells;Austin;1004002000;
+Jennifer;Mildred;Garrett;Reynolds;1002003000;
+Louise;Mark;Meyer;Long;1002003000;
+Joyce;Martha;Lawrence;Holmes;1004002000;
+Ryan;Judith;Hughes;Palmer;1004002000;
+Alan;Sean;Banks;Grant;1002003000;
+Norma;Larry;Simmons;Carroll;1004002000;
+Aaron;;Chavez;Woods;1004002000;
+Gregory;Adam;Morales;Washington;1002003000;
+Sara;Joyce;Welch;Hall;1002003000;
+Kathy;Peter;Clark;Ramirez;1004002000;
+Billy;Terry;Kelley;Hayes;1004002000;
+Debra;Ernest;Bishop;Kennedy;1002003000;
+Kathy;Elizabeth;Gilbert;Robertson;1002003000;
+Joshua;Alice;Harris;Myers;1002003000;
+Todd;Christopher;Murphy;Simmons;1002003000;
+Lois;Margaret;Carroll;Hawkins;1002003000;
+Marilyn;Lori;Hill;Matthews;1002003000;
+Joan;Emily;Gonzales;Flores;1002003000;
+Laura;Rachel;Sanders;Lawson;1002003000;
+Janice;Keith;Black;Fuller;1004002000;
+Patrick;Jack;Hamilton;Wright;1004002000;
+Stephen;Jessica;Ferguson;Riley;1004002000;
+Angela;Laura;Wilson;Jackson;1002003000;
+Katherine;Linda;White;Day;1002003000;
+Frank;Larry;Burns;Rogers;1004002000;
+Kenneth;Gerald;Bell;Rogers;1004002000;
+Sarah;;Nichols;Stewart;1004002000;
+Johnny;Ryan;Morris;Rose;1004002000;
+Stephen;Lisa;Meyer;Watkins;1002003000;
+Lisa;Rose;Robertson;Johnson;1002003000;
+Patricia;Shirley;Powell;Olson;1002003000;
+Ruth;Heather;Medina;Jackson;1004002000;
+Kelly;Dorothy;Nguyen;Willis;1002003000;
+Tina;James;Kennedy;Dixon;1004002000;
+Joyce;Edward;Gutierrez;Kelly;1004002000;
+Philip;Martha;Butler;Dixon;1002003000;
+Jason;Jeffrey;Freeman;Bennett;1002003000;
+Phillip;Christopher;Patterson;Wilson;1004002000;
+Harry;Brian;Ramos;Hamilton;1004002000;
+Ann;Ryan;Washington;Martin;1002003000;
+Diane;Peter;Allen;Fox;1002003000;
+Mary;Ernest;Sims;Woods;1004002000;
+Tina;Frances;Clark;Reynolds;1004002000;
+Anna;Donald;Willis;;1004002000;
+Rachel;William;Smith;Smith;1002003000;
+Paul;Wayne;Wood;Ward;1004002000;
+Annie;Katherine;Washington;Perry;1002003000;
+Jonathan;Eugene;Gilbert;Berry;1002003000;
+Melissa;Barbara;Jenkins;James;1002003000;
+Anna;Michelle;Sims;Cook;1004002000;
+Richard;Aaron;Morales;Fowler;1002003000;
+Dorothy;Andrew;Gomez;Wright;1002003000;
+Kenneth;Marilyn;Ortiz;Cole;1004002000;
+Amy;;Franklin;Mcdonald;1004002000;
+Arthur;Frank;Diaz;Fuller;1002003000;
+Jerry;Paul;Weaver;Watson;1004002000;
+Arthur;Stephen;Oliver;Gilbert;1002003000;
+Jacqueline;Evelyn;Ryan;Parker;1002003000;
+Heather;Adam;Carroll;Reynolds;1002003000;
+Jimmy;;Chavez;Garcia;1004002000;
+Irene;Roger;Elliott;Jackson;1002003000;
+Janet;Andrea;Hunter;Sims;1004002000;
+Sandra;Justin;Stanley;Medina;1002003000;
+Patrick;Russell;Watson;Duncan;1002003000;
+Kathy;Steve;Welch;Howell;1002003000;
+Richard;Janice;Alexander;Ward;1004002000;
+Antonio;Bonnie;Pierce;Castillo;1002003000;
+Betty;Jeffrey;Riley;Dixon;1004002000;
+Ralph;Donald;Mitchell;Torres;1004002000;
+Rebecca;Jennifer;Morales;Carr;1004002000;
+Jonathan;Ernest;Nichols;Cruz;1002003000;
+Michael;Paula;Lewis;Franklin;1002003000;
+Rebecca;Amanda;Garza;Rogers;1004002000;
+Ruth;Jimmy;Rice;Austin;1002003000;
+Brandon;;Murray;Gonzales;1004002000;
+Lawrence;Carolyn;Warren;Nelson;1002003000;
+Sarah;Paul;Dixon;Perry;1004002000;
+Anna;Brian;Hicks;Robinson;1002003000;
+Jimmy;Cheryl;Knight;Carr;1002003000;
+Robin;Katherine;Frazier;Fernandez;1002003000;
+Rebecca;Jennifer;Adams;Gomez;1004002000;
+Lawrence;Patricia;Moreno;George;1004002000;
+Douglas;Helen;Kim;Larson;1002003000;
+Bobby;Justin;Lee;Scott;1002003000;
+Steve;Jessica;Cruz;Thompson;1004002000;
+Kimberly;Phillip;Carter;Fernandez;1002003000;
+Michelle;;Robinson;Romero;1004002000;
+Todd;Irene;Barnes;George;1002003000;
+Frances;Marie;Butler;Hall;1004002000;
+Janet;Elizabeth;Bennett;Young;1002003000;
+Gregory;Jennifer;Mendoza;Stephens;1002003000;
+Carlos;Alice;West;Carr;1002003000;
+Sarah;Jane;Patterson;Wallace;1002003000;
+Scott;Julie;Johnson;Washington;1004002000;
+Jacqueline;Russell;Kennedy;Kennedy;1004002000;
+Joseph;Rose;Cook;Cunningham;1002003000;
+Michael;Jose;Ryan;Larson;1004002000;
+Angela;Jeffrey;Bennett;Ellis;1004002000;
+Howard;Eric;Kelly;Cook;1004002000;
+Alan;Kathleen;Woods;Wood;1002003000;
+Ruby;Michael;Nichols;Fernandez;1004002000;
+Kathleen;Christopher;Frazier;;1002003000;
+Frances;Jessica;Dixon;Mitchell;1002003000;
+Jesse;Frances;Gomez;Mendoza;1002003000;
+George;Juan;James;Stevens;1002003000;
+Raymond;;Mills;Green;1002003000;
+Martha;John;Mccoy;Richardson;1002003000;
+Denise;Chris;White;Garrett;1002003000;
+Michelle;Laura;Ferguson;Ortiz;1004002000;
+Todd;Bonnie;Morris;Collins;1004002000;
+James;;Jacobs;White;1002003000;
+Harold;Paula;Morrison;Gray;1004002000;
+Louise;Jonathan;Brown;Carroll;1002003000;
+Marie;Maria;Cooper;Flores;1004002000;
+Christina;Bruce;Smith;Black;1002003000;
+William;Lois;Brooks;Perkins;1002003000;
+Jose;Doris;Daniels;Payne;1004002000;
+Anne;Stephen;Woods;Davis;1004002000;
+Jimmy;Barbara;Hart;Bishop;1002003000;
+Jimmy;Johnny;Fisher;West;1002003000;
+Bruce;Christina;Austin;Bradley;1004002000;
+Ruth;Melissa;Cruz;Green;1004002000;
+Kevin;Mark;Lopez;Ramirez;1002003000;
+Marie;Clarence;Murphy;Stewart;1004002000;
+Jose;John;Armstrong;Fuller;1004002000;
+Howard;Kathryn;Griffin;Webb;1002003000;
+Anna;Bruce;Brown;Jones;1004002000;
+Norma;Raymond;Gomez;Warren;1002003000;
+Harry;Fred;Foster;Johnson;1002003000;
+Carlos;Linda;Rogers;Thomas;1002003000;
+Ralph;Willie;Elliott;Morales;1002003000;
+Antonio;Jack;Bell;Collins;1002003000;
+Ashley;Heather;Lynch;Allen;1004002000;
+Bruce;Walter;Henry;Mcdonald;1002003000;
+Shirley;Elizabeth;Lee;Gonzalez;1004002000;
+Stephen;Katherine;Cook;Williamson;1004002000;
+George;Martha;Vasquez;George;1002003000;
+Katherine;Nicole;Hayes;Riley;1004002000;
+Virginia;Carolyn;Rodriguez;Wagner;1002003000;
+Elizabeth;Ashley;Murphy;Watkins;1002003000;
+Daniel;Katherine;Henry;Perkins;1002003000;
+Frances;Melissa;Owens;Andrews;1002003000;
+Kathy;Harry;Ramos;Johnson;1002003000;
+Dennis;Terry;Carr;Marshall;1004002000;
+Wayne;Amanda;Watkins;Ellis;1004002000;
+Bruce;Eugene;Thompson;Mason;1002003000;
+Marilyn;Lois;Morales;Stanley;1002003000;
+Joan;Alan;Ramos;Nelson;1002003000;
+Jessica;Adam;Austin;Hall;1002003000;
+Angela;Louise;Reid;Frazier;1002003000;
+Maria;Donna;Perkins;Moreno;1004002000;
+Katherine;Robert;Lawson;Grant;1004002000;
+Willie;Jacqueline;Ray;Elliott;1002003000;
+Chris;Denise;Carroll;Mendoza;1004002000;
+Brandon;Jessica;Alexander;Holmes;1002003000;
+Juan;John;Hughes;Sanchez;1004002000;
+Beverly;Kathy;Howard;Mitchell;1002003000;
+Douglas;Jack;Gibson;Price;1002003000;
+Lisa;Laura;Watkins;Hunter;1004002000;
+Joan;Jose;Kelley;Olson;1002003000;
+Sara;Donna;Armstrong;Jordan;1002003000;
+Rose;Christopher;Ray;James;1004002000;
+Tina;Clarence;Owens;Perkins;1004002000;
+Tina;Kathryn;Turner;Willis;1002003000;
+Doris;Donald;Hawkins;Kim;1002003000;
+Martha;Kimberly;Hunter;Greene;1004002000;
+Amy;Earl;Wilson;;1004002000;
+Brenda;Dennis;Gonzalez;Fernandez;1002003000;
+Ruth;Janice;Berry;Thomas;1004002000;
+Larry;Patricia;Weaver;Burton;1002003000;
+Karen;Tammy;Ortiz;Gilbert;1004002000;
+Judith;Laura;Hunt;Thompson;1004002000;
+Louise;Laura;Peters;Castillo;1002003000;
+Martin;Brian;Brooks;Freeman;1002003000;
+Brandon;David;Bennett;Russell;1004002000;
+Nicholas;Clarence;Richardson;Lewis;1004002000;
+Ruth;Anna;Allen;Little;1004002000;
+Bruce;Sara;Stephens;Evans;1004002000;
+Kevin;Kathleen;Nguyen;Brooks;1002003000;
+Amy;Nancy;Hernandez;Brooks;1002003000;
+Helen;Gerald;Armstrong;Walker;1002003000;
+Benjamin;Philip;Reynolds;Brooks;1002003000;
+George;Joan;Nguyen;Wright;1002003000;
+Maria;Roy;Fuller;Garcia;1002003000;
+Randy;Steven;Jordan;Franklin;1002003000;
+Jason;John;Bradley;Carter;1004002000;
+Rose;Janice;Butler;Rose;1004002000;
+Nancy;Jacqueline;Hudson;Green;1004002000;
+Harry;Frances;Henderson;Barnes;1002003000;
+Larry;Antonio;Moore;Sims;1002003000;
+Bobby;Lawrence;Snyder;Flores;1002003000;
+Catherine;Doris;Willis;Lee;1004002000;
+Douglas;Tammy;Perry;Burke;1002003000;
+Nicole;Henry;Gordon;Sims;1002003000;
+Alice;Stephen;Ford;Morales;1002003000;
+Bruce;Kathy;Mcdonald;Wagner;1002003000;
+Ronald;Norma;Sims;Hawkins;1002003000;
+Irene;Rebecca;Marshall;Ward;1004002000;
+Clarence;Alice;Cox;Foster;1002003000;
+Billy;Irene;Perkins;Lawson;1004002000;
+Kathleen;Andrea;Gonzales;Simmons;1004002000;
+Henry;Wanda;Lynch;Lopez;1002003000;
+Ryan;Tammy;Henry;Elliott;1002003000;
+Jonathan;Clarence;Webb;Ward;1002003000;
+Debra;Evelyn;Scott;Williamson;1004002000;
+Gary;Andrea;Anderson;Moreno;1004002000;
+Joshua;Lois;Perkins;Castillo;1004002000;
+Jean;Carolyn;James;Gray;1002003000;
+Jack;Victor;Carroll;Hamilton;1004002000;
+Carol;Christopher;Nelson;Ward;1004002000;
+Katherine;Walter;Cole;Simmons;1004002000;
+Roger;Karen;Little;Green;1004002000;
+Barbara;Chris;Anderson;Bowman;1004002000;
+Judith;;Ryan;Mendoza;1002003000;
+Kenneth;Anna;Knight;Simpson;1002003000;
+Pamela;Catherine;Clark;Brown;1004002000;
+Laura;Eugene;Mcdonald;Powell;1002003000;
+Paul;Louis;Fuller;Graham;1002003000;
+Mary;Russell;Willis;Butler;1004002000;
+John;Diane;Anderson;Franklin;1002003000;
+Beverly;Jimmy;White;Ross;1004002000;
+Frances;Eugene;Coleman;Bryant;1004002000;
+Debra;Willie;Burke;Lopez;1004002000;
+Anna;Bruce;Stone;Hawkins;1002003000;
+Paul;Rose;Carr;Wood;1004002000;
+Carol;Philip;Rodriguez;Rogers;1004002000;
+David;Mildred;Lee;Allen;1002003000;
+Ralph;Christine;Mendoza;Murphy;1002003000;
+Sharon;Gerald;Shaw;Banks;1004002000;
+Amanda;Jacqueline;Howard;Wells;1002003000;
+Melissa;Nicholas;Dean;Morgan;1002003000;
+Kimberly;;Porter;Dixon;1002003000;
+Clarence;Carolyn;Austin;Smith;1004002000;
+Joan;Sean;Richardson;Jacobs;1002003000;
+Anne;Lawrence;Rice;;1004002000;
+Sharon;Juan;Palmer;;1004002000;
+Dennis;Amy;Lawson;Lawson;1004002000;
+Anthony;Sean;Rose;Rivera;1002003000;
+Cheryl;Wayne;Stewart;Freeman;1004002000;
+Jane;Ruth;Hudson;Wood;1004002000;
+Peter;Jean;Jones;Garcia;1004002000;
+James;Janice;Johnson;Taylor;1004002000;
+Phillip;Catherine;Ryan;Nelson;1004002000;
+Andrew;Donald;Kelley;Edwards;1002003000;
+Craig;Walter;Duncan;Spencer;1004002000;
+Nicole;Tina;White;Ramos;1002003000;
+Lori;Russell;Fields;Frazier;1002003000;
+Sean;Karen;Hawkins;Rice;1004002000;
+Dennis;Randy;Fowler;Rogers;1004002000;
+Clarence;;Welch;Howell;1002003000;
+Linda;Arthur;Garza;Grant;1004002000;
+Deborah;Marilyn;Hart;Powell;1004002000;
+Bonnie;Steven;Mcdonald;Cruz;1004002000;
+William;Brian;Diaz;Carter;1002003000;
+Julia;Steve;Porter;;1004002000;
+Roger;Willie;Foster;Bishop;1002003000;
+Nicholas;James;Barnes;Burns;1002003000;
+Marilyn;Melissa;Hunter;Ruiz;1004002000;
+Terry;Lillian;Perry;Richards;1004002000;
+Ruby;Carlos;Robertson;Lawson;1002003000;
+Charles;Julie;Ford;Gibson;1002003000;
+Lori;Ruth;Reyes;Johnson;1004002000;
+Antonio;Lawrence;Robinson;Ross;1002003000;
+Joe;Marilyn;Stanley;Black;1004002000;
+Sara;Wayne;Chavez;Romero;1002003000;
+Catherine;Alice;Armstrong;Rose;1002003000;
+David;;Gomez;Ruiz;1004002000;
+Annie;Lillian;Ford;Thompson;1002003000;
+Susan;Paula;Fernandez;Carpenter;1004002000;
+Kevin;Adam;Boyd;Andrews;1004002000;
+Craig;Daniel;Olson;Castillo;1004002000;
+Kevin;Carolyn;Moore;Williamson;1002003000;
+Lori;Albert;Freeman;Ruiz;1002003000;
+Todd;Janice;Webb;Collins;1002003000;
+Karen;Kevin;Bishop;Austin;1002003000;
+Adam;Kathleen;Williamson;Myers;1002003000;
+Sarah;Phyllis;Richardson;Cruz;1004002000;
+Ralph;Jessica;Pierce;Reyes;1002003000;
+Stephen;James;Long;Ward;1002003000;
+Tammy;Laura;Jackson;Stephens;1004002000;
+Judith;Patrick;Sanders;Hart;1002003000;
+Patrick;Jonathan;Gonzales;Rivera;1004002000;
+Sean;Matthew;Day;Arnold;1004002000;
+Arthur;Patricia;Carter;Owens;1002003000;
+Matthew;Raymond;Rivera;Austin;1004002000;
+Russell;Margaret;Turner;Perry;1004002000;
+Joan;Jesse;Jordan;Patterson;1002003000;
+Richard;Raymond;Ortiz;Peterson;1002003000;
+Samuel;Larry;Snyder;Castillo;1002003000;
+Deborah;Philip;Bell;;1002003000;
+Norma;Gerald;Patterson;Chavez;1004002000;
+Justin;Amy;Austin;Chapman;1004002000;
+Rebecca;Kimberly;Stone;Henderson;1004002000;
+Jimmy;Rachel;Reynolds;Cox;1002003000;
+Phyllis;Martha;Gonzalez;Nelson;1002003000;
+Terry;Russell;Kennedy;Murray;1002003000;
+Ronald;;Ward;Gibson;1004002000;
+Phyllis;Kathryn;Morris;Morris;1004002000;
+Frank;Craig;Stevens;;1002003000;
+Anne;Wanda;Ortiz;Palmer;1004002000;
+Adam;Steve;Payne;Medina;1002003000;
+Brenda;Norma;Dunn;Sanders;1004002000;
+Chris;Heather;Wright;Reynolds;1004002000;
+Andrea;Deborah;Perry;Ryan;1004002000;
+Mildred;Sharon;Taylor;King;1002003000;
+Melissa;Cheryl;Reyes;Hanson;1004002000;
+Roy;Joan;Young;Austin;1002003000;
+Elizabeth;Gerald;Hill;Bowman;1004002000;
+Patricia;Bobby;Harris;Sanchez;1004002000;
+Patricia;Brenda;Dixon;Reid;1002003000;
+Barbara;Annie;Tucker;Perry;1002003000;
+Jane;Andrew;Ford;Wilson;1004002000;
+Brenda;Joan;Daniels;Adams;1002003000;
+Heather;Wanda;Brown;Barnes;1004002000;
+Irene;Theresa;Smith;Boyd;1004002000;
+Nancy;Victor;Reid;Carpenter;1002003000;
+Jeremy;Albert;Peterson;Gray;1004002000;
+Marilyn;Jose;Banks;Ramirez;1004002000;
+Howard;Kelly;Alexander;Morales;1002003000;
+Teresa;Todd;West;Hansen;1002003000;
+Carl;Laura;Freeman;Tucker;1002003000;
+Tina;Roger;Chapman;Shaw;1004002000;
+Albert;Paul;Reid;Ray;1004002000;
+Johnny;Stephanie;Kelley;Harris;1004002000;
+Ashley;Thomas;Hicks;Boyd;1004002000;
+Melissa;Joshua;Peterson;Cox;1004002000;
+Amanda;Phillip;Rodriguez;Ruiz;1002003000;
+Phyllis;Cheryl;Morrison;Lee;1004002000;
+Theresa;Juan;Mcdonald;Barnes;1002003000;
+Craig;Lillian;Coleman;;1002003000;
+Carolyn;Andrea;Howard;Stevens;1002003000;
+Anna;Shirley;Rice;Gray;1004002000;
+Mary;Phillip;Moore;Ward;1002003000;
+Charles;Timothy;Stewart;Tucker;1004002000;
+Rachel;Doris;Young;Richards;1002003000;
