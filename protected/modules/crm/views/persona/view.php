@@ -11,7 +11,7 @@ Util::tsRegisterAssetJs('view.js');
 <div class="row-fluid">
     <div class="span6">
         <?php $this->renderPartial('portlets/_info', array('model' => $model)); ?>
-<!--        --><?php //$this->renderPartial('portlets/_credito', array('model' => $model)); ?>
+<!--        --><?php $this->renderPartial('portlets/_credito', array('model' => $model)); ?>
     </div>
     <div class="span6">
 <!--        --><?php //$this->renderPartial('portlets/_ahorro_primer_pago', array('model' => $model)); ?>
