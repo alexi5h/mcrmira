@@ -25,6 +25,8 @@ function AjaxActualizacionInformacion(Formulario)
         }
         if ($('#credito-deposito-grid')) {
             $.fn.yiiGridView.update('credito-deposito-grid');
+//            updateGrid('credito-deposito-grid', {id: socio_id}, 'ahorro/ahorroDeposito/info');
+//            $.fn.yiiGridView.update('credito-deposito-grid');
         }
         $('#credito-deposito-form').trigger("reset");
         DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
@@ -88,4 +90,11 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
         });
     }
 
+}
+
+function updateGrid(id_grid, data, url) {
+    $.fn.yiiGridView.update(id_grid, {
+        data: {data: data},
+        url: baseUrl + url
+    });
 }
