@@ -38,11 +38,11 @@
  * @property string $estado_civil
  * @property integer $actividad_economica_id
  *
- * @property Sucursal $sucursal
  * @property Direccion $direccionDomicilio
  * @property Direccion $direccionNegocio
- * @property PersonaEtapa $personaEtapa
+ * @property Sucursal $sucursal
  * @property ActividadEconomica $actividadEconomica
+ * @property PersonaEtapa $personaEtapa
  */
 abstract class BasePersona extends AweActiveRecord {
 
@@ -60,7 +60,7 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id', 'required','on'=>'insert'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, carga_familiar, actividad_economica_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
@@ -72,24 +72,24 @@ abstract class BasePersona extends AweActiveRecord {
             array('sexo', 'length', 'max'=>1),
             array('discapacidad', 'length', 'max'=>2),
             array('estado_civil', 'length', 'max'=>10),
-            array('descripcion, fecha_actualizacion', 'safe'),
+            array('descripcion, fecha_actualizacion, fecha_nacimiento', 'safe'),
             array('tipo', 'in', 'range' => array('FUNDADOR','NUEVO')), // enum,
             array('estado', 'in', 'range' => array('ACTIVO','INACTIVO','RETIRADO')), // enum,
             array('sexo', 'in', 'range' => array('M','F')), // enum,
             array('discapacidad', 'in', 'range' => array('SI','NO')), // enum,
             array('estado_civil', 'in', 'range' => array('SOLTERO','CASADO','DIVORCIADO','VIUDO')), // enum,
-            array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, direccion_domicilio_id, direccion_negocio_id', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('segundo_nombre, apellido_materno, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_actualizacion, usuario_actualizacion_id, aprobado, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, cedula, ruc, telefono, celular, email, descripcion, tipo, estado, fecha_creacion, fecha_actualizacion, usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'safe', 'on'=>'search'),
         );
     }
 
     public function relations() {
         return array(
-            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
             'direccionDomicilio' => array(self::BELONGS_TO, 'Direccion', 'direccion_domicilio_id'),
             'direccionNegocio' => array(self::BELONGS_TO, 'Direccion', 'direccion_negocio_id'),
-            'personaEtapa' => array(self::BELONGS_TO, 'PersonaEtapa', 'persona_etapa_id'),
+            'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_id'),
             'actividadEconomica' => array(self::BELONGS_TO, 'ActividadEconomica', 'actividad_economica_id'),
+            'personaEtapa' => array(self::BELONGS_TO, 'PersonaEtapa', 'persona_etapa_id'),
         );
     }
 
@@ -126,11 +126,11 @@ abstract class BasePersona extends AweActiveRecord {
                 'discapacidad' => Yii::t('app', 'Discapacidad'),
                 'estado_civil' => Yii::t('app', 'Estado Civil'),
                 'actividad_economica_id' => Yii::t('app', 'Actividad Economica'),
-                'sucursal' => null,
                 'direccionDomicilio' => null,
                 'direccionNegocio' => null,
-                'personaEtapa' => null,
+                'sucursal' => null,
                 'actividadEconomica' => null,
+                'personaEtapa' => null,
         );
     }
 

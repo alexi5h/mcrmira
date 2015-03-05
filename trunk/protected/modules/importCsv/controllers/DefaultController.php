@@ -2,14 +2,16 @@
 
 Yii::import('crm.models.*');
 
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
     /**
-     * @var bool context of the menu type. 
+     * @var bool context of the menu type.
      */
     public $admin = true;
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $model = new ImportForm;
 
         if (isset($_POST['ImportForm'])) {
@@ -27,11 +29,10 @@ class DefaultController extends Controller {
 // Cargar el archivo
                 if ($file = fopen($path . $name, 'r')) {
 
-//                    $data = fgetcsv($file, 1000, ",");
                     $data = fgetcsv($file, 1000, ";");
                     if ($entidad_tipo == ImportForm::TIPO_ENTIDAD_SOCIO) {// a que tabla
 
-                        if (in_array("CEDULA/PASAPORTE", $data)) {// para saber si ay una cedula
+                        if (in_array("CEDULA", $data)) {// para saber si ay una cedula
                             $this->cargaCsvSocio($file);
                         } else {
                             Yii::app()->user->setFlash('error', "Archivo no corresponde a Socios.Por favor reviselo y vuelva a intentar.");
@@ -49,7 +50,8 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function cargaCsvSocio($file) {
+    public function cargaCsvSocio($file)
+    {
         $contador = 0;
 
 
@@ -57,110 +59,69 @@ class DefaultController extends Controller {
         $transaction = Yii::app()->db->beginTransaction();
 
         try {
+            $errors=array();
 //            while (($data = fgetcsv($file, 1000, ",")) !== FALSE) { // Me barro por cada fila
             while (($data = fgetcsv($file, 1000, ";")) !== FALSE) { // Me barro por cada fila
 //TODO: Guardar la informacion
                 {
 
 
-
                     $modelPersona = Persona::model()->find(
-//TODO: Habilitar con datos reales
-                            array("condition" => "primer_nombre=:nombre and apellido_paterno=:apellido or cedula=:cedula",
-//                            array("condition" => "primer_nombre=:nombre and apellido_paterno=:apellido",
-                                'params' => array(
-                                    ':nombre' => ucwords(utf8_encode($data[0])),
-                                    ':apellido' => ucwords(utf8_encode($data[2])),
-                                    ':cedula' => $data[4],
-                                ))
+                        array("condition" => "cedula=:cedula",
+                            'params' => array(
+                                ':cedula' => $data[4],
+                            ))
                     );
-
-
-//para la actividad Economica
-//                    $modelActividadEconomica = ActividadEconomica::model()->find(array(
-//                        'condition' => 'nombre=:nombre',
-//                        'params' => array(
-//                            ':nombre' => ucwords(utf8_encode($data[11])),
-//                    )));
 //
 ////para la sucursal
-//                    $modelSucursal = Sucursal::model()->find(
-//                            array('condition' => 'nombre=:nombre_sucursal',
-//                                'params' => array(':nombre_sucursal' => $data[6]))
-//                    );
+                    $modelSucursal = Sucursal::model()->find(
+                        array('condition' => 'nombre=:nombre_sucursal',
+                            'params' => array(':nombre_sucursal' => $data[5]))
+                    );
 
-//                    var_dump($data);
-//                    die();
                     if (count($modelPersona) == 0) {
-//                        die(var_dump($data[4]));
                         /* Creacion de nuevo Socio */
                         $modelPersona = new Persona();
-                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[0]));
-                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[1]));
-                        $modelPersona->apellido_paterno = ucwords(utf8_encode($data[2]));
-                        $modelPersona->apellido_materno = ucwords(utf8_encode($data[3]));
-//                        $modelPersona->tipo_identificacion = ucwords(utf8_encode($data[4]));
+                        $modelPersona->scenario='import';
+                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[3]));
+                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[4]));
+                        $modelPersona->apellido_paterno = ucwords(utf8_encode($data[0]));
+                        $modelPersona->apellido_materno = ucwords(utf8_encode($data[1]));
                         $modelPersona->cedula = $data[4];
-//                        $modelPersona->ruc = NULL;
-//                        $modelPersona->telefono = NULL;
-//                        $modelPersona->celular = NULL;
-//                        $modelPersona->email = NULL;
-//                        $modelPersona->descripcion = NULL;
-//                        $modelPersona->tipo = strtoupper($data[6]);
                         $modelPersona->estado = Persona::ESTADO_ACTIVO;
                         $modelPersona->fecha_creacion = Util::FechaActual();
                         $modelPersona->fecha_actualizacion = NULL;
                         $modelPersona->usuario_creacion_id = Yii::app()->user->id;
                         $modelPersona->usuario_actualizacion_id = NULL;
-//                        $modelPersona->aprobado = 0;
-                        $modelPersona->sucursal_id =  Util::getSucursal() ;
-//                        $modelPersona->fecha_nacimiento = ($data[7] == null || $data[7] == '') ? Util::FechaActual() : Util::FormatDate($data[7], 'Y-m-d');
-//                        $modelPersona->sexo = ucwords(utf8_encode($data[8]));
-//                        $modelPersona->discapacidad = ($data[9] == null || $data[9] == '') ? Persona::DISCAPASIDAD_NO : strtoupper($data[9]);
-//                        $modelPersona->estado_civil = ($data[10] == null || $data[10] == '') ? "" : strtoupper($data[10]);
-//                        $modelPersona->carga_familiar = ($data[11] == null || $data[11] == '') ? 0 : $data[11];
-//                        $modelPersona->persona_etapa_id = PersonaEtapa::model()->getIdPesoMinimo();
-//                        $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[12])));
-
-
+                        $modelPersona->sucursal_id = count($modelSucursal) == 0 ? Util::getSucursal() : $modelSucursal->id;
                         if (!$modelPersona->save()) {//
+
+                            $errors[]=array('data'=>$data,'model'=>$modelPersona->attributes,'errors'=>$modelPersona->errors);
+
                         }
                     } else {
                         /* actualizacion de Socio */
-                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[0]));
-                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[1]));
-                        $modelPersona->apellido_paterno = ucwords(utf8_encode($data[2]));
-                        $modelPersona->apellido_materno = ucwords(utf8_encode($data[3]));
-                        $modelPersona->tipo_identificacion = ucwords(utf8_encode($data[4]));
-                        $modelPersona->cedula = $data[5];
-//                        $modelPersona->ruc = NULL;
-//                        $modelPersona->telefono = NULL;
-//                        $modelPersona->celular = NULL;
-//                        $modelPersona->email = NULL;
-//                        $modelPersona->descripcion = NULL;
-//                        $modelPersona->tipo = strtoupper($data[6]);
-////                        $modelPersona->estado = Persona::ESTADO_ACTIVO;
+                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[3]));
+                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[4]));
+                        $modelPersona->apellido_paterno = ucwords(utf8_encode($data[0]));
+                        $modelPersona->apellido_materno = ucwords(utf8_encode($data[1]));
                         $modelPersona->fecha_actualizacion = Util::FechaActual();
                         $modelPersona->usuario_actualizacion_id = Yii::app()->user->id;
-//                        $modelPersona->aprobado = 0;
-                        $modelPersona->sucursal_id =  Util::getSucursal() ;
-//                        $modelPersona->fecha_nacimiento = ($data[8] == null || $data[8] == '') ? Util::FechaActual() : Util::FormatDate($data[8], 'Y-m-d');
-//                        $modelPersona->sexo = ucwords(utf8_encode($data[9]));
-//                        $modelPersona->discapacidad = ($data[10] == null || $data[10] == '') ? Persona::DISCAPASIDAD_NO : strtoupper($data[10]);
-//                        $modelPersona->estado_civil = ($data[11] == null || $data[11] == '') ? Persona::ESTADO_CIVIL_SOLTERO : strtoupper($data[11]);
-//                        $modelPersona->carga_familiar = ($data[12] == null || $data[12] == '') ? 0 : $data[12];
-//                        $modelPersona->persona_etapa_id = PersonaEtapa::model()->getIdPesoMinimo();
-//                        $modelPersona->actividad_economica_id = $modelActividadEconomica ? $modelActividadEconomica->id : $this->crearActividadEconomica(ucwords(utf8_encode($data[13])));
+                        $modelPersona->sucursal_id = count($modelSucursal) == 0 ? Util::getSucursal() : $modelSucursal->id;
 
                         if (!$modelPersona->save()) {
-//                            var_dump($modelPersona);
-//                            die();
+                            $errors[]=array('data'=>$data,'model'=>$modelPersona->attributes,'errors'=>$modelPersona->errors);
+
+//                            $errors[]=array('model'=>$modelPersona->attributes,'errors'=>$modelPersona->errors);
+
                         }
                     }
                 }
                 $contador++;
             }
             Yii::app()->user->setFlash('success', "Archivo importado correctamente.");
+            var_dump(array_column($errors,'data'),array_column($errors,'model'),array_column($errors,'errors'));
+            die();
 // Hago commit de la transaccion
             $transaction->commit();
         } catch (Exception $ex) {
@@ -173,7 +134,8 @@ class DefaultController extends Controller {
         }
     }
 
-    public function validadorUbicacion($modelArray, $modelActual, $tipo = null) {
+    public function validadorUbicacion($modelArray, $modelActual, $tipo = null)
+    {
         foreach ($modelArray as $value) {
             if ($tipo == 'PROVINCIA') {
                 if ($value->region_id == $modelActual->id) {
@@ -194,7 +156,8 @@ class DefaultController extends Controller {
     }
 
 //para crear una actividad economica si no existe
-    public function crearActividadEconomica($nombre) {
+    public function crearActividadEconomica($nombre)
+    {
         $modelActividad = new ActividadEconomica;
         $modelActividad->nombre = $nombre;
         $modelActividad->estado = ActividadEconomica::ESTADO_ACTIVO;
@@ -216,7 +179,8 @@ class DefaultController extends Controller {
     }
 
 //verifica direcciones si no estas las crea
-    public function crearDireccion($calle1 = null, $calle2 = null, $nro = null, $referencia = null, $barrio = null, $parroquia = null, $canton = null, $provincia = null) {
+    public function crearDireccion($calle1 = null, $calle2 = null, $nro = null, $referencia = null, $barrio = null, $parroquia = null, $canton = null, $provincia = null)
+    {
 //        die(var_dump($calle1, $calle2, $nro, $referencia, $barrio, $parroquia, $canton, $provincia));
 
 
@@ -292,9 +256,9 @@ class DefaultController extends Controller {
 
 
         $modelDireccion = Direccion::model()->find(
-                array('condition' => $conditionDireccion,
-                    'params' => $conditionParams
-        ));
+            array('condition' => $conditionDireccion,
+                'params' => $conditionParams
+            ));
 //        var_dump($modelDireccion);
 //        die();
 
