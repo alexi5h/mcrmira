@@ -60,7 +60,7 @@ abstract class BasePersona extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id', 'required','on'=>'insert'),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id', 'required','on'=>'insert,update'),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, carga_familiar, actividad_economica_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
             array('primer_nombre, segundo_nombre, cedula', 'length', 'max'=>20),
