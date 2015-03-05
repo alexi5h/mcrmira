@@ -120,8 +120,8 @@ class DefaultController extends Controller
                 $contador++;
             }
             Yii::app()->user->setFlash('success', "Archivo importado correctamente.");
-            var_dump(array_column($errors,'data'),array_column($errors,'model'),array_column($errors,'errors'));
-            die();
+//            var_dump(array_column($errors,'data'),array_column($errors,'model'),array_column($errors,'errors'));
+//            die();
 // Hago commit de la transaccion
             $transaction->commit();
         } catch (Exception $ex) {
