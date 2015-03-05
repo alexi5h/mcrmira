@@ -345,7 +345,7 @@ class Persona extends BasePersona {
         p.sexo,
         p.descripcion')
                 ->from('persona p')
-                ->join('actividad_economica ae', 'ae.id = p.actividad_economica_id')
+                ->leftJoin('actividad_economica ae', 'ae.id = p.actividad_economica_id')
                 ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
                 ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
                 ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));

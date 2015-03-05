@@ -65,7 +65,7 @@ INSERT INTO `cruge_authitem` (`name`,`type`,`description`,`bizrule`,`data`) VALU
 # Data for table "cruge_session"
 #
 
-INSERT INTO `cruge_session` (`idsession`,`iduser`,`created`,`expire`,`status`,`ipaddress`,`usagecount`,`lastusage`,`logoutdate`,`ipaddressout`) VALUES (1,1,1425510347,1425558347,1,'::1',1,1425510347,NULL,NULL);
+-- INSERT INTO `cruge_session` (`idsession`,`iduser`,`created`,`expire`,`status`,`ipaddress`,`usagecount`,`lastusage`,`logoutdate`,`ipaddressout`) VALUES (1,1,1425510347,1425558347,1,'::1',1,1425510347,NULL,NULL);
 
 #
 # Data for table "cruge_system"
