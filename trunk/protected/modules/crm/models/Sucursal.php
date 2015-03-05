@@ -41,4 +41,16 @@ class Sucursal extends BaseSucursal {
         );
     }
 
+    public function getListSelect2($search_value = null) {
+        $command = Yii::app()->db->createCommand()
+                ->select("p.id as id, p.nombre as text")
+                ->from('sucursal p')
+                ->where('p.estado = :estado', array(':estado' => self::ESTADO_ACTIVO));
+        if ($search_value) {
+            $command->where("p.nombre like '$search_value%'");
+        }
+        $command->limit(10);
+        return $command->queryAll();
+    }
+
 }

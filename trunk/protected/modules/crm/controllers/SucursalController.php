@@ -153,5 +153,11 @@ class SucursalController extends AweController {
             Yii::app()->end();
         }
     }
+    
+    public function actionAjaxlistSucursales($search_value = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            echo CJSON::encode(Sucursal::model()->getListSelect2($search_value));
+        }
+    }
 
 }

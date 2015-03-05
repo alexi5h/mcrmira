@@ -1,4 +1,13 @@
 <?php
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+Util::tsRegisterAssetJs('admin.js');
 /** @var CreditoController $this */
 /** @var Credito $model */
 $this->menu = array(
@@ -6,7 +15,7 @@ $this->menu = array(
 //    'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
-$baseUrl = Yii::app()->baseUrl;
+//$baseUrl = Yii::app()->baseUrl;
 ?>
 <div id="flashMsg"  class="flash-messages">
 
@@ -20,38 +29,133 @@ $baseUrl = Yii::app()->baseUrl;
         </span>
     </div>
     <div class="widget-body">
-
         <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
-            'id' => 'credito-grid',
-            'type' => 'striped bordered hover advance',
-            'dataProvider' => $model->search(),
-            'columns' => array(
-                array(
-                    'header' => 'Código',
-                    'name' => 'Id',
-                    'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
-                    'type' => 'raw',
-                ),
-                array(
-                    'name' => 'socio_id',
-                    'value' => '$data->socio->nombre_formato'
-                ),
-                array(
-                    'name' => 'garante_id',
-                    'value' => '$data->garante->nombre_formato'
-                ),
-                'fecha_credito',
-                'fecha_limite',
-                'cantidad_total',
-                'total_interes',
-                'total_pagar',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
-                ),
-            ),
+        $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
+            'id' => 'credito-form',
+            'enableAjaxValidation' => true,
+            'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
+            'enableClientValidation' => false,
         ));
         ?>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_socio_id">Socio</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'socio_id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Credito_socio_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_numero_cheque">Número Cheque</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'numero_cheque', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Credito_numero_cheque_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_sucursal_id">Sucursal</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'sucursal_id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Credito_sucursal_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_ano_creacion">Año</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'ano_creacion', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Credito_ano_creacion_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_mes_creacion">Mes</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'mes_creacion', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Credito_mes_creacion_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php $this->endWidget(); ?>
+
+
+        <div class="space20"></div>
+        <div style="overflow: auto">
+            <?php
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'credito-grid',
+                'type' => 'striped bordered hover advance',
+                'dataProvider' => $model->search(),
+                'columns' => array(
+                    array(
+                        'header' => 'Código',
+                        'name' => 'Id',
+                        'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'name' => 'socio_id',
+                        'value' => 'CHtml::link($data->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->socio->id)))',
+                        'type' => 'html'
+                    ),
+                    array(
+                        'name' => 'garante_id',
+                        'value' => 'CHtml::link($data->garante->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->garante->id)))',
+                        'type' => 'html'
+                    ),
+                    array(
+                        'name' => 'fecha_credito',
+                        'value' => 'Util::FormatDate($data->fecha_credito,"d/m/Y")'
+                    ),
+                    array(
+                        'name' => 'fecha_limite',
+                        'value' => 'Util::FormatDate($data->fecha_limite,"d/m/Y")'
+                    ),
+                    array(
+                        'name' => 'cantidad_total',
+                        'value' => '"$" . number_format($data->cantidad_total, 2)',
+                    ),
+                    array(
+                        'name' => 'total_interes',
+                        'value' => '"$" . number_format($data->total_interes, 2)',
+                    ),
+                    array(
+                        'name' => 'total_pagar',
+                        'value' => '"$" . number_format($data->total_pagar, 2)',
+                    ),
+                    array(
+                        'name' => 'estado',
+                        'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
+                    ),
+                ),
+            ));
+            ?>
+        </div>
     </div>
 </div>
