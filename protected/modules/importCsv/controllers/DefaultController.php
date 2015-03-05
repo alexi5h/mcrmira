@@ -83,8 +83,8 @@ class DefaultController extends Controller
                         /* Creacion de nuevo Socio */
                         $modelPersona = new Persona();
                         $modelPersona->scenario='import';
-                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[3]));
-                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[4]));
+                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[2]));
+                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[3]));
                         $modelPersona->apellido_paterno = ucwords(utf8_encode($data[0]));
                         $modelPersona->apellido_materno = ucwords(utf8_encode($data[1]));
                         $modelPersona->cedula = $data[4];
@@ -101,8 +101,8 @@ class DefaultController extends Controller
                         }
                     } else {
                         /* actualizacion de Socio */
-                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[3]));
-                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[4]));
+                        $modelPersona->primer_nombre = ucwords(utf8_encode($data[2]));
+                        $modelPersona->segundo_nombre = ucwords(utf8_encode($data[3]));
                         $modelPersona->apellido_paterno = ucwords(utf8_encode($data[0]));
                         $modelPersona->apellido_materno = ucwords(utf8_encode($data[1]));
                         $modelPersona->fecha_actualizacion = Util::FechaActual();
