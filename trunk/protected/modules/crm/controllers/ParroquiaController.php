@@ -37,7 +37,8 @@ class ParroquiaController extends AweController {
 //        $validadorPartial = (isset($_GET['popoup']) && boolval($_GET['popoup'])) ? true : false;
         if (Yii::app()->request->isAjaxRequest) {
             $this->ajaxValidation($model, 'parroquia-form');
-            if (isset($_POST['Parroquia'])) {
+
+            if (isset($_POST['Parroquia']) && isset($_GET['popoup'])) {
                 $model->attributes = $_POST['Parroquia'];
                 $result['success'] = $model->save();
                 $result['seleccion'] = $model->attributes;

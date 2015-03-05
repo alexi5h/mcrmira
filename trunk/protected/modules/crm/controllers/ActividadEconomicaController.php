@@ -39,7 +39,7 @@ class ActividadEconomicaController extends AweController {
 
 //        $validadorPartial = (isset($_GET['popoup']) && boolval($_GET['popoup'])) ? true : false;
         if (Yii::app()->request->isAjaxRequest) {
-            if (isset($_POST['ActividadEconomica'])) {
+            if (isset($_POST['ActividadEconomica'])&&isset($_GET['popoup'])) {
                 $model->attributes = $_POST['ActividadEconomica'];
                 $result['success'] = $model->save();
 
