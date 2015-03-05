@@ -173,4 +173,95 @@ class CreditoController extends AweController {
         }
     }
 
+    public function actionExportarCredito() {
+        $model = new Credito;
+        if (isset($_POST['Credito'])) {
+//            $parametros = $_POST['Credito'];
+
+            $model->de_socios($_POST['Credito']['socio_id']);
+            $model->de_numeros_cheque($_POST['Credito']['numero_cheque']);
+            $model->de_sucursales($_POST['Credito']['sucursal_id']);
+            if ($_POST['Credito']['ano_creacion'] && $_POST['Credito']['mes_creacion']) {
+                $fechas = array();
+                $array_meses = explode(',', $_POST['Credito']['mes_creacion']);
+                foreach ($array_meses as $value) {
+                    array_push($fechas, '"' . $_POST['Credito']['ano_creacion'] . '/' . $value . '"');
+                }
+                $model->de_fechas($_POST['Credito']['ano_creacion'], $_POST['Credito']['mes_creacion'], implode(',', $fechas));
+            } else {
+                $model->de_fechas($_POST['Credito']['ano_creacion'], $_POST['Credito']['mes_creacion']);
+            }
+            $reporte = $model->findAll();
+
+            //genera el reporte de excel
+            $objExcel = new PHPExcel();
+
+
+            //carga la consulta en la hoja 0 con el contenido de la busqueda, empezando desde la seguna fila
+//            $objExcel->setActiveSheetIndex(0)->fromArray($model, null, 'A2');
+            //agrega las cabeceras 
+            $objExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'Socio')
+                    ->setCellValue('B1', 'Garante')
+                    ->setCellValue('C1', 'Sucursal')
+                    ->setCellValue('D1', 'Fecha Crédito')
+                    ->setCellValue('E1', 'Fecha límite')
+                    ->setCellValue('F1', 'Interés (%)')
+                    ->setCellValue('G1', 'Cantidad Total ($)')
+                    ->setCellValue('H1', 'Total a Pagar ($)')
+                    ->setCellValue('I1', 'Total Intereses ($)')
+                    ->setCellValue('J1', 'Periodos')
+                    ->setCellValue('K1', 'Saldo en contra ($)')
+                    ->setCellValue('L1', 'Saldo a favor ($)')
+                    ->setCellValue('M1', 'Anulado')
+                    ->setCellValue('N1', 'Número de Cheque')
+                    ->setCellValue('O1', 'Estado');
+
+            $id = 2;
+            foreach ($reporte as $campo) {
+                $objExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $id, $campo->socio->nombre_formato)
+                        ->setCellValue('B' . $id, $campo->garante->nombre_formato)
+                        ->setCellValue('C' . $id, $campo->sucursal->nombre)
+                        ->setCellValue('D' . $id, Util::FormatDate($campo->fecha_credito, 'd/m/Y'))
+                        ->setCellValue('E' . $id, Util::FormatDate($campo->fecha_limite, 'd/m/Y'))
+                        ->setCellValue('F' . $id, $campo->interes)
+                        ->setCellValue('G' . $id, round($campo->cantidad_total,2))
+                        ->setCellValue('H' . $id, round($campo->total_pagar,2))
+                        ->setCellValue('I' . $id, round($campo->total_interes,2))
+                        ->setCellValue('J' . $id, $campo->periodos)
+                        ->setCellValue('K' . $id, $campo->saldo_contra)
+                        ->setCellValue('L' . $id, $campo->saldo_favor)
+                        ->setCellValue('M' . $id, $campo->anulado)
+                        ->setCellValue('N' . $id, $campo->numero_cheque)
+                        ->setCellValue('O' . $id, $campo->estado)
+                ;
+                $id++;
+            }
+
+            for ($i = 'A'; $i <= 'Z'; $i++) {
+                $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
+            }
+//titulo de la hoja 0
+            $objExcel->getActiveSheet()->setTitle('Créditos');
+
+//// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
+            $objExcel->setActiveSheetIndex(0);
+//// Inmovilizar paneles
+            $objExcel->getActiveSheet(0)->freezePane('A2');
+//                $objExcel->getActiveSheet(0)->freezePaneByColumnAndRow(1, 2);
+// Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//crea el archivo con el siguiente formato: Incidencias <fecha inicial> hasta <fecha final>.xlsx
+            header('Content-Disposition: attachment;filename="Reporte de Créditos.xlsx"');
+            header('Cache-Control: max-age=0');
+//genera el archivo con formato excel 2007
+            $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+
+            $objWriter->save('php://output');
+
+//        exit();
+        }
+    }
+
 }

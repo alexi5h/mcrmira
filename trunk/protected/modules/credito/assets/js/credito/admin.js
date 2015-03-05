@@ -198,18 +198,6 @@ function initSelect() {
     inputMes.on("change", function (e) {
         updateGrid(getParamsSearch());
     });
-//    inputPersonaEstadoCivil.on("change", function (e) {
-//        updateGrid(getParamsSearch());
-//
-//    });
-//    inputPersonaMadreSoltera.on("change", function (e) {
-//        updateGrid(getParamsSearch());
-//
-//    });
-//    inputPersonaSexo.on("change", function (e) {
-//        updateGrid(getParamsSearch());
-//
-//    });
 }
 function updateGrid($params) {
     $.fn.yiiGridView.update("credito-grid", {
@@ -227,20 +215,18 @@ function getParamsSearch() {
             'mes_creacion': inputMes.val(),
         }
     };
-
 }
 
 function select2vacio(id) {
     $('#' + id).select2("val", "");
 }
 
-//function exporSocio(Formulario) {
-//    if (!isEmptyGrid("#persona-grid")) //Cuando no este vacio
-//    {
-//        $(Formulario).attr('target', "blank");
-//        $(Formulario).attr('action', baseUrl + 'crm/persona/exportarSocio');
-//        $(Formulario).submit();
-//    } else {
-//        bootbox.alert('No hay datos para exportar');
-//    }
-//}
+function exportCredito(Formulario) {
+    if (!isEmptyGrid("#credito-grid")) {
+        $(Formulario).attr('target', "blank");
+        $(Formulario).attr('action', baseUrl + 'credito/credito/exportarCredito');
+        $(Formulario).submit();
+    } else {
+        bootbox.alert('No hay datos para exportar');
+    }
+}
