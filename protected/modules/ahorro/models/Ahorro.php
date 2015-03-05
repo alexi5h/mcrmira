@@ -116,8 +116,6 @@ class Ahorro extends BaseAhorro {
         return $return[0]['total'];
     }
 
-
-
     public function socioAhorroObligatorioTotal($id_socio) {
 //        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='OBLIGATORIO' and anulado='SI'
         $command = Yii::app()->db->createCommand()
@@ -232,6 +230,21 @@ class Ahorro extends BaseAhorro {
         ;
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
+    }
+
+    public function getfechaUtimoAhorro($id_socio) {
+//       select max(a.fecha) as fecha from ahorro a where a.socio_id=1
+
+
+        $command = Yii::app()->db->createCommand()
+                ->select('max(a.fecha) as fecha')
+                ->from('ahorro a')
+                ->where('a.socio_id=:id_socio'
+                , array(':id_socio' => $id_socio))
+        ;
+        
+        $result = $command->queryAll();
+        return Util::FormatDate($result[0]['fecha'], 'Y-m-d');
     }
 
     public function getTotalAhorros_Deuda() {

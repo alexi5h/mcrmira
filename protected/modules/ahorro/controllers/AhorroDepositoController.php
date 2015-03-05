@@ -118,25 +118,33 @@ class AhorroDepositoController extends AweController {
                         if ($model->cantidad <= $ahorro->saldo_contra) {
                             $ahorro->saldo_contra = $ahorro->saldo_contra - $model->cantidad;
                             $ahorro->saldo_favor = $ahorro->saldo_favor + $model->cantidad;
-$ahorro->estado = $ahorro->saldo_contra==0?Ahorro::ESTADO_PAGADO:Ahorro::ESTADO_DEUDA;
-                            if ($ahorro->save()) {
-                                if ($ahorro->saldo_contra > 0) {
-                                    $modelAhorroDetalle = new AhorroDetalle;
-                                    $modelAhorroDetalle->ahorro_id = $ahorro->id;
-                                    $modelAhorroDetalle->cantidad = $ahorro->saldo_contra;
-                                    $modelAhorroDetalle->fecha = Util::FechaActual();
-                                    $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
 
-                                    $modelAhorroDetalle->save();
-                                }
+                            $ahorro->estado = $ahorro->saldo_contra == 0 ? Ahorro::ESTADO_PAGADO : Ahorro::ESTADO_DEUDA;
+                            if ($ahorro->save()) {
+                                $modelAhorroDetalle = new AhorroDetalle;
+                                $modelAhorroDetalle->ahorro_id = $ahorro->id;
+                                $modelAhorroDetalle->cantidad = $model->cantidad;
+                                $modelAhorroDetalle->fecha = Util::FechaActual();
+                                $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
+
+                                $modelAhorroDetalle->save();
                                 $model->cantidad = $model->cantidad - $ahorro->saldo_favor;
                             }
                         } else {
+                            $initSC=$ahorro->saldo_contra;
                             $ahorro->saldo_favor = $ahorro->saldo_favor + $ahorro->saldo_contra;
                             $model->cantidad = $model->cantidad - $ahorro->saldo_contra;
                             $ahorro->saldo_contra = 0;
                             $ahorro->estado = Ahorro::ESTADO_PAGADO;
-                            $ahorro->save();
+                            if ($ahorro->save()) {
+                                $modelAhorroDetalle = new AhorroDetalle;
+                                $modelAhorroDetalle->ahorro_id = $ahorro->id;
+                                $modelAhorroDetalle->cantidad = $initSC;
+                                $modelAhorroDetalle->fecha = Util::FechaActual();
+                                $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
+
+                                $modelAhorroDetalle->save();
+                            }
                         }
                         $fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate($ahorro->fecha, 'm/d/Y') . " +1 month")), 'Y-m-d');
                         $fecha = new DateTime($fechaNext);
@@ -145,13 +153,20 @@ $ahorro->estado = $ahorro->saldo_contra==0?Ahorro::ESTADO_PAGADO:Ahorro::ESTADO_
 
 //                
                     }
-if($fechaNext == null){
-$fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate(Util::FechaActual(), 'm/d/Y') . " +1 month")), 'Y-m-d');
+                    if ($fechaNext == null) {
+                        $utimaFecha = Ahorro::model()->getfechaUtimoAhorro($model->socio_id);
+
+                        $fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate(($utimaFecha ? $utimaFecha : Util::FechaActual()), 'm/d/Y') . " +1 month")), 'Y-m-d');
                         $fecha = new DateTime($fechaNext);
                         $fecha->modify('first day of this month');
                         $fechaNext = $fecha->format('Y-m-d');
 
-}
+
+                        $fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate(Util::FechaActual(), 'm/d/Y') . " +1 month")), 'Y-m-d');
+                        $fecha = new DateTime($fechaNext);
+                        $fecha->modify('first day of this month');
+                        $fechaNext = $fecha->format('Y-m-d');
+                    }
                     while ($model->cantidad > 0) {
 
                         $modelAhorro = new Ahorro;
@@ -160,31 +175,43 @@ $fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate(Util::Fec
                         $modelAhorro->tipo = Ahorro::TIPO_OBLIGATORIO;
                         $modelAhorro->cantidad = Sucursal::model()->findByPk(Util::getSucursal())->valor_ahorro;
                         $modelAhorro->saldo_contra = $modelAhorro->cantidad;
-						
-                        
-						
+
+
+
                         if ($model->cantidad <= $modelAhorro->saldo_contra) {
                             $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
                             $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
-$modelAhorro->estado = $modelAhorro->saldo_contra==0?Ahorro::ESTADO_PAGADO:Ahorro::ESTADO_DEUDA;
-                            if ($modelAhorro->save()) {
-                                if ($modelAhorro->saldo_contra > 0) {								
-                                    $modelAhorroDetalle = new AhorroDetalle;
-                                    $modelAhorroDetalle->ahorro_id = $modelAhorro->id;
-                                    $modelAhorroDetalle->cantidad = $modelAhorro->saldo_contra;
-                                    $modelAhorroDetalle->fecha = Util::FechaActual();
-                                    $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
 
-                                    $modelAhorroDetalle->save();
-                                }
+                            $modelAhorro->estado = $modelAhorro->saldo_contra == 0 ? Ahorro::ESTADO_PAGADO : Ahorro::ESTADO_DEUDA;
+                            if ($modelAhorro->save()) {
+
+                                $modelAhorroDetalle = new AhorroDetalle;
+                                $modelAhorroDetalle->ahorro_id = $modelAhorro->id;
+                                $modelAhorroDetalle->cantidad = $model->cantidad;
+                                $modelAhorroDetalle->fecha = Util::FechaActual();
+                                $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
+
+                                $modelAhorroDetalle->save();
                                 $model->cantidad = $model->cantidad - $modelAhorro->saldo_favor;
                             }
                         } else {
+                             $initSC=$modelAhorro->saldo_contra;
                             $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $modelAhorro->saldo_contra;
                             $model->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
                             $modelAhorro->saldo_contra = 0;
+
                             $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
-                            $modelAhorro->save();
+
+
+                            if ($modelAhorro->save()) {
+                                $modelAhorroDetalle = new AhorroDetalle;
+                                $modelAhorroDetalle->ahorro_id = $modelAhorro->id;
+                                $modelAhorroDetalle->cantidad =$initSC;
+                                $modelAhorroDetalle->fecha = Util::FechaActual();
+                                $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
+
+                                $modelAhorroDetalle->save();
+                            }
                         }
                         $fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate($modelAhorro->fecha, 'm/d/Y') . " +1 month")), 'Y-m-d');
                         $fecha = new DateTime($fechaNext);
