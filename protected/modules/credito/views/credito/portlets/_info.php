@@ -15,27 +15,29 @@
             'attributes' => array(
                 array(
                     'name' => 'socio_id',
-                    'value' => $model->socio->nombre_formato,
+                    'value' => CHtml::link($model->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $model->socio->id))),
+                    'type' => 'html'
                 ),
                 array(
                     'name' => 'garante_id',
-                    'value' => $model->garante->nombre_formato,
+                    'value' => CHtml::link($model->garante->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $model->garante->id))),
+                    'type' => 'html'
                 ),
                 array(
                     'name' => 'fecha_credito',
-                    'value' => Util::FormatDate($model->fecha_credito, 'd-m-Y'),
+                    'value' => Util::FormatDate($model->fecha_credito, 'd/m/Y'),
                 ),
                 array(
                     'name' => 'cantidad_total',
-                    'value' => '$'.$model->cantidad_total,
+                    'value' => '$' . number_format($model->cantidad_total, 2),
                 ),
                 array(
                     'name' => 'total_interes',
-                    'value' => '$'.$model->total_interes,
+                    'value' => '$' . number_format($model->total_interes, 2),
                 ),
                 array(
                     'name' => 'total_pagar',
-                    'value' => '$'.$model->total_pagar,
+                    'value' => '$' . number_format($model->total_pagar, 2),
                 ),
                 'periodos',
                 'estado',

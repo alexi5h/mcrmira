@@ -41,11 +41,11 @@ class CreditoController extends AweController {
             $model->estado = Credito::ESTADO_DEUDA;
             $model->interes = Credito::INTERES;
 
-            $fecha_lim = new DateTime(Util::FechaActual());
-            $fecha_lim->add(new DateInterval('P' . $model->periodos . 'M'));
-            $model->fecha_limite = $fecha_lim->format('Y-m-d H:i:s');
+            //Fecha límite temporal
+            $model->fecha_limite = Util::FechaActual();
 
-            $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos,$model->fecha_credito);
+            //Cálculo de amortización
+            $info_Amortizacion = Util::calculo_amortizacion($model->cantidad_total, $model->interes, $model->periodos, $model->fecha_credito);
             $model->total_pagar = $info_Amortizacion['suma_cuota'];
             $model->total_interes = $info_Amortizacion['suma_interes'];
             $model->saldo_contra = $model->total_pagar;
@@ -67,6 +67,8 @@ class CreditoController extends AweController {
                     $modelAmort->credito_id = $model->id;
                     $modelAmort->save();
                 }
+                $model->fecha_limite = $modelAmort->fecha_pago;
+                $model->save();
                 $this->redirect(array('admin'));
             }
         }
@@ -121,9 +123,22 @@ class CreditoController extends AweController {
     public function actionAdmin() {
         $model = new Credito('search');
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Credito']))
-            $model->attributes = $_GET['Credito'];
-
+        if (isset($_GET['Credito'])) {
+//            $model->attributes = $_GET['Credito'];
+            $model->de_numeros_cheque($_GET['Credito']['numero_cheque']);
+            $model->de_socios($_GET['Credito']['socio_id']);
+            $model->de_sucursales($_GET['Credito']['sucursal_id']);
+            if ($_GET['Credito']['ano_creacion'] && $_GET['Credito']['mes_creacion']) {
+                $fechas = array();
+                $array_meses = explode(',', $_GET['Credito']['mes_creacion']);
+                foreach ($array_meses as $value) {
+                    array_push($fechas, '"' . $_GET['Credito']['ano_creacion'] . '/' . $value . '"');
+                }
+                $model->de_fechas($_GET['Credito']['ano_creacion'], $_GET['Credito']['mes_creacion'], implode(',', $fechas));
+            } else {
+                $model->de_fechas($_GET['Credito']['ano_creacion'], $_GET['Credito']['mes_creacion']);
+            }
+        }
         $this->render('admin', array(
             'model' => $model,
         ));
@@ -149,6 +164,12 @@ class CreditoController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'credito-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    public function actionAjaxlistCreditos($socio_ids = null, $search_value = null) {
+        if (Yii::app()->request->isAjaxRequest) {
+            echo CJSON::encode(Credito::model()->getListSelect2($socio_ids, $search_value));
         }
     }
 
