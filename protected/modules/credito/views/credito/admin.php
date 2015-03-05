@@ -80,8 +80,9 @@ $this->menu = array(
                 </div>
             </div>
         </div>
+        <div class="space10"></div>
         <div class="row-fluid">
-            <div class="span4">
+            <div class="span2">
                 <div class="control-group ">
                     <label class="control-label" for="Credito_ano_creacion">Año</label>
                     <div class="controls">
@@ -93,7 +94,7 @@ $this->menu = array(
                     </div>
                 </div>
             </div>
-            <div class="span4">
+            <div class="span2">
                 <div class="control-group ">
                     <label class="control-label" for="Credito_mes_creacion">Mes</label>
                     <div class="controls">
@@ -109,7 +110,7 @@ $this->menu = array(
         <?php $this->endWidget(); ?>
 
 
-        <div class="space20"></div>
+        <div class="space15"></div>
         <div style="overflow: auto">
             <?php
             $this->widget('bootstrap.widgets.TbGridView', array(
