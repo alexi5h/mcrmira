@@ -14,6 +14,10 @@ $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
 //    'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
+    array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
+        'htmlOptions' => array(
+            'onclick' => 'exportCredito("#credito-form")',)
+    ),
 );
 //$baseUrl = Yii::app()->baseUrl;
 ?>
@@ -62,7 +66,7 @@ $this->menu = array(
                     </div>
                 </div>
             </div>
-            
+
             <div class="span4">
                 <div class="control-group ">
                     <label class="control-label" for="Credito_sucursal_id">Sucursal</label>
