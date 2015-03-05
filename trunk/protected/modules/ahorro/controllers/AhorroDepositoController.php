@@ -118,7 +118,7 @@ class AhorroDepositoController extends AweController {
                         if ($model->cantidad <= $ahorro->saldo_contra) {
                             $ahorro->saldo_contra = $ahorro->saldo_contra - $model->cantidad;
                             $ahorro->saldo_favor = $ahorro->saldo_favor + $model->cantidad;
-
+$ahorro->estado = $ahorro->saldo_contra==0?Ahorro::ESTADO_PAGADO:Ahorro::ESTADO_DEUDA;
                             if ($ahorro->save()) {
                                 if ($ahorro->saldo_contra > 0) {
                                     $modelAhorroDetalle = new AhorroDetalle;
@@ -145,7 +145,13 @@ class AhorroDepositoController extends AweController {
 
 //                
                     }
+if($fechaNext == null){
+$fechaNext = Util::FormatDate(date("d/m/Y", strtotime(Util::FormatDate(Util::FechaActual(), 'm/d/Y') . " +1 month")), 'Y-m-d');
+                        $fecha = new DateTime($fechaNext);
+                        $fecha->modify('first day of this month');
+                        $fechaNext = $fecha->format('Y-m-d');
 
+}
                     while ($model->cantidad > 0) {
 
                         $modelAhorro = new Ahorro;
@@ -154,14 +160,15 @@ class AhorroDepositoController extends AweController {
                         $modelAhorro->tipo = Ahorro::TIPO_OBLIGATORIO;
                         $modelAhorro->cantidad = Sucursal::model()->findByPk(Util::getSucursal())->valor_ahorro;
                         $modelAhorro->saldo_contra = $modelAhorro->cantidad;
-                        $modelAhorro->estado = Ahorro::ESTADO_DEUDA;
+						
+                        
+						
                         if ($model->cantidad <= $modelAhorro->saldo_contra) {
                             $modelAhorro->saldo_contra = $modelAhorro->saldo_contra - $model->cantidad;
                             $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $model->cantidad;
-
-
+$modelAhorro->estado = $modelAhorro->saldo_contra==0?Ahorro::ESTADO_PAGADO:Ahorro::ESTADO_DEUDA;
                             if ($modelAhorro->save()) {
-                                if ($modelAhorro->saldo_contra > 0) {
+                                if ($modelAhorro->saldo_contra > 0) {								
                                     $modelAhorroDetalle = new AhorroDetalle;
                                     $modelAhorroDetalle->ahorro_id = $modelAhorro->id;
                                     $modelAhorroDetalle->cantidad = $modelAhorro->saldo_contra;
