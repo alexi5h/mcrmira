@@ -77,8 +77,8 @@ class Persona extends BasePersona {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id','required','on'=>'import'),
-            array('cedula', 'ext.Validations.CampoCedula','on'=>'insert'),
-            array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
+            array('cedula', 'ext.Validations.CampoCedula','on'=>array('insert','update')),
+//            array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
             array('nombre_formato', 'safe', 'on' => 'search'),
 //            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
