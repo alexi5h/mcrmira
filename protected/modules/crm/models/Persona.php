@@ -201,7 +201,7 @@ class Persona extends BasePersona {
     public function getGenero() {
         if ($this->sexo == 'M') {
             return self::SEXO_MASCULINO;
-        } else {
+        } else if($this->sexo == 'F') {
             return self::SEXO_FEMENINO;
         }
         return null;
