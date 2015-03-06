@@ -65,11 +65,17 @@ class DefaultController extends Controller
 //TODO: Guardar la informacion
                 {
 
+                    //formateo la cedula
+                    $cedula=trim($data[4]);
+                    $cedula=str_replace('-','',$cedula);
+                    $cedula=str_replace(' ','',$cedula);
+                    $cedula=sprintf("%010s",    $cedula); //456789122====>0456789122
+
 
                     $modelPersona = Persona::model()->find(
                         array("condition" => "cedula=:cedula",
                             'params' => array(
-                                ':cedula' => $data[4],
+                                ':cedula' =>$cedula,
                             ))
                     );
 //
@@ -87,7 +93,7 @@ class DefaultController extends Controller
                         $modelPersona->segundo_nombre = ucwords(utf8_encode($data[3]));
                         $modelPersona->apellido_paterno = ucwords(utf8_encode($data[0]));
                         $modelPersona->apellido_materno = ucwords(utf8_encode($data[1]));
-                        $modelPersona->cedula = $data[4];
+                        $modelPersona->cedula = $cedula;
                         $modelPersona->estado = Persona::ESTADO_ACTIVO;
                         $modelPersona->fecha_creacion = Util::FechaActual();
                         $modelPersona->fecha_actualizacion = NULL;
