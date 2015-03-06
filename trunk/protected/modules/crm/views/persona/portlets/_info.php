@@ -23,6 +23,7 @@
                     'name' => 'email',
                     'type' => 'email'
                 ),
+
                 array(
                     'name' => 'sexo',
                     'value' => $model->getGenero()
