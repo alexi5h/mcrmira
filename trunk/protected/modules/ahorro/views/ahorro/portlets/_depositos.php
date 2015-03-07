@@ -12,22 +12,17 @@
             $this->widget('bootstrap.widgets.TbGridView', array(
                 'id' => 'ahorro-deposito-grid',
                 'type' => 'striped bordered hover advance',
-                'dataProvider' => new CArrayDataProvider($model->ahorroDepositos),
+                'dataProvider' => new CArrayDataProvider($model->ahorroDetalles),
                 'columns' => array(
                     array(
                         'header' => "Cantidad",
                         'name' => 'cantidad',
                         'value' => 'number_format($data->cantidad, 2)',
                     ),
+
                     array(
-                        'header' => "Entidad Bancaria",
-                        'name' => 'entidad_bancaria_id',
-                        'value' => '$data->entidadBancaria->nombre',
-                    ),
-//                'cod_comprobante_entidad',
-                    array(
-                        'header' => 'Fecha Comprobante',
-                        'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
+                        'header' => 'Fecha',
+                        'value' => 'Util::FormatDate($data->fecha, "d/m/Y")',
                     ),
 //                'sucursal_comprobante_id',
 //                'cod_comprobante_su',

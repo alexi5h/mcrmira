@@ -15,7 +15,7 @@ $this->menu = array(
 
 <div class="row-fluid">
     <div class="span12">
-        <h1 class="name-title"><i class="icon-tasks"></i> <?php echo $model->id  ?></h1>
+        <h1 class="name-title"><i class="icon-tasks"></i> <?php echo Util::number_pad($model->id ,5) ?></h1>
     </div>
 </div>
 <div class="row-fluid">
