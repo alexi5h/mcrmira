@@ -101,9 +101,9 @@ var Script = function () {
     $('.popovers').popover();
 
     // scroller
-    $('.scroller').slimscroll({
-        height: 'auto'
-    });
+    //$('.scroller').slimscroll({
+    //    height: 'auto'
+    //});
 
     // selects
     $('select.fix').selectBox();

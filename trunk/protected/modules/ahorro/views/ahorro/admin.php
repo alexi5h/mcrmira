@@ -86,6 +86,7 @@ $this->menu = array(
         </div>
         <?php $this->endWidget(); ?>
 
+        <div id="contentGrid" style="height: 335px">
 
         <?php
         $this->widget('bootstrap.widgets.TbExtendedGridView', array(
@@ -158,5 +159,6 @@ $this->menu = array(
             ),
         ));
         ?>
+        </div>
     </div>
 </div>
