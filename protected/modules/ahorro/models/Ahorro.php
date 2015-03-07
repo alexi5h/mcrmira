@@ -337,4 +337,40 @@ class Ahorro extends BaseAhorro
         ));
     }
 
+    public function generateExcel($parametros) {
+
+        $commad = Yii::app()->db->createCommand()
+            ->select(
+                'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
+                p.cedula,
+                s.nombre,
+                t.cantidad,
+                t.fecha,
+                t.estado,
+                t.saldo_contra,
+                t.saldo_favor
+
+       ')
+            ->from('ahorro t')
+            ->join('persona p', 'p.id = t.socio_id')
+            ->leftJoin('sucursal s','s.id=p.sucursal_id')
+            ->where('p.estado=:estado', array(':estado' => Persona::ESTADO_ACTIVO));
+        if ($parametros['socio_id'] ) {
+            $ids=$parametros['socio_id'];
+            $commad->andWhere("p.id in($ids)");
+        }
+
+        if ( $parametros['sucursal_id']) {
+            $cantones=$parametros['sucursal_id'];
+            $commad->andWhere("s.id in($cantones)");
+        }
+      if ($parametros['fecha_rango']){
+          $fechas=explode('/', $parametros['fecha_rango']);
+          $fecha_inicio=$fechas[0];
+          $fecha_fin=$fechas[1];
+          $commad->andWhere( "t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'");
+      }
+        return $commad->queryAll();
+    }
+
 }
