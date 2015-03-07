@@ -22,7 +22,7 @@
                 'cantidad',
                 'fecha',
                 'estado',
-                'tipo',
+//                'tipo',
                 'saldo_contra',
                 'saldo_favor',
             ),
