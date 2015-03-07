@@ -45,7 +45,7 @@ $this->menu = array(
             'enableClientValidation' => false,
         ));
         ?>
-        <div class="row-fluid">
+        <div class="row-fluid ">
             <div class="span3">
                 <div class="control-group ">
                     <label class="control-label" for="Ahorro_fecha_rango">Rango Fecha</label>
@@ -88,7 +88,7 @@ $this->menu = array(
 
 
         <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
+        $this->widget('bootstrap.widgets.TbExtendedGridView', array(
             'id' => 'ahorro-grid',
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->de_tipo(Ahorro::TIPO_OBLIGATORIO)->search(),
@@ -114,20 +114,23 @@ $this->menu = array(
                     'value' => '$data->sucursal->nombre',
                     'type' => 'raw'
                 ),
-                'cantidad',
+//                'cantidad',
+                array(
+                    'name'=>'cantidad',
+//                    'header'=>'Hours worked',
+                    'class'=>'bootstrap.widgets.TbTotalSumColumn'
+                ),
                 array(
                     'name' => 'fecha',
                     'value' => 'Util::FormatDate($data->fecha,"d/m/Y")',
                 ),
+
+                array('name'=>'estado'),
+
                 array(
-                    'name' => 'estado',
-                    'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
-                ),
-//                array(
-//                    'name' => 'tipo',
-//                    'filter' => array('OBLIGATORIO' => 'OBLIGATORIO', 'VOLUNTARIO' => 'VOLUNTARIO', 'PRIMER_PAGO' => 'PRIMER_PAGO',),
-//                ),
-                'saldo_contra',
+                    'name'=>'saldo_contra',
+                    'class'=>'bootstrap.widgets.TbTotalSumColumn'
+                )
 //                array(
 //                    'class' => 'CButtonColumn',
 //                    'template' => '{pago}',
