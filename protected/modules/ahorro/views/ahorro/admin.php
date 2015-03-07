@@ -47,7 +47,8 @@ $this->menu = array(
                     <label class="control-label" for="Ahorro_fecha_rango">Rango Fecha</label>
 
                     <div class="controls">
-                        <input type="datetime" name="Ahorro[fecha_rango]" id="Ahorro_fecha_rango" style="cursor: pointer;"/>
+                        <input type="datetime" name="Ahorro[fecha_rango]" id="Ahorro_fecha_rango"
+                               style="cursor: pointer;"/>
                     </div>
                 </div>
 
@@ -105,9 +106,9 @@ $this->menu = array(
                     'type' => 'raw',
                 ),
                 array(
-                    'header'=>'Sucursal',
-                    'value'=>'$data->sucursal->nombre',
-                    'type'=>'raw'
+                    'header' => 'Sucursal',
+                    'value' => '$data->sucursal->nombre',
+                    'type' => 'raw'
                 ),
                 'cantidad',
                 array(

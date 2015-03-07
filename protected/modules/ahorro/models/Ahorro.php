@@ -329,6 +329,7 @@ class Ahorro extends BaseAhorro
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
         $criteria->compare('saldo_favor', $this->saldo_favor, true);
+        $criteria->addCondition('socio.estado="ACTIVO"','AND');
         $criteria->order = ('saldo_contra DESC,fecha ASC');
 
         return new CActiveDataProvider($this, array(
