@@ -42,7 +42,18 @@ $this->menu = array(
         ));
         ?>
         <div class="row-fluid">
-            <div class="span4">
+            <div class="span3">
+                <div class="control-group ">
+                    <label class="control-label" for="Ahorro_fecha_rango">Rango Fecha</label>
+
+                    <div class="controls">
+                        <input type="datetime" name="Ahorro[fecha_rango]" id="Ahorro_fecha_rango" style="cursor: pointer;"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="span5">
                 <div class="control-group ">
                     <label class="control-label" for="Ahoro_socio_id">Socio</label>
 
@@ -67,15 +78,6 @@ $this->menu = array(
                 </div>
             </div>
 
-            <div class="span4">
-                <div class="control-group ">
-                    <label class="control-label" for="Ahorro_fecha_rango">Rango Fecha</label>
-
-                    <div class="controls">
-                        <input type="datetime" name="Ahorro[fecha_rango]" id="Ahorro_fecha_rango"/>
-                    </div>
-                </div>
-            </div>
         </div>
         <?php $this->endWidget(); ?>
 

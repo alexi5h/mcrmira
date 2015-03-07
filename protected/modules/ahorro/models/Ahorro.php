@@ -6,6 +6,8 @@ class Ahorro extends BaseAhorro
 {
     public $sucursal_id;
     public $fecha_rango;
+    public $fecha_inicio;
+    public $fecha_fin;
 
     //    estado:DEUDA,PAGADO
     const ESTADO_DEUDA = 'DEUDA';
@@ -106,6 +108,14 @@ class Ahorro extends BaseAhorro
                 )
             );
         }
+        return $this;
+    }
+    public function de_rango_fecha($fecha_inicio,$fecha_fin){
+            $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => "t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'",
+                )
+            );
         return $this;
     }
 
