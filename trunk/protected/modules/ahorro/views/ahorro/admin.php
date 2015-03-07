@@ -1,11 +1,23 @@
 <?php
 /** @var AhorroController $this */
 /** @var Ahorro $model */
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+
+$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/moment.min.js');
+$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/daterangepicker.js');
+$cs->registerCssFile($baseUrl . '/plugins/daterangepicker/daterangepicker-bs2.css');
+
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+
 Util::tsRegisterAssetJs('admin.js');
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),),
     array('label' => Yii::t('AweCrud.app', 'Depositar'), 'icon' => 'plus', 'htmlOptions' => array(
-            'onclick' => 'js:viewModal("ahorro/ahorroDeposito/createDepositoAhorro",function(){maskAttributes();})',)
+        'onclick' => 'js:viewModal("ahorro/ahorroDeposito/createDepositoAhorro",function(){maskAttributes();})',)
     ),
 );
 ?>
@@ -21,6 +33,52 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
+        <?php
+        $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
+            'id' => 'persona-form',
+            'enableAjaxValidation' => true,
+            'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
+            'enableClientValidation' => false,
+        ));
+        ?>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Ahoro_socio_id">Socio</label>
+
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'socio_id', $htmlOptions);
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Ahorro_sucursal_id">Sucursal</label>
+
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'sucursal_id', $htmlOptions);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Ahorro_fecha_rango">Rango Fecha</label>
+
+                    <div class="controls">
+                        <input type="datetime" name="Ahorro[fecha_rango]" id="Ahorro_fecha_rango"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php $this->endWidget(); ?>
+
 
         <?php
         $this->widget('bootstrap.widgets.TbGridView', array(
@@ -43,6 +101,11 @@ $this->menu = array(
                     'header' => 'Cédula',
                     'value' => '$data->socio->cedula',
                     'type' => 'raw',
+                ),
+                array(
+                    'header'=>'Sucursal',
+                    'value'=>'$data->sucursal->nombre',
+                    'type'=>'raw'
                 ),
                 'cantidad',
                 array(
