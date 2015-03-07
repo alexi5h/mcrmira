@@ -143,6 +143,10 @@ class AhorroController extends AweController
             $model->attributes = $_GET['Ahorro'];
            $model->de_socios( $_GET['Ahorro']['socio_id']);
            $model->de_sucursal( $_GET['Ahorro']['sucursal_id']);
+            if ($_GET['Ahorro']['fecha_rango']){
+                $fechas=explode('/',$_GET['Ahorro']['fecha_rango']);
+                $model->de_rango_fecha($fechas[0],$fechas[1]);
+            }
             //TODO agregar filtro para fecha rango
         }
         $this->render('admin', array(

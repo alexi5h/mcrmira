@@ -128,10 +128,12 @@ function init() {
         }
     ).on('cancel.daterangepicker', function (ev, picker) {
             $('#Ahorro_fecha_rango').val(null);
+            updateGrid(getParamsSearch());
+
         })
         .on('apply.daterangepicker', function (ev, picker) {
-            console.log(picker.startDate.format('YYYY-MM-DD'));
-            console.log(picker.endDate.format('YYYY-MM-DD'));
+            $('#Ahorro_fecha_rango').val(picker.startDate.format('YYYY-MM-DD')+' / '+picker.endDate.format('YYYY-MM-DD'));
+            updateGrid(getParamsSearch());
         });
     ;
     inputAhorroFechaRango.attr({
