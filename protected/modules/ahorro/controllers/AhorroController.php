@@ -139,9 +139,12 @@ class AhorroController extends AweController
     {
         $model = new Ahorro('search');
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Ahorro']))
+        if (isset($_GET['Ahorro'])) {
             $model->attributes = $_GET['Ahorro'];
-
+           $model->de_socios( $_GET['Ahorro']['socio_id']);
+           $model->de_sucursal( $_GET['Ahorro']['sucursal_id']);
+            //TODO agregar filtro para fecha rango
+        }
         $this->render('admin', array(
             'model' => $model,
         ));
