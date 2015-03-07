@@ -166,11 +166,11 @@ function getParamsSearch() {
 
 }
 
-function exporSocio(Formulario) {
-    if (!isEmptyGrid("#persona-grid")) //Cuando no este vacio
+function exporAhorro(Formulario) {
+    if (!isEmptyGrid("#ahorro-grid")) //Cuando no este vacio
     {
         $(Formulario).attr('target', "blank");
-        $(Formulario).attr('action', baseUrl + 'crm/persona/exportarSocio');
+        $(Formulario).attr('action', baseUrl + 'ahorro/ahorro/exportarAhorro');
         $(Formulario).submit();
     } else {
         bootbox.alert('No hay datos para exportar');

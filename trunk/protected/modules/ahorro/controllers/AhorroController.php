@@ -203,7 +203,56 @@ class AhorroController extends AweController
             }
         }
     }
+    public function actionExportarAhorro() {
+        if (isset($_POST['Ahorro'])) {
+            $parametros=$_POST['Ahorro'];
+//            var_dump($parametros);
+//            die();
+            $reporte = Ahorro::model()->generateExcel($parametros);
 
+
+            //genera el reporte de excel
+            $objExcel = new PHPExcel();
+
+
+            //carga la consulta en la hoja 0 con el contenido de la busqueda, empezando desde la seguna fila
+            $objExcel->setActiveSheetIndex(0)->fromArray($reporte, null, 'A2');
+            //agrega las cabeceras
+            $objExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', 'Nombres y Apellidos')
+                ->setCellValue('B1', 'Identificación')
+                ->setCellValue('C1', ' Sucursal')
+                ->setCellValue('D1', 'Cantidad')
+                ->setCellValue('E1', 'Fecha')
+                ->setCellValue('F1', 'Estado Ahorro')
+                ->setCellValue('G1', 'Cantidad por Pagar')
+                ->setCellValue('H1', 'Cantidad Pagada')
+            ;
+
+            for ($i = 'A'; $i <= 'Z'; $i++) {
+                $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
+            }
+//titulo de la hoja 0
+            $objExcel->getActiveSheet()->setTitle('Ahorro');
+
+//// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
+            $objExcel->setActiveSheetIndex(0);
+//// Inmovilizar paneles
+            $objExcel->getActiveSheet(0)->freezePane('A2');
+//                $objExcel->getActiveSheet(0)->freezePaneByColumnAndRow(1, 2);
+// Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//crea el archivo con el siguiente formato: Incidencias <fecha inicial> hasta <fecha final>.xlsx
+            header('Content-Disposition: attachment;filename="Reporte de Socios.xlsx"');
+            header('Cache-Control: max-age=0');
+//genera el archivo con formato excel 2007
+            $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+
+            $objWriter->save('php://output');
+
+//        exit();
+        }
+    }
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.

@@ -19,6 +19,10 @@ $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Depositar'), 'icon' => 'plus', 'htmlOptions' => array(
         'onclick' => 'js:viewModal("ahorro/ahorroDeposito/createDepositoAhorro",function(){maskAttributes();})',)
     ),
+    array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
+        'htmlOptions' => array(
+            'onclick' => 'exporAhorro("#ahorro-form")',)
+    ),
 );
 ?>
 <div id="flashMsg" class="flash-messages">
@@ -35,7 +39,7 @@ $this->menu = array(
     <div class="widget-body">
         <?php
         $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
-            'id' => 'persona-form',
+            'id' => 'ahorro-form',
             'enableAjaxValidation' => true,
             'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
             'enableClientValidation' => false,
