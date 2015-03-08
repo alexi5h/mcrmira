@@ -62,17 +62,17 @@
             ?>
             <br>
             <?php
-            if ($model->saldo_contra > 0) {
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'type' => 'default',
-                    'icon' => 'plus',
-                    'label' => 'Depositar',
-                    'htmlOptions' => array(
-//                        'href' => 'ahorro/ahorroDeposito/create?id_ahorro=' . $model->id,
-                        'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro=' . $model->id . '",function() {maskAttributes();}); ',
-                    ),
-                ));
-            }
+//            if ($model->saldo_contra > 0) {
+//                $this->widget('bootstrap.widgets.TbButton', array(
+//                    'type' => 'default',
+//                    'icon' => 'plus',
+//                    'label' => 'Depositar',
+//                    'htmlOptions' => array(
+////                        'href' => 'ahorro/ahorroDeposito/create?id_ahorro=' . $model->id,
+//                        'onClick' => 'js:viewModalWidth("ahorro/ahorroDeposito/create?id_ahorro=' . $model->id . '",function() {maskAttributes();}); ',
+//                    ),
+//                ));
+//            }
             ?>
         </div>
     </div>

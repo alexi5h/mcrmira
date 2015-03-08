@@ -1,3 +1,8 @@
+$(function(){
+    //#74B749
+    $("#wrapper_grid_ahorro").niceScroll({styler: "fb", cursorcolor: "#74B749", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
+
+})
 function showModalLoadingWidth() {
     var html = "";
     html += "<div class='modal-header'><h4><i class='icon-refresh'></i> Cargando</h4></div>";
