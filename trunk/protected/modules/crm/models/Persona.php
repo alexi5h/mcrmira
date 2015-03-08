@@ -293,10 +293,11 @@ class Persona extends BasePersona {
     }
 
     public function getNombre_formato() {
-        $return = $this->primer_nombre;
-        $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
-        $return = $return . ' ' . $this->apellido_paterno;
+
+        $return = $this->apellido_paterno;
         $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
+        $return = $return . ' ' . $this->primer_nombre;
+        $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $this->nombre_formato = $return;
         return $this->nombre_formato;
     }

@@ -5,7 +5,7 @@ Util::tsRegisterAssetJs('view.js');
 ?>
 <div class="row-fluid">
     <div class="span12">
-        <h1 class="name-title"><i class="icon-user"></i> <?php echo $model->nombre_corto ?></h1>
+        <h1 class="name-title"><i class="icon-user"></i> <?php echo $model->nombre_formato ?></h1>
     </div>
 </div>
 <div class="row-fluid">
