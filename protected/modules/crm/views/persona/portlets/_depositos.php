@@ -37,11 +37,11 @@ $gridDataProvider->sort = $sort;
 //        ));
         ?>
         <div class="row-fluid">
-            <div style='overflow:auto'> 
+            <div  style='overflow:auto;height: 200px;'>
                 <?php
-                $this->widget('ext.bootstrap.widgets.TbGridView', array(
+                $this->widget('ext.bootstrap.widgets.TbExtendedGridView', array(
                     'id' => 'deposito-grid-grid',
-                    'type' => '',
+                    'type' => 'striped bordered hover advance',
                     "template" => "{items}{pager}",
                     'dataProvider' => $gridDataProvider,
                     'columns' => array(
@@ -50,6 +50,8 @@ $gridDataProvider->sort = $sort;
                             'name' => 'cantidad',
                             'value' => '$data->cantidad',
                             'type' => 'raw',
+                            'class'=>'bootstrap.widgets.TbTotalSumColumn'
+
                         ),
                         array(
                             'header' => 'Entidad Bancaria',
@@ -75,11 +77,11 @@ $gridDataProvider->sort = $sort;
                             'value' => '$data->fecha_comprobante_su',
                             'type' => 'raw',
                         ),
-                        array(
-                            'header' => 'Tipo Depósito',
-                            'value' => 'isset($data->ahorro_id) ? "AHORRO" : "CREDITO"',
-                            'type' => 'raw',
-                        ),
+//                        array(
+//                            'header' => 'Tipo Depósito',
+//                            'value' => 'isset($data->ahorro_id) ? "AHORRO" : "CREDITO"',
+//                            'type' => 'raw',
+//                        ),
                     ),
                 ));
                 ?>

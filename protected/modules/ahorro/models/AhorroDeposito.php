@@ -92,8 +92,8 @@ class AhorroDeposito extends BaseAhorroDeposito {
     public function searchDepositosSocio($socio_id = null) {
         $criteria = new CDbCriteria;
         $sort = new CSort;
-        $criteria->with = array('ahorro');
-        $criteria->addCondition('ahorro.socio_id=:socio_id', 'AND');
+//        $criteria->with = array('ahorro');
+        $criteria->addCondition('t.socio_id=:socio_id', 'AND');
 //        $criteria->mergeWith(CreditoDeposito::model()->searchDepositosSocio($socio_id));
 //        $criteria->addCondition('t.id not in (select ev.cuenta_id from evento_visita ev where ev.estado=:ev_estado)', 'AND');
 //        $criteria->addCondition('(t.frecuencia is not null OR t.frecuencia>0)', 'AND');
@@ -115,6 +115,7 @@ class AhorroDeposito extends BaseAhorroDeposito {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria, 'sort' => $sort,
+            'pagination'=>false
         ));
     }
 
