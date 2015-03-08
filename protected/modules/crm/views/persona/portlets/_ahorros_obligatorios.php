@@ -30,7 +30,6 @@ $ahorros = new Ahorro;
             );
             ?>
             <?php if ($validarDataPagos): ?>
-<!--            <div id="contentGrid" style="height: 335px">-->
 
             <div style='overflow:auto;height: 170px;' id="wrapper_grid_ahorro" >
 
