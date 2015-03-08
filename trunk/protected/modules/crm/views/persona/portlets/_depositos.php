@@ -37,7 +37,7 @@ $gridDataProvider->sort = $sort;
 //        ));
         ?>
         <div class="row-fluid">
-            <div  style='overflow:auto;height: 200px;'>
+            <div  id="wrapper-deposito" style='overflow:auto;height: 200px;'>
                 <?php
                 $this->widget('ext.bootstrap.widgets.TbExtendedGridView', array(
                     'id' => 'deposito-grid-grid',
