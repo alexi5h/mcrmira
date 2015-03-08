@@ -51,7 +51,7 @@ function actualizarGrid() {
 }
 
 function init() {
-    $("#contentGrid").niceScroll({styler: "fb", cursorcolor: "#f4f81a", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
+    $("#contentGrid").niceScroll({styler: "fb", cursorcolor: "#34AFBD", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
 
     inputAhorroSocioId = $("#Ahorro_socio_id");
     //select2
