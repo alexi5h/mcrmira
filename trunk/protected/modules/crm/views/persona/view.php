@@ -22,6 +22,6 @@ Util::tsRegisterAssetJs('view.js');
 </div>
 <div class="row-fluid">
     <div class="span12">
-        <!--        --><?php //$this->renderPartial('portlets/_depositos', array('model' => $model));    ?>
+                <?php $this->renderPartial('portlets/_depositos', array('model' => $model,'gridDataProvider'=>$gridDataProvider));    ?>
     </div>
 </div>

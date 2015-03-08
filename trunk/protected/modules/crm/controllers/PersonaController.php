@@ -24,13 +24,14 @@ class PersonaController extends AweController {
      */
     public function actionView($id) {
         $model = $this->loadModel($id);
-//        $modelDepositoAhorro = new AhorroDeposito;
+        $modelDepositoAhorro = new AhorroDeposito;
         $modelDepositoCredito = new CreditoDeposito;
-//        $depositosAhorro = $modelDepositoAhorro->searchDepositosSocio($model->id);
+        $depositosAhorro = $modelDepositoAhorro->searchDepositosSocio($model->id);
         $depositosCredito = $modelDepositoCredito->searchDepositosSocio($model->id);
-        $gridDataProvider = new CArrayDataProvider(array_merge($depositosCredito->getData()));
+        $gridDataProvider = new CArrayDataProvider(array_merge($depositosCredito->getData(),$depositosAhorro->getData()));
         $this->render('view', array(
             'model' => $model,
+            'gridDataProvider'=>$gridDataProvider
         ));
     }
 
