@@ -62,7 +62,6 @@
                     'value' => $model->direccionNegocio ? $model->direccionNegocio->direccion_completa : null,
                 ),
                 'descripcion',
-//                'tipo',
             ),
         ));
         ?>
