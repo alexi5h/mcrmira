@@ -34,9 +34,7 @@ $ahorros = new Ahorro;
 
                     <?php
                     $dP = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_OBLIGATORIO)->search();
-                    $dP->pagination = array(
-                        'pageSize' => 5
-                    );
+                    $dP->pagination = false;
                     $this->widget('ext.bootstrap.widgets.TbGridView', array(
                         'id' => 'pago-grid',
                         'type' => 'striped bordered hover advance condensed',

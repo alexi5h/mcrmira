@@ -68,7 +68,7 @@
         ?>
         <?php
 
-        echo Chtml::link('<i class="icon-edit-sign"></i> Actualizar', array('update', 'id' => $model->id), array('class' => 'btn'));
+        echo Chtml::link('<i class="icon-edit-sign"></i> Editar', array('update', 'id' => $model->id), array('class' => 'btn'));
         ?>
         <?php
         $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();
