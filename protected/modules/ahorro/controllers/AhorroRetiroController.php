@@ -32,7 +32,7 @@ class AhorroRetiroController extends AweController {
      */
     public function actionCreate() {
         $model = new AhorroRetiro;
-        $retiroDetalle = new AhorroRetiroDetalle();
+//        $retiroDetalle = new AhorroRetiroDetalle();
 
         $validadorSucces = true;
         $this->performAjaxValidation($model, 'ahorro-retiro-form');
@@ -56,27 +56,27 @@ class AhorroRetiroController extends AweController {
                             $cantidadAhorro = floatval($ahorro['saldo_favor']);
                             if ($cantidadInput <= $cantidadAhorro) {
                                 $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
-                                if ($validadorDetalle) {
-
-                                    $retiroDetalle->cantidad = $cantidadAhorro;
-                                    $retiroDetalle->ahorro_id = $ahorro['id'];
-                                    $retiroDetalle->ahorro_retiro_id = $model->id;
-                                    $retiroDetalle->save();
-                                } else {
-                                    AhorroRetiro::model()->deleteByPk($model->id);
-                                }
+//                                if ($validadorDetalle) {
+//
+//                                    $retiroDetalle->cantidad = $cantidadAhorro;
+//                                    $retiroDetalle->ahorro_id = $ahorro['id'];
+//                                    $retiroDetalle->ahorro_retiro_id = $model->id;
+//                                    $retiroDetalle->save();
+//                                } else {
+//                                    AhorroRetiro::model()->deleteByPk($model->id);
+//                                }
                             } else {
                                 $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
-                                if ($validadorDetalle) {
-
-                                    $retiroDetalle->cantidad = $cantidadAhorro;
-                                    $retiroDetalle->ahorro_id = $ahorro['id'];
-                                    $retiroDetalle->ahorro_retiro_id = $model->id;
-                                    $retiroDetalle->save();
-                                } else {
-                                    AhorroRetiro::model()->deleteByPk($model->id);
-                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
-                                }
+//                                if ($validadorDetalle) {
+//
+//                                    $retiroDetalle->cantidad = $cantidadAhorro;
+//                                    $retiroDetalle->ahorro_id = $ahorro['id'];
+//                                    $retiroDetalle->ahorro_retiro_id = $model->id;
+//                                    $retiroDetalle->save();
+//                                } else {
+//                                    AhorroRetiro::model()->deleteByPk($model->id);
+//                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
+//                                }
                             }
                             $cantidadInput = $cantidadInput - $cantidadAhorro;
                         }

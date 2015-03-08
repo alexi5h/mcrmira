@@ -2,7 +2,10 @@
 /** @var AhorroRetiroController $this */
 /** @var AhorroRetiro $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'), 
+    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
+    ),
+    array('label' => Yii::t('AweCrud.app', 'Retirar Ahorros'), 'icon' => 'exchange', 'url' => array('#'), 
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -20,35 +23,36 @@ $this->menu = array(
     </div>
     <div class="widget-body">
 
-        <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
-            'id' => 'ahorro-retiro-grid',
-            'type' => 'striped bordered hover advance',
-            'dataProvider' => $model->search(),
-            'columns' => array(
-//                'id',
-                array(
+            <?php 
+        $this->widget('bootstrap.widgets.TbGridView',array(
+        'id' => 'ahorro-retiro-grid',
+        'type' => 'striped bordered hover advance',
+        'dataProvider' => $model->search(),
+        'columns' => array(
+                   array(
                     'name' => 'socio_id',
                     'value' => '$data->socio->nombre_formato'
                 ),
-                array(
+                       array(
                     'name' => 'sucursal_id',
                     'value' => '$data->sucursal'
                 ),
-                'cantidad',
-                array(
+                        'cantidad',
+                        array(
                     'name' => 'fecha_retiro',
                     'value' => 'Util::FormatDate($data->fecha_retiro,"d/m/Y")',
                 ),
-                'comprobante_retiro',
-                array(
+                          array(
                     'name' => 'entidad_bancaria_id',
                     'value' => '$data->entidadBancaria'
                 ),
+//                        'usuario_creacion_id',
+                            
+                        'numero_cheque',
+                        
                 array(
                     'class' => 'CButtonColumn',
-                    'template' => ' {delete}',
-//                    'template' => '{update} {delete}',
+                    'template' => '{update} {delete}',
                     'afterDelete' => 'function(link,success,data){ 
                     if(success) {
                          $("#flashMsg").empty();
@@ -57,25 +61,24 @@ $this->menu = array(
                     }
                     }',
                     'buttons' => array(
-//                        'update' => array(
-//                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
-//                            'options' => array('title' => 'Actualizar'),
-//                            'imageUrl' => false,
-//                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
-//                        ),
+                        'update' => array(
+                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+                            'options' => array('title' => 'Actualizar'),
+                            'imageUrl' => false,
+                             //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
+                        ),
                         'delete' => array(
                             'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
                             'options' => array('title' => 'Eliminar'),
                             'imageUrl' => false,
-                        //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
+                            //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
                         ),
                     ),
                     'htmlOptions' => array(
                         'width' => '80px'
                     )
                 ),
-            ),
-        ));
-        ?>
+        ),
+        )); ?>
     </div>
 </div>
