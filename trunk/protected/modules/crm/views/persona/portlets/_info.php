@@ -7,7 +7,6 @@
     </div>
     <div class="widget-body">
         <?php
-
         $this->widget('bootstrap.widgets.TbDetailView', array(
             'data' => $model,
             'attributes' => array(
@@ -24,7 +23,6 @@
                     'name' => 'email',
                     'type' => 'email'
                 ),
-
                 array(
                     'name' => 'sexo',
                     'value' => $model->getGenero()
@@ -66,8 +64,11 @@
         ));
         ?>
         <?php
-
         echo Chtml::link('<i class="icon-edit-sign"></i> Editar', array('update', 'id' => $model->id), array('class' => 'btn'));
+        ?>
+         
+        <?php
+        echo Chtml::link('<i class="icon-edit-sign"></i> Retirar Ahorros', array('update', 'id' => $model->id), array('class' => 'btn'));
         ?>
         <?php
         $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();

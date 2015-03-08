@@ -12,7 +12,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'enableClientValidation' => false,
         ));
 ?>
-<div class="widget blue">
+<div class="widget blue ">
     <div class="widget-title">
         <h4><i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . AhorroRetiro::label(1); ?></h4>
         <span class="tools">
@@ -29,16 +29,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->dropDownListRow($model, 'socio_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Persona::model()->activos()->findAll(), 'id', 'nombre_formato'), array('placeholder' => '', 'class' => 'span4')) ?>
         <?php echo $form->dropDownListRow($model, 'sucursal_id', array('' => ' -- Seleccione -- ') + CHtml::listData(Sucursal::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
-        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class' => 'money')) ?>
-
-
-
-        <?php
-        echo $form->radioButtonListRow($model, 'tipoAhorro', array(Ahorro::TIPO_OBLIGATORIO => Ahorro::TIPO_OBLIGATORIO, Ahorro::TIPO_VOLUNTARIO => Ahorro::TIPO_VOLUNTARIO), array('labelOptions' => array('style' => 'display:inline-block'),
-            'separator' => "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
-        ?>
-
-
+        <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
         <?php
         echo $form->datepickerRow(
@@ -56,25 +47,26 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php echo $form->textFieldRow($model, 'comprobante_retiro', array('maxlength' => 45)) ?>
-
-
         <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-        <div class="form-actions">
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType' => 'submit',
-                'type' => 'success',
-                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-            ));
-            ?>
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'label' => Yii::t('AweCrud.app', 'Cancel'),
-                'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
-            ));
-            ?>
-        </div>
+
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id') ?>
+
+        <?php echo $form->textFieldRow($model, 'numero_cheque', array('maxlength' => 45)) ?>
+    </div>                <div class="form-actions">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType' => 'submit',
+            'type' => 'success',
+            'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
+        ));
+        ?>
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'label' => Yii::t('AweCrud.app', 'Cancel'),
+            'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
+        ));
+        ?>
     </div>
+</div>
 </div>
 <?php $this->endWidget(); ?>
