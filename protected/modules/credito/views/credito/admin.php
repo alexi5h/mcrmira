@@ -70,7 +70,7 @@ $this->menu = array(
             </div>
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Credito_numero_cheque">Número Cheque</label>
+                    <label class="control-label" for="Credito_numero_cheque">NÃƒÂºmero Cheque</label>
                     <div class="controls">
                         <?php
                         $htmlOptions = array('class' => "span12");
@@ -102,7 +102,7 @@ $this->menu = array(
         <div class="space15"></div>
         <div style="overflow: auto">
             <?php
-            $this->widget('bootstrap.widgets.TbGridView', array(
+            $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                 'id' => 'credito-grid',
                 'type' => 'striped bordered hover advance',
                 'dataProvider' => $model->search(),
@@ -134,14 +134,17 @@ $this->menu = array(
                     array(
                         'name' => 'cantidad_total',
                         'value' => '"$" . number_format($data->cantidad_total, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
                     ),
                     array(
                         'name' => 'total_interes',
                         'value' => '"$" . number_format($data->total_interes, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
                     ),
                     array(
                         'name' => 'total_pagar',
                         'value' => '"$" . number_format($data->total_pagar, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
                     ),
                     array(
                         'name' => 'estado',
