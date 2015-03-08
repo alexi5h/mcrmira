@@ -17,7 +17,8 @@
             'attributes' => array(
                 array(
                     'name' => 'socio_id',
-                    'value' => $model->socio->nombre_formato,
+                    'value' => CHtml::link($model->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view",array("id"=>$model->socio_id))),
+                    'type'=>'html'
                 ),
                 'cantidad',
                 'fecha',
