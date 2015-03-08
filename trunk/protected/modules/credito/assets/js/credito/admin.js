@@ -1,8 +1,44 @@
-var inputNumeroCheque, inputSocioId, inputSucursalId, inputAño, inputMes;
+var inputCreditoFechaRango, inputNumeroCheque, inputSocioId, inputSucursalId;
 $(function () {
     initSelect();
 });
 function initSelect() {
+    //filtro de fechas
+    inputCreditoFechaRango= $('#Credito_fecha_rango');
+    inputCreditoFechaRango.daterangepicker(
+        {
+            format: 'MM/YYYY',
+            ranges: {
+                'Año Actual': [moment().month(0), moment().month("December")],
+                'Año Anterior': [moment().subtract('years', (+1)).month(0), moment().subtract('years', (+1)).month(11)]
+            },
+            startDate: moment().subtract(29, 'days'),
+            locale: {
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Limpiar',
+                fromLabel: 'DESDE',
+                toLabel: 'HASTA',
+                customRangeLabel: 'Rango Personalizado',
+                daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                firstDay: 1
+            }
+
+        }
+    ).on('cancel.daterangepicker', function (ev, picker) {
+            $('#Credito_fecha_rango').val(null);
+            updateGrid(getParamsSearch());
+
+        })
+        .on('apply.daterangepicker', function (ev, picker) {
+            $('#Credito_fecha_rango').val(picker.startDate.format('YYYY-MM-DD')+' / '+picker.endDate.format('YYYY-MM-DD'));
+            updateGrid(getParamsSearch());
+        });
+    ;
+    inputCreditoFechaRango.attr({
+        placeholder: 'Seleccione un Rango'
+    });
+    
     inputNumeroCheque = $("#Credito_numero_cheque");
     //select2
     inputNumeroCheque.select2({
@@ -111,71 +147,6 @@ function initSelect() {
             }
         }
     });
-    inputAño = $("#Credito_ano_creacion");
-    inputAño.select2({
-        placeholder: "Seleccione un año",
-        multiple: true,
-        data: [
-//            {id: null, text: 'Todos'},
-            {id: '2015', text: '2015'},
-            {id: '2014', text: '2014'},
-            {id: '2013', text: '2013'},
-            {id: '2012', text: '2012'},
-            {id: '2011', text: '2011'},
-            {id: '2010', text: '2010'},
-        ],
-        initSelection: function (element, callback) {
-            if ($(element).val()) {
-                var data = {id: element.val(), text: $(element).attr('selected-text')};
-                callback(data);
-            }
-        }
-    });
-    inputMes = $("#Credito_mes_creacion");
-    inputMes.select2({
-        placeholder: "Seleccione un mes",
-        multiple: true,
-        data: [
-//            {id: null, text: 'Todos'},
-            {id: '01', text: 'Enero'},
-            {id: '02', text: 'Febero'},
-            {id: '03', text: 'Marzo'},
-            {id: '04', text: 'Abril'},
-            {id: '05', text: 'Mayo'},
-            {id: '06', text: 'Junio'},
-            {id: '07', text: 'Julio'},
-            {id: '08', text: 'Agosto'},
-            {id: '09', text: 'Septiembre'},
-            {id: '10', text: 'Octubre'},
-            {id: '11', text: 'Noviembre'},
-            {id: '12', text: 'Diciembre'},
-        ],
-        initSelection: function (element, callback) {
-            if ($(element).val()) {
-                var data = {id: element.val(), text: $(element).attr('selected-text')};
-                callback(data);
-            }
-        }
-    });
-//    inputPersonaDiscapacidad = $("#Persona_discapacidad");
-//    inputPersonaDiscapacidad.select2({
-//        placeholder: "Seleccione un una",
-//        multiple: false,
-//        data: [{id: null, text: 'Todos'}, {id: 'SI', text: 'Si'}, {id: 'NO', text: 'No'}],
-//        initSelection: function (element, callback) {
-//            if ($(element).val()) {
-//                var data = {id: element.val(), text: $(element).attr('selected-text')};
-//                callback(data);
-//            }
-//        }
-//    });
-//    inputPersonaMadreSoltera = $('#Persona_madre_soltera');
-//    inputPersonaMadreSoltera.bootstrapToggle({
-//        on: 'SI',
-//        off: 'NO',
-//        onstyle: 'primary',
-//        offstyle: 'warning'
-//    });
     inputNumeroCheque.on("change", function (e) {
         updateGrid(getParamsSearch());
     });
@@ -184,18 +155,6 @@ function initSelect() {
         updateGrid(getParamsSearch());
     });
     inputSucursalId.on("change", function (e) {
-        updateGrid(getParamsSearch());
-    });
-    inputAño.on("change", function (e) {
-        if ($('#s2id_Credito_ano_creacion > ul').children().length >= 3) {
-            select2vacio('Credito_mes_creacion');
-            $('#Credito_mes_creacion').attr('readOnly', 'readOnly');
-        } else {
-            $('#Credito_mes_creacion').attr('readOnly', false);
-        }
-        updateGrid(getParamsSearch());
-    });
-    inputMes.on("change", function (e) {
         updateGrid(getParamsSearch());
     });
 }
@@ -211,8 +170,7 @@ function getParamsSearch() {
             'numero_cheque': inputNumeroCheque.val(),
             'socio_id': inputSocioId.val(),
             'sucursal_id': inputSucursalId.val(),
-            'ano_creacion': inputAño.val(),
-            'mes_creacion': inputMes.val(),
+            'fecha_rango': inputCreditoFechaRango.val()
         }
     };
 }

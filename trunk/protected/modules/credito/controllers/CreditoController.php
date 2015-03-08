@@ -40,6 +40,8 @@ class CreditoController extends AweController {
             $model->fecha_credito = Util::FormatDate($model->fecha_credito, 'Y-m-d H:i:s');
             $model->estado = Credito::ESTADO_DEUDA;
             $model->interes = Credito::INTERES;
+            $model->usuario_creacion_id = Yii::app()->user->id;
+            $this->sucursal_id = $model->socio->sucursal_id;
 
             //Fecha límite temporal
             $model->fecha_limite = Util::FechaActual();
@@ -128,15 +130,9 @@ class CreditoController extends AweController {
             $model->de_numeros_cheque($_GET['Credito']['numero_cheque']);
             $model->de_socios($_GET['Credito']['socio_id']);
             $model->de_sucursales($_GET['Credito']['sucursal_id']);
-            if ($_GET['Credito']['ano_creacion'] && $_GET['Credito']['mes_creacion']) {
-                $fechas = array();
-                $array_meses = explode(',', $_GET['Credito']['mes_creacion']);
-                foreach ($array_meses as $value) {
-                    array_push($fechas, '"' . $_GET['Credito']['ano_creacion'] . '/' . $value . '"');
-                }
-                $model->de_fechas($_GET['Credito']['ano_creacion'], $_GET['Credito']['mes_creacion'], implode(',', $fechas));
-            } else {
-                $model->de_fechas($_GET['Credito']['ano_creacion'], $_GET['Credito']['mes_creacion']);
+            if ($_GET['Credito']['fecha_rango']) {
+                $fechas = explode('/', $_GET['Credito']['fecha_rango']);
+                $model->de_rango_fecha($fechas[0], $fechas[1]);
             }
         }
         $this->render('admin', array(
@@ -176,21 +172,15 @@ class CreditoController extends AweController {
     public function actionExportarCredito() {
         $model = new Credito;
         if (isset($_POST['Credito'])) {
-//            $parametros = $_POST['Credito'];
 
             $model->de_socios($_POST['Credito']['socio_id']);
             $model->de_numeros_cheque($_POST['Credito']['numero_cheque']);
             $model->de_sucursales($_POST['Credito']['sucursal_id']);
-            if ($_POST['Credito']['ano_creacion'] && $_POST['Credito']['mes_creacion']) {
-                $fechas = array();
-                $array_meses = explode(',', $_POST['Credito']['mes_creacion']);
-                foreach ($array_meses as $value) {
-                    array_push($fechas, '"' . $_POST['Credito']['ano_creacion'] . '/' . $value . '"');
-                }
-                $model->de_fechas($_POST['Credito']['ano_creacion'], $_POST['Credito']['mes_creacion'], implode(',', $fechas));
-            } else {
-                $model->de_fechas($_POST['Credito']['ano_creacion'], $_POST['Credito']['mes_creacion']);
+            if ($_POST['Credito']['fecha_rango']) {
+                $fechas = explode('/', $_POST['Credito']['fecha_rango']);
+                $model->de_rango_fecha($fechas[0], $fechas[1]);
             }
+
             $reporte = $model->findAll();
 
             //genera el reporte de excel
@@ -226,9 +216,9 @@ class CreditoController extends AweController {
                         ->setCellValue('D' . $id, Util::FormatDate($campo->fecha_credito, 'd/m/Y'))
                         ->setCellValue('E' . $id, Util::FormatDate($campo->fecha_limite, 'd/m/Y'))
                         ->setCellValue('F' . $id, $campo->interes)
-                        ->setCellValue('G' . $id, round($campo->cantidad_total,2))
-                        ->setCellValue('H' . $id, round($campo->total_pagar,2))
-                        ->setCellValue('I' . $id, round($campo->total_interes,2))
+                        ->setCellValue('G' . $id, round($campo->cantidad_total, 2))
+                        ->setCellValue('H' . $id, round($campo->total_pagar, 2))
+                        ->setCellValue('I' . $id, round($campo->total_interes, 2))
                         ->setCellValue('J' . $id, $campo->periodos)
                         ->setCellValue('K' . $id, $campo->saldo_contra)
                         ->setCellValue('L' . $id, $campo->saldo_favor)
