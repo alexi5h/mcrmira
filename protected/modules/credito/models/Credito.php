@@ -16,6 +16,9 @@ class Credito extends BaseCredito {
     //Filtros de búsqueda
     public $ano_creacion;
     public $mes_creacion;
+    public $fecha_rango;
+    public $fecha_inicio;
+    public $fecha_fin;
 
     /**
      * @return Credito
@@ -112,28 +115,12 @@ class Credito extends BaseCredito {
         return $this;
     }
 
-    public function de_fechas($año = null, $mes = null, $fechas = null) {
-        if ($año) {
-            if ($mes) {
-                $this->getDbCriteria()->mergeWith(
-                        array(
-                            'condition' => "DATE_FORMAT(t.fecha_credito,'%Y/%m') in ({$fechas})",
-                        )
-                );
-            } else {
-                $this->getDbCriteria()->mergeWith(
-                        array(
-                            'condition' => "DATE_FORMAT(t.fecha_credito,'%Y') in ({$año})",
-                        )
-                );
-            }
-        } elseif ($mes) {
+    public function de_rango_fecha($fecha_inicio,$fecha_fin){
             $this->getDbCriteria()->mergeWith(
-                    array(
-                        'condition' => "DATE_FORMAT(t.fecha_credito,'%m') in ({$mes})",
-                    )
+                array(
+                    'condition' => "t.fecha_credito between '{$fecha_inicio}' and '{$fecha_fin}'",
+                )
             );
-        }
         return $this;
     }
 
@@ -165,17 +152,17 @@ class Credito extends BaseCredito {
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
-    public function beforeSave() {
-        $this->usuario_creacion_id = Yii::app()->user->id;
-        $this->sucursal_id = Util::getSucursal();
-        return parent::beforeSave();
-    }
-
-    public function beforeValidate() {
-        $this->usuario_creacion_id = Yii::app()->user->id;
-        $this->sucursal_id = Util::getSucursal();
-        return parent::beforeValidate();
-    }
+//    public function beforeSave() {
+//        $this->usuario_creacion_id = Yii::app()->user->id;
+//        $this->sucursal_id = Util::getSucursal();
+//        return parent::beforeSave();
+//    }
+//
+//    public function beforeValidate() {
+//        $this->usuario_creacion_id = Yii::app()->user->id;
+//        $this->sucursal_id = Util::getSucursal();
+//        return parent::beforeValidate();
+//    }
 
 //    public function search() {
 //        $criteria = new CDbCriteria;

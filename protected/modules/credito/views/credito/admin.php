@@ -2,6 +2,10 @@
 $baseUrl = Yii::app()->theme->baseUrl;
 $cs = Yii::app()->getClientScript();
 
+$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/moment.min.js');
+$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/daterangepicker.js');
+$cs->registerCssFile($baseUrl . '/plugins/daterangepicker/daterangepicker-bs2.css');
+
 $cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
 $cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
 $cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
@@ -42,7 +46,17 @@ $this->menu = array(
         ));
         ?>
         <div class="row-fluid">
-            <div class="span4">
+            <div class="span3">
+                <div class="control-group ">
+                    <label class="control-label" for="Credito_fecha_rango">Rango Fecha</label>
+                    <div class="controls">
+                        <input type="datetime" name="Credito[fecha_rango]" id="Credito_fecha_rango"
+                               style="cursor: pointer;"/>
+                    </div>
+                </div>
+
+            </div>
+            <div class="span5">
                 <div class="control-group ">
                     <label class="control-label" for="Credito_socio_id">Socio</label>
                     <div class="controls">
@@ -66,8 +80,10 @@ $this->menu = array(
                     </div>
                 </div>
             </div>
-
-            <div class="span4">
+        </div>
+        <!--<div class="space10"></div>-->
+        <div class="row-fluid">
+            <div class="span3">
                 <div class="control-group ">
                     <label class="control-label" for="Credito_sucursal_id">Sucursal</label>
                     <div class="controls">
@@ -76,33 +92,6 @@ $this->menu = array(
                         echo $form->hiddenField($model, 'sucursal_id', $htmlOptions);
                         ?>
                         <span class="help-inline error" id="Credito_sucursal_id_em_" style="display: none"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="space10"></div>
-        <div class="row-fluid">
-            <div class="span2">
-                <div class="control-group ">
-                    <label class="control-label" for="Credito_ano_creacion">Año</label>
-                    <div class="controls">
-                        <?php
-                        $htmlOptions = array('class' => "span12");
-                        echo $form->hiddenField($model, 'ano_creacion', $htmlOptions);
-                        ?>
-                        <span class="help-inline error" id="Credito_ano_creacion_em_" style="display: none"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="span2">
-                <div class="control-group ">
-                    <label class="control-label" for="Credito_mes_creacion">Mes</label>
-                    <div class="controls">
-                        <?php
-                        $htmlOptions = array('class' => "span12");
-                        echo $form->hiddenField($model, 'mes_creacion', $htmlOptions);
-                        ?>
-                        <span class="help-inline error" id="Credito_mes_creacion_em_" style="display: none"></span>
                     </div>
                 </div>
             </div>
