@@ -115,12 +115,12 @@ class Credito extends BaseCredito {
         return $this;
     }
 
-    public function de_rango_fecha($fecha_inicio,$fecha_fin){
-            $this->getDbCriteria()->mergeWith(
+    public function de_rango_fecha($fecha_inicio, $fecha_fin) {
+        $this->getDbCriteria()->mergeWith(
                 array(
                     'condition' => "t.fecha_credito between '{$fecha_inicio}' and '{$fecha_fin}'",
                 )
-            );
+        );
         return $this;
     }
 
@@ -164,31 +164,32 @@ class Credito extends BaseCredito {
 //        return parent::beforeValidate();
 //    }
 
-//    public function search() {
-//        $criteria = new CDbCriteria;
-//
-//        $criteria->compare('id', $this->id);
-//        $criteria->compare('socio_id', $this->socio_id);
-//        $criteria->compare('garante_id', $this->garante_id);
-//        $criteria->compare('sucursal_id', $this->sucursal_id);
-//        $criteria->compare('fecha_credito', $this->fecha_credito, true);
-//        $criteria->compare('fecha_limite', $this->fecha_limite, true);
-//        $criteria->compare('cantidad_total', $this->cantidad_total, true);
-//        $criteria->compare('total_pagar', $this->total_pagar, true);
-//        $criteria->compare('interes', $this->interes, true);
-//        $criteria->compare('total_interes', $this->total_interes, true);
-//        $criteria->compare('estado', $this->estado, true);
-//        $criteria->compare('periodos', $this->periodos);
-//        $criteria->compare('saldo_contra', $this->saldo_contra, true);
-//        $criteria->compare('saldo_favor', $this->saldo_favor, true);
-//        $criteria->compare('anulado', $this->anulado, true);
-//        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
-//        $criteria->compare('numero_cheque', $this->numero_cheque, true,'OR');
-//
-//        return new CActiveDataProvider($this, array(
-//            'criteria' => $criteria,
-//        ));
-//    }
+    public function search() {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('socio_id', $this->socio_id);
+        $criteria->compare('garante_id', $this->garante_id);
+        $criteria->compare('sucursal_id', $this->sucursal_id);
+        $criteria->compare('fecha_credito', $this->fecha_credito, true);
+        $criteria->compare('fecha_limite', $this->fecha_limite, true);
+        $criteria->compare('cantidad_total', $this->cantidad_total, true);
+        $criteria->compare('total_pagar', $this->total_pagar, true);
+        $criteria->compare('interes', $this->interes, true);
+        $criteria->compare('total_interes', $this->total_interes, true);
+        $criteria->compare('estado', $this->estado, true);
+        $criteria->compare('periodos', $this->periodos);
+        $criteria->compare('saldo_contra', $this->saldo_contra, true);
+        $criteria->compare('saldo_favor', $this->saldo_favor, true);
+        $criteria->compare('anulado', $this->anulado, true);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+        $criteria->compare('numero_cheque', $this->numero_cheque, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'pagination' => false,
+        ));
+    }
 
     public function getListSelect2($socio_ids = null, $search_value = null) {
         $command = Yii::app()->db->createCommand()
