@@ -13,6 +13,7 @@ class Menu {
 //            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
             array('label' => '<i class="icon-shopping-cart"></i> ' . Credito::label(2), 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito')),
             array('label' => '<i class="icon-exchange"></i> Retirar Ahorros', 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
+            array('label' => '<i class="icon-share-alt"></i> Devolución Créditos', 'url' => array('/credito/creditoDevolucion/admin'), 'access' => 'action_creditoDevolucion_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoDevolucion')),
 //            array('label' => '<i class="icon-book"></i>  Pagos', 'url' => '#', 'items' => array(
 //                array('label' => '<i class="icon-briefcase"></i> Pagos', 'url' => array('/pagos/pago/admin'), 'access' => 'action_pago_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pago')),
 //                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),

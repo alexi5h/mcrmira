@@ -48,6 +48,7 @@ class CreditoDepositoController extends AweController {
                 $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
                 $model->cod_comprobante_su = CreditoDeposito::model()->generarCodigoComprobante($model->credito->socio_id);
                 $result['cantidadExtra'] = 0;
+                $condicion_devolucion = false;
                 if ($model->cantidad <= $modelCredito->saldo_contra) {
                     $modelCredito->saldo_contra-=$model->cantidad;
                     $modelCredito->saldo_favor+=$model->cantidad;
@@ -95,20 +96,13 @@ class CreditoDepositoController extends AweController {
                             'saldo_favor' => $amortizacion->saldo_favor,
                         ));
                     }
-                    //Creación de un nuevo ahorro voluntario si existe una cantidad extra
-//                    $modelAhorro = new Ahorro;
-//                    $modelAhorro->descripcion = Ahorro::DESCRIPCION_CANTIDAD_EXTRA_CREDITO;
-//                    $modelAhorro->socio_id = $modelCredito->socio_id;
-//                    $modelAhorro->cantidad = $result['cantidadExtra'];
-//                    $modelAhorro->fecha = Util::FechaActual();
-//                    $modelAhorro->estado = Ahorro::ESTADO_PAGADO;
-//                    $modelAhorro->tipo = Ahorro::TIPO_VOLUNTARIO;
-//                    $modelAhorro->saldo_contra = 0;
-//                    $modelAhorro->saldo_favor = $modelAhorro->cantidad;
-//                    $modelAhorro->anulado = Ahorro::ANULADO_NO;
-//                    $modelAhorro->save();
-//                    $result['message'] = 'Pago del crédito completo, la cantidad extra de valor $' . $result['cantidadExtra'] . ' se guardó en un nuevo ahorro Voluntario';
-                    $result['message'] = 'Pago del crédito completo';
+                    //Creación de un nuevo registro en credito_devolucion si existe una cantidad extra
+                    $modelDevolucion = new CreditoDevolucion;
+                    $modelDevolucion->cantidad = $result['cantidadExtra'];
+                    $modelDevolucion->estado = CreditoDevolucion::ESTADO_NO_DEVUELTO;
+                    $condicion_devolucion = true;
+                    $result['message'] = 'Pago del crédito completo, la cantidad extra de valor $' . $result['cantidadExtra'] . ' se registró en Devoluciones de Crédito';
+//                    $result['message'] = 'Pago del crédito completo';
                 }
                 if ($model->save()) {
                     $result['success'] = true;
@@ -116,6 +110,10 @@ class CreditoDepositoController extends AweController {
                     if ($modelCredito->saldo_contra == 0) {
                         $result['pagado'] = true;
                         $modelCredito->estado = Credito::ESTADO_PAGADO;
+                    }
+                    if ($condicion_devolucion) {
+                        $modelDevolucion->credito_deposito_id = $model->id;
+                        $modelDevolucion->save();
                     }
                     Credito::model()->updateByPk($model->credito_id, array(
                         'estado' => $modelCredito->estado,

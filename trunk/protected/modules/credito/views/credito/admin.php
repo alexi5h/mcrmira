@@ -70,7 +70,7 @@ $this->menu = array(
             </div>
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Credito_numero_cheque">NÃƒÂºmero Cheque</label>
+                    <label class="control-label" for="Credito_numero_cheque">Número Cheque</label>
                     <div class="controls">
                         <?php
                         $htmlOptions = array('class' => "span12");

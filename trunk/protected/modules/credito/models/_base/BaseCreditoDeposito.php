@@ -22,6 +22,7 @@
  * @property integer $usuario_creacion_id
  *
  * @property Credito $credito
+ * @property CreditoDevolucion[] $creditoDevolucions
  */
 abstract class BaseCreditoDeposito extends AweActiveRecord {
 
@@ -52,6 +53,7 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
     public function relations() {
         return array(
             'credito' => array(self::BELONGS_TO, 'Credito', 'credito_id'),
+            'creditoDevolucions' => array(self::HAS_MANY, 'CreditoDevolucion', 'credito_deposito_id'),
         );
     }
 
@@ -72,6 +74,7 @@ abstract class BaseCreditoDeposito extends AweActiveRecord {
                 'credito_id' => Yii::t('app', 'Credito'),
                 'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),
                 'credito' => null,
+                'creditoDevolucions' => null,
         );
     }
 
