@@ -29,9 +29,9 @@ function initSelect() {
             }
         }
     });
-    inputPersonaCanton = $("#Persona_canton_ids");
+    inputPersonaCanton = $("#Persona_sucursal_id");
     inputPersonaCanton.select2({
-        placeholder: "Seleccione un cantón",
+        placeholder: "Seleccione una sucursal",
         multiple: true,
         initSelection: function (element, callback) {
             if ($(element).val()) {
@@ -40,7 +40,7 @@ function initSelect() {
             }
         },
         ajax: {// instead of writing the function to execute the request we use Select2's convenient helper
-            url: baseUrl + "crm/canton/ajaxlistCantones",
+            url: baseUrl + "crm/sucursal/ajaxlistSucursales",
             type: "get",
             dataType: 'json',
             data: function (term, page) {
@@ -134,7 +134,7 @@ function getParamsSearch() {
     return {
         'Persona': {
             'id': inputPersonaId.val(),
-            'canton_ids': inputPersonaCanton.val(),
+            'sucursal_ids': inputPersonaCanton.val(),
             'discapacidad': inputPersonaDiscapacidad.val(),
             'estado_civil': inputPersonaEstadoCivil.val(),
             'sexo': inputPersonaSexo.val(),

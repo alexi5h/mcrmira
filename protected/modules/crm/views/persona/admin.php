@@ -58,13 +58,13 @@ $this->menu = array(
             </div>
             <div class="span4">
                     <div class="control-group ">
-                        <label class="control-label" for="Persona_canton_ids">Cantón</label>
+                        <label class="control-label" for="Persona_sucursal">Sucursal</label>
                         <div class="controls">
                             <?php
                             $htmlOptions = array('class' => "span12");
-                            echo $form->hiddenField($model, 'canton_ids', $htmlOptions);
+                            echo $form->hiddenField($model, 'sucursal_id', $htmlOptions);
                             ?>
-                            <span class="help-inline error" id="Persona_canton_ids_em_" style="display: none"></span>
+                            <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
                         </div>
                     </div>
             </div>
