@@ -170,7 +170,7 @@ class PersonaController extends AweController {
         if(isset($_GET['Persona'])){
             $model->attributes=$_GET['Persona'];
             $model->de_ids($model->id);
-            $model->de_canton($_GET['Persona']['canton_ids']);
+            $model->de_sucursal($_GET['Persona']['sucursal_ids']);
             $_GET['Persona']['madreSoltera']=='true'?$model->madreSoltera():'';
         }
         $this->render('admin', array(

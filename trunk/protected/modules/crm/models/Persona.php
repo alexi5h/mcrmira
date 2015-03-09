@@ -149,7 +149,7 @@ class Persona extends BasePersona {
 //        $criteria->compare('usuario_actualizacion_id', $this->usuario_actualizacion_id);
 //        $criteria->compare('aprobado', $this->aprobado);
         $criteria->compare('actividad_economica.nombre', $this->actividad_economica_id, true, 'OR');
-        $criteria->compare('sucursal.nombre', $this->sucursal_id, true, 'OR');
+//        $criteria->compare('sucursal.nombre', $this->sucursal_id, true, 'OR');
         $criteria->compare('personaEtapa.nombre', $this->persona_etapa_id, true, 'OR');
 //        $criteria->compare('direccion_domicilio_id', $this->direccion_domicilio_id);
 //        $criteria->compare('direccion_negocio_id', $this->direccion_negocio_id);
@@ -182,6 +182,16 @@ class Persona extends BasePersona {
             $this->getDbCriteria()->mergeWith(
                     array(
                         'condition' => "parroquia.canton_id in({$cantones})",
+                    )
+            );
+        }
+        return $this;
+    }
+    public function de_sucursal($sucursal_ids) {
+        if ($sucursal_ids) {
+            $this->getDbCriteria()->mergeWith(
+                    array(
+                        'condition' => "t.sucursal_id in({$sucursal_ids})",
                     )
             );
         }
@@ -355,9 +365,13 @@ class Persona extends BasePersona {
             $commad->andWhere("p.id in($ids)");
         }
 
-        if ( $parametros['canton_ids']) {
-            $cantones=$parametros['canton_ids'];
-            $commad->andWhere("parroquia.canton_id in($cantones)");
+//        if ( $parametros['canton_ids']) {
+//            $cantones=$parametros['canton_ids'];
+//            $commad->andWhere("parroquia.canton_id in($cantones)");
+//        }
+        if ( $parametros['sucursal_id']) {
+            $cantones=$parametros['sucursal_id'];
+            $commad->andWhere("p.sucursal_id in($cantones)");
         }
         if ( $parametros['sexo']) {
             $commad->andWhere('p.sexo =:sexo', array(':sexo' => $parametros['sexo']));
