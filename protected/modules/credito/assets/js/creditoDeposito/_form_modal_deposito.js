@@ -9,11 +9,7 @@
  * @param {type} Formulario
  * guarda los _form_modal por ajax para contacto, tarea, oportunidad, evento y cobranza
  */
-function AjaxActualizacionInformacion(Formulario)
-{
-//    viewModal('ahorro/ahorro/create/ahorro_id/39/ahorro_extra_id/1', function () {
-//        maskAttributes();
-//    });
+function AjaxActualizacionInformacion(Formulario) {
     BloquearBotonesModal(Formulario);
     AjaxGestionModalDeposito(Formulario, function (list) {
         $.fn.yiiGridView.update('credito-amortizacion-grid');
@@ -73,12 +69,14 @@ function AjaxGuardarModalDeposito(verificador, Formulario, callBack)
             success: function (data) {
                 if (data.success) {
                     $('#centrado > h4').html('$' + data.saldo_contra + ' por pagar');
+                    console.log(data);
                     if (data.cantidadExtra != 0) {
                         $("#mainBigModal").modal("hide");
                         bootbox.alert(data.message);
                     } else {
                         if (data.pagado) {
                             $("#mainBigModal").modal("hide");
+                            bootbox.alert(data.message);
                         }
                     }
                     callBack(listaActualizar, data);

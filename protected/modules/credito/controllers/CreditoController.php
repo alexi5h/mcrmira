@@ -41,7 +41,7 @@ class CreditoController extends AweController {
             $model->estado = Credito::ESTADO_DEUDA;
             $model->interes = Credito::INTERES;
             $model->usuario_creacion_id = Yii::app()->user->id;
-            $this->sucursal_id = $model->socio->sucursal_id;
+            $model->sucursal_id = $model->socio->sucursal_id;
 
             //Fecha límite temporal
             $model->fecha_limite = Util::FechaActual();
