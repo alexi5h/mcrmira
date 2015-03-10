@@ -2,8 +2,8 @@
 
 Yii::import('ahorro.models._base.BaseAhorro');
 
-class Ahorro extends BaseAhorro
-{
+class Ahorro extends BaseAhorro {
+
     public $sucursal_id;
     public $fecha_rango;
     public $fecha_inicio;
@@ -30,18 +30,15 @@ class Ahorro extends BaseAhorro
     /**
      * @return Ahorro
      */
-    public static function model($className = __CLASS__)
-    {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
-    public static function label($n = 1)
-    {
+    public static function label($n = 1) {
         return Yii::t('app', 'Ahorro|Ahorros', $n);
     }
 
-    public function relations()
-    {
+    public function relations() {
         return array_merge(parent::relations(), array(
             'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
             'sucursal' => array(
@@ -50,10 +47,9 @@ class Ahorro extends BaseAhorro
         ));
     }
 
-    public function rules()
-    {
+    public function rules() {
         return array_merge(parent::rules(), array(
-                array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
+            array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
 //            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
 //            array('tipo', 'unique', 'criteria' => array(
 //                    'condition' => 'socio_id=:socio_id',
@@ -61,99 +57,97 @@ class Ahorro extends BaseAhorro
 //                        ':socio_id' => $this->socio_id
 //                    )
 //                ), 'on' => 'insert'),
-            )
-        );
-    }
-
-    public function de_tipo($tipo)
-    {
-        $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 't.tipo = :tipo',
-                'params' => array(
-                    ':tipo' => $tipo
-                ),
-            )
-        );
-        return $this;
-    }
-
-    public function de_socio($socio_id)
-    {
-        $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 't.socio_id = :socio_id',
-                'params' => array(
-                    ':socio_id' => $socio_id
-                ),
-            )
-        );
-        return $this;
-    }
-    public function de_socios($socio_ids){
-        if($socio_ids) {
-            $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => "t.socio_id in ({$socio_ids})",
                 )
+        );
+    }
+
+    public function de_tipo($tipo) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.tipo = :tipo',
+                    'params' => array(
+                        ':tipo' => $tipo
+                    ),
+                )
+        );
+        return $this;
+    }
+
+    public function de_socio($socio_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.socio_id = :socio_id',
+                    'params' => array(
+                        ':socio_id' => $socio_id
+                    ),
+                )
+        );
+        return $this;
+    }
+
+    public function de_socios($socio_ids) {
+        if ($socio_ids) {
+            $this->getDbCriteria()->mergeWith(
+                    array(
+                        'condition' => "t.socio_id in ({$socio_ids})",
+                    )
             );
         }
         return $this;
     }
-    public function de_sucursal($sucursal_ids){
+
+    public function de_sucursal($sucursal_ids) {
         if ($sucursal_ids) {
             $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => "sucursal.id in ({$sucursal_ids})",
-                )
+                    array(
+                        'condition' => "sucursal.id in ({$sucursal_ids})",
+                    )
             );
         }
         return $this;
     }
-    public function de_rango_fecha($fecha_inicio,$fecha_fin){
-            $this->getDbCriteria()->mergeWith(
+
+    public function de_rango_fecha($fecha_inicio, $fecha_fin) {
+        $this->getDbCriteria()->mergeWith(
                 array(
                     'condition' => "t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'",
                 )
-            );
-        return $this;
-    }
-
-    public function de_cliente_obligatorio($id_socio)
-    {
-        $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 'socio_id = :socio_id AND tipo=:tipo',
-                'params' => array(
-                    ':socio_id' => $id_socio,
-                    ':tipo' => self::TIPO_OBLIGATORIO
-                ),
-            )
         );
         return $this;
     }
 
-    public function de_cliente_voluntario($id_socio)
-    {
+    public function de_cliente_obligatorio($id_socio) {
         $this->getDbCriteria()->mergeWith(
-            array(
-                'condition' => 'socio_id = :socio_id AND tipo=:tipo',
-                'params' => array(
-                    ':socio_id' => $id_socio,
-                    ':tipo' => self::TIPO_VOLUNTARIO
-                ),
-            )
+                array(
+                    'condition' => 'socio_id = :socio_id AND tipo=:tipo',
+                    'params' => array(
+                        ':socio_id' => $id_socio,
+                        ':tipo' => self::TIPO_OBLIGATORIO
+                    ),
+                )
+        );
+        return $this;
+    }
+
+    public function de_cliente_voluntario($id_socio) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 'socio_id = :socio_id AND tipo=:tipo',
+                    'params' => array(
+                        ':socio_id' => $id_socio,
+                        ':tipo' => self::TIPO_VOLUNTARIO
+                    ),
+                )
         );
         return $this->findAll();
     }
 
-    public function socioAhorroVoluntarioTotal($id_socio)
-    {
+    public function socioAhorroVoluntarioTotal($id_socio) {
 //        select sum(cantidad) from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado='NO'
         $command = Yii::app()->db->createCommand()
-            ->select('sum(cantidad)as total')
-            ->from('ahorro ')
-            ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+                ->select('sum(cantidad)as total')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
         $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
 
         $return = $command->queryAll();
@@ -161,14 +155,13 @@ class Ahorro extends BaseAhorro
         return $return[0]['total'];
     }
 
-    public function socioAhorroObligatorioTotal($id_socio)
-    {
+    public function socioAhorroTotal($id_socio) {
 //        select sum(saldo_favor) from ahorro where socio_id=2 and tipo='OBLIGATORIO' and anulado='SI'
         $command = Yii::app()->db->createCommand()
-            ->select('sum(saldo_favor)as total')
-            ->from('ahorro ')
-            ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
-        $command->params = array(':id_socio' => $id_socio, ':tipo' => self::TIPO_OBLIGATORIO);
+                ->select('sum(saldo_favor)as total')
+                ->from('ahorro ')
+                ->where('socio_id=:id_socio');
+        $command->params = array(':id_socio' => $id_socio);
 
         $return = $command->queryAll();
 
@@ -179,13 +172,12 @@ class Ahorro extends BaseAhorro
      * devuelve los ahorros voluntarios con su respectovo saldo a favor de un cleinte 
      */
 
-    public function socioAhorrosVoluntarios($id_socio)
-    {
+    public function socioAhorrosVoluntarios($id_socio) {
 //        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
         $command = Yii::app()->db->createCommand()
-            ->select('id,cantidad')
-            ->from('ahorro ')
-            ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+                ->select('id,cantidad')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
         $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_VOLUNTARIO);
 
         $return = $command->queryAll();
@@ -193,13 +185,12 @@ class Ahorro extends BaseAhorro
         return $return;
     }
 
-    public function socioAhorrosObligatorios($id_socio)
-    {
+    public function socioAhorrosObligatorios($id_socio) {
 //        select id,saldo_favor from ahorro where socio_id=2 and tipo='VOLUNTARIO' and anulado=0 
         $command = Yii::app()->db->createCommand()
-            ->select('id,saldo_favor')
-            ->from('ahorro ')
-            ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
+                ->select('id,saldo_favor')
+                ->from('ahorro ')
+                ->where(array('and', 'socio_id=:id_socio', 'tipo=:tipo'));
         $command->params = array('id_socio' => $id_socio, 'tipo' => self::TIPO_OBLIGATORIO);
 
         $return = $command->queryAll();
@@ -207,8 +198,7 @@ class Ahorro extends BaseAhorro
         return $return;
     }
 
-    public function setAnuladoObligatorio($id, $cantidad = NULL)
-    {
+    public function setAnuladoObligatorio($id, $cantidad = NULL) {
         $toUpdate = array();
         $cant = Yii::app()->db->createCommand()->select('cantidad,id')->from('ahorro')->where('id=:id', array('id' => $id));
         $cant1 = $cant->queryAll();
@@ -221,13 +211,12 @@ class Ahorro extends BaseAhorro
 
 
         $command = Yii::app()->db->createCommand()
-            ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
+                ->update('ahorro', $toUpdate, "id=:id", array(':id' => $id));
 
         return $command == 1 ? true : false;
     }
 
-    public static function fechaMes($id_cliente)
-    {
+    public static function fechaMes($id_cliente) {
         $mes = date("m") + 0;
         $meses = Util::obtenerMeses();
         $año = date("Y");
@@ -236,48 +225,45 @@ class Ahorro extends BaseAhorro
 
     /*     * *Consultas para dashboard* */
 
-    public function getTotalAhorros_Obligatorios_y_Primer_Pago()
-    {
+    public function getTotalAhorros_Obligatorios_y_Primer_Pago() {
 //        select sum(ad.cantidad) from ahorro a
 //        inner join ahorro_deposito ad on a.id = ad.ahorro_id
 //        where a.tipo = 'OBLIGATORIO' or a.tipo = 'PRIMER_PAGO';
 
         $command = Yii::app()->db->createCommand()
-            ->select('sum(ad.cantidad)as total')
-            ->from('ahorro a')
-            ->join('ahorro_deposito ad', 'a.id = ad.ahorro_id')
-            ->where('a.tipo =:tipo_obligatorio or a.tipo =:tipo_preimer_pago'
+                ->select('sum(ad.cantidad)as total')
+                ->from('ahorro a')
+                ->join('ahorro_deposito ad', 'a.id = ad.ahorro_id')
+                ->where('a.tipo =:tipo_obligatorio or a.tipo =:tipo_preimer_pago'
                 , array(':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
-    public function getTotalAhorros_Voluntarios()
-    {
+    public function getTotalAhorros_Voluntarios() {
 //        select sum(saldo_favor) as total from ahorro
 //        where tipo = 'VOLUNTARIO'
 
 
         $command = Yii::app()->db->createCommand()
-            ->select('sum(saldo_favor) as total')
-            ->from('ahorro')
-            ->where('tipo =:tipo_voluntario'
+                ->select('sum(saldo_favor) as total')
+                ->from('ahorro')
+                ->where('tipo =:tipo_voluntario'
                 , array(':tipo_voluntario' => self::TIPO_VOLUNTARIO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
-    public function getTotalAhorros_extras()
-    {
+    public function getTotalAhorros_extras() {
 //        select sum(ae.cantidad) from ahorro a
 //        inner join ahorro_extra ae on a.id = ae.ahorro_id
 //        where ae.anulado = 'NO'
 
 
         $command = Yii::app()->db->createCommand()
-            ->select('sum(ae.cantidad) as total')
-            ->from('ahorro a')
-            ->join('ahorro_extra ae', 'a.id = ae.ahorro_id')
+                ->select('sum(ae.cantidad) as total')
+                ->from('ahorro a')
+                ->join('ahorro_extra ae', 'a.id = ae.ahorro_id')
 //                ->where('ae.anulado =:anulado_no'
 //                , array(':anulado_no' => self::ANULADO_NO))
         ;
@@ -285,39 +271,36 @@ class Ahorro extends BaseAhorro
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
-    public function getfechaUtimoAhorro($id_socio)
-    {
+    public function getfechaUtimoAhorro($id_socio) {
 //       select max(a.fecha) as fecha from ahorro a where a.socio_id=1
 
 
         $command = Yii::app()->db->createCommand()
-            ->select('max(a.fecha) as fecha')
-            ->from('ahorro a')
-            ->where('a.socio_id=:id_socio'
+                ->select('max(a.fecha) as fecha')
+                ->from('ahorro a')
+                ->where('a.socio_id=:id_socio'
                 , array(':id_socio' => $id_socio));
 
         $result = $command->queryAll();
         return Util::FormatDate($result[0]['fecha'], 'Y-m-d');
     }
 
-    public function getTotalAhorros_Deuda()
-    {
+    public function getTotalAhorros_Deuda() {
 //        select sum(a.saldo_contra) from ahorro a
 //        where a.tipo = 'OBLIGATORIO' or a.tipo = 'PRIMER_PAGO'
 //        and estado = 'DEUDA' and a.anulado='NO';
 
 
         $command = Yii::app()->db->createCommand()
-            ->select('sum(a.saldo_contra) as total')
-            ->from('ahorro a')
-            ->where(' a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
+                ->select('sum(a.saldo_contra) as total')
+                ->from('ahorro a')
+                ->where(' a.tipo =:tipo_obligatorio or a.tipo=:tipo_preimer_pago'
                 , array(':tipo_obligatorio' => self::TIPO_OBLIGATORIO, ':tipo_preimer_pago' => self::TIPO_PRIMER_PAGO));
         $result = $command->queryAll();
         return $result[0]['total'] ? $result[0]['total'] : 0;
     }
 
-    public function search()
-    {
+    public function search() {
         $criteria = new CDbCriteria;
         $criteria->with = array('socio', 'sucursal');
 
@@ -329,20 +312,20 @@ class Ahorro extends BaseAhorro
         $criteria->compare('tipo', $this->tipo, true);
         $criteria->compare('saldo_contra', $this->saldo_contra, true);
         $criteria->compare('saldo_favor', $this->saldo_favor, true);
-        $criteria->addCondition('socio.estado="ACTIVO"','AND');
+        $criteria->addCondition('socio.estado="ACTIVO"', 'AND');
         $criteria->order = ('saldo_contra DESC,fecha ASC');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-            'pagination'=>false
+            'pagination' => false
         ));
     }
 
     public function generateExcel($parametros) {
 
         $commad = Yii::app()->db->createCommand()
-            ->select(
-                'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
+                ->select(
+                        'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
                 p.cedula,
                 s.nombre,
                 t.cantidad,
@@ -352,25 +335,25 @@ class Ahorro extends BaseAhorro
                 t.saldo_favor
 
        ')
-            ->from('ahorro t')
-            ->join('persona p', 'p.id = t.socio_id')
-            ->leftJoin('sucursal s','s.id=p.sucursal_id')
-            ->where('p.estado=:estado', array(':estado' => Persona::ESTADO_ACTIVO));
-        if ($parametros['socio_id'] ) {
-            $ids=$parametros['socio_id'];
+                ->from('ahorro t')
+                ->join('persona p', 'p.id = t.socio_id')
+                ->leftJoin('sucursal s', 's.id=p.sucursal_id')
+                ->where('p.estado=:estado', array(':estado' => Persona::ESTADO_ACTIVO));
+        if ($parametros['socio_id']) {
+            $ids = $parametros['socio_id'];
             $commad->andWhere("p.id in($ids)");
         }
 
-        if ( $parametros['sucursal_id']) {
-            $cantones=$parametros['sucursal_id'];
+        if ($parametros['sucursal_id']) {
+            $cantones = $parametros['sucursal_id'];
             $commad->andWhere("s.id in($cantones)");
         }
-      if ($parametros['fecha_rango']){
-          $fechas=explode('/', $parametros['fecha_rango']);
-          $fecha_inicio=$fechas[0];
-          $fecha_fin=$fechas[1];
-          $commad->andWhere( "t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'");
-      }
+        if ($parametros['fecha_rango']) {
+            $fechas = explode('/', $parametros['fecha_rango']);
+            $fecha_inicio = $fechas[0];
+            $fecha_fin = $fechas[1];
+            $commad->andWhere("t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'");
+        }
         return $commad->queryAll();
     }
 

@@ -13,8 +13,8 @@ Util::tsRegisterAssetJs('view.js');
         <?php $this->renderPartial('portlets/_info', array('model' => $model)); ?>
     </div>
     <div class="span6">
-        <!--        --><?php //$this->renderPartial('portlets/_ahorro_primer_pago', array('model' => $model));    ?>
-                <?php $this->renderPartial('portlets/_ahorros_obligatorios', array('model' => $model));    ?>
+        <!--        --><?php //$this->renderPartial('portlets/_ahorro_primer_pago', array('model' => $model));     ?>
+        <?php $this->renderPartial('portlets/_ahorros_obligatorios', array('model' => $model)); ?>
         <?php $this->renderPartial('portlets/_credito', array('model' => $model)); ?>
 
     </div>
@@ -22,6 +22,6 @@ Util::tsRegisterAssetJs('view.js');
 </div>
 <div class="row-fluid">
     <div class="span12">
-                <?php $this->renderPartial('portlets/_depositos', array('model' => $model,'gridDataProvider'=>$gridDataProvider));    ?>
+        <?php $this->renderPartial('portlets/_depositos', array('model' => $model, 'gridDataProvider' => $gridDataProvider)); ?>
     </div>
 </div>
