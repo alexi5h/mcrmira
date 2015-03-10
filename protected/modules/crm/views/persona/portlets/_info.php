@@ -66,12 +66,17 @@
         <?php
         echo Chtml::link('<i class="icon-edit-sign"></i> Editar', array('update', 'id' => $model->id), array('class' => 'btn'));
         ?>
-         
+
         <?php
-        echo Chtml::link('<i class="icon-edit-sign"></i> Retirar Ahorros', array('update', 'id' => $model->id), array('class' => 'btn'));
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'icon' => 'exchange',            
+            'url' => Yii::app()->createUrl("ahorro/ahorroRetiro/create/", array('socio_id'=>$model->id)),
+            'label' => Yii::t('AweCrud.app', 'Retirar Ahorro'),
+//            'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
+        ));
         ?>
         <?php
-        $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();
+//        $etapa_max_id = PersonaEtapa::model()->getEtapaMaxima();
 //        var_dump($model->personaEtapa->id);
 //        var_dump($etapa_max_id);
 //        if ($etapa_max_id != $model->personaEtapa->id) // valida si la etapa ya esa la ultima no se debe gestionar mas
