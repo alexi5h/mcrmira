@@ -27,6 +27,8 @@ $this->menu = array(
             'dataProvider' => $model->activos()->search(),
             'columns' => array(
                 'nombre',
+                'valor_ahorro',
+                'valor_inscripcion',
                 array(
                     'name' => 'direccion_id',
                     'value' => '$data->direccion ? $data->direccion->direccion_completa : null',

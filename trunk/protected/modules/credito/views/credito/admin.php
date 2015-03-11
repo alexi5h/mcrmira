@@ -113,6 +113,7 @@ $this->menu = array(
                         'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
                         'type' => 'raw',
                     ),
+                    'numero_cheque',
                     array(
                         'name' => 'socio_id',
                         'value' => 'CHtml::link($data->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->socio->id)))',
