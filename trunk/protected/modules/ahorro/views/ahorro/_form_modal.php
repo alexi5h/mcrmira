@@ -8,7 +8,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'ahorro-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => true,),
     'enableClientValidation' => false,
         ));
 ?>
