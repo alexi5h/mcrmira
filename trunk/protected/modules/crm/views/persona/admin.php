@@ -58,7 +58,7 @@ $this->menu = array(
             </div>
             <div class="span4">
                     <div class="control-group ">
-                        <label class="control-label" for="Persona_sucursal">Sucursal</label>
+                        <label class="control-label" for="Persona_sucursal">Cantón</label>
                         <div class="controls">
                             <?php
                             $htmlOptions = array('class' => "span12");

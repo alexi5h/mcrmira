@@ -145,7 +145,7 @@ class AhorroController extends AweController
            $model->de_sucursal( $_GET['Ahorro']['sucursal_id']);
             if ($_GET['Ahorro']['fecha_rango']){
                 $fechas=explode('/',$_GET['Ahorro']['fecha_rango']);
-                $model->de_rango_fecha($fechas[0],$fechas[1]);
+                $model->de_rango_fecha($fechas[0],$fechAas[1]);
             }
         }
         $this->render('admin', array(

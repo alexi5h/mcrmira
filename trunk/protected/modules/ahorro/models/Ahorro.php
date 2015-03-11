@@ -50,7 +50,7 @@ class Ahorro extends BaseAhorro {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
-            array('fecha', 'validarFechamismoMes', 'on' => 'create'),
+//            array('fecha', 'validarFechamismoMes', 'on' => 'create'),
 //            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
 //            array('tipo', 'unique', 'criteria' => array(
 //                    'condition' => 'socio_id=:socio_id',
