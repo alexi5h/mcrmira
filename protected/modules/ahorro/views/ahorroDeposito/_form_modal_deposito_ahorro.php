@@ -23,18 +23,20 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 <div class="modal-body">
 
     <?php
-    $model_persona = Persona::model()->activos()->findAll();
+    if (!isset($_GET['socio_id'])) {
+        $model_persona = Persona::model()->activos()->findAll();
 
-    echo $form->select2Row($model, 'socio_id', array(
-        'asDropDownList' => true,
-        'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
-        'options' => array(
-            'placeholder' => '-- Seleccione --',
-        ),
-        'htmlOptions' => array(
+        echo $form->select2Row($model, 'socio_id', array(
+            'asDropDownList' => true,
+            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
+            'options' => array(
+                'placeholder' => '-- Seleccione --',
+            ),
+            'htmlOptions' => array(
 //            'class' => 'span6'
-        )
-    ));
+            )
+        ));
+    }
     ?>
     <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
