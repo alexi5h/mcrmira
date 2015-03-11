@@ -12,7 +12,7 @@
             $amortizaciones = CreditoAmortizacion::model()->de_credito($model->id)->search();
             $this->widget('bootstrap.widgets.TbGridView', array(
                 'id' => 'credito-amortizacion-big-grid',
-//                'type' => 'striped bordered hover advance',
+                'type' => 'striped bordered hover advance',
                 'template' => '{items}{summary}{pager}',
                 'dataProvider' => $amortizaciones,
                 'columns' => array(
@@ -27,9 +27,33 @@
                         'name' => 'fecha_pago',
                         'value' => 'Util::FormatDate($data->fecha_pago, "d/m/Y")',
                     ),
-                    'cuota',
-                    'saldo_contra',
-                    'saldo_favor',
+                    array(
+//                        'header' => 'Cuota',
+                        'name' => 'cuota',
+                        'value' => '$data->cuota',
+                        'type' => 'raw',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+
+                    ),
+                    array(
+//                        'header' => 'Cuota',
+                        'name' => 'saldo_contra',
+                        'value' => '$data->saldo_contra',
+                        'type' => 'raw',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+
+                    ),
+                    array(
+//                        'header' => 'Cuota',
+                        'name' => 'saldo_favor',
+                        'value' => '$data->saldo_favor',
+                        'type' => 'raw',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+
+                    ),
+//                    'cuota',
+//                    'saldo_contra',
+//                    'saldo_favor',
 //                    'interes',
 //                    'mora',
                     array(

@@ -9,7 +9,7 @@
     <div class="widget-body">
         <div style="overflow: auto">
             <?php
-            $this->widget('bootstrap.widgets.TbGridView', array(
+            $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                 'id' => 'credito-deposito-grid',
                 'type' => 'striped bordered hover advance',
                 'dataProvider' => new CArrayDataProvider($model->creditoDepositos),
@@ -18,6 +18,8 @@
                         'header' => "Cantidad",
                         'name' => 'cantidad',
                         'value' => 'number_format($data->cantidad, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+
                     ),
                     array(
                         'header' => "Entidad Bancaria",
