@@ -28,10 +28,10 @@ class PersonaController extends AweController {
         $modelDepositoCredito = new CreditoDeposito;
         $depositosAhorro = $modelDepositoAhorro->searchDepositosSocio($model->id);
         $depositosCredito = $modelDepositoCredito->searchDepositosSocio($model->id);
-        $gridDataProvider = new CArrayDataProvider(array_merge($depositosCredito->getData(),$depositosAhorro->getData()));
+        $gridDataProvider = new CArrayDataProvider(array_merge($depositosCredito->getData(), $depositosAhorro->getData()));
         $this->render('view', array(
             'model' => $model,
-            'gridDataProvider'=>$gridDataProvider
+            'gridDataProvider' => $gridDataProvider
         ));
     }
 
@@ -167,11 +167,11 @@ class PersonaController extends AweController {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
 
-        if(isset($_GET['Persona'])){
-            $model->attributes=$_GET['Persona'];
+        if (isset($_GET['Persona'])) {
+            $model->attributes = $_GET['Persona'];
             $model->de_ids($model->id);
             $model->de_sucursal($_GET['Persona']['sucursal_ids']);
-            $_GET['Persona']['madreSoltera']=='true'?$model->madreSoltera():'';
+            $_GET['Persona']['madreSoltera'] == 'true' ? $model->madreSoltera() : '';
         }
         $this->render('admin', array(
             'model' => $model,
@@ -180,7 +180,7 @@ class PersonaController extends AweController {
 
     public function actionExportarSocio() {
         if (isset($_POST['Persona'])) {
-            $parametros=$_POST['Persona'];
+            $parametros = $_POST['Persona'];
             $reporte = Persona::model()->generateExcel($parametros);
 
             //genera el reporte de excel
@@ -384,9 +384,9 @@ class PersonaController extends AweController {
         }
     }
 
-    public function actionAjaxlistSocios($search_value = null) {
+    public function actionAjaxlistSocios($search_value = null, $credito_socio = false, $credito_garante_socio_id = null) {
         if (Yii::app()->request->isAjaxRequest) {
-            echo CJSON::encode(Persona::model()->getListSelect2($search_value));
+            echo CJSON::encode(Persona::model()->getListSelect2($search_value, $credito_socio, $credito_garante_socio_id));
         }
     }
 
