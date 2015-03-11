@@ -72,7 +72,7 @@ $this->menu = array(
             </div>
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Ahorro_sucursal_id">Sucursal</label>
+                    <label class="control-label" for="Ahorro_sucursal_id">Cantón</label>
 
                     <div class="controls">
                         <?php
