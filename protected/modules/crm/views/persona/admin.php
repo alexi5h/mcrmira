@@ -87,7 +87,7 @@ $this->menu = array(
                     <label class="control-label" for="Persona_estado_civil">Estado Civil</label>
                     <div class="controls">
                         <?php
-                        $htmlOptions = array('class' => "span12");
+                        $htmlOptions = array('class' => "span8");
                         echo $form->hiddenField($model, 'estado_civil', $htmlOptions);
                         ?>
                         <span class="help-inline error" id="Persona_estado_civil_em_" style="display: none"></span>
