@@ -15,7 +15,7 @@ $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
 
 Util::tsRegisterAssetJs('admin.js');
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),),
+//    array('label' => Yii::t('AweCrud.app', 'Registrar') . ' ' . Ahorro::label(1), 'icon' => 'plus', 'url' => array('create'),),
     array('label' => Yii::t('AweCrud.app', 'Depositar'), 'icon' => 'plus', 'htmlOptions' => array(
         'onclick' => 'js:viewModal("ahorro/ahorroDeposito/createDepositoAhorro",function(){maskAttributes();})',)
     ),
