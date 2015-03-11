@@ -97,6 +97,9 @@ class AhorroDepositoController extends AweController {
             $fechaNext = null;
             $model = new AhorroDeposito;
             $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->socio_id);
+            if (isset($_GET['socio_id'])) {
+                $model->socio_id = $_GET['socio_id'];
+            }
 
             $this->performAjaxValidation($model, 'ahorro-deposito-form');
             if (isset($_POST['AhorroDeposito'])) {
@@ -131,7 +134,7 @@ class AhorroDepositoController extends AweController {
                                 $model->cantidad = $model->cantidad - $ahorro->saldo_favor;
                             }
                         } else {
-                            $initSC=$ahorro->saldo_contra;
+                            $initSC = $ahorro->saldo_contra;
                             $ahorro->saldo_favor = $ahorro->saldo_favor + $ahorro->saldo_contra;
                             $model->cantidad = $model->cantidad - $ahorro->saldo_contra;
                             $ahorro->saldo_contra = 0;
@@ -195,7 +198,7 @@ class AhorroDepositoController extends AweController {
                                 $model->cantidad = $model->cantidad - $modelAhorro->saldo_favor;
                             }
                         } else {
-                             $initSC=$modelAhorro->saldo_contra;
+                            $initSC = $modelAhorro->saldo_contra;
                             $modelAhorro->saldo_favor = $modelAhorro->saldo_favor + $modelAhorro->saldo_contra;
                             $model->cantidad = $model->cantidad - $modelAhorro->saldo_contra;
                             $modelAhorro->saldo_contra = 0;
@@ -206,7 +209,7 @@ class AhorroDepositoController extends AweController {
                             if ($modelAhorro->save()) {
                                 $modelAhorroDetalle = new AhorroDetalle;
                                 $modelAhorroDetalle->ahorro_id = $modelAhorro->id;
-                                $modelAhorroDetalle->cantidad =$initSC;
+                                $modelAhorroDetalle->cantidad = $initSC;
                                 $modelAhorroDetalle->fecha = Util::FechaActual();
                                 $modelAhorroDetalle->usuario_creacion = Yii::app()->user->id;
 

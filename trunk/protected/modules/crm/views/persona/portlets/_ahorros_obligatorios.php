@@ -16,22 +16,38 @@ $ahorros = new Ahorro;
             <?php $validarDataPagos = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_OBLIGATORIO)->count() > 0 ?>
             <?php
             $this->widget(
-                'bootstrap.widgets.TbButton', array(
-                    'id' => 'add-Cobranza',
-                    'label' => $validarDataPagos ? 'Agregar Ahorro' : '<h3 >Agregar Ahorro</h3>',
-                    'encodeLabel' => false,
-                    'icon' => $validarDataPagos ? 'plus-sign' : 'dollar',
-                    'htmlOptions' => array(
-                        'onClick' => 'js:viewModal("ahorro/ahorro/ajaxCreate/socio_id/' . $model->id . '",function(){'
-                            . 'maskAttributes();},false)',
-                        'class' => $validarDataPagos ? '' : 'empty-portlet',
-                    ),
-                )
+                    'bootstrap.widgets.TbButton', array(
+                'id' => 'add-Cobranza',
+                'label' => $validarDataPagos ? 'Agregar Ahorro' : '<h3 >Agregar Ahorro</h3>',
+                'encodeLabel' => false,
+                'icon' => $validarDataPagos ? 'plus-sign' : 'dollar',
+                'htmlOptions' => array(
+                    'onClick' => 'js:viewModal("ahorro/ahorro/ajaxCreate/socio_id/' . $model->id . '",function(){'
+                    . 'maskAttributes();},false)',
+                    'class' => $validarDataPagos ? '' : 'empty-portlet',
+                ),
+                    )
             );
+            ?>
+            <?php
+            if ($validarDataPagos) {
+
+                $this->widget(
+                        'bootstrap.widgets.TbButton', array(
+                    'id' => 'add-Cobranza',
+                    'label' => 'Depositar',
+                    'encodeLabel' => false,
+                    'icon' => 'plus-sign',
+                    'htmlOptions' => array(
+                        'onClick' => 'js:viewModal("ahorro/ahorroDeposito/createDepositoAhorro/socio_id/"+' . $model->id . ',function(){maskAttributes();})',
+                    ),
+                        )
+                );
+            }
             ?>
             <?php if ($validarDataPagos): ?>
 
-            <div style='overflow:auto;height: 170px;' id="wrapper_grid_ahorro" >
+                <div style='overflow:auto;height: 170px;' id="wrapper_grid_ahorro" >
 
                     <?php
                     $dP = $ahorros->de_socio($model->id)->de_tipo(Ahorro::TIPO_OBLIGATORIO)->search();
@@ -59,24 +75,21 @@ $ahorros = new Ahorro;
                                 'name' => 'cantidad',
                                 'value' => '$data->cantidad',
                                 'type' => 'raw',
-                                'class'=>'bootstrap.widgets.TbTotalSumColumn'
-
+                                'class' => 'bootstrap.widgets.TbTotalSumColumn'
                             ),
                             array(
                                 'header' => 'Pagado',
                                 'name' => 'saldo_favor',
                                 'value' => '$data->saldo_favor',
                                 'type' => 'raw',
-                                'class'=>'bootstrap.widgets.TbTotalSumColumn'
-
+                                'class' => 'bootstrap.widgets.TbTotalSumColumn'
                             ),
                             array(
                                 'header' => 'Por pagar',
                                 'name' => 'saldo_contra',
                                 'value' => '$data->saldo_contra',
                                 'type' => 'raw',
-                                'class'=>'bootstrap.widgets.TbTotalSumColumn'
-
+                                'class' => 'bootstrap.widgets.TbTotalSumColumn'
                             ),
                             'estado',
 //                            array(

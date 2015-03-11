@@ -50,6 +50,7 @@ class Ahorro extends BaseAhorro {
     public function rules() {
         return array_merge(parent::rules(), array(
             array('cantidad', 'numerical', 'min' => 1, 'tooSmall' => 'La cantidad debe ser mayor a 0'),
+            array('cantidad', 'socioAhorrosObligatorios', 'on' => 'create'),
 //            array('cantidad', 'existPagoObligatorio', 'on' => 'create'),
 //            array('tipo', 'unique', 'criteria' => array(
 //                    'condition' => 'socio_id=:socio_id',
@@ -355,6 +356,20 @@ class Ahorro extends BaseAhorro {
             $commad->andWhere("t.fecha between '{$fecha_inicio}' and '{$fecha_fin}'");
         }
         return $commad->queryAll();
+    }
+
+    public function validarFechamismoMes($atributes, $params) {
+//        select count(*) as total from ahorro where concat(concat(month(fecha),"-"),year(fecha))="3-2015" and socio_id=1
+        var_dump($this->fecha);
+        die();
+        $commad = Yii::app()->db->createCommand()
+                ->select('count(*) as total')
+                ->from('ahorro')
+                ->where('concat(concat(month(fecha),"-"),year(fecha))=:fecha and socio_id=:id', array(':fecha' => 'asd', ':id' => $this->socio_id));
+
+        if ($this->fecha !== $this->_password2) {
+            $this->addError('_password', utf8_encode('Las contraseñas no coinciden'));
+        }
     }
 
 }
