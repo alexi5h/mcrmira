@@ -1,4 +1,13 @@
 <?php
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+
 Util::tsRegisterAssetJs('_form.js');
 /** @var CreditoController $this */
 /** @var Credito $model */
@@ -24,27 +33,59 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         $model_persona = Persona::model()->condicion_socio_credito();
         $model_garante = Persona::model()->condicion_garante_credito($model->id);
         ?>
+
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group required">
+                    <label class="control-label" for="Credito_socio_id">Socio <span class="required">*</span></label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'socio_id', $htmlOptions);
+                        echo $form->error($model,'socio_id');
+                        ?>
+                        <span class="help-inline error" id="Credito_socio_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group required">
+                    <label class="control-label" for="Credito_garante_id">Garante <span class="required">*</span></label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'garante_id', $htmlOptions);
+                        echo $form->error($model,'garante_id');
+                        ?>
+                        <span class="help-inline error" id="Credito_garante_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <?php
-        echo $form->select2Row($model, 'socio_id', array(
-            'asDropDownList' => true,
-            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
-            'options' => array(
-                'placeholder' => '-- Seleccione --',
-            )
-        ));
+//        echo $form->select2Row($model, 'socio_id', array(
+//            'asDropDownList' => true,
+//            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
+//            'options' => array(
+//                'placeholder' => '-- Seleccione --',
+//            )
+//        ));
         ?>
 
         <?php
-        echo $form->select2Row($model, 'garante_id', array(
-            'asDropDownList' => true,
-            'data' => null,
-            'options' => array(
-                'placeholder' => '-- Seleccione --',
-            ),
-            'htmlOptions'=>array(
-                'disabled'=>true
-            ),
-        ));
+//        echo $form->select2Row($model, 'garante_id', array(
+//            'asDropDownList' => true,
+//            'data' => null,
+//            'options' => array(
+//                'placeholder' => '-- Seleccione --',
+//            ),
+//            'htmlOptions' => array(
+//                'disabled' => true
+//            ),
+//        ));
         ?>
 
         <?php

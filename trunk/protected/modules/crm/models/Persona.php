@@ -7,8 +7,8 @@ class Persona extends BasePersona {
 
     //estado: ACTIVO,INACTIVO
     const ESTADO_ACTIVO = 'ACTIVO';
-    const ESTADO_INACTIVO =  'INACTIVO';
-    const ESTADO_RETIRADO =  'RETIRADO';
+    const ESTADO_INACTIVO = 'INACTIVO';
+    const ESTADO_RETIRADO = 'RETIRADO';
     //tipo: CLIENTE,GARANTE
     const TIPO_NUEVO = 'NUEVO';
 //    const TIPO_CLIENTE = 'CLIENTE';
@@ -76,16 +76,16 @@ class Persona extends BasePersona {
 
     public function rules() {
         return array_merge(parent::rules(), array(
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id','required','on'=>'import'),
-            array('cedula', 'ext.Validations.CampoCedula','on'=>array('insert','update')),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id', 'required', 'on' => 'import'),
+            array('cedula', 'ext.Validations.CampoCedula', 'on' => array('insert', 'update')),
 //            array('ruc', 'ext.Validations.CampoRucCedula', 'compareAttribute' => 'cedula', 'operator' => '=='),
             array('ruc', 'ext.Validations.CampoRuc'),
             array('nombre_formato', 'safe', 'on' => 'search'),
 //            array('primer_nombre, apellido_paterno, tipo_identificacion, cedula, usuario_creacion_id, sucursal_id, persona_etapa_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required'),
-            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required','on'=>array('insert','update')),
+            array('primer_nombre, apellido_paterno, cedula, usuario_creacion_id, sucursal_id, sexo, fecha_nacimiento, carga_familiar, discapacidad, estado_civil, actividad_economica_id', 'required', 'on' => array('insert', 'update')),
             array('usuario_creacion_id, usuario_actualizacion_id, aprobado, sucursal_id, persona_etapa_id, direccion_domicilio_id, direccion_negocio_id, ruc', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
-            array('cedula,ruc', 'unique','on'=>array('insert','update','import')),
+            array('cedula,ruc', 'unique', 'on' => array('insert', 'update', 'import')),
             array('primer_nombre, segundo_nombre', 'length', 'max' => 20),
             array('apellido_paterno, apellido_materno', 'length', 'max' => 30),
             array('telefono, celular', 'length', 'max' => 10),
@@ -187,6 +187,7 @@ class Persona extends BasePersona {
         }
         return $this;
     }
+
     public function de_sucursal($sucursal_ids) {
         if ($sucursal_ids) {
             $this->getDbCriteria()->mergeWith(
@@ -197,6 +198,7 @@ class Persona extends BasePersona {
         }
         return $this;
     }
+
     public function de_ids($ids) {
         if ($ids) {
             $this->getDbCriteria()->mergeWith(
@@ -211,7 +213,7 @@ class Persona extends BasePersona {
     public function getGenero() {
         if ($this->sexo == 'M') {
             return self::SEXO_MASCULINO;
-        } else if($this->sexo == 'F') {
+        } else if ($this->sexo == 'F') {
             return self::SEXO_FEMENINO;
         }
         return null;
@@ -360,8 +362,8 @@ class Persona extends BasePersona {
                 ->leftJoin('direccion', 'direccion.id = p.direccion_domicilio_id')
                 ->leftJoin('parroquia', 'parroquia.id = direccion.parroquia_id')
                 ->where('p.estado=:estado', array(':estado' => self::ESTADO_ACTIVO));
-        if ($parametros['id'] ) {
-            $ids=$parametros['id'];
+        if ($parametros['id']) {
+            $ids = $parametros['id'];
             $commad->andWhere("p.id in($ids)");
         }
 
@@ -369,20 +371,20 @@ class Persona extends BasePersona {
 //            $cantones=$parametros['canton_ids'];
 //            $commad->andWhere("parroquia.canton_id in($cantones)");
 //        }
-        if ( $parametros['sucursal_id']) {
-            $cantones=$parametros['sucursal_id'];
+        if ($parametros['sucursal_id']) {
+            $cantones = $parametros['sucursal_id'];
             $commad->andWhere("p.sucursal_id in($cantones)");
         }
-        if ( $parametros['sexo']) {
+        if ($parametros['sexo']) {
             $commad->andWhere('p.sexo =:sexo', array(':sexo' => $parametros['sexo']));
         }
-        if ( $parametros['estado_civil']) {
+        if ($parametros['estado_civil']) {
             $commad->andWhere('p.estado_civil =:estado_civil', array(':estado_civil' => $parametros['estado_civil']));
         }
         if ($parametros['discapacidad']) {
             $commad->andWhere('p.discapacidad =:discapacidad', array(':discapacidad' => $parametros['discapacidad']));
         }
-        if ( $parametros['madre_soltera']=='true') {
+        if ($parametros['madre_soltera'] == 'true') {
             $commad->andWhere('p.sexo = :sexo AND p.carga_familiar > 0 AND p.estado_civil=:estado_civil', array(
                 ':sexo' => 'F',
                 ':estado_civil' => self::ESTADO_CIVIL_SOLTERO,
@@ -391,19 +393,26 @@ class Persona extends BasePersona {
         return $commad->queryAll();
     }
 
-    public function getListSelect2($search_value=null){
+    public function getListSelect2($search_value = null, $credito_socio = false, $credito_garante_socio_id = null) {
 
         $command = Yii::app()->db->createCommand()
-            ->select("p.id as id,
+                ->select("p.id as id,
              (CONCAT(p.cedula,' - ',p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) as text")
-            ->from('persona p')
-            ->where('p.estado = :estado', array(':estado' => self::ESTADO_ACTIVO));
+                ->from('persona p')
+                ->where('p.estado = :estado', array(':estado' => self::ESTADO_ACTIVO));
+        if ($credito_socio) {
+            $command->andWhere('(p.id not in (select ah.socio_id from ahorro ah where ah.estado=:estadoAC))
+          and (p.id not in (select cr.socio_id from credito cr where cr.estado=:estadoAC))', array(':estadoAC' => Ahorro::ESTADO_DEUDA));
+        }
+        if ($credito_garante_socio_id) {
+            $command->andWhere('(p.id not in (select ah.socio_id from ahorro ah where ah.estado=:estadoAC))
+          and (p.id not in (select cr.socio_id from credito cr where cr.estado=:estadoAC)) and (p.id != :socio_id)', array(':estadoAC' => Ahorro::ESTADO_DEUDA, ':socio_id' => $credito_garante_socio_id));
+        }
         if ($search_value) {
-            $command->where("p.cedula like '$search_value%' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '$search_value%'");
+            $command->andWhere("p.cedula like '$search_value%' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '$search_value%'");
         }
         $command->limit(10);
         return $command->queryAll();
-
     }
 
 }
