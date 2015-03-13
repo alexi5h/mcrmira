@@ -31,7 +31,7 @@ function initSelect() {
     });
     inputPersonaCanton = $("#Persona_sucursal_id");
     inputPersonaCanton.select2({
-        placeholder: "Seleccione una sucursal",
+        placeholder: "Seleccione un canton",
         multiple: true,
         initSelection: function (element, callback) {
             if ($(element).val()) {

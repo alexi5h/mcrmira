@@ -2,6 +2,15 @@
 /** @var AhorroDepositoController $this */
 /** @var AhorroDeposito $model */
 /** @var AweActiveForm $form */
+
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+Util::tsRegisterAssetJs('_form.js');
+
 $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'ahorro-deposito-form',
@@ -21,11 +30,36 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="widget-body">
 
+        <div class="control-group ">
+            <label class="control-label" for="AhorroDeposito_socio_id">Socio</label>
+
+            <div class="controls">
+                <?php
+                $htmlOptions = array('class' => "span12");
+                echo $form->hiddenField($model, 'socio_id', $htmlOptions);
+                ?>
+                <?php echo $form->error($model,'socio_id');?>
+<!--                <div class="controls">-->
+<!--                    --><?php
+////                    $htmlOptions = array('class' => "span8 search");
+////                    if ($model->socio_id) {
+////                        $model_contacto = Contacto::model()->findByPk($model->contacto_id);
+////                        $htmlOptions = array_merge($htmlOptions, array(
+////                            'selected-text' => $model_contacto->documento . ' ' . $model_contacto->nombre_completo
+////                        ));
+////                    }
+////                    echo $form->hiddenField($model, 'contacto_id', $htmlOptions);
+//                    ?>
+<!--                    <span class="help-inline error" id="Incidencia_contacto_id_em_" style="display: none"></span>-->
+<!--                </div>-->
+            </div>
+        </div>
 
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10)) ?>
 
         <?php echo $form->textFieldRow($model, 'entidad_bancaria_id') ?>
-        <?php echo $form->textFieldRow($model, 'socio_id') ?>
+
+<!--        --><?php //echo $form->textFieldRow($model, 'socio_id') ?>
 
         <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
