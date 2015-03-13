@@ -2,7 +2,7 @@
 /** @var AhorroDepositoController $this */
 /** @var AhorroDeposito $model */
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'), 
+    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('createDeposito'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
