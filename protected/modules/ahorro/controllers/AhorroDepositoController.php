@@ -36,7 +36,7 @@ class AhorroDepositoController extends AweController
 
         if (isset($_POST['AhorroDeposito'])) {
             $model->attributes = $_POST['AhorroDeposito'];
-            if($model->save())
+            if ($model->save())
                 $this->redirect(array('admin'));
         }
         $this->render('create', array('model' => $model));
