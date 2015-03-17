@@ -22,6 +22,7 @@ class AhorroDeposito extends BaseAhorroDeposito {
         return array_merge(parent::relations(), array(
             'entidadBancaria' => array(self::BELONGS_TO, 'EntidadBancaria', 'entidad_bancaria_id'),
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_comprobante_id'),
+            'socio' => array(self::BELONGS_TO, 'Persona', 'socio_id'),
         ));
     }
 
