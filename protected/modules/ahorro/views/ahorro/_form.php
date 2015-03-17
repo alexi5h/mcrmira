@@ -10,7 +10,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => true,),
     'enableClientValidation' => false,
-));
+        ));
 ?>
 <div class="widget blue">
     <div class="widget-title">
@@ -23,7 +23,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         </span>
     </div>
     <div class="widget-body">
-
         <?php
         echo $form->select2Row($model, 'socio_id', array(
             'asDropDownList' => true,
@@ -36,24 +35,22 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             )
         ));
         ?>
-
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
         <?php
         echo $form->datepickerRow(
-            $model, 'fecha', array(
-                'options' => array(
-                    'language' => 'es',
-                    'format' => 'dd/mm/yyyy',
-                    'startView' => 2,
-                    'orientation' => 'bottom right',
-                ),
-                'htmlOptions' => array(
-                    'readonly' => 'readonly',
-                    'style'=>'cursor:pointer;'
-
-                )
+                $model, 'fecha', array(
+            'options' => array(
+                'language' => 'es',
+                'format' => 'dd/mm/yyyy',
+                'startView' => 2,
+                'orientation' => 'bottom right',
+            ),
+            'htmlOptions' => array(
+                'readonly' => 'readonly',
+                'style' => 'cursor:pointer;'
             )
+                )
         );
         ?>
 
