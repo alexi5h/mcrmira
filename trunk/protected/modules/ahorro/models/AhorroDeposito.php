@@ -37,7 +37,7 @@ class AhorroDeposito extends BaseAhorroDeposito {
             'entidad_bancaria_id' => Yii::t('app', 'Entidad Bancaria'),
             'cod_comprobante_entidad' => Yii::t('app', 'Cod Comprobante Entidad'),
             'fecha_comprobante_entidad' => Yii::t('app', 'Fecha Comprobante Entidad'),
-            'sucursal_comprobante_id' => Yii::t('app', 'Sucursal Comprobante'),
+            'sucursal_comprobante_id' => Yii::t('app', 'Cantón'),
             'cod_comprobante_su' => Yii::t('app', 'Cod Comprobante Su'),
             'fecha_comprobante_su' => Yii::t('app', 'Fecha Comprobante Su'),
             'usuario_creacion_id' => Yii::t('app', 'Usuario Creacion'),

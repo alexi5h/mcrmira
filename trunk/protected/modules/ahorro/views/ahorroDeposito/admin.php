@@ -36,13 +36,15 @@ $this->menu = array(
                     'value' => '$data->socio->cedula'
                 ),
                 'cantidad',
+                array(
+                    'name' => 'fecha_comprobante_entidad',
+                    'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
+                ),
 //                        'entidad_bancaria_id',
                 'cod_comprobante_entidad',
-//                'fecha_comprobante_entidad',
-                
                 array(
-                    'name'=>'sucursal_comprobante_id',
-                    'value'=>'$data->sucursal'
+                    'name' => 'sucursal_comprobante_id',
+                    'value' => '$data->sucursal'
                 ),
 //                'cod_comprobante_su',
             /*
