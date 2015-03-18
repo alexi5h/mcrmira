@@ -2,23 +2,27 @@
 
 Yii::import('ahorro.models._base.BaseAhorroDeposito');
 
-class AhorroDeposito extends BaseAhorroDeposito {
+class AhorroDeposito extends BaseAhorroDeposito
+{
 
     /**
      * @return AhorroDeposito
      */
-    public static function model($className = __CLASS__) {
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
-    public function rules() {
+    public function rules()
+    {
         return array_merge(parent::rules(), array(
 //            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->ahorro->saldo_contra),
             array('socio_id', 'required'),
         ));
     }
 
-    public function relations() {
+    public function relations()
+    {
         return array_merge(parent::relations(), array(
             'entidadBancaria' => array(self::BELONGS_TO, 'EntidadBancaria', 'entidad_bancaria_id'),
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_comprobante_id'),
@@ -26,11 +30,13 @@ class AhorroDeposito extends BaseAhorroDeposito {
         ));
     }
 
-    public static function label($n = 1) {
+    public static function label($n = 1)
+    {
         return Yii::t('app', 'Deposito|Depositos', $n);
     }
 
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array(
             'id' => Yii::t('app', 'ID'),
             'cantidad' => Yii::t('app', 'Cantidad'),
@@ -45,21 +51,24 @@ class AhorroDeposito extends BaseAhorroDeposito {
         );
     }
 
-    public function beforeSave() {
+    public function beforeSave()
+    {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
         $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
-    public function beforeValidate() {
+    public function beforeValidate()
+    {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
         $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
-    public function searchByAhorro($id_ahorro) {
+    public function searchByAhorro($id_ahorro)
+    {
         $criteria = new CDbCriteria;
         $criteria->compare('id', $this->id);
         $criteria->compare('cantidad', $this->cantidad, true);
@@ -79,18 +88,20 @@ class AhorroDeposito extends BaseAhorroDeposito {
         ));
     }
 
-    public function totalDepositosByPago($id_ahorro) {
+    public function totalDepositosByPago($id_ahorro)
+    {
 //        select sum(t.cantidad) from deposito t where t.pago_id=1;
         $consulata = Yii::app()->db->createCommand()->
-                select('sum(t.cantidad) as total_depositos_pago')->
-                from('ahorro_deposito t')->
-                where('t.pago_id=:pago_id');
+        select('sum(t.cantidad) as total_depositos_pago')->
+        from('ahorro_deposito t')->
+        where('t.pago_id=:pago_id');
         $consulata->params = array(':pago_id' => $id_ahorro);
 
         return $consulata->queryAll();
     }
 
-    public function searchDepositosSocio($socio_id = null) {
+    public function searchDepositosSocio($socio_id = null)
+    {
         $criteria = new CDbCriteria;
         $sort = new CSort;
 //        $criteria->with = array('ahorro');
@@ -116,13 +127,26 @@ class AhorroDeposito extends BaseAhorroDeposito {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria, 'sort' => $sort,
-            'pagination'=>false
+            'pagination' => false
         ));
     }
 
-    public function generarCodigoComprobante($socio_id = '') {
+    public function generarCodigoComprobante($socio_id = '')
+    {
         $result = date('y') . date('m') . date('d') . date('H') . date('i') . date('s') . $socio_id;
         return $result;
     }
 
+    public function dataConsolidato()
+    {
+
+//        SELECT
+//  concat(p.apellido_paterno,  ifnull(concat(' ',p.apellido_materno,' '), ' '),p.primer_nombre,ifnull(concat(' ',p.segundo_nombre), ' ')) as nombres,
+//  sum(t.cantidad),
+//  DATE_FORMAT(t.fecha_comprobante_entidad, '%Y/%m')
+//FROM ahorro_deposito t
+//  INNER JOIN persona p ON p.id = t.socio_id
+//GROUP BY t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y/%m');
+
+    }
 }
