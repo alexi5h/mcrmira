@@ -9,7 +9,11 @@ class Menu {
         $items = array(
             array('label' => '<i class="icon-home"></i> Home', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-briefcase"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
-            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorroDeposito/admin'), 'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
+            array('label' => '<i class="icon-money"></i>  Ahorros', 'url' => '#', 'items' => array(
+                array('label' => 'Depositos', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
+                array('label' => 'Consolidado', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
+            )),
+//            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorroDeposito/admin'), 'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
 //            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
             array('label' => '<i class="icon-shopping-cart"></i> ' . Credito::label(2), 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito')),
             array('label' => '<i class="icon-exchange"></i> Retirar Ahorros', 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
@@ -18,18 +22,7 @@ class Menu {
 //                array('label' => '<i class="icon-briefcase"></i> Pagos', 'url' => array('/pagos/pago/admin'), 'access' => 'action_pago_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pago')),
 //                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),
 //            )),
-//            array('label' => '<i class="icon-group"></i> Contactos', 'url' => array('/crm/contacto/admin'), 'access' => 'action_contacto_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'contacto')),
-//            array('label' => '<i class="icon-rocket"></i> Campañas', 'url' => array('/campanias/campania/admin'),'access'=>'action_campania_admin', 'active_rules' => array('module' => 'campanias')),
-//            array('label' => '<i class="icon-tags"></i> Oportunidades', 'url' => array('/oportunidades/oportunidad/admin'), 'access' => 'action_oportunidad_admin', 'active_rules' => array('module' => 'oportunidades')),
-//            array('label' => '<i class="icon-money"></i> Cobranzas', 'url' => array('/cobranzas/cobranza/admin'), 'access' => 'action_cobranza_admin', 'active_rules' => array('module' => 'cobranzas')),
-//            array('label' => '<i class="icon-fire-extinguisher"></i>Incidencias', 'url' => array('/incidencias/incidencia/admin'), 'access' => 'action_incidencia_admin', 'active_rules' => array('module' => 'incidencias', 'controller' => 'incidencia')),
-//            array('label' => '<i class="icon-tasks"></i> Tareas', 'url' => array('/tareas/tarea/admin'), 'access' => 'action_tarea_admin', 'active_rules' => array('module' => 'tareas')),
-//            array('label' => '<i class="icon-calendar"></i> Calendario', 'url' => array('/eventos/calendario/index'), 'access' => 'action_calendario_index', 'active_rules' => array('module' => 'eventos')),
-//            array('label' => '<i class="icon-book"></i>  Reportes', 'url' => '#', 'items' => array(
-//                    array('label' => 'Llamadas', 'url' => array('/llamadas/llamadaReporte'), 'access' => 'action_llamadaReporte_admin', 'active_rules' => array('module' => 'llamadas', 'controller' => 'llamadaReporte')),
-//                    array('label' => 'Sms', 'url' => array('/sms/reports/reporteSms'), 'access' => 'action_reporteSms_admin', 'active_rules' => array('module' => 'sms', 'controller' => 'reports/reporteSms')),
-//                    array('label' => 'Mail', 'url' => array('/mail/mailReporte'), 'access' => 'action_mailReporte_index', 'active_rules' => array('module' => 'mail', 'controller' => 'reports/mailReporte')),
-//                )),
+
 //            array('label' => '<i class="icon-fire-extinguisher"></i>Historial Incidencias', 'url' => array('/incidencias/incidencia/historial'), 'access' => 'action_incidencia_historial', 'active_rules' => array('module' => 'incidencias', 'controller' => 'incidencia', 'action' => 'historial'), 'visible' => (Yii::app()->user->checkAccess(Constants::ROL_ESPECIALISTA)) && !Yii::app()->user->checkAccess(Constants::ROL_ESPECIALISTA)),
 ////            array('label' => '<i class="icon-rocket"></i>  Gestiona Campaña', 'url' => array('/campanias/campania/gestionOperadorAcciones/idCampania/2/'), 'access' => 'action_campania_gestionOperadorAcciones', 'active_rules' => array('module' => 'campanias'),'visible'=>(!Yii::app()->user->isSuperAdmin)&&(Util::validarRol(Util::getRolUser(Yii::app()->user->id), array(Constants::ROL_OPERADOR)))),
 //            array('label' => '<i class="icon-rocket"></i>  Gestiona Campaña', 'url' => array('/campanias/campania/campaniasRoles'), 'access' => 'action_campania_campaniasRoles', 'active_rules' => array('module' => 'campanias'),'visible'=>(!Yii::app()->user->isSuperAdmin)&&(Util::validarRol(Util::getRolUser(Yii::app()->user->id), array(Constants::ROL_OPERADOR)))),
