@@ -1,6 +1,18 @@
 <?php
 /** @var AhorroDepositoController $this */
 /** @var AhorroDeposito $model */
+$baseUrl = Yii::app()->theme->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
+
+$cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
+$cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
+
+Util::tsRegisterAssetJs('admin.js');
+
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('createDeposito'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
@@ -19,6 +31,34 @@ $this->menu = array(
         </span>
     </div>
     <div class="widget-body">
+
+        <?php
+        $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
+            'id' => 'ahorro-deposito-form',
+            'enableAjaxValidation' => true,
+            'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
+            'enableClientValidation' => false,
+        ));
+        ?>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_id">Socio</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'socio_id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <?php $this->endWidget(); ?>
 
         <?php
         $this->widget('bootstrap.widgets.TbGridView', array(
