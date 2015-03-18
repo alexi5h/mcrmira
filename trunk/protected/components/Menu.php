@@ -10,8 +10,8 @@ class Menu {
             array('label' => '<i class="icon-home"></i> Home', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-briefcase"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
             array('label' => '<i class="icon-money"></i>  Ahorros', 'url' => '#', 'items' => array(
-                array('label' => 'Depositos', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
-                array('label' => 'Consolidado', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
+                array('label' => 'Depositos', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito','action'=>'admin')),
+                array('label' => 'Consolidado', 'url' => array('/ahorro/ahorroDeposito/consolidado'),'access' => 'action_ahorroDeposito_consolidado', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito','action'=>'consolidado')),
             )),
 //            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorroDeposito/admin'), 'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
 //            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
