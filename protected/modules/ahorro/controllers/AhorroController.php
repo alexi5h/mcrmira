@@ -141,17 +141,19 @@ class AhorroController extends AweController
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Ahorro'])) {
             $model->attributes = $_GET['Ahorro'];
-           $model->de_socios( $_GET['Ahorro']['socio_id']);
-           $model->de_sucursal( $_GET['Ahorro']['sucursal_id']);
-            if ($_GET['Ahorro']['fecha_rango']){
-                $fechas=explode('/',$_GET['Ahorro']['fecha_rango']);
-                $model->de_rango_fecha($fechas[0],$fechas[1]);
+            $model->de_socios($_GET['Ahorro']['socio_id']);
+            $model->de_sucursal($_GET['Ahorro']['sucursal_id']);
+            if ($_GET['Ahorro']['fecha_rango']) {
+                $fechas = explode('/', $_GET['Ahorro']['fecha_rango']);
+                $model->de_rango_fecha($fechas[0], $fechas[1]);
             }
         }
         $this->render('admin', array(
             'model' => $model,
         ));
     }
+
+
 
     public function actionAjaxCreateAhorroVoluntario($socio_id)
     {
@@ -202,9 +204,11 @@ class AhorroController extends AweController
             }
         }
     }
-    public function actionExportarAhorro() {
+
+    public function actionExportarAhorro()
+    {
         if (isset($_POST['Ahorro'])) {
-            $parametros=$_POST['Ahorro'];
+            $parametros = $_POST['Ahorro'];
 //            var_dump($parametros);
 //            die();
             $reporte = Ahorro::model()->generateExcel($parametros);
@@ -225,8 +229,7 @@ class AhorroController extends AweController
                 ->setCellValue('E1', 'Fecha')
                 ->setCellValue('F1', 'Estado Ahorro')
                 ->setCellValue('G1', 'Cantidad por Pagar')
-                ->setCellValue('H1', 'Cantidad Pagada')
-            ;
+                ->setCellValue('H1', 'Cantidad Pagada');
 
             for ($i = 'A'; $i <= 'Z'; $i++) {
                 $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
@@ -252,6 +255,7 @@ class AhorroController extends AweController
 //        exit();
         }
     }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
