@@ -43,8 +43,8 @@ class PersonaController extends AweController {
         $model = new Persona;
         $modelDireccion1 = new Direccion;
         $modelDireccion2 = new Direccion;
-        $idEtapa = PersonaEtapa::model()->getIdPesoMinimo();
-        $model->persona_etapa_id = $idEtapa;
+//        $idEtapa = PersonaEtapa::model()->getIdPesoMinimo();
+//        $model->persona_etapa_id = $idEtapa;
         $model->usuario_creacion_id = Yii::app()->user->id;
 
 
