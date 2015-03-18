@@ -30,6 +30,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="widget-body">
 
+
         <div class="control-group ">
             <label class="control-label" for="AhorroDeposito_socio_id">Socio</label>
 
@@ -61,7 +62,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
 
 
-        <!--        --><?php //echo $form->textFieldRow($model, 'socio_id')     ?>
+        <!--        --><?php //echo $form->textFieldRow($model, 'socio_id')      ?>
 
         <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
