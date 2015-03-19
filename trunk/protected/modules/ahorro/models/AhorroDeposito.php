@@ -5,6 +5,10 @@ Yii::import('ahorro.models._base.BaseAhorroDeposito');
 class AhorroDeposito extends BaseAhorroDeposito
 {
 
+
+    public static $datat = array();
+    public static $datarep = array();
+
     /**
      * @return AhorroDeposito
      */
@@ -137,16 +141,123 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $result;
     }
 
-    public function dataConsolidato()
+    public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
     {
+        $commad = new CDbCommand(Yii::app()->db);
+        $commad->select(array(
+            "concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre, ifnull(concat(' ', p.segundo_nombre), ' ')) AS nombres",
+            "p.cedula AS cedula",
+            "sum(t.cantidad) AS cantidad",
+            "DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')  AS fecha"
+        ));
+        $commad->from("ahorro_deposito t");
+        $commad->join("persona p", "p.id = t.socio_id AND p.estado=:estado", array(':estado' => Persona::ESTADO_ACTIVO));
+        if ($anio)
+            $commad->andWhere("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = :anio", array(':anio' => $anio));
+        if ($socio_id)
+            $commad->andWhere("t.socio_id = :socio_id", array(":socio_id" => $socio_id));
+        if ($sucursal_id)
+            $commad->andWhere("p.sucursal_id = :sucursal_id", array(":sucursal" => $sucursal_id));
+        $commad->group("t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')");
+        $commad->order("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m') ASC");
+        return $commad->queryAll();
+    }
 
-//        SELECT
-//  concat(p.apellido_paterno,  ifnull(concat(' ',p.apellido_materno,' '), ' '),p.primer_nombre,ifnull(concat(' ',p.segundo_nombre), ' ')) as nombres,
-//  sum(t.cantidad),
-//  DATE_FORMAT(t.fecha_comprobante_entidad, '%Y/%m')
-//FROM ahorro_deposito t
-//  INNER JOIN persona p ON p.id = t.socio_id
-//GROUP BY t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y/%m');
+    public function generateReporteIncSubmotivoPie($fecha_inicio, $fecha_fin, $incidencia_submotivo_id = null, $incidencia_motivo_id = null, $zona_ids = null, $incidencia_categoria_id = null, $formatGroup = "%Y/%m/%d", $sala_ids = null)
+    {
+        $report = array();
+        self::$datarep = array();
+        $fechaInicio = new DateTime($fecha_inicio);
+        $fechaFin = new DateTime($fecha_fin);
+        $fechaFin->modify('+1 day');
+        $datareportes = $this->dataReporteIncSubmotivo($fechaInicio->format('Y-m-d 00:00:00'), $fechaFin->format('Y-m-d 23:59:59'), $incidencia_submotivo_id, $incidencia_motivo_id, $zona_ids, $incidencia_categoria_id, $formatGroup, false, $sala_ids);
+        $data_names = Util::array_column($datareportes, 'name');
+        $data_names = array_unique($data_names);
+        $dataSumotivo = array();
+        $cont = 0;
+        foreach ($data_names as $value) {
+            array_push($dataSumotivo, array('name' => $value));
+            $cont++;
+            if ($cont == 10) {
+                break;
+            }
+        }
+        self::$datarep = $dataSumotivo;
+        foreach (self::$datarep as $key => $value) {
+            self::$datarep[$key]["data"] = array();
+        }
+        foreach (Util::array_column($dataSumotivo, 'name') as $key => $value) {
+            self::$datat = array();
+            $date = $value;
+            $this->recursive_array_search($date, $datareportes);
+            $dataEsatdosReporte = Util::array_column(self::$datat, "name");
+            $estadosFalta = array_diff(Util::array_column($dataSumotivo, 'name'), $dataEsatdosReporte);
+            if ($estadosFalta) {
+                foreach ($estadosFalta as $value) {
+                    self::$datat[] = array("name" => $value, 'data' => 0);
+                }
+            }
+            foreach (self::$datarep as $key => $value) {
+                foreach (self::$datat as $valuet) {
+                    if ($value["name"] == $valuet["name"]) {
+                        self::$datarep[$key]['data'][] = $valuet["data"];
+                        break;
+                    }
+                }
+            }
+        }
+        $dataserie = array("type" => "pie", "name" => "Incidencia", "data" => array());
+        array_walk(self::$datarep, function ($value, $key) {
+            self::$datarep[$key]['data'] = array_sum($value['data']);
+        });
+        foreach (self::$datarep as $rep) {
+            $dataserie["data"][] = array($rep['name'], $rep['data']);
+        }
+        $report['title']['text'] = '';
+        $report["chart"]["marginTop"] = "35";
+        $report['credits']['enabled'] = false;
+        $report['chart']['height'] = '280';
+        $report['plotOptions'] = array(
+            'pie' => array(
+                'allowPointSelect' => true,
+                'cursor' => 'pointer',
+                'dataLabels' => array(
+                    'enabled' => false,
+                    'format' => '<b>{point.name}</b>: {point.percentage:.1f} %'
+                ),
+                'showInLegend' => true,
+                'tooltip' => array(
+                    'pointFormat' => 'Porcentaje: <b>{point.percentage:.1f}%</b><br>{series.name}: <b>{point.y}</b>'
+                ),
+            )
+        );
+        $report["series"][] = $dataserie;
 
+        $mostrar = false;
+        $bandera = 0;
+        foreach ($dataserie['data'] as $datas) {
+
+            foreach ($datas as $key) {
+
+                if ($bandera && $key > 0) {
+                    $mostrar = true;
+                    $bandera = 0;
+                }
+                $bandera = 1;
+            }
+        }
+
+        $report["mostrar"] = $mostrar;
+        return $report;
+    }
+
+
+    private function recursive_array_search($needle, $haystack)
+    {
+        foreach ($haystack as $value) {
+            if ($needle === $value OR (is_array($value) && $this->recursive_array_search($needle, $value))) {
+                self::$datat[] = array("name" => $haystack["name"], "data" => (int)$haystack["total"]);
+            }
+        }
     }
 }
