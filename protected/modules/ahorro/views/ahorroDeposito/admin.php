@@ -54,7 +54,18 @@ $this->menu = array(
                 </div>
             </div>
 
-
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="Persona_sucursal">Cantón</label>
+                    <div class="controls">
+                        <?php
+                        $htmlOptions = array('class' => "span12");
+                        echo $form->hiddenField($model, 'sucursal_comprobante_id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
