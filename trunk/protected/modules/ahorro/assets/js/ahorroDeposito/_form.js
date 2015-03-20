@@ -7,7 +7,7 @@ function init() {
     //select2
     inputAhorroDepositoSocioId.select2({
         placeholder: "Seleccione un Socio",
-        multiple: true,
+        multiple: false,
         initSelection: function (element, callback) {
             if ($(element).val()) {
                 var data = {id: element.val(), text: $(element).attr('selected-text')};
