@@ -2,9 +2,7 @@
 
 Yii::import('ahorro.models._base.BaseAhorroDeposito');
 
-class AhorroDeposito extends BaseAhorroDeposito
-{
-
+class AhorroDeposito extends BaseAhorroDeposito {
 
     public static $datat = array();
     public static $datarep = array();
@@ -12,21 +10,18 @@ class AhorroDeposito extends BaseAhorroDeposito
     /**
      * @return AhorroDeposito
      */
-    public static function model($className = __CLASS__)
-    {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
-    public function rules()
-    {
+    public function rules() {
         return array_merge(parent::rules(), array(
 //            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->ahorro->saldo_contra),
             array('socio_id', 'required'),
         ));
     }
 
-    public function relations()
-    {
+    public function relations() {
         return array_merge(parent::relations(), array(
             'entidadBancaria' => array(self::BELONGS_TO, 'EntidadBancaria', 'entidad_bancaria_id'),
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_comprobante_id'),
@@ -34,13 +29,11 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public static function label($n = 1)
-    {
+    public static function label($n = 1) {
         return Yii::t('app', 'Deposito|Depositos', $n);
     }
 
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return array(
             'id' => Yii::t('app', 'ID'),
             'cantidad' => Yii::t('app', 'Cantidad'),
@@ -55,24 +48,63 @@ class AhorroDeposito extends BaseAhorroDeposito
         );
     }
 
-    public function beforeSave()
-    {
+    public function search() {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('cantidad', $this->cantidad, true);
+        $criteria->compare('entidad_bancaria_id', $this->entidad_bancaria_id);
+        $criteria->compare('cod_comprobante_entidad', $this->cod_comprobante_entidad, true);
+        $criteria->compare('fecha_comprobante_entidad', $this->fecha_comprobante_entidad, true);
+//        $criteria->compare('sucursal_comprobante_id', $this->sucursal_comprobante_id);
+        $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
+        $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
+        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+//        $criteria->compare('socio_id', $this->socio_id);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+    public function de_socio($ids) {
+
+        if ($ids) {
+            $this->getDbCriteria()->mergeWith(
+                    array(
+                        'condition' => "t.socio_id in({$ids})",
+                    )
+            );
+        }
+        return $this;
+    }
+
+    public function de_sucursal($sucursal_ids) {
+        if ($sucursal_ids) {
+            $this->getDbCriteria()->mergeWith(
+                    array(
+                        'condition' => "t.sucursal_comprobante_id in({$sucursal_ids})",
+                    )
+            );
+        }
+        return $this;
+    }
+
+    public function beforeSave() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
         $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
-    public function beforeValidate()
-    {
+    public function beforeValidate() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
         $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
-    public function searchByAhorro($id_ahorro)
-    {
+    public function searchByAhorro($id_ahorro) {
         $criteria = new CDbCriteria;
         $criteria->compare('id', $this->id);
         $criteria->compare('cantidad', $this->cantidad, true);
@@ -92,20 +124,18 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public function totalDepositosByPago($id_ahorro)
-    {
+    public function totalDepositosByPago($id_ahorro) {
 //        select sum(t.cantidad) from deposito t where t.pago_id=1;
         $consulata = Yii::app()->db->createCommand()->
-        select('sum(t.cantidad) as total_depositos_pago')->
-        from('ahorro_deposito t')->
-        where('t.pago_id=:pago_id');
+                select('sum(t.cantidad) as total_depositos_pago')->
+                from('ahorro_deposito t')->
+                where('t.pago_id=:pago_id');
         $consulata->params = array(':pago_id' => $id_ahorro);
 
         return $consulata->queryAll();
     }
 
-    public function searchDepositosSocio($socio_id = null)
-    {
+    public function searchDepositosSocio($socio_id = null) {
         $criteria = new CDbCriteria;
         $sort = new CSort;
 //        $criteria->with = array('ahorro');
@@ -135,14 +165,12 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public function generarCodigoComprobante($socio_id = '')
-    {
+    public function generarCodigoComprobante($socio_id = '') {
         $result = date('y') . date('m') . date('d') . date('H') . date('i') . date('s') . $socio_id;
         return $result;
     }
 
-    public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
-    {
+    public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null) {
         $commad = new CDbCommand(Yii::app()->db);
         $commad->select(array(
             "concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre, ifnull(concat(' ', p.segundo_nombre), ' ')) AS nombres",
@@ -163,8 +191,7 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $commad->queryAll();
     }
 
-    public function generateReporteIncSubmotivoPie($fecha_inicio, $fecha_fin, $incidencia_submotivo_id = null, $incidencia_motivo_id = null, $zona_ids = null, $incidencia_categoria_id = null, $formatGroup = "%Y/%m/%d", $sala_ids = null)
-    {
+    public function generateReporteIncSubmotivoPie($fecha_inicio, $fecha_fin, $incidencia_submotivo_id = null, $incidencia_motivo_id = null, $zona_ids = null, $incidencia_categoria_id = null, $formatGroup = "%Y/%m/%d", $sala_ids = null) {
         $report = array();
         self::$datarep = array();
         $fechaInicio = new DateTime($fecha_inicio);
@@ -251,13 +278,12 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $report;
     }
 
-
-    private function recursive_array_search($needle, $haystack)
-    {
+    private function recursive_array_search($needle, $haystack) {
         foreach ($haystack as $value) {
-            if ($needle === $value OR (is_array($value) && $this->recursive_array_search($needle, $value))) {
-                self::$datat[] = array("name" => $haystack["name"], "data" => (int)$haystack["total"]);
+            if ($needle === $value OR ( is_array($value) && $this->recursive_array_search($needle, $value))) {
+                self::$datat[] = array("name" => $haystack["name"], "data" => (int) $haystack["total"]);
             }
         }
     }
+
 }
