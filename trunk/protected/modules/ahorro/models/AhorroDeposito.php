@@ -185,6 +185,21 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $result;
     }
 
+
+//SELECT
+//p.id,
+//p.apellido_paterno,
+//ifnull((SELECT sum(ahs.cantidad)
+//FROM ahorro_deposito ahs
+//WHERE ahs.socio_id = p.id AND DATE_FORMAT(ahs.fecha_comprobante_entidad, '%Y') < '2015'), 0) AS saldo,
+//ifnull(t.cantidad,0),
+//DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')                                                    AS fecha,
+//ifnull((SELECT sum(ahs.cantidad)
+//FROM ahorro_deposito ahs
+//WHERE ahs.socio_id = p.id), 0)                                                               AS total
+//FROM persona p
+//LEFT JOIN ahorro_deposito t ON t.socio_id = p.id;
+
     public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
     {
         $commad = new CDbCommand(Yii::app()->db);
@@ -196,8 +211,8 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
         $commad->from("ahorro_deposito t");
         $commad->join("persona p", "p.id = t.socio_id AND p.estado=:estado", array(':estado' => Persona::ESTADO_ACTIVO));
-        if ($anio)
-            $commad->andWhere("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = :anio", array(':anio' => $anio));
+//        if ($anio)
+        $commad->andWhere("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = :anio", array(':anio' => $anio));
         if ($socio_id)
             $commad->andWhere("t.socio_id = :socio_id", array(":socio_id" => $socio_id));
         if ($sucursal_id)
