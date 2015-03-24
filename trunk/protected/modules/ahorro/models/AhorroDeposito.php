@@ -203,22 +203,45 @@ class AhorroDeposito extends BaseAhorroDeposito
     public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
     {
         $commad = new CDbCommand(Yii::app()->db);
-        $commad->select(array(
-            "concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre, ifnull(concat(' ', p.segundo_nombre), ' ')) AS nombres",
-            "p.cedula AS cedula",
-            "sum(t.cantidad) AS cantidad",
-            "DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')  AS fecha"
-        ));
-        $commad->from("ahorro_deposito t");
-        $commad->join("persona p", "p.id = t.socio_id AND p.estado=:estado", array(':estado' => Persona::ESTADO_ACTIVO));
-//        if ($anio)
-        $commad->andWhere("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = :anio", array(':anio' => $anio));
-        if ($socio_id)
-            $commad->andWhere("t.socio_id = :socio_id", array(":socio_id" => $socio_id));
-        if ($sucursal_id)
-            $commad->andWhere("p.sucursal_id = :sucursal_id", array(":sucursal" => $sucursal_id));
-        $commad->group("t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')");
-        $commad->order("DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m') ASC");
+
+        $socio_condicion = $socio_id ? "AND p.id={$socio_id}" : "";
+        $sucursal_condicio = $sucursal_id ? "AND p.sucursal_id={$sucursal_id}" : "";
+        $commad->setText("
+        (SELECT
+           p.id,
+           ifnull((SELECT sum(ahs.cantidad)
+                   FROM ahorro_deposito ahs
+                   WHERE ahs.socio_id = p.id AND DATE_FORMAT(ahs.fecha_comprobante_entidad, '%Y') < '{$anio}'), 0) AS saldo,
+           concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre,
+                  ifnull(concat(' ', p.segundo_nombre), ' '))                                                   AS nombres,
+           p.cedula                                                                                             AS cedula,
+           sum(t.cantidad)                                                                                      AS cantidad,
+           DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')                                                    AS fecha,
+           ifnull((SELECT sum(ahs.cantidad)
+                   FROM ahorro_deposito ahs
+                   WHERE ahs.socio_id = p.id), 0)                                                               AS total
+         FROM ahorro_deposito t
+           INNER JOIN persona p ON p.id = t.socio_id
+         WHERE DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = '{$anio}' {$socio_condicion} {$sucursal_condicio}
+         GROUP BY t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')
+        )
+        UNION
+        (SELECT
+           p.id,
+           0                                                  AS saldo,
+           concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre,
+                  ifnull(concat(' ', p.segundo_nombre), ' ')) AS nombres,
+           p.cedula                                           AS cedula,
+           0                                                  AS cantidad,
+           NULL                                               AS fecha,
+           0                                                  AS total
+         FROM persona p
+         WHERE p.id NOT IN (SELECT ad.socio_id
+                            FROM ahorro_deposito ad)
+        )
+        {$socio_condicion} {$sucursal_condicio}
+        ORDER BY nombres ASC
+        ");
         return $commad->queryAll();
     }
 
