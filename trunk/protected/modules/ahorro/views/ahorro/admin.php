@@ -39,7 +39,7 @@ $this->menu = array(
     <div class="widget-body">
         <?php
         $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
-            'id' => 'ahorro-form',
+            'id' => 'ahorroDeposito-form',
             'enableAjaxValidation' => true,
             'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => false,),
             'enableClientValidation' => false,
