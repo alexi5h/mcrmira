@@ -269,7 +269,7 @@ class AhorroDeposito extends BaseAhorroDeposito
     public function generateDataGridConsolidado($anio, $socio_id = null, $sucursal_id = null)
     {
         $data = $this->dataConsolidato($anio, $socio_id, $sucursal_id);
-        $cedulas = array_unique(array_column($data, 'cedula'));// Recojo todos las cedulas
+        $cedulas = array_unique(Util::array_column($data, 'cedula'));// Recojo todos las cedulas
         $meses = array(
             "{$anio}-01",
             "{$anio}-02",
@@ -290,7 +290,7 @@ class AhorroDeposito extends BaseAhorroDeposito
             self::$datat = array();
             $this->recursive_array_search($cedula, $data);
             self::$datat;// en esta variable se guarda todos los depositos que realizo el socio
-            $mesesFalta = array_diff($meses, array_column(self::$datat, 'fecha'));// averiguo que meses no estan pagados para ponerlos en cero cada mes
+            $mesesFalta = array_diff($meses,Util::array_column(self::$datat, 'fecha'));// averiguo que meses no estan pagados para ponerlos en cero cada mes
             $registro = end(self::$datat);// se lo usa como refencia para saber el formoato del registro a aumentarse
             if ($mesesFalta) {
                 foreach ($mesesFalta as $mesFalta) {
@@ -313,7 +313,7 @@ class AhorroDeposito extends BaseAhorroDeposito
             usort(self::$datat, function ($a, $b) {
                 return ($a['fecha'] < $b['fecha']) ? -1 : 1;
             });
-            $r = array_combine(Util::obtenerMeses(), array_column(self::$datat, 'cantidad'));// Construyo el registro de depositos por meses
+            $r = array_combine(Util::obtenerMeses(), Util::array_column(self::$datat, 'cantidad'));// Construyo el registro de depositos por meses
             $r['Nombres'] = $registro['nombres'];
             $r['Cedula'] = $registro['cedula'];
             $r['Saldo'] = $registro['saldo'];

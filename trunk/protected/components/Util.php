@@ -48,6 +48,29 @@ class Util {
     }
 
     /**
+     * Debe ser declarada en php <= 5.4+
+     * Esta función lo que hace es sacar la columna deseada de un a array asociativo
+     * @autor Armando Maldonado <amaldonado@tradesystem.com.ec>
+     * @param {array compuesto de preferencia} $array
+     * @param {int o string} $nombre_columna
+     * @return array
+     */
+    public static function array_column($array, $nombre_columna)
+    {
+        $resultado = array();
+        if (!is_array($array))
+            return $resultado;
+        foreach ($array as $hijos) {
+            if (!is_array($hijos))
+                continue;
+            if (array_key_exists($nombre_columna, $hijos)) {
+                $resultado[] = $hijos[$nombre_columna];
+            }
+        }
+        return $resultado;
+    }
+
+    /**
      * @param type $rolUser
      * @param type $rolPermitido
      * @return boolean
