@@ -324,7 +324,7 @@ class Persona extends BasePersona {
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $return = $return . ' ' . $this->apellido_paterno;
         $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
-        $this->cedula_nombre_formato = $this->cedula . ' - ' . $return;
+        $this->cedula_nombre_formato = $return. ' - ' . $this->cedula ;
         return $this->cedula_nombre_formato;
     }
 
