@@ -16,7 +16,14 @@ $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
 Util::tsRegisterAssetJs('consolidado.js');
 $anio_actual = $anio;
 $anio_anterior = $anio_actual - 1;
+$this->menu = array(
+    array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
+        'htmlOptions' => array(
+            'onclick' => 'exporAhorro("#ahorro-deposito-form")',)
+    )
+);
 ?>
+
 <div class="widget blue">
     <div class="widget-title">
         <h4>
@@ -58,7 +65,7 @@ $anio_anterior = $anio_actual - 1;
 
                     <div class="controls">
                         <?php
-                        $htmlOptions = array('class' => "span12",'selected-text'=>$model->sucursal->nombre);
+                        $htmlOptions = array('class' => "span12", 'selected-text' => $model->sucursal->nombre);
 
                         echo $form->hiddenField($model, 'sucursal_comprobante_id', $htmlOptions);
                         ?>
@@ -68,10 +75,10 @@ $anio_anterior = $anio_actual - 1;
             </div>
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Persona_sucursal">Cantón</label>
+                    <label class="control-label" for="Persona_sucursal">Año</label>
 
                     <div class="controls">
-                        <input type="text" id="AhorroDepositoAnio" value="<?php print $anio;?>">
+                        <input type="text" id="AhorroDepositoAnio" name="AhorroDeposito[anio]" value="<?php print $anio; ?>">
 
                     </div>
                 </div>
