@@ -37,6 +37,11 @@
                         'header' => 'Cedula'
                     ),
                     array(
+                        'value' => '$data["Sucursal"]',
+                        'type' => 'raw',
+                        'header' => 'Canton '
+                    ),
+                    array(
                         'value' => '$data["Saldo"]',
                         'type' => 'raw',
                         'header' => 'Saldo',
