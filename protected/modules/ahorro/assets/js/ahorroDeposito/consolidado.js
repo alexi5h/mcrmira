@@ -93,3 +93,15 @@ function getParamsSearch() {
     };
 
 }
+
+
+function exporAhorro(Formulario) {
+    if (!isEmptyGrid("#consolidado-grid")) //Cuando no este vacio
+    {
+        $(Formulario).attr('target', "blank");
+        $(Formulario).attr('action', baseUrl + 'ahorro/ahorroDeposito/exportarConsolidado');
+        $(Formulario).submit();
+    } else {
+        bootbox.alert('No hay datos para exportar');
+    }
+}
