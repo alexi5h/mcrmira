@@ -397,7 +397,7 @@ class Persona extends BasePersona {
 
         $command = Yii::app()->db->createCommand()
                 ->select("p.id as id,
-             (CONCAT(p.cedula,' - ',p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) as text")
+             (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''),' - ',p.cedula)) as text")
                 ->from('persona p')
                 ->where('p.estado = :estado', array(':estado' => self::ESTADO_ACTIVO));
         if ($credito_socio) {
@@ -411,6 +411,7 @@ class Persona extends BasePersona {
         if ($search_value) {
             $command->andWhere("p.cedula like '$search_value%' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '$search_value%'");
         }
+        $command->order('text ASC');
         $command->limit(10);
         return $command->queryAll();
     }

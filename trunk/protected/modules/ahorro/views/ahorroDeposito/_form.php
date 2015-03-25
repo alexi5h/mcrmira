@@ -16,12 +16,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
     'enableClientValidation' => false,
-        ));
+));
 ?>
 <div class="widget blue">
     <div class="widget-title">
         <h4>
-            <i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . AhorroDeposito::label(1); ?>
+            <i class="icon-plus"></i> Registrar Deposito
         </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
@@ -36,21 +36,21 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
             <div class="controls">
                 <?php
-                $htmlOptions = array('class' => "span12");
+                $htmlOptions = array('class' => "span6");
                 echo $form->hiddenField($model, 'socio_id', $htmlOptions);
                 ?>
                 <?php echo $form->error($model, 'socio_id'); ?>
                 <!--                <div class="controls">-->
                 <!--                    --><?php
-////                    $htmlOptions = array('class' => "span8 search");
-////                    if ($model->socio_id) {
-////                        $model_contacto = Contacto::model()->findByPk($model->contacto_id);
-////                        $htmlOptions = array_merge($htmlOptions, array(
-////                            'selected-text' => $model_contacto->documento . ' ' . $model_contacto->nombre_completo
-////                        ));
-////                    }
-////                    echo $form->hiddenField($model, 'contacto_id', $htmlOptions);
-//                    
+                ////                    $htmlOptions = array('class' => "span8 search");
+                ////                    if ($model->socio_id) {
+                ////                        $model_contacto = Contacto::model()->findByPk($model->contacto_id);
+                ////                        $htmlOptions = array_merge($htmlOptions, array(
+                ////                            'selected-text' => $model_contacto->documento . ' ' . $model_contacto->nombre_completo
+                ////                        ));
+                ////                    }
+                ////                    echo $form->hiddenField($model, 'contacto_id', $htmlOptions);
+                //
                 ?>
                 <!--                    <span class="help-inline error" id="Incidencia_contacto_id_em_" style="display: none"></span>-->
                 <!--                </div>-->
@@ -70,14 +70,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php
         echo $form->datepickerRow(
-                $model, 'fecha_comprobante_entidad', array(
-            'options' => array(
-                'language' => 'es',
-                'format' => 'dd-mm-yyyy',
-                'endDate' => 'today',
-                'readonly' => 'readonly',
-            ),
-                )
+            $model, 'fecha_comprobante_entidad', array(
+                'options' => array(
+                    'language' => 'es',
+                    'format' => 'dd-mm-yyyy',
+                    'endDate' => 'today',
+                    'readonly' => 'readonly',
+                ),
+            )
         );
         ?>
         <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
@@ -92,7 +92,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType' => 'submit',
                 'type' => 'success',
-                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
+                'label' => "Depositar",
             ));
             ?>
             <?php

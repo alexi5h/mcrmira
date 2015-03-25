@@ -58,16 +58,18 @@ class AhorroDeposito extends BaseAhorroDeposito
     public function search()
     {
         $criteria = new CDbCriteria;
+        $criteria->with=array('socio');
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('cantidad', $this->cantidad, true);
-        $criteria->compare('entidad_bancaria_id', $this->entidad_bancaria_id);
-        $criteria->compare('cod_comprobante_entidad', $this->cod_comprobante_entidad, true);
-        $criteria->compare('fecha_comprobante_entidad', $this->fecha_comprobante_entidad, true);
-//        $criteria->compare('sucursal_comprobante_id', $this->sucursal_comprobante_id);
-        $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
-        $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
-        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+//        $criteria->compare('id', $this->id);
+//        $criteria->compare('cantidad', $this->cantidad, true);
+//        $criteria->compare('entidad_bancaria_id', $this->entidad_bancaria_id);
+//        $criteria->compare('cod_comprobante_entidad', $this->cod_comprobante_entidad, true);
+//        $criteria->compare('fecha_comprobante_entidad', $this->fecha_comprobante_entidad, true);
+////        $criteria->compare('sucursal_comprobante_id', $this->sucursal_comprobante_id);
+//        $criteria->compare('cod_comprobante_su', $this->cod_comprobante_su, true);
+//        $criteria->compare('fecha_comprobante_su', $this->fecha_comprobante_su, true);
+//        $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
+        $criteria->compare('socio.estado',Persona::ESTADO_ACTIVO);
 //        $criteria->compare('socio_id', $this->socio_id);
 
         return new CActiveDataProvider($this, array(

@@ -1,6 +1,7 @@
 <?php
 
-class AhorroRetiroController extends AweController {
+class AhorroRetiroController extends AweController
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -10,7 +11,8 @@ class AhorroRetiroController extends AweController {
     public $defaultAction = 'admin';
     public $admin = false;
 
-    public function filters() {
+    public function filters()
+    {
         return array(
             array('CrugeAccessControlFilter'),
         );
@@ -20,7 +22,8 @@ class AhorroRetiroController extends AweController {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -30,7 +33,8 @@ class AhorroRetiroController extends AweController {
      * Displays a particular model.
      * @param integer $id the ID of the model Persona
      */
-    public function actionAjaxInfoSOcio($id) {
+    public function actionAjaxInfoSOcio($id)
+    {
         $socio = Persona::model()->findByPk($id);
         $this->renderPartial('_infoSocio', array('model' => $socio));
     }
@@ -39,16 +43,15 @@ class AhorroRetiroController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new AhorroRetiro;
-//        $retiroDetalle = new AhorroRetiroDetalle();
         $model->sucursal_id = Util::getSucursal();
         $model->fecha_retiro = Util::FormatDate(Util::FechaActual(), 'd/m/Y');
         $model->usuario_creacion_id = Yii::app()->user->id;
         $validSocio = isset($_GET['socio_id']) ? true : false;
         $saldoAhorro = 0;
         if ($validSocio) {
-//            die('entro');
             $model->socio_id = $_GET['socio_id'];
             $model->cantidad = floatval(Ahorro::model()->socioAhorroTotal($_GET['socio_id']));
         }
@@ -64,34 +67,16 @@ class AhorroRetiroController extends AweController {
             $validarDataCreditos = $creditos->de_socio($model->id)->en_deuda()->count() > 0;
             if (!$validarDataCreditos) {
                 $saldoAhorro = floatval(Ahorro::model()->socioAhorroTotal($model->socio_id));
-//                var_dump($saldoAhorro);
-//                die();
 
                 if ($cantidadInput <= $saldoAhorro) {
                     $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
 
                     if ($model->save()) {
-//                    $listAhorrosObligatorios = Ahorro::model()->socioAhorrosObligatorios($model->socio_id);
-//                    foreach ($listAhorrosObligatorios as $ahorro) {
-//                            var_dump($ahorro);die();
-//                        $cantidadAhorro = floatval($ahorro['saldo_favor']);
-//                        if ($cantidadInput <= $cantidadAhorro) {
-//                            $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
-//                        } else {
-//                            $validadorDetalle = Ahorro::model()->setAnuladoObligatorio($ahorro['id'], $cantidadAhorro - $cantidadInput);
-//                                if ($validadorDetalle) {
-//
-//                                    $retiroDetalle->cantidad = $cantidadAhorro;
-//                                    $retiroDetalle->ahorro_id = $ahorro['id'];
-//                                    $retiroDetalle->ahorro_retiro_id = $model->id;
-//                                    $retiroDetalle->save();
-//                                } else {
-//                                    AhorroRetiro::model()->deleteByPk($model->id);
-//                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
-//                                }
-//                        }
-//                        $cantidadInput = $cantidadInput - $cantidadAhorro;
-//                }
+//                        $modelPersona = $model->socio;
+                        Persona::model()->updateByPk($model->socio_id,array('estado'=>Persona::ESTADO_RETIRADO));
+//                        $modelPersona->estado = Persona::ESTADO_RETIRADO;
+//                        var_dump($modelPersona->errors,$modelPersona->validate(),$modelPersona->save());
+//                        die();
                     }
                     $validadorSucces = true;
                 } else {
@@ -103,47 +88,8 @@ class AhorroRetiroController extends AweController {
                 Yii::app()->user->setFlash('error', 'Este socio tiene todavía Creditos por pagar');
             }
 
-//            if ($model->tipoAhorro == Ahorro::TIPO_VOLUNTARIO) {
-//                $saldoAhorro = floatval(Ahorro::model()->socioAhorroVoluntarioTotal($model->socio_id));
-//
-//                if ($cantidadInput <= $saldoAhorro) {
-//                    $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
-//                    if ($model->save()) {
-//                        $listAhorrosVoluntario = Ahorro::model()->socioAhorrosVoluntarios($model->socio_id);
-////                    var_dump($listAhorrosVoluntario);
-////                    die();
-//                        foreach ($listAhorrosVoluntario as $ahorro) {
-//                            $cantidadAhorro = floatval($ahorro['cantidad']);
-////                     
-//
-//                            if ($cantidadInput <= $cantidadAhorro) {
-//                                $validadorDetalle = Ahorro::model()->setAnuladoVoluntario($ahorro['id'], $cantidadAhorro - $cantidadInput);
-//
-//
-//                                if ($validadorDetalle) {
-//
-//                                    $retiroDetalle->cantidad = $cantidadAhorro;
-//                                    $retiroDetalle->ahorro_id = $ahorro['id'];
-//                                    $retiroDetalle->ahorro_retiro_id = $model->id;
-//                                    $retiroDetalle->save();
-//                                } else {
-//                                    AhorroRetiro::model()->deleteByPk($model->id);
-//                                    Yii::app()->user->setFlash('error', 'Error al guardar el Retiro.');
-//                                }
-//                            }
-//                        }
-//                    }
-//                    $validadorSucces = true;
-//                } 
-//                else {
-//                    $validadorSucces = false;
-//                    Yii::app()->user->setFlash('error', 'La cantidad $' . $model->cantidad . ' ingresada supera a la cantidad $' . $saldoAhorro . ' de ahorros voluntarios.');
-//                }
-//            }
             if ($validadorSucces) {
-
                 $this->redirect(array('admin'));
-//                }
             }
         }
 
@@ -157,7 +103,8 @@ class AhorroRetiroController extends AweController {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->loadModel($id);
 
         $this->performAjaxValidation($model, 'ahorro-retiro-form');
@@ -179,7 +126,8 @@ class AhorroRetiroController extends AweController {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (Yii::app()->request->isPostRequest) {
 // we only allow deletion via POST request
             $this->loadModel($id)->delete();
@@ -194,7 +142,8 @@ class AhorroRetiroController extends AweController {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
         $model = new AhorroRetiro('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['AhorroRetiro']))
@@ -210,7 +159,8 @@ class AhorroRetiroController extends AweController {
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id, $modelClass = __CLASS__) {
+    public function loadModel($id, $modelClass = __CLASS__)
+    {
         $model = AhorroRetiro::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
@@ -221,7 +171,8 @@ class AhorroRetiroController extends AweController {
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model, $form = null) {
+    protected function performAjaxValidation($model, $form = null)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'ahorro-retiro-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
