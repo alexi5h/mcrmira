@@ -101,7 +101,7 @@ $this->menu = array(
         <?php $this->endWidget(); ?>
 
         <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
+        $this->widget('bootstrap.widgets.TbExtendedGridView', array(
             'id' => 'ahorro-deposito-grid',
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
@@ -115,7 +115,12 @@ $this->menu = array(
                     'header' => 'Cédula',
                     'value' => '$data->socio->cedula'
                 ),
-                'cantidad',
+                array(
+                    'header' => 'Cantidad',
+                    'name'=>'cantidad',
+                    'value' => '$data->cantidad',
+                    'class' => 'bootstrap.widgets.TbTotalSumColumn'
+                ),
                 array(
                     'name' => 'fecha_comprobante_entidad',
                     'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
