@@ -14,7 +14,7 @@ $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
 Util::tsRegisterAssetJs('admin.js');
 
 $this->menu = array(
-    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('createDeposito'),
+    array('label' => Yii::t('AweCrud.app', 'Realizar Deposito'), 'icon' => 'plus', 'url' => array('createDeposito'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
@@ -24,7 +24,7 @@ $this->menu = array(
 </div> 
 <div class="widget blue">
     <div class="widget-title">
-        <h4> <i class="icon-fire-extinguisher"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo AhorroDeposito::label(2) ?> </h4>
+        <h4> <i class="icon-money"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo AhorroDeposito::label(2) ?> </h4>
         <span class="tools">
             <a href="javascript:;" class="icon-chevron-down"></a>
             <!--a href="javascript:;" class="icon-remove"></a-->
