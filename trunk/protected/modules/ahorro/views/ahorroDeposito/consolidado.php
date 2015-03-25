@@ -3,6 +3,9 @@ $baseUrl = Yii::app()->theme->baseUrl;
 $cs = Yii::app()->getClientScript();
 
 
+$cs->registerScriptFile($baseUrl . '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css');
+
 $cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/moment.min.js');
 $cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/daterangepicker.js');
 $cs->registerCssFile($baseUrl . '/plugins/daterangepicker/daterangepicker-bs2.css');
@@ -11,7 +14,7 @@ $cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
 Util::tsRegisterAssetJs('consolidado.js');
-$anio_actual = Util::FormatDate(Util::FechaActual(), 'Y');
+$anio_actual = $anio;
 $anio_anterior = $anio_actual - 1;
 ?>
 <div class="widget blue">
@@ -67,11 +70,8 @@ $anio_anterior = $anio_actual - 1;
                     <label class="control-label" for="Persona_sucursal">Cantón</label>
 
                     <div class="controls">
-                        <?php
-                        $htmlOptions = array('class' => "span12");
-                        echo $form->hiddenField($model, 'sucursal_comprobante_id', $htmlOptions);
-                        ?>
-                        <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
+                        <input type="text" id="AhorroDepositoAnio" value="<?php print $anio;?>">
+
                     </div>
                 </div>
             </div>
@@ -79,6 +79,7 @@ $anio_anterior = $anio_actual - 1;
         </div>
         <?php $this->endWidget(); ?>
         <br/>
+
         <div style="overflow: auto;">
 
             <?php
