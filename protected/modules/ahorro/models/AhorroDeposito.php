@@ -206,9 +206,13 @@ class AhorroDeposito extends BaseAhorroDeposito
 
         $socio_condicion = $socio_id ? "AND p.id={$socio_id}" : "";
         $sucursal_condicio = $sucursal_id ? "AND p.sucursal_id={$sucursal_id}" : "";
+        $e = Persona::ESTADO_ACTIVO;
+        $estado = "AND p.estado='{$e}' ";
+
         $commad->setText("
         (SELECT
            p.id,
+           s.nombre as sucursal,
            ifnull((SELECT sum(ahs.cantidad)
                    FROM ahorro_deposito ahs
                    WHERE ahs.socio_id = p.id AND DATE_FORMAT(ahs.fecha_comprobante_entidad, '%Y') < '{$anio}'), 0) AS saldo,
@@ -222,12 +226,14 @@ class AhorroDeposito extends BaseAhorroDeposito
                    WHERE ahs.socio_id = p.id), 0)                                                               AS total
          FROM ahorro_deposito t
            INNER JOIN persona p ON p.id = t.socio_id
-         WHERE DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = '{$anio}' {$socio_condicion} {$sucursal_condicio}
+           INNER JOIN sucursal s on s.id=p.sucursal_id
+         WHERE DATE_FORMAT(t.fecha_comprobante_entidad, '%Y') = '{$anio}' {$socio_condicion} {$sucursal_condicio} {$estado}
          GROUP BY t.socio_id, DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')
         )
         UNION
         (SELECT
            p.id,
+           s.nombre as sucursal,
            0                                                  AS saldo,
            concat(p.apellido_paterno, ifnull(concat(' ', p.apellido_materno, ' '), ' '), p.primer_nombre,
                   ifnull(concat(' ', p.segundo_nombre), ' ')) AS nombres,
@@ -236,10 +242,12 @@ class AhorroDeposito extends BaseAhorroDeposito
            NULL                                               AS fecha,
            0                                                  AS total
          FROM persona p
+         INNER JOIN sucursal s on s.id=p.sucursal_id
          WHERE p.id NOT IN (SELECT ad.socio_id
                             FROM ahorro_deposito ad)
+                            {$socio_condicion} {$sucursal_condicio} {$estado}
         )
-        {$socio_condicion} {$sucursal_condicio}
+
         ORDER BY nombres ASC
         ");
         return $commad->queryAll();
@@ -297,6 +305,7 @@ class AhorroDeposito extends BaseAhorroDeposito
             $r['Cedula'] = $registro['cedula'];
             $r['Saldo'] = $registro['saldo'];
             $r['Total'] = $registro['total'];
+            $r['Sucursal'] = $registro['sucursal'];
             $r['id'] = $id++;
             self::$datarep[] = $r;
         }
@@ -396,7 +405,7 @@ class AhorroDeposito extends BaseAhorroDeposito
         foreach ($haystack as $value) {
             if ($needle === $value OR (is_array($value) && $this->recursive_array_search($needle, $value))) {
                 self::$datat[] = array(
-                    'id' => $haystack['id'], 'saldo' => (float)$haystack['saldo'], 'nombres' => $haystack['nombres'],
+                    'id' => $haystack['id'],'sucursal' => $haystack['sucursal'], 'saldo' => (float)$haystack['saldo'], 'nombres' => $haystack['nombres'],
                     'cedula' => $haystack['cedula'], 'cantidad' => (float)$haystack['cantidad'],
                     'fecha' => $haystack['fecha'],
                     'total' => (float)$haystack['total']
