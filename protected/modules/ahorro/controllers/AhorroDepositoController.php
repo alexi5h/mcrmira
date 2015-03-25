@@ -334,6 +334,8 @@ class AhorroDepositoController extends AweController
     {
         $model = new AhorroDeposito();
         $data = $model->generateDataGridConsolidado('2015');
+
+//        Todo  recoger valores de get para update de grid
 //        var_dump($data);
 //        die();
         $this->render('consolidado', array('model' => $model, 'data' => $data));
