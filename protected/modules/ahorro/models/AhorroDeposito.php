@@ -201,19 +201,6 @@ class AhorroDeposito extends BaseAhorroDeposito
     }
 
 
-//SELECT
-//p.id,
-//p.apellido_paterno,
-//ifnull((SELECT sum(ahs.cantidad)
-//FROM ahorro_deposito ahs
-//WHERE ahs.socio_id = p.id AND DATE_FORMAT(ahs.fecha_comprobante_entidad, '%Y') < '2015'), 0) AS saldo,
-//ifnull(t.cantidad,0),
-//DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')                                                    AS fecha,
-//ifnull((SELECT sum(ahs.cantidad)
-//FROM ahorro_deposito ahs
-//WHERE ahs.socio_id = p.id), 0)                                                               AS total
-//FROM persona p
-//LEFT JOIN ahorro_deposito t ON t.socio_id = p.id;
 
     public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
     {
@@ -338,7 +325,6 @@ class AhorroDeposito extends BaseAhorroDeposito
                     'fecha' => $haystack['fecha'],
                     'total' => (float)$haystack['total']
                 );
-//                self::$datat[] = $haystack;
             }
         }
     }
