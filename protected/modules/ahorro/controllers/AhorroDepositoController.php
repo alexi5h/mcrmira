@@ -333,12 +333,18 @@ class AhorroDepositoController extends AweController
     public function actionConsolidado()
     {
         $model = new AhorroDeposito();
-        $data = $model->generateDataGridConsolidado('2015');
+        $anio = Util::FormatDate(Util::FechaActual(), 'Y');
+        $socio_id = null;
+        $sucursal_id = null;
 
-//        Todo  recoger valores de get para update de grid
-//        var_dump($data);
-//        die();
-        $this->render('consolidado', array('model' => $model, 'data' => $data));
+        if (isset($_GET['AhorroDeposito'])) {
+            $anio = $_GET['AhorroDeposito']['anio'];
+            $socio_id = $_GET['AhorroDeposito']['socio_id'];
+            $sucursal_id = $_GET['AhorroDeposito']['sucursal_id'];
+        }
+        $data = $model->generateDataGridConsolidado($anio, $socio_id, $sucursal_id);
+
+        $this->render('consolidado', array('model' => $model, 'data' => $data, 'anio' => $anio));
     }
 
     /**

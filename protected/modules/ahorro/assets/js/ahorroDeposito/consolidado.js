@@ -3,7 +3,7 @@ $(function () {
     inputPersonaId = $("#AhorroDeposito_socio_id");
     inputPersonaId.select2({
         placeholder: "Seleccione un Socio",
-        multiple: true,
+        //multiple: true,
         initSelection: function (element, callback) {
             if ($(element).val()) {
                 var data = {id: element.val(), text: $(element).attr('selected-text')};
@@ -52,12 +52,26 @@ $(function () {
             }
         }
     });
+    inputAhorroDepositoAnio = $("#AhorroDepositoAnio");
+    inputAhorroDepositoAnio.datepicker({
+        minViewMode: 2,
+        autoclose: true,
+        format: 'yyyy'
+    });
     //chages
     inputPersonaId.on("change", function (e) {
         updateGrid(getParamsSearch());
     });
     inputPersonaCanton.on("change", function (e) {
         updateGrid(getParamsSearch());
+
+    });
+    inputAhorroDepositoAnio.on("change", function (e) {
+        updateGrid(getParamsSearch());
+        anio_seleccionado = parseInt($(this).val());
+        anio_seleccionado_anterior = anio_seleccionado - 1;
+        //$("#consolidado-grid_c4").html('Saldo '+ anio_seleccionado_anterior); // tr de saldo
+        //$("#consolidado-grid_c17").html('Total '+ anio_seleccionado); // tr de saldo
 
     });
 
@@ -73,7 +87,8 @@ function getParamsSearch() {
     return {
         'AhorroDeposito': {
             'socio_id': inputPersonaId.val(),
-            'sucursal_id': inputPersonaCanton.val()
+            'sucursal_id': inputPersonaCanton.val(),
+            'anio': inputAhorroDepositoAnio.val()
         }
     };
 
