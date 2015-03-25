@@ -335,7 +335,8 @@ class AhorroDepositoController extends AweController
         $model = new AhorroDeposito();
         $anio = Util::FormatDate(Util::FechaActual(), 'Y');
         $socio_id = null;
-        $sucursal_id = null;
+        $sucursal_id = Util::getSucursal();
+        $model->sucursal_comprobante_id=$sucursal_id;
 
         if (isset($_GET['AhorroDeposito'])) {
             $anio = $_GET['AhorroDeposito']['anio'];

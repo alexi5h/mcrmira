@@ -3,7 +3,7 @@ $(function () {
     inputPersonaId = $("#AhorroDeposito_socio_id");
     inputPersonaId.select2({
         placeholder: "Seleccione un Socio",
-        //multiple: true,
+        multiple: true,
         initSelection: function (element, callback) {
             if ($(element).val()) {
                 var data = {id: element.val(), text: $(element).attr('selected-text')};
