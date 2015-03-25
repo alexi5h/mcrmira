@@ -92,3 +92,14 @@ function changeInputFecha() {
     updateGrid(getParamsSearch());
 }
 
+function exporSocio(Formulario) {
+    if (!isEmptyGrid("#ahorro-deposito-grid")) //Cuando no este vacio
+    {
+        $(Formulario).attr('target', "blank");
+        $(Formulario).attr('action', baseUrl + 'ahorro/ahorroDeposito/exportarDepositos');
+        $(Formulario).submit();
+    } else {
+        bootbox.alert('No hay datos para exportar');
+    }
+}
+

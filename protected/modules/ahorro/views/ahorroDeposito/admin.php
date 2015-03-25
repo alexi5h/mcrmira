@@ -17,6 +17,12 @@ $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Realizar Deposito'), 'icon' => 'plus', 'url' => array('createDeposito'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
+    array('label' => Yii::t('AweCrud.app', 'Exportar'), 'icon' => 'download-alt', 'url' => '#',
+        'htmlOptions' => array(
+            'onClick' => 'exporSocio("#ahorro-deposito-form")'
+        )
+    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
+    ),
 );
 ?>
 <div id="flashMsg"  class="flash-messages">
@@ -101,6 +107,7 @@ $this->menu = array(
         <?php $this->endWidget(); ?>
 
         <?php
+
         $this->widget('bootstrap.widgets.TbExtendedGridView', array(
             'id' => 'ahorro-deposito-grid',
             'type' => 'striped bordered hover advance',
@@ -117,7 +124,7 @@ $this->menu = array(
                 ),
                 array(
                     'header' => 'Cantidad',
-                    'name'=>'cantidad',
+                    'name' => 'cantidad',
                     'value' => '$data->cantidad',
                     'class' => 'bootstrap.widgets.TbTotalSumColumn'
                 ),
