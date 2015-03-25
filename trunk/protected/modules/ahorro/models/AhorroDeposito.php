@@ -204,8 +204,8 @@ class AhorroDeposito extends BaseAhorroDeposito
     {
         $commad = new CDbCommand(Yii::app()->db);
 
-        $socio_condicion = $socio_id ? "AND p.id={$socio_id}" : "";
-        $sucursal_condicio = $sucursal_id ? "AND p.sucursal_id={$sucursal_id}" : "";
+        $socio_condicion = $socio_id ? "AND p.id  in({$socio_id})" : "";
+        $sucursal_condicio = $sucursal_id ? "AND p.sucursal_id in ({$sucursal_id})" : "";
         $e = Persona::ESTADO_ACTIVO;
         $estado = "AND p.estado='{$e}' ";
 

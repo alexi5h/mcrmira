@@ -58,7 +58,8 @@ $anio_anterior = $anio_actual - 1;
 
                     <div class="controls">
                         <?php
-                        $htmlOptions = array('class' => "span12");
+                        $htmlOptions = array('class' => "span12",'selected-text'=>$model->sucursal->nombre);
+
                         echo $form->hiddenField($model, 'sucursal_comprobante_id', $htmlOptions);
                         ?>
                         <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
