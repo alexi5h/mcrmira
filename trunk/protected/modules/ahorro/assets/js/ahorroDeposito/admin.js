@@ -1,9 +1,11 @@
-var inputPersonaId, inputPersonaCanton;
+var inputPersonaId, inputPersonaCanton, inputfecha;
 $(function () {
     initSelect();
 });
 //AhorroDeposito_socio_id
 function initSelect() {
+    inputfecha = $('#AhorroDeposito_fecha_comprobante_entidad');
+
     inputPersonaId = $("#AhorroDeposito_socio_id");
     //select2
     inputPersonaId.select2({
@@ -56,6 +58,8 @@ function initSelect() {
             }
         }
     });
+
+
     //chages
     inputPersonaId.on("change", function (e) {
         updateGrid(getParamsSearch());
@@ -64,6 +68,8 @@ function initSelect() {
         updateGrid(getParamsSearch());
 
     });
+
+
 }
 
 function updateGrid($params) {
@@ -77,7 +83,12 @@ function getParamsSearch() {
         'AhorroDeposito': {
             'socio_id': inputPersonaId.val(),
             'sucursal_comprobante_id': inputPersonaCanton.val(),
+            'sucursal_fecha_comprobante_entidad': inputfecha.val(),
         }
     };
 
 }
+function changeInputFecha() {
+    updateGrid(getParamsSearch());
+}
+

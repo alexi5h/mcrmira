@@ -43,7 +43,7 @@ $this->menu = array(
         <div class="row-fluid">
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Persona_id">Socio</label>
+                    <label class="control-label" for="AhorroDeposito_socio_id">Socio</label>
                     <div class="controls">
                         <?php
                         $htmlOptions = array('class' => "span12");
@@ -56,11 +56,40 @@ $this->menu = array(
 
             <div class="span4">
                 <div class="control-group ">
-                    <label class="control-label" for="Persona_sucursal">Cantón</label>
+                    <label class="control-label" for="AhorroDeposito_sucursal_comprobante_id">Cantón</label>
                     <div class="controls">
                         <?php
                         $htmlOptions = array('class' => "span12");
                         echo $form->hiddenField($model, 'sucursal_comprobante_id', $htmlOptions);
+                        ?>
+                        <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group ">
+                    <label class="control-label" for="AhorroDeposito_fecha_comprobante_entidad">Fecha</label>
+                    <div class="controls">
+                        <?php
+                        $this->widget(
+                                'bootstrap.widgets.TbDatePicker', array(
+                            'model' => $model,
+                            'attribute' => 'fecha_comprobante_entidad',
+                            'options' => array(
+                                'language' => 'es',
+                                'format' => 'MM/yyyy',
+                                'autoclose' => true,
+                                'startView' => 2,
+                                'minViewMode' => 1,
+                            ),
+                            'events' => array(
+                                'hide' => 'js:function(e){changeInputFecha()}',
+                            ),
+                            'htmlOptions' => array(
+//                                'readonly' => 'readonly',
+                            )
+                                )
+                        );
                         ?>
                         <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
                     </div>
