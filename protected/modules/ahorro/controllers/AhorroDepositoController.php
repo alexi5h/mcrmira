@@ -333,9 +333,10 @@ class AhorroDepositoController extends AweController
     public function actionConsolidado()
     {
         $model = new AhorroDeposito();
-        $model->generateDataGridConsolidado('2015');
-        die();
-        $this->render('consolidado', array('model' => $model));
+        $data = $model->generateDataGridConsolidado('2015');
+//        var_dump($data);
+//        die();
+        $this->render('consolidado', array('model' => $model, 'data' => $data));
     }
 
     /**

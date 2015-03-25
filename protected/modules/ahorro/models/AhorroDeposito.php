@@ -247,11 +247,60 @@ class AhorroDeposito extends BaseAhorroDeposito
 
     public function generateDataGridConsolidado($anio, $socio_id = null, $sucursal_id = null)
     {
-        $data = $this->dataConsolidato($anio);
-        var_dump($data);
+        $data = $this->dataConsolidato($anio, $socio_id, $sucursal_id);
+        $cedulas = array_unique(array_column($data, 'cedula'));// Recojo todos las cedulas
+        $meses = array(
+            "{$anio}-01",
+            "{$anio}-02",
+            "{$anio}-03",
+            "{$anio}-04",
+            "{$anio}-05",
+            "{$anio}-06",
+            "{$anio}-07",
+            "{$anio}-08",
+            "{$anio}-09",
+            "{$anio}-10",
+            "{$anio}-11",
+            "{$anio}-12"
+        );
         self::$datarep = array();
-
-
+        $id = 0;
+        foreach ($cedulas as $cedula) {
+            self::$datat = array();
+            $this->recursive_array_search($cedula, $data);
+            self::$datat;// en esta variable se guarda todos los depositos que realizo el socio
+            $mesesFalta = array_diff($meses, array_column(self::$datat, 'fecha'));// averiguo que meses no estan pagados para ponerlos en cero cada mes
+            $registro = end(self::$datat);// se lo usa como refencia para saber el formoato del registro a aumentarse
+            if ($mesesFalta) {
+                foreach ($mesesFalta as $mesFalta) {
+                    self::$datat[] = array(
+                        'id' => $registro['id'], 'saldo' => $registro['saldo'], 'nombres' => $registro['nombres'],
+                        'cedula' => $registro['cedula'], 'cantidad' => (float)0,
+                        'fecha' => $mesFalta,
+                        'total' => $registro['total']
+                    );
+                }
+                $dta = self::$datat;
+                self::$datat = array();
+                //quito los gegistros que tiene fehca null
+                array_walk($dta, function ($value, $key) {
+                    if ($value['fecha'])//si el valor de la fecha es no es null agrege
+                        self::$datat[] = $value;
+                });
+            }
+            // Ordeno los registros por fecha de menor a mayor: ene,feb,mar,abr,mar,may,jun...
+            usort(self::$datat, function ($a, $b) {
+                return ($a['fecha'] < $b['fecha']) ? -1 : 1;
+            });
+            $r = array_combine(Util::obtenerMeses(), array_column(self::$datat, 'cantidad'));// Construyo el registro de depositos por meses
+            $r['Nombres'] = $registro['nombres'];
+            $r['Cedula'] = $registro['cedula'];
+            $r['Saldo'] = $registro['saldo'];
+            $r['Total'] = $registro['total'];
+            $r['id'] = $id++;
+            self::$datarep[] = $r;
+        }
+        return self::$datarep;
     }
 
     public function generateReporteIncSubmotivoPie($fecha_inicio, $fecha_fin, $incidencia_submotivo_id = null, $incidencia_motivo_id = null, $zona_ids = null, $incidencia_categoria_id = null, $formatGroup = "%Y/%m/%d", $sala_ids = null)
@@ -346,7 +395,13 @@ class AhorroDeposito extends BaseAhorroDeposito
     {
         foreach ($haystack as $value) {
             if ($needle === $value OR (is_array($value) && $this->recursive_array_search($needle, $value))) {
-                self::$datat[] = array("name" => $haystack["name"], "data" => (int)$haystack["total"]);
+                self::$datat[] = array(
+                    'id' => $haystack['id'], 'saldo' => (float)$haystack['saldo'], 'nombres' => $haystack['nombres'],
+                    'cedula' => $haystack['cedula'], 'cantidad' => (float)$haystack['cantidad'],
+                    'fecha' => $haystack['fecha'],
+                    'total' => (float)$haystack['total']
+                );
+//                self::$datat[] = $haystack;
             }
         }
     }
