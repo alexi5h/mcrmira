@@ -11,6 +11,7 @@
     </div>
     <div class="widget-body">
         <div style="overflow: auto;">
+            
             <?php
             $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                 'fixedHeader' => true,
@@ -39,7 +40,7 @@
                     array(
                         'value' => '$data["Sucursal"]',
                         'type' => 'raw',
-                        'header' => 'Canton '
+                        'header' => "Cantón"
                     ),
                     array(
                         'value' => '$data["Saldo"]',
