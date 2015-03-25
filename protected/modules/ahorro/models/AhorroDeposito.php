@@ -274,7 +274,7 @@ class AhorroDeposito extends BaseAhorroDeposito
             "{$anio}-12"
         );
         self::$datarep = array();
-        $id = 0;
+        $id = 1;
         foreach ($cedulas as $cedula) {
             self::$datat = array();
             $this->recursive_array_search($cedula, $data);
