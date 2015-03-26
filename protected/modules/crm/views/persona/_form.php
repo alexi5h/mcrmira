@@ -133,6 +133,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ),
             'htmlOptions' => array(
                 'readonly' => 'readonly',
+                'style'=>'cursor:pointer;'
+
+
             )
                 )
         );
@@ -149,6 +152,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ),
             'htmlOptions' => array(
                 'readonly' => 'readonly',
+                'style'=>'cursor:pointer;'
+
             )
                 )
         );

@@ -79,7 +79,8 @@ $this->menu = array(
                 <div class="control-group ">
                     <label class="control-label" for="AhorroDeposito_fecha_comprobante_entidad">Fecha</label>
                     <div class="controls">
-                        <?php echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha')) ?>
+                        <?php echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha','style'=>'cursor:pointer;',                'readonly' => 'readonly',
+                        )) ?>
 
                         <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
                     </div>
