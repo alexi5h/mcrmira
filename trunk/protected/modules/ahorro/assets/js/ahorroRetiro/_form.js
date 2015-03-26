@@ -1,5 +1,6 @@
 var inputPersonaId;
 $(function () {
+    btnSave = $("#btn_save");
     inputPersonaId = $("#AhorroRetiro_socio_id");
     inputPersonaId.select2({
         placeholder: "Seleccione un Socio",
@@ -49,6 +50,9 @@ $(function () {
 //            }
 //        });
 //    });
+    btnSave.on('click', function () {
+        $("#ahorro-retiro-form").submit();
+    });
 });
 
 /**
@@ -57,10 +61,23 @@ $(function () {
  */
 function getInfoRetiro(socio_id) {
     $.getJSON(baseUrl + 'crm/Persona/ajaxInfo?id=' + socio_id, function (data, status) {
-        //console.log(data);
+        console.log(data);
         if (data.success) {
             $("#AhorroRetiro_cantidad").val(data.AhorroRetiro.cantidad);
+            if (parseInt(data.Credito.deuda) > 0) {
+                btnSave.addClass('disabled');
+                btnSave.off('click');
+            } else {
+                btnSave.removeClass('disabled');
+                btnSave.on('click', function () {
+                    $("#ahorro-retiro-form").submit();
+                });
+            }
         } else {
+            btnSave.removeClass('disabled');
+            btnSave.on('click', function () {
+                $("#ahorro-retiro-form").submit();
+            });
         }
     });
 

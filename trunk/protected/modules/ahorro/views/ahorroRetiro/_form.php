@@ -73,8 +73,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             <div class="form-actions">
                 <?php
                 $this->widget('bootstrap.widgets.TbButton', array(
-                    'buttonType' => 'submit',
+//                    'buttonType' => 'submit',
                     'type' => 'success',
+                    'htmlOptions'=>array('id'=>'btn_save'),
                     'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
                 ));
                 ?>
