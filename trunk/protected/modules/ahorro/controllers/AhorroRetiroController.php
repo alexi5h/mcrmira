@@ -72,11 +72,7 @@ class AhorroRetiroController extends AweController
                     $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
 
                     if ($model->save()) {
-//                        $modelPersona = $model->socio;
                         Persona::model()->updateByPk($model->socio_id,array('estado'=>Persona::ESTADO_RETIRADO));
-//                        $modelPersona->estado = Persona::ESTADO_RETIRADO;
-//                        var_dump($modelPersona->errors,$modelPersona->validate(),$modelPersona->save());
-//                        die();
                     }
                     $validadorSucces = true;
                 } else {
