@@ -54,7 +54,7 @@ class Persona extends BasePersona
                 'actividad_economica' => null,
                 'cedula' => Yii::t('app', 'Identificación'),
                 'sucursal_id' => Yii::t('app', 'Cantón'),
-//            'tipo_identificacion' => Yii::t('app', 'Tipo Identificación'),
+            'fecha_creacion' => Yii::t('app', 'Fecha de registro'),
             )
         );
     }

@@ -38,7 +38,7 @@ class AhorroRetiro extends BaseAhorroRetiro {
         return array(
             'id' => Yii::t('app', 'ID'),
             'socio_id' => Yii::t('app', 'Socio'),
-            'sucursal_id' => Yii::t('app', 'Sucursal'),
+            'sucursal_id' => Yii::t('app', 'Cantón'),
             'cantidad' => Yii::t('app', 'Cantidad'),
             'fecha_retiro' => Yii::t('app', 'Fecha Retiro'),
             'entidad_bancaria_id' => Yii::t('app', 'Entidad Bancaria'),

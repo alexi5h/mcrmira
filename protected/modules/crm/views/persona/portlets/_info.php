@@ -70,7 +70,7 @@
         <?php
         $this->widget('bootstrap.widgets.TbButton', array(
             'icon' => 'exchange',            
-            'url' => Yii::app()->createUrl("ahorro/ahorroRetiro/create/", array('socio_id'=>$model->id)),
+            'url' => Yii::app()->createUrl("ahorro/ahorroRetiro/createRetiro/", array('socio_id'=>$model->id)),
             'label' => Yii::t('AweCrud.app', 'Retirar Ahorro'),
 //            'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
         ));
