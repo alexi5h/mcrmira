@@ -44,9 +44,16 @@ class AhorroRetiroController extends AweController
         $model = new AhorroRetiro();
         $model->socio_id = $socio_id;
         $model->sucursal_id = Util::getSucursal();
-//        $model->fecha_retiro = Util::FormatDate(Util::FechaActual(), 'd/m/Y');
         $model->usuario_creacion_id = Yii::app()->user->id;
         $this->performAjaxValidation($model, 'ahorro-retiro-form');
+        if (isset($_POST['AhorroRetiro'])) {
+            $model->attributes = $_POST['AhorroRetiro'];
+            $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
+            if ($model->save()) {
+                Persona::model()->updateByPk($model->socio_id, array('estado' => Persona::ESTADO_RETIRADO));
+                $this->redirect('admin');
+            }
+        }
 
         $this->render('create', array('model' => $model));
     }
