@@ -390,6 +390,7 @@ class PersonaController extends AweController
                 $result['Persona'] = $model->attributes;
                 $result['AhorroRetiro']['cantidad'] = AhorroDeposito::model()->sumTotaldeposito($model->id);
                 $result['success'] = true;
+                $result['Credito']['deuda'] = Credito::model()->de_socio($model->id)->en_deuda()->count();
             }
             echo CJSON::encode($result);
             Yii::app()->end();

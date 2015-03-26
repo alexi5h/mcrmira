@@ -5,7 +5,7 @@ $this->menu = array(
 //    array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
 //    //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
 //    ),
-    array('label' => Yii::t('AweCrud.app', 'Retirar Ahorros'), 'icon' => 'exchange', 'url' => array('create'),
+    array('label' => Yii::t('AweCrud.app', 'Retirar Ahorros'), 'icon' => 'exchange', 'url' => array('createRetiro'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
 );
