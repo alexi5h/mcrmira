@@ -109,14 +109,14 @@ class AhorroDeposito extends BaseAhorroDeposito {
     public function beforeSave() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
-        $this->sucursal_comprobante_id = Util::getSucursal();
+//        $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
     public function beforeValidate() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
-        $this->sucursal_comprobante_id = Util::getSucursal();
+//        $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
