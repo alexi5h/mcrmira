@@ -36,7 +36,7 @@ class AhorroDepositoController extends AweController {
             $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->socio_id);
             $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
             $model->fecha_comprobante_su = Util::FormatDate(Util::FechaActual(), 'Y-m-d H:i:s');
-            $model->sucursal_comprobante_id = $model->socio_id ? Persona::model()->findByPk($model->socio_id)->sucursal_id : null;
+            $model->sucursal_comprobante_id = Persona::model()->findByPk($model->socio_id)->sucursal_id ;
             $model->usuario_creacion_id = Yii::app()->user->id;
             if ($model->save())
                 $this->redirect(array('admin'));
