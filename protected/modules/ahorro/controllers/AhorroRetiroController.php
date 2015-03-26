@@ -39,6 +39,18 @@ class AhorroRetiroController extends AweController
         $this->renderPartial('_infoSocio', array('model' => $socio));
     }
 
+    public function actionCreateRetiro($socio_id = null)
+    {
+        $model = new AhorroRetiro();
+        $model->socio_id = $socio_id;
+        $model->sucursal_id = Util::getSucursal();
+//        $model->fecha_retiro = Util::FormatDate(Util::FechaActual(), 'd/m/Y');
+        $model->usuario_creacion_id = Yii::app()->user->id;
+        $this->performAjaxValidation($model, 'ahorro-retiro-form');
+
+        $this->render('create', array('model' => $model));
+    }
+
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
