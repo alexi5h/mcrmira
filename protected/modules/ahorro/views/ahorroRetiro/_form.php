@@ -25,7 +25,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <div class="widget blue ">
             <div class="widget-title">
                 <h4>
-                    <i class="icon-plus"></i><?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . AhorroRetiro::label(1); ?>
+                    <i class="icon-plus"></i> Registrar Retiro
                 </h4>
                 <span class="tools">
                     <a href="javascript:;" class="icon-chevron-down"></a>
@@ -48,7 +48,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     </div>
                 </div>
 
-                <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money', 'readonly' => isset($_GET['socio_id']) ? 'readonly' : false,)) ?>
+                <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money', 'readonly' => 'readonly')) ?>
 
                 <?php
                 echo $form->datepickerRow(

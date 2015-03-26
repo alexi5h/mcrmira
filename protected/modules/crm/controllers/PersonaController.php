@@ -2,7 +2,8 @@
 
 Yii::import('ahorro.models.*');
 
-class PersonaController extends AweController {
+class PersonaController extends AweController
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -12,7 +13,8 @@ class PersonaController extends AweController {
     public $defaultAction = 'admin';
     public $admin = false;
 
-    public function filters() {
+    public function filters()
+    {
         return array(
             array('CrugeAccessControlFilter'),
         );
@@ -22,7 +24,8 @@ class PersonaController extends AweController {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $model = $this->loadModel($id);
         $modelDepositoAhorro = new AhorroDeposito;
         $modelDepositoCredito = new CreditoDeposito;
@@ -39,7 +42,8 @@ class PersonaController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new Persona;
         $modelDireccion1 = new Direccion;
         $modelDireccion2 = new Direccion;
@@ -97,7 +101,8 @@ class PersonaController extends AweController {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id, $r = null) {
+    public function actionUpdate($id, $r = null)
+    {
         $model = $this->loadModel($id);
         $modelDireccion1 = $model->direccionDomicilio ? $model->direccionDomicilio : new Direccion;
         $modelDireccion2 = $model->direccionNegocio ? $model->direccionNegocio : new Direccion;
@@ -148,7 +153,8 @@ class PersonaController extends AweController {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (Yii::app()->request->isPostRequest) {
 // we only allow deletion via POST request
             Persona::model()->updateByPk($id, array('estado' => Persona::ESTADO_INACTIVO));
@@ -163,7 +169,8 @@ class PersonaController extends AweController {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
 
@@ -178,7 +185,8 @@ class PersonaController extends AweController {
         ));
     }
 
-    public function actionExportarSocio() {
+    public function actionExportarSocio()
+    {
         if (isset($_POST['Persona'])) {
             $parametros = $_POST['Persona'];
             $reporte = Persona::model()->generateExcel($parametros);
@@ -191,22 +199,21 @@ class PersonaController extends AweController {
             $objExcel->setActiveSheetIndex(0)->fromArray($reporte, null, 'A2');
             //agrega las cabeceras 
             $objExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', 'Nombres y Apellidos')
-                    ->setCellValue('B1', 'Identificación')
-                    ->setCellValue('C1', ' Ruc')
-                    ->setCellValue('D1', 'Actividad Económica')
-                    ->setCellValue('E1', 'Tipo')
-                    ->setCellValue('F1', 'Teléfono')
-                    ->setCellValue('G1', 'Celular')
-                    ->setCellValue('H1', 'E-mail')
-                    ->setCellValue('I1', 'Carga Familiar')
-                    ->setCellValue('J1', 'Discapacidad')
-                    ->setCellValue('K1', 'Fecha Nacimiento')
-                    ->setCellValue('L1', 'Fecha Creación')
-                    ->setCellValue('M1', 'Estado Civil')
-                    ->setCellValue('N1', 'Género')
-                    ->setCellValue('O1', 'Descripción')
-            ;
+                ->setCellValue('A1', 'Nombres y Apellidos')
+                ->setCellValue('B1', 'Identificación')
+                ->setCellValue('C1', ' Ruc')
+                ->setCellValue('D1', 'Actividad Económica')
+                ->setCellValue('E1', 'Tipo')
+                ->setCellValue('F1', 'Teléfono')
+                ->setCellValue('G1', 'Celular')
+                ->setCellValue('H1', 'E-mail')
+                ->setCellValue('I1', 'Carga Familiar')
+                ->setCellValue('J1', 'Discapacidad')
+                ->setCellValue('K1', 'Fecha Nacimiento')
+                ->setCellValue('L1', 'Fecha Creación')
+                ->setCellValue('M1', 'Estado Civil')
+                ->setCellValue('N1', 'Género')
+                ->setCellValue('O1', 'Descripción');
 
             for ($i = 'A'; $i <= 'Z'; $i++) {
                 $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
@@ -233,7 +240,8 @@ class PersonaController extends AweController {
         }
     }
 
-    public function actionEtapa_aprobado() {
+    public function actionEtapa_aprobado()
+    {
         $model = new Persona('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['search'])) {
@@ -243,11 +251,11 @@ class PersonaController extends AweController {
             $model->attributes = $_GET['Persona'];
 
         $c_activos = Yii::app()->db->createCommand()
-                ->select('*')
-                ->from('persona p')
-                ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
-                ->where(array('and', 'e.id=3', 'p.aprobado=0'))
-                ->queryAll();
+            ->select('*')
+            ->from('persona p')
+            ->join('persona_etapa e', 'p.persona_etapa_id=e.id')
+            ->where(array('and', 'e.id=3', 'p.aprobado=0'))
+            ->queryAll();
 //return $c_activos;
         $c_activos_data = new CArrayDataProvider($c_activos, array(
             'keyField' => 'id',
@@ -269,7 +277,8 @@ class PersonaController extends AweController {
      * Realiza en render de la vista Kanban
      * @author Armando Maldonado
      */
-    public function actionKanban($id) {
+    public function actionKanban($id)
+    {
         $etapas = PersonaEtapa::model()->activos()->orden()->findAll();
 //        die(var_dump($incidencia_estados));
 //        $result = array();
@@ -287,7 +296,8 @@ class PersonaController extends AweController {
         }
     }
 
-    public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null) {
+    public function actionAjaxUpdateEtapa($id_data = null, $id_etapa = null)
+    {
         if (Yii::app()->request->isAjaxRequest) {
             $id_etapa_max = PersonaEtapa::model()->getEtapaMaxima();
             if ($id_etapa_max == $id_etapa) {
@@ -304,29 +314,31 @@ class PersonaController extends AweController {
                 $ahorro->save();
             }
             Persona::model()->updateByPk($id_data, array(
-                'persona_etapa_id' => $id_etapa,
-                'usuario_actualizacion_id' => Yii::app()->user->id,
-                'fecha_actualizacion' => Util::FechaActual(),
-                'aprobado' => 0
-                    )
+                    'persona_etapa_id' => $id_etapa,
+                    'usuario_actualizacion_id' => Yii::app()->user->id,
+                    'fecha_actualizacion' => Util::FechaActual(),
+                    'aprobado' => 0
+                )
             );
         }
     }
 
-    public function actionAjaxAprobado() {
+    public function actionAjaxAprobado()
+    {
         if (Yii::app()->request->isAjaxRequest) {
             $id = $_POST['cliente_id'];
             $value = $_POST['value'];
             Persona::model()->updateByPk($id, array(
-                'usuario_actualizacion_id' => Yii::app()->user->id,
-                'fecha_actualizacion' => Util::FechaActual(),
-                'aprobado' => $value == 'false' ? 0 : 1
-                    )
+                    'usuario_actualizacion_id' => Yii::app()->user->id,
+                    'fecha_actualizacion' => Util::FechaActual(),
+                    'aprobado' => $value == 'false' ? 0 : 1
+                )
             );
         }
     }
 
-    public function assignParams($params) {
+    public function assignParams($params)
+    {
         $result = array();
         if ($params['filters'][0] == 'all') {
             foreach (Persona::model()->searchParams() as $param) {
@@ -346,7 +358,8 @@ class PersonaController extends AweController {
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id, $modelClass = __CLASS__) {
+    public function loadModel($id, $modelClass = __CLASS__)
+    {
         $model = Persona::model()->findByPk($id);
 
         if ($model === null)
@@ -358,14 +371,33 @@ class PersonaController extends AweController {
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model, $form = null) {
+    protected function performAjaxValidation($model, $form = null)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'persona-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionAjaxGetGarantes() {
+    public function actionAjaxInfo()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $socio_id = $_GET['id'];
+            $model = Persona::model()->findByPk($socio_id);
+            $result = array();
+            $result['success'] = false;
+            if ($model) {
+                $result['Persona'] = $model->attributes;
+                $result['AhorroRetiro']['cantidad'] = AhorroDeposito::model()->sumTotaldeposito($model->id);
+                $result['success'] = true;
+            }
+            echo CJSON::encode($result);
+            Yii::app()->end();
+        }
+    }
+
+    public function actionAjaxGetGarantes()
+    {
         if (Yii::app()->request->isAjaxRequest) {
             if (isset($_POST['socio_id']) && $_POST['socio_id'] > 0) {
                 $data = Persona::model()->condicion_garante_credito($_POST['socio_id']);
@@ -384,7 +416,8 @@ class PersonaController extends AweController {
         }
     }
 
-    public function actionAjaxlistSocios($search_value = null, $credito_socio = false, $credito_garante_socio_id = null) {
+    public function actionAjaxlistSocios($search_value = null, $credito_socio = false, $credito_garante_socio_id = null)
+    {
         if (Yii::app()->request->isAjaxRequest) {
             echo CJSON::encode(Persona::model()->getListSelect2($search_value, $credito_socio, $credito_garante_socio_id));
         }
