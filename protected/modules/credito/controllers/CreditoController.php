@@ -1,6 +1,7 @@
 <?php
 
-class CreditoController extends AweController {
+class CreditoController extends AweController
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -10,7 +11,8 @@ class CreditoController extends AweController {
     public $defaultAction = 'admin';
     public $admin = false;
 
-    public function filters() {
+    public function filters()
+    {
         return array(
             array('CrugeAccessControlFilter'),
         );
@@ -20,7 +22,8 @@ class CreditoController extends AweController {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -30,7 +33,8 @@ class CreditoController extends AweController {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new Credito;
 
         $this->performAjaxValidation($model, 'credito-form');
@@ -85,7 +89,8 @@ class CreditoController extends AweController {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->loadModel($id);
 
         $this->performAjaxValidation($model, 'credito-form');
@@ -107,7 +112,8 @@ class CreditoController extends AweController {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
@@ -122,7 +128,8 @@ class CreditoController extends AweController {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
         $model = new Credito('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Credito'])) {
@@ -145,7 +152,8 @@ class CreditoController extends AweController {
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id, $modelClass = __CLASS__) {
+    public function loadModel($id, $modelClass = __CLASS__)
+    {
         $model = Credito::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
@@ -156,20 +164,23 @@ class CreditoController extends AweController {
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model, $form = null) {
+    protected function performAjaxValidation($model, $form = null)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'credito-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionAjaxlistCreditos($socio_ids = null, $search_value = null) {
+    public function actionAjaxlistCreditos($socio_ids = null, $search_value = null)
+    {
         if (Yii::app()->request->isAjaxRequest) {
             echo CJSON::encode(Credito::model()->getListSelect2($socio_ids, $search_value));
         }
     }
 
-    public function actionExportarCredito() {
+    public function actionExportarCredito()
+    {
         $model = new Credito;
         if (isset($_POST['Credito'])) {
 
@@ -191,41 +202,40 @@ class CreditoController extends AweController {
 //            $objExcel->setActiveSheetIndex(0)->fromArray($model, null, 'A2');
             //agrega las cabeceras 
             $objExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', 'Socio')
-                    ->setCellValue('B1', 'Garante')
-                    ->setCellValue('C1', 'Sucursal')
-                    ->setCellValue('D1', 'Fecha Crédito')
-                    ->setCellValue('E1', 'Fecha límite')
-                    ->setCellValue('F1', 'Interés (%)')
-                    ->setCellValue('G1', 'Cantidad Total ($)')
-                    ->setCellValue('H1', 'Total a Pagar ($)')
-                    ->setCellValue('I1', 'Total Intereses ($)')
-                    ->setCellValue('J1', 'Periodos')
-                    ->setCellValue('K1', 'Saldo en contra ($)')
-                    ->setCellValue('L1', 'Saldo a favor ($)')
-                    ->setCellValue('M1', 'Anulado')
-                    ->setCellValue('N1', 'Número de Cheque')
-                    ->setCellValue('O1', 'Estado');
+                ->setCellValue('A1', 'Socio')
+                ->setCellValue('B1', 'Garante')
+                ->setCellValue('C1', 'Sucursal')
+                ->setCellValue('D1', 'Fecha Crédito')
+                ->setCellValue('E1', 'Fecha límite')
+                ->setCellValue('F1', 'Interés (%)')
+                ->setCellValue('G1', 'Cantidad Total ($)')
+                ->setCellValue('H1', 'Total a Pagar ($)')
+                ->setCellValue('I1', 'Total Intereses ($)')
+                ->setCellValue('J1', 'Periodos')
+                ->setCellValue('K1', 'Saldo en contra ($)')
+                ->setCellValue('L1', 'Saldo a favor ($)')
+                ->setCellValue('M1', 'Anulado')
+                ->setCellValue('N1', 'Número de Cheque')
+                ->setCellValue('O1', 'Estado');
 
             $id = 2;
             foreach ($reporte as $campo) {
                 $objExcel->setActiveSheetIndex(0)
-                        ->setCellValue('A' . $id, $campo->socio->nombre_formato)
-                        ->setCellValue('B' . $id, $campo->garante->nombre_formato)
-                        ->setCellValue('C' . $id, $campo->sucursal->nombre)
-                        ->setCellValue('D' . $id, Util::FormatDate($campo->fecha_credito, 'd/m/Y'))
-                        ->setCellValue('E' . $id, Util::FormatDate($campo->fecha_limite, 'd/m/Y'))
-                        ->setCellValue('F' . $id, $campo->interes)
-                        ->setCellValue('G' . $id, round($campo->cantidad_total, 2))
-                        ->setCellValue('H' . $id, round($campo->total_pagar, 2))
-                        ->setCellValue('I' . $id, round($campo->total_interes, 2))
-                        ->setCellValue('J' . $id, $campo->periodos)
-                        ->setCellValue('K' . $id, $campo->saldo_contra)
-                        ->setCellValue('L' . $id, $campo->saldo_favor)
-                        ->setCellValue('M' . $id, $campo->anulado)
-                        ->setCellValue('N' . $id, $campo->numero_cheque)
-                        ->setCellValue('O' . $id, $campo->estado)
-                ;
+                    ->setCellValue('A' . $id, $campo->socio->nombre_formato)
+                    ->setCellValue('B' . $id, $campo->garante->nombre_formato)
+                    ->setCellValue('C' . $id, $campo->sucursal->nombre)
+                    ->setCellValue('D' . $id, Util::FormatDate($campo->fecha_credito, 'd/m/Y'))
+                    ->setCellValue('E' . $id, Util::FormatDate($campo->fecha_limite, 'd/m/Y'))
+                    ->setCellValue('F' . $id, $campo->interes)
+                    ->setCellValue('G' . $id, round($campo->cantidad_total, 2))
+                    ->setCellValue('H' . $id, round($campo->total_pagar, 2))
+                    ->setCellValue('I' . $id, round($campo->total_interes, 2))
+                    ->setCellValue('J' . $id, $campo->periodos)
+                    ->setCellValue('K' . $id, $campo->saldo_contra)
+                    ->setCellValue('L' . $id, $campo->saldo_favor)
+                    ->setCellValue('M' . $id, $campo->anulado)
+                    ->setCellValue('N' . $id, $campo->numero_cheque)
+                    ->setCellValue('O' . $id, $campo->estado);
                 $id++;
             }
 
