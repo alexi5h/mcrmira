@@ -350,7 +350,7 @@ class Persona extends BasePersona
 
         $return = $this->apellido_paterno;
         $return = $return . ($this->apellido_materno ? ' ' . $this->apellido_materno : '');
-        $return =  $return . ' ' .$this->primer_nombre;
+        $return = $return . ' ' . $this->primer_nombre;
         $return = $return . ($this->segundo_nombre ? ' ' . $this->segundo_nombre : '');
         $this->cedula_nombre_formato = $return . ' - ' . $this->cedula;
         return $this->cedula_nombre_formato;
@@ -441,7 +441,7 @@ class Persona extends BasePersona
           and (p . id not in(select cr . socio_id from credito cr where cr . estado =:estadoAC)) and (p . id != :socio_id)', array(':estadoAC' => Ahorro::ESTADO_DEUDA, ':socio_id' => $credito_garante_socio_id));
         }
         if ($search_value) {
-            $command->andWhere("p.cedula like '$search_value % ' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '$search_value % '");
+            $command->andWhere("p.cedula like '{$search_value}%' OR (CONCAT(p.apellido_paterno, IFNULL(CONCAT(' ', p.apellido_materno), ''), CONCAT(' ', p.primer_nombre), IFNULL(CONCAT(' ', p.segundo_nombre), ''))) like '{$search_value}%'");
         }
         $command->order('text ASC');
         $command->limit(10);

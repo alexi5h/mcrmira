@@ -28,7 +28,7 @@ $(function () {
 
     //chages
     inputPersonaId.on("change", function (e) {
-
+        getInfoRetiro($(this).val());
     });
 //    $("#AhorroRetiro_socio_id").change(function () {
 //        var contenedor = $('#infoSocio');
@@ -56,6 +56,12 @@ $(function () {
  * @param socio_id
  */
 function getInfoRetiro(socio_id) {
+    $.getJSON(baseUrl + 'crm/Persona/ajaxInfo?id=' + socio_id, function (data, status) {
+        //console.log(data);
+        if (data.success) {
+            $("#AhorroRetiro_cantidad").val(data.AhorroRetiro.cantidad);
+        } else {
+        }
+    });
 
-    $.getJSON();
 }
