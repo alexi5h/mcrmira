@@ -166,6 +166,7 @@ class Credito extends BaseCredito {
 
     public function search() {
         $criteria = new CDbCriteria;
+        $criteria->with=array('socio');
 
         $criteria->compare('id', $this->id);
         $criteria->compare('socio_id', $this->socio_id);
@@ -184,6 +185,8 @@ class Credito extends BaseCredito {
         $criteria->compare('anulado', $this->anulado, true);
         $criteria->compare('usuario_creacion_id', $this->usuario_creacion_id);
         $criteria->compare('numero_cheque', $this->numero_cheque, true);
+        $criteria->compare('socio.estado', Persona::ESTADO_ACTIVO);
+
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
