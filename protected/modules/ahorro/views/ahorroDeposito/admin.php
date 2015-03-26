@@ -7,6 +7,9 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
 $cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
 
+$cs->registerScriptFile($baseUrl . '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');
+$cs->registerCssFile($baseUrl . '/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css');
+
 $cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
@@ -76,27 +79,8 @@ $this->menu = array(
                 <div class="control-group ">
                     <label class="control-label" for="AhorroDeposito_fecha_comprobante_entidad">Fecha</label>
                     <div class="controls">
-                        <?php
-                        $this->widget(
-                                'bootstrap.widgets.TbDatePicker', array(
-                            'model' => $model,
-                            'attribute' => 'fecha_comprobante_entidad',
-                            'options' => array(
-                                'language' => 'es',
-                                'format' => 'MM/yyyy',
-                                'autoclose' => true,
-                                'startView' => 2,
-                                'minViewMode' => 1,
-                            ),
-                            'events' => array(
-                                'hide' => 'js:function(e){changeInputFecha()}',
-                            ),
-                            'htmlOptions' => array(
-//                                'readonly' => 'readonly',
-                            )
-                                )
-                        );
-                        ?>
+                        <?php echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha')) ?>
+
                         <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
                     </div>
                 </div>
@@ -107,7 +91,6 @@ $this->menu = array(
         <?php $this->endWidget(); ?>
 
         <?php
-
         $this->widget('bootstrap.widgets.TbExtendedGridView', array(
             'id' => 'ahorro-deposito-grid',
             'type' => 'striped bordered hover advance',
