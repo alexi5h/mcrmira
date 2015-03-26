@@ -66,13 +66,14 @@ class AhorroRetiroController extends AweController
             $creditos = new Credito;
             $validarDataCreditos = $creditos->de_socio($model->id)->en_deuda()->count() > 0;
             if (!$validarDataCreditos) {
-                $saldoAhorro = floatval(Ahorro::model()->socioAhorroTotal($model->socio_id));
+                $saldoAhorro = floatval(Ahorro::model()->socioAhorroTotal($model->socio_id));//Todo Cambia a ahorroDeposito
 
                 if ($cantidadInput <= $saldoAhorro) {
                     $model->fecha_retiro = Util::FormatDate($model->fecha_retiro, 'Y-m-d');
 
                     if ($model->save()) {
-                        Persona::model()->updateByPk($model->socio_id,array('estado'=>Persona::ESTADO_RETIRADO));
+//                        $modelPersona = $model->socio;
+                        Persona::model()->updateByPk($model->socio_id, array('estado' => Persona::ESTADO_RETIRADO));
                     }
                     $validadorSucces = true;
                 } else {
