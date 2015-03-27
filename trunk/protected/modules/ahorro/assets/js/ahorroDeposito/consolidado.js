@@ -56,7 +56,9 @@ $(function () {
     inputAhorroDepositoAnio.datepicker({
         minViewMode: 2,
         autoclose: true,
-        format: 'yyyy'
+        format: 'yyyy',
+        orientation:'top'
+
     });
     //chages
     inputPersonaId.on("change", function (e) {
