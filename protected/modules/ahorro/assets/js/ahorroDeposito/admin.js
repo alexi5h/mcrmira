@@ -70,7 +70,7 @@ function initSelect() {
 
     inputfecha.datepicker({
         autoclose: true,
-        startView: 2,
+        //startView: 2,
         minViewMode: 1,
         clearBtn: true,
         language: "en",
