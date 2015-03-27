@@ -4,9 +4,6 @@
 $baseUrl = Yii::app()->theme->baseUrl;
 $cs = Yii::app()->getClientScript();
 
-$cs->registerScriptFile($baseUrl . '/plugins/bootstraptoogle/js/bootstrap2-toggle.min.js');
-$cs->registerCssFile($baseUrl . '/plugins/bootstraptoogle/css/bootstrap2-toggle.min.css');
-
 $cs->registerScriptFile($baseUrl . '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');
 $cs->registerCssFile($baseUrl . '/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css');
 
@@ -79,8 +76,10 @@ $this->menu = array(
                 <div class="control-group ">
                     <label class="control-label" for="AhorroDeposito_fecha_comprobante_entidad">Fecha</label>
                     <div class="controls">
-                        <?php echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha','style'=>'cursor:pointer;',                'readonly' => 'readonly',
-                        )) ?>
+<!--                        --><?php //echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha','style'=>'cursor:pointer;', 'readonly' => 'readonly',
+//                        )) ?>
+                        <input type="text" style='cursor:pointer;' readonly='readonly' id="AhorroDeposito_fecha_comprobante_entidad"
+                               name="AhorroDeposito[fecha_comprobante_entidad]" >
 
                         <span class="help-inline error" id="Persona_sucursal_id_em_" style="display: none"></span>
                     </div>

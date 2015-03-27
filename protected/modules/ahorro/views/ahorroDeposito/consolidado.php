@@ -6,10 +6,6 @@ $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile($baseUrl . '/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');
 $cs->registerCssFile($baseUrl . '/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css');
 
-$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/moment.min.js');
-$cs->registerScriptFile($baseUrl . '/plugins/daterangepicker/daterangepicker.js');
-$cs->registerCssFile($baseUrl . '/plugins/daterangepicker/daterangepicker-bs2.css');
-
 $cs->registerScriptFile($baseUrl . '/plugins/select2/select2.js');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2.css');
 $cs->registerCssFile($baseUrl . '/plugins/select2/select2-bootstrap.css');
