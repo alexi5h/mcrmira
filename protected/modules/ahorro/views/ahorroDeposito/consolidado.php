@@ -78,7 +78,8 @@ $this->menu = array(
                     <label class="control-label" for="Persona_sucursal">Año</label>
 
                     <div class="controls">
-                        <input type="text" style='cursor:pointer;' readonly = 'readonly' id="AhorroDepositoAnio" name="AhorroDeposito[anio]" value="<?php print $anio; ?>">
+                        <input type="text" style='cursor:pointer;' readonly='readonly' id="AhorroDepositoAnio"
+                               name="AhorroDeposito[anio]" value="<?php print $anio; ?>">
 
                     </div>
                 </div>
