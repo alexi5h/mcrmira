@@ -40,29 +40,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 echo $form->hiddenField($model, 'socio_id', $htmlOptions);
                 ?>
                 <?php echo $form->error($model, 'socio_id'); ?>
-                <!--                <div class="controls">-->
-                <!--                    --><?php
-                ////                    $htmlOptions = array('class' => "span8 search");
-                ////                    if ($model->socio_id) {
-                ////                        $model_contacto = Contacto::model()->findByPk($model->contacto_id);
-                ////                        $htmlOptions = array_merge($htmlOptions, array(
-                ////                            'selected-text' => $model_contacto->documento . ' ' . $model_contacto->nombre_completo
-                ////                        ));
-                ////                    }
-                ////                    echo $form->hiddenField($model, 'contacto_id', $htmlOptions);
-                //
-                ?>
-                <!--                    <span class="help-inline error" id="Incidencia_contacto_id_em_" style="display: none"></span>-->
-                <!--                </div>-->
             </div>
         </div>
 
         <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
         <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
-
-
-        <!--        --><?php //echo $form->textFieldRow($model, 'socio_id')      ?>
 
         <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
 
@@ -80,13 +63,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             )
         );
         ?>
-        <?php // echo $form->textFieldRow($model, 'sucursal_comprobante_id') ?>
-
-        <?php // echo $form->textFieldRow($model, 'cod_comprobante_su', array('maxlength' => 45)) ?>
-
-        <?php // echo $form->textFieldRow($model, 'fecha_comprobante_su') ?>
-
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id') ?>
         <div class="form-actions">
             <?php
             $this->widget('bootstrap.widgets.TbButton', array(
