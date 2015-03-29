@@ -1,7 +1,8 @@
 <?php
 Yii::app()->clientScript->scriptMap['jquery.js'] = false;
 Util::tsRegisterAssetJs('_form_modal_deposito_ahorro.js');
-
+//var_dump($model);
+//die();
 
 /** @var AhorroDepositoController $this */
 /** @var AhorroDeposito $model */
@@ -23,20 +24,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 <div class="modal-body">
 
     <?php
-    if (!isset($_GET['socio_id'])) {
-        $model_persona = Persona::model()->activos()->findAll();
-
-        echo $form->select2Row($model, 'socio_id', array(
-            'asDropDownList' => true,
-            'data' => CHtml::listData($model_persona, 'id', 'cedula_nombre_formato'),
-            'options' => array(
-                'placeholder' => '-- Seleccione --',
-            ),
-            'htmlOptions' => array(
-//            'class' => 'span6'
-            )
-        ));
-    }
+    echo $form->hiddenField($model, 'socio_id');
+    echo $form->hiddenField($model, 'cod_comprobante_su');
+    echo $form->hiddenField($model, 'sucursal_comprobante_id');
     ?>
     <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
 
@@ -51,8 +41,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         'options' => array(
             'language' => 'es',
             'format' => 'dd-mm-yyyy',
-            'endDate' => 'today',
-            'readonly' => 'readonly',
+            'endDate' => 'today',            
+            'autoclose' => true,
         ),
             )
     );
@@ -68,7 +58,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         'icon' => 'ok',
         'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
         'htmlOptions' => array(
-            'onClick' => 'js:AjaxAtualizacionInformacion("#ahorro-deposito-form")'
+            'onClick' => 'js:save("#ahorro-deposito-form")'
         ),
     ));
     ?>
