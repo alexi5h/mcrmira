@@ -26,22 +26,50 @@ class AhorroDepositoController extends AweController {
         ));
     }
 
-    public function actionCreateDeposito() {
+    public function actionCreateDeposito($socio_id = null) {
         $model = new AhorroDeposito();
         $this->performAjaxValidation($model, 'ahorro-deposito-form');
 
-        if (isset($_POST['AhorroDeposito'])) {
+        if (Yii::app()->request->isAjaxRequest) {
+            $result = array();
+            if (isset($_POST['AhorroDeposito'])) {
 
-            $model->attributes = $_POST['AhorroDeposito'];
-            $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->socio_id);
-            $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
-            $model->fecha_comprobante_su = Util::FormatDate(Util::FechaActual(), 'Y-m-d H:i:s');
-            $model->sucursal_comprobante_id = Persona::model()->findByPk($model->socio_id)->sucursal_id ;
-            $model->usuario_creacion_id = Yii::app()->user->id;
-            if ($model->save())
-                $this->redirect(array('admin'));
+
+                $model->attributes = $_POST['AhorroDeposito'];
+
+                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
+                $model->fecha_comprobante_su = Util::FormatDate(Util::FechaActual(), 'Y-m-d H:i:s');
+                $model->sucursal_comprobante_id = Persona::model()->findByPk($model->socio_id)->sucursal_id;
+                $model->usuario_creacion_id = Yii::app()->user->id;
+                $result['success'] = $model->save();
+
+                if (!$result['success']) { // cuando ocurre un problema al guardar en ahorro el deposito debe borrarse
+                    $model->delete();
+                    $result['message'] = "Error al registrar el deposito.";
+                }
+                echo json_encode($result);
+                Yii::app()->end();
+            }
+            $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($socio_id);
+            $model->socio_id = $socio_id;
+            $model->sucursal_comprobante_id = Persona::model()->findByPk($socio_id)->sucursal_id;
+            $this->renderPartial('_form_modal_deposito_ahorro', array(
+                'model' => $model,
+                    ), false, true);
+        } else {
+            if (isset($_POST['AhorroDeposito'])) {
+
+                $model->attributes = $_POST['AhorroDeposito'];
+                $model->cod_comprobante_su = AhorroDeposito::model()->generarCodigoComprobante($model->socio_id);
+                $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad, 'Y-m-d H:i:s');
+                $model->fecha_comprobante_su = Util::FormatDate(Util::FechaActual(), 'Y-m-d H:i:s');
+                $model->sucursal_comprobante_id = Persona::model()->findByPk($model->socio_id)->sucursal_id;
+                $model->usuario_creacion_id = Yii::app()->user->id;
+                if ($model->save())
+                    $this->redirect(array('admin'));
+            }
+            $this->render('create', array('model' => $model));
         }
-        $this->render('create', array('model' => $model));
     }
 
     /**

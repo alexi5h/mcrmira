@@ -1,6 +1,6 @@
-$(function(){
+$(function () {
     //#74B749
-    $("#wrapper_grid_ahorro").niceScroll({styler: "fb", cursorcolor: "#74B749", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
+    $("#wrapper_grid_deposito").niceScroll({styler: "fb", cursorcolor: "#74B749", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
     $("#wrapper-deposito").niceScroll({styler: "fb", cursorcolor: "#34AFBD", cursorwidth: '8', cursorborderradius: '0px', background: '#404040', cursorborder: '', zindex: '1000'});
 
 })
@@ -29,10 +29,10 @@ function viewModalWidth(url, CallBack)
     $.ajax({
         type: "POST",
         url: baseUrl + url,
-        beforeSend: function() {
+        beforeSend: function () {
             showModalLoadingWidth();
         },
-        success: function(data) {
+        success: function (data) {
             $("#mainModal").modal("hide");
 
             showModalDataWidth(data);
