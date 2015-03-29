@@ -12,14 +12,11 @@
             $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                 'id' => 'credito-deposito-grid',
                 'type' => 'striped bordered hover advance',
-                'dataProvider' => new CArrayDataProvider($model->creditoDepositos),
+                'dataProvider' => CreditoDeposito::model()->de_credito($model->id)->search(),
                 'columns' => array(
                     array(
-                        'header' => "Cantidad",
-                        'name' => 'cantidad',
-                        'value' => 'number_format($data->cantidad, 2)',
-                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
-
+                        'header' => 'Fecha Comprobante',
+                        'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
                     ),
                     array(
                         'header' => "Entidad Bancaria",
@@ -27,8 +24,22 @@
                         'value' => '$data->entidadBancaria->nombre',
                     ),
                     array(
-                        'header' => 'Fecha Comprobante',
-                        'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
+                        'header' => "Capital",
+                        'name' => 'cantidad',
+                        'value' => 'number_format($data->cantidad, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+                    ),
+                    array(
+                        'header' => "Interés",
+                        'name' => 'interes',
+                        'value' => 'number_format($data->interes, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+                    ),
+                    array(
+                        'header' => "Multa",
+                        'name' => 'multa',
+                        'value' => 'number_format($data->multa, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
                     ),
                 ),
             ));

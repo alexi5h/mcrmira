@@ -680,7 +680,7 @@ class Util {
                 $sumaAmort += $amortizacion;
             }
         }
-        return array('tabla' => $tabla, 'suma_cuota' => round($sumaCuota, 2), 'suma_interes' => round($sumaInteres, 2), 'suma_amortizacion' => round($sumaAmort, 2));
+        return array('tabla' => $tabla, 'suma_cuota' => round($sumaCuota, 2), 'suma_interes' => round($sumaInteres, 2), 'suma_amortizacion' => round($sumaAmort, 2),'cuota'=>$cuota);
     }
 
     /**

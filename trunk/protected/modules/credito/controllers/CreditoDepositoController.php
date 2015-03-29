@@ -49,53 +49,53 @@ class CreditoDepositoController extends AweController {
                 $model->cod_comprobante_su = CreditoDeposito::model()->generarCodigoComprobante($model->credito->socio_id);
                 $result['cantidadExtra'] = 0;
                 $condicion_devolucion = false;
-                if ($model->cantidad <= $modelCredito->saldo_contra) {
+                if ($model->cantidad+$model->interes <= $modelCredito->saldo_contra) {
                     $modelCredito->saldo_contra-=$model->cantidad;
                     $modelCredito->saldo_favor+=$model->cantidad;
-                    $cantidadTemp = $model->cantidad;
-                    $cont = 0;
-                    while ($cantidadTemp != 0) {
-                        $modelAmortizacionTemp = $modelAmortizacion[$cont];
-                        if ($cantidadTemp <= $modelAmortizacionTemp->saldo_contra) {
-                            $modelAmortizacionTemp->saldo_contra-=$cantidadTemp;
-                            $modelAmortizacionTemp->saldo_favor+=$cantidadTemp;
-                            if ($modelAmortizacionTemp->saldo_contra == 0) {
-                                $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
-                            }
-                            $cantidadTemp = 0;
-                        } else {
-                            $cantidadTemp-=$modelAmortizacionTemp->saldo_contra;
-                            $modelAmortizacionTemp->saldo_contra = 0;
-                            $modelAmortizacionTemp->saldo_favor = $modelAmortizacionTemp->cuota;
-                            $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
-                        }
-                        CreditoAmortizacion::model()->updateByPk($modelAmortizacionTemp->id, array(
-                            'estado' => $modelAmortizacionTemp->estado,
-                            'saldo_contra' => $modelAmortizacionTemp->saldo_contra,
-                            'saldo_favor' => $modelAmortizacionTemp->saldo_favor,
-                        ));
-                        $cont++;
-                    }
-                    $modelAmortizacionesComp = CreditoAmortizacion::model()->en_deuda()->de_credito($model->credito_id)->findAll();
-                    if (count($modelAmortizacionesComp) == 0) {
-                        $modelCredito->saldo_contra = 0;
-                        $modelCredito->saldo_favor = $modelCredito->total_pagar;
-                    }
+//                    $cantidadTemp = $model->cantidad;
+//                    $cont = 0;
+//                    while ($cantidadTemp != 0) {
+//                        $modelAmortizacionTemp = $modelAmortizacion[$cont];
+//                        if ($cantidadTemp <= $modelAmortizacionTemp->saldo_contra) {
+//                            $modelAmortizacionTemp->saldo_contra-=$cantidadTemp;
+//                            $modelAmortizacionTemp->saldo_favor+=$cantidadTemp;
+//                            if ($modelAmortizacionTemp->saldo_contra == 0) {
+//                                $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
+//                            }
+//                            $cantidadTemp = 0;
+//                        } else {
+//                            $cantidadTemp-=$modelAmortizacionTemp->saldo_contra;
+//                            $modelAmortizacionTemp->saldo_contra = 0;
+//                            $modelAmortizacionTemp->saldo_favor = $modelAmortizacionTemp->cuota;
+//                            $modelAmortizacionTemp->estado = CreditoAmortizacion::ESTADO_PAGADO;
+//                        }
+//                        CreditoAmortizacion::model()->updateByPk($modelAmortizacionTemp->id, array(
+//                            'estado' => $modelAmortizacionTemp->estado,
+//                            'saldo_contra' => $modelAmortizacionTemp->saldo_contra,
+//                            'saldo_favor' => $modelAmortizacionTemp->saldo_favor,
+//                        ));
+//                        $cont++;
+//                    }
+//                    $modelAmortizacionesComp = CreditoAmortizacion::model()->en_deuda()->de_credito($model->credito_id)->findAll();
+//                    if (count($modelAmortizacionesComp) == 0) {
+//                        $modelCredito->saldo_contra = 0;
+//                        $modelCredito->saldo_favor = $modelCredito->total_pagar;
+//                    }
                 } else {
                     $result['cantidadExtra'] = $model->cantidad - $modelCredito->saldo_contra;
                     $result['socio_id'] = $modelCredito->socio_id;
                     $modelCredito->saldo_contra = 0;
                     $modelCredito->saldo_favor = $modelCredito->total_pagar;
-                    foreach ($modelAmortizacion as $amortizacion) {
-                        $amortizacion->estado = CreditoAmortizacion::ESTADO_PAGADO;
-                        $amortizacion->saldo_contra = 0;
-                        $amortizacion->saldo_favor = $amortizacion->cuota;
-                        CreditoAmortizacion::model()->updateByPk($amortizacion->id, array(
-                            'estado' => $amortizacion->estado,
-                            'saldo_contra' => $amortizacion->saldo_contra,
-                            'saldo_favor' => $amortizacion->saldo_favor,
-                        ));
-                    }
+//                    foreach ($modelAmortizacion as $amortizacion) {
+//                        $amortizacion->estado = CreditoAmortizacion::ESTADO_PAGADO;
+//                        $amortizacion->saldo_contra = 0;
+//                        $amortizacion->saldo_favor = $amortizacion->cuota;
+//                        CreditoAmortizacion::model()->updateByPk($amortizacion->id, array(
+//                            'estado' => $amortizacion->estado,
+//                            'saldo_contra' => $amortizacion->saldo_contra,
+//                            'saldo_favor' => $amortizacion->saldo_favor,
+//                        ));
+//                    }
                     //Creación de un nuevo registro en credito_devolucion si existe una cantidad extra
                     $modelDevolucion = new CreditoDevolucion;
                     $modelDevolucion->cantidad = $result['cantidadExtra'];

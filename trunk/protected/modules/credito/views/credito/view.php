@@ -6,7 +6,7 @@ Util::tsRegisterAssetJs('view.js');
 
 <div class="row-fluid">
     <div class="span12">
-        <h1 class="name-title"><i class="icon-money"></i> <?php echo Util::number_pad($model->id,5) ?></h1>
+        <h1 class="name-title"><i class="icon-money"></i> <?php echo $model->numero_cheque ?></h1>
     </div>
 </div>
 <div class="row-fluid">
@@ -20,6 +20,6 @@ Util::tsRegisterAssetJs('view.js');
 </div>
 <div class="row-fluid">
     <div class="span12">
-        <?php $this->renderPartial('portlets/_amortizacion', array('model' => $model)) ?>
+        <?php // $this->renderPartial('portlets/_amortizacion', array('model' => $model)) ?>
     </div>
 </div>

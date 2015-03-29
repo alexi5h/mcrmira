@@ -13,7 +13,7 @@ $credito = Credito::model()->findByPk($model->credito_id);
     <!--<div class="span6">-->
     <h4 class="span6" style="margin: 10px 0px 0px 0px"><i class="icon-dollar"></i> <?php echo ($model->isNewRecord ? 'Nuevo' : 'Update') . ' ' . CreditoDeposito::label(1); ?></h4>
     <!--</div>-->
-    <h4 class="span6" style="margin: 10px 0px 0px 0px"><i class="icon-money"></i> Detalle de Amortización</h4>
+    <h4 class="span6" style="margin: 10px 0px 0px 0px"><i class="icon-money"></i> Detalle de Depósitos</h4>
 
 </div>
 <div class="modal-body">
@@ -32,7 +32,9 @@ $credito = Credito::model()->findByPk($model->credito_id);
             ));
             ?>
 
-            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10,'class' => 'money')) ?>
+            <?php echo $form->textFieldRow($model, 'cantidad', array('maxlength' => 10, 'class' => 'money')) ?>
+            <?php echo $form->textFieldRow($model, 'interes', array('maxlength' => 10, 'class' => 'money')) ?>
+            <?php echo $form->textFieldRow($model, 'multa', array('maxlength' => 10, 'class' => 'money')) ?>
             <?php echo $form->dropDownListRow($model, 'entidad_bancaria_id', array('' => ' -- Seleccione -- ') + CHtml::listData(EntidadBancaria::model()->activos()->findAll(), 'id', 'nombre'), array('placeholder' => '')) ?>
             <?php echo $form->textFieldRow($model, 'cod_comprobante_entidad', array('maxlength' => 45)) ?>
             <?php
@@ -59,32 +61,39 @@ $credito = Credito::model()->findByPk($model->credito_id);
         </div>
         <div class="span6">
             <?php
-            $amortizaciones = CreditoAmortizacion::model()->de_credito($model->credito_id)->search();
-            $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'credito-amortizacion-grid',
-//                'type' => 'striped bordered hover advance',
-                'template' => '{items}{summary}{pager}',
-                'dataProvider' => $amortizaciones,
+            $this->widget('bootstrap.widgets.TbExtendedGridView', array(
+                'id' => 'credito-deposito-modal-grid',
+                'type' => 'striped bordered hover advance',
+                'dataProvider' => CreditoDeposito::model()->de_credito($model->credito_id)->search(),
                 'columns' => array(
-//                    'nro_cuota',
                     array(
-                        'header' => 'Nº',
-                        'name' => 'nro_cuota',
-                        'value' => '$data->nro_cuota',
-                        'type' => 'raw',
+                        'header' => 'Fecha Comprobante',
+                        'value' => 'Util::FormatDate($data->fecha_comprobante_entidad, "d/m/Y")',
                     ),
-                    'fecha_pago',
-                    'cuota',
-                    'saldo_contra',
-                    'saldo_favor',
-//                    'interes',
-//                    'mora',
                     array(
-                        'name' => 'estado',
-                        'filter' => array('DEUDA' => 'DEUDA', 'PAGADO' => 'PAGADO',),
+                        'header' => "Entidad Bancaria",
+                        'name' => 'entidad_bancaria_id',
+                        'value' => '$data->entidadBancaria->nombre',
+                    ),
+                    array(
+                        'header' => "Capital",
+                        'name' => 'cantidad',
+                        'value' => 'number_format($data->cantidad, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+                    ),
+                    array(
+                        'header' => "Interés",
+                        'name' => 'interes',
+                        'value' => 'number_format($data->interes, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
+                    ),
+                    array(
+                        'header' => "Multa",
+                        'name' => 'multa',
+                        'value' => 'number_format($data->multa, 2)',
+                        'class' => 'bootstrap.widgets.TbTotalSumColumn'
                     ),
                 ),
-                'htmlOptions' => array('style' => 'padding-top: 5px;'),
             ));
             ?>
         </div>
