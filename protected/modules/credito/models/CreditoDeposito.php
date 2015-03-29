@@ -22,6 +22,26 @@ class CreditoDeposito extends BaseCreditoDeposito {
         ));
     }
 
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), array(
+            'cantidad' => Yii::t('app', 'Capital'),
+            'interes' => Yii::t('app', 'Interés'),
+        ));
+    }
+
+    public function de_credito($credito_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.credito_id = :credito_id',
+                    'order' => 't.fecha_comprobante_su DESC',
+                    'params' => array(
+                        ':credito_id' => $credito_id
+                    ),
+                )
+        );
+        return $this;
+    }
+
     public function searchByCredito($credito_id) {
         $criteria = new CDbCriteria;
 

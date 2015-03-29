@@ -12,23 +12,18 @@
 function AjaxActualizacionInformacion(Formulario) {
     BloquearBotonesModal(Formulario);
     AjaxGestionModalDeposito(Formulario, function (list) {
-        $.fn.yiiGridView.update('credito-amortizacion-grid');
+//        $.fn.yiiGridView.update('credito-amortizacion-grid');
         if ($('#credito-grid')) {
             $.fn.yiiGridView.update('credito-grid');
         }
-        if ($('#credito-amortizacion-big-grid')) {
-            $.fn.yiiGridView.update('credito-amortizacion-big-grid');
+        if ($('#credito-deposito-modal-grid')) {
+            $.fn.yiiGridView.update('credito-deposito-modal-grid');
         }
         if ($('#credito-deposito-grid')) {
             $.fn.yiiGridView.update('credito-deposito-grid');
-//            updateGrid('credito-deposito-grid', {id: socio_id}, 'ahorro/ahorroDeposito/info');
-//            $.fn.yiiGridView.update('credito-deposito-grid');
         }
         $('#credito-deposito-form').trigger("reset");
         DesBloquearBotonesModal(Formulario, 'Guardar', 'AjaxActualizacionInformacion');
-//        bootbox.confirm('jjj', function(param) {
-//            console.log(param);
-//        });
     });
 }
 

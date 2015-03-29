@@ -40,6 +40,10 @@
                     'value' => '$' . number_format($model->total_pagar, 2),
                 ),
                 'periodos',
+                array(
+                    'name' => 'cuota_capital',
+                    'value' => '$' . number_format($model->cuota_capital, 2),
+                ),
                 'estado',
                 'numero_cheque'
             ),

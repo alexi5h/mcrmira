@@ -85,7 +85,7 @@ $this->menu = array(
         <div class="row-fluid">
             <div class="span3">
                 <div class="control-group ">
-                    <label class="control-label" for="Credito_sucursal_id">Sucursal</label>
+                    <label class="control-label" for="Credito_sucursal_id">Cantón</label>
                     <div class="controls">
                         <?php
                         $htmlOptions = array('class' => "span12");
@@ -108,44 +108,49 @@ $this->menu = array(
                 'dataProvider' => $model->search(),
                 'columns' => array(
                     array(
-                        'header' => 'Código',
-                        'name' => 'Id',
-                        'value' => 'CHtml::link(Util::number_pad($data->id,5), Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
+                        'header' => 'Cheque',
+                        'name' => 'numero_cheque',
+                        'value' => 'CHtml::link($data->numero_cheque, Yii::app()->createUrl("credito/credito/view",array("id"=>$data->id)))',
                         'type' => 'raw',
                     ),
-                    'numero_cheque',
+//                    'numero_cheque',
                     array(
+                        'header' => 'Beneficiario',
                         'name' => 'socio_id',
                         'value' => 'CHtml::link($data->socio->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->socio->id)))',
                         'type' => 'html'
                     ),
-                    array(
-                        'name' => 'garante_id',
-                        'value' => 'CHtml::link($data->garante->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->garante->id)))',
-                        'type' => 'html'
-                    ),
+//                    array(
+//                        'name' => 'garante_id',
+//                        'value' => 'CHtml::link($data->garante->nombre_formato, Yii::app()->createUrl("crm/persona/view", array("id" => $data->garante->id)))',
+//                        'type' => 'html'
+//                    ),
                     array(
                         'name' => 'fecha_credito',
                         'value' => 'Util::FormatDate($data->fecha_credito,"d/m/Y")'
                     ),
-                    array(
-                        'name' => 'fecha_limite',
-                        'value' => 'Util::FormatDate($data->fecha_limite,"d/m/Y")'
-                    ),
+//                    array(
+//                        'name' => 'fecha_limite',
+//                        'value' => 'Util::FormatDate($data->fecha_limite,"d/m/Y")'
+//                    ),
                     array(
                         'name' => 'cantidad_total',
                         'value' => '"$" . number_format($data->cantidad_total, 2)',
                         'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
                     ),
                     array(
-                        'name' => 'total_interes',
-                        'value' => '"$" . number_format($data->total_interes, 2)',
+                        'name' => 'cuota_capital',
+                        'value' => '"$" . number_format($data->cuota_capital, 2)',
                         'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
                     ),
                     array(
-                        'name' => 'total_pagar',
-                        'value' => '"$" . number_format($data->total_pagar, 2)',
-                        'class' => 'bootstrap.widgets.TbTotalSumColumnCurrency'
+                        'name' => 'sucursal_id',
+                        'value' => '$data->sucursal->nombre',
+                    ),
+                    array(
+                        'header' => 'Tiempo (meses)',
+                        'name' => 'periodos',
+//                        'value' => '$data->periodos',
                     ),
                     array(
                         'name' => 'estado',

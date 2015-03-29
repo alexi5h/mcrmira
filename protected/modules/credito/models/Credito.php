@@ -8,7 +8,7 @@ class Credito extends BaseCredito {
     const ESTADO_DEUDA = 'DEUDA';
     const ESTADO_PAGADO = 'PAGADO';
     //Porcentaje del interes
-    const INTERES = 5;
+    const INTERES = 9.2;
     //anulado: SI,NO
     const NO_ANULADO = 'NO';
     const ANULADO = 'SI';
@@ -47,6 +47,7 @@ class Credito extends BaseCredito {
             'fecha_credito' => Yii::t('app', 'Fecha Crédito'),
             'fecha_limite' => Yii::t('app', 'Fecha Límite'),
             'total_interes' => Yii::t('app', 'Total Intereses'),
+            'cuota_capital' => Yii::t('app', 'Mensualidad'),
                 )
         );
     }
