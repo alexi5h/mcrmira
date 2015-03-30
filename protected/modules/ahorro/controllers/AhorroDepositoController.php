@@ -28,9 +28,10 @@ class AhorroDepositoController extends AweController {
 
     public function actionCreateDeposito($socio_id = null) {
         $model = new AhorroDeposito();
-        $this->performAjaxValidation($model, 'ahorro-deposito-form');
+
 
         if (Yii::app()->request->isAjaxRequest) {
+            $this->performAjaxValidation($model, 'ahorro-deposito-form');
             $result = array();
             if (isset($_POST['AhorroDeposito'])) {
 
@@ -43,10 +44,6 @@ class AhorroDepositoController extends AweController {
                 $model->usuario_creacion_id = Yii::app()->user->id;
                 $result['success'] = $model->save();
 
-                if (!$result['success']) { // cuando ocurre un problema al guardar en ahorro el deposito debe borrarse
-                    $model->delete();
-                    $result['message'] = "Error al registrar el deposito.";
-                }
                 echo json_encode($result);
                 Yii::app()->end();
             }
@@ -57,6 +54,7 @@ class AhorroDepositoController extends AweController {
                 'model' => $model,
                     ), false, true);
         } else {
+            $this->performAjaxValidation($model, 'ahorro-deposito-form');
             if (isset($_POST['AhorroDeposito'])) {
 
                 $model->attributes = $_POST['AhorroDeposito'];

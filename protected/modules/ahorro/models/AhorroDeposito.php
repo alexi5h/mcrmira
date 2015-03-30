@@ -2,8 +2,7 @@
 
 Yii::import('ahorro.models._base.BaseAhorroDeposito');
 
-class AhorroDeposito extends BaseAhorroDeposito
-{
+class AhorroDeposito extends BaseAhorroDeposito {
 
     public static $datat = array();
     public static $datarep = array();
@@ -12,21 +11,18 @@ class AhorroDeposito extends BaseAhorroDeposito
     /**
      * @return AhorroDeposito
      */
-    public static function model($className = __CLASS__)
-    {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
-    public function rules()
-    {
+    public function rules() {
         return array_merge(parent::rules(), array(
 //            array('cantidad', 'numerical', 'integerOnly' => false, 'max' => $this->ahorro->saldo_contra),
             array('socio_id', 'required'),
         ));
     }
 
-    public function relations()
-    {
+    public function relations() {
         return array_merge(parent::relations(), array(
             'entidadBancaria' => array(self::BELONGS_TO, 'EntidadBancaria', 'entidad_bancaria_id'),
             'sucursal' => array(self::BELONGS_TO, 'Sucursal', 'sucursal_comprobante_id'),
@@ -34,13 +30,11 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public static function label($n = 1)
-    {
+    public static function label($n = 1) {
         return Yii::t('app', 'Deposito|Depositos', $n);
     }
 
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return array(
             'id' => Yii::t('app', 'ID'),
             'cantidad' => Yii::t('app', 'Cantidad'),
@@ -55,8 +49,7 @@ class AhorroDeposito extends BaseAhorroDeposito
         );
     }
 
-    public function search()
-    {
+    public function search() {
         $criteria = new CDbCriteria;
         $criteria->with = array('socio');
 
@@ -74,11 +67,11 @@ class AhorroDeposito extends BaseAhorroDeposito
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination' => false,
         ));
     }
 
-    public function scopes()
-    {
+    public function scopes() {
 
         return array(
             'deMes' => array(
@@ -91,49 +84,44 @@ class AhorroDeposito extends BaseAhorroDeposito
         );
     }
 
-    public function de_socio($ids)
-    {
+    public function de_socio($ids) {
 
         if ($ids) {
             $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => "t.socio_id in({$ids})",
-                )
+                    array(
+                        'condition' => "t.socio_id in({$ids})",
+                    )
             );
         }
         return $this;
     }
 
-    public function de_sucursal($sucursal_ids)
-    {
+    public function de_sucursal($sucursal_ids) {
         if ($sucursal_ids) {
             $this->getDbCriteria()->mergeWith(
-                array(
-                    'condition' => "t.sucursal_comprobante_id in({$sucursal_ids})",
-                )
+                    array(
+                        'condition' => "t.sucursal_comprobante_id in({$sucursal_ids})",
+                    )
             );
         }
         return $this;
     }
 
-    public function beforeSave()
-    {
+    public function beforeSave() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
 //        $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeSave();
     }
 
-    public function beforeValidate()
-    {
+    public function beforeValidate() {
         $this->fecha_comprobante_su = Util::FechaActual();
         $this->usuario_creacion_id = Yii::app()->user->id;
 //        $this->sucursal_comprobante_id = Util::getSucursal();
         return parent::beforeValidate();
     }
 
-    public function searchByAhorro($id_ahorro)
-    {
+    public function searchByAhorro($id_ahorro) {
         $criteria = new CDbCriteria;
         $criteria->compare('id', $this->id);
         $criteria->compare('cantidad', $this->cantidad, true);
@@ -153,13 +141,12 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public function totalDepositosByPago($id_ahorro)
-    {
+    public function totalDepositosByPago($id_ahorro) {
 //        select sum(t.cantidad) from deposito t where t.pago_id=1;
         $consulata = Yii::app()->db->createCommand()->
-        select('sum(t.cantidad) as total_depositos_pago')->
-        from('ahorro_deposito t')->
-        where('t.pago_id=:pago_id');
+                select('sum(t.cantidad) as total_depositos_pago')->
+                from('ahorro_deposito t')->
+                where('t.pago_id=:pago_id');
         $consulata->params = array(':pago_id' => $id_ahorro);
 
         return $consulata->queryAll();
@@ -168,9 +155,8 @@ class AhorroDeposito extends BaseAhorroDeposito
     /**
      * Obtiene la suma de todo, los depositos realizados un socio
      */
-    public function sumTotaldeposito($socio_id = null)
-    {
-        $command = new  CDbCommand(Yii::app()->db);
+    public function sumTotaldeposito($socio_id = null) {
+        $command = new CDbCommand(Yii::app()->db);
         $command->select('ifnull(sum(t.cantidad),0)');
         $command->from('ahorro_deposito t');
         if ($socio_id)
@@ -178,8 +164,7 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $command->queryScalar();
     }
 
-    public function searchDepositosSocio($socio_id = null)
-    {
+    public function searchDepositosSocio($socio_id = null) {
         $criteria = new CDbCriteria;
         $sort = new CSort;
 //        $criteria->with = array('ahorro');
@@ -209,14 +194,12 @@ class AhorroDeposito extends BaseAhorroDeposito
         ));
     }
 
-    public function generarCodigoComprobante($socio_id = '')
-    {
+    public function generarCodigoComprobante($socio_id = '') {
         $result = date('y') . date('m') . date('d') . date('H') . date('i') . date('s') . $socio_id;
         return $result;
     }
 
-    public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null)
-    {
+    public function dataConsolidato($anio = null, $socio_id = null, $sucursal_id = null) {
         $commad = new CDbCommand(Yii::app()->db);
 
         $socio_condicion = $socio_id ? "AND p.id  in({$socio_id})" : "";
@@ -268,8 +251,7 @@ class AhorroDeposito extends BaseAhorroDeposito
         return $commad->queryAll();
     }
 
-    public function generateDataGridDepositos($parametros)
-    {
+    public function generateDataGridDepositos($parametros) {
 //select 
 //CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
 //p.cedula,
@@ -286,17 +268,17 @@ class AhorroDeposito extends BaseAhorroDeposito
 //and MONTH(ad.fecha_comprobante_entidad) = '3' AND YEAR(ad.fecha_comprobante_entidad)='2015'
 
         $commad = Yii::app()->db->createCommand()
-            ->select(
-                'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
+                ->select(
+                        'CONCAT(p.primer_nombre, IFNULL(CONCAT(" ",p.segundo_nombre),""), CONCAT(" ",p.apellido_paterno), IFNULL(CONCAT(" ",p.apellido_materno),"")),
      p.cedula,
 ad.cantidad,
 ad.fecha_comprobante_entidad,
 ad.cod_comprobante_entidad,
 s.nombre')
-            ->from('persona p')
-            ->join('ahorro_deposito ad', 'ad.socio_id=p.id')
-            ->join('sucursal s', 's.id=ad.sucursal_comprobante_id')
-            ->where('p.estado=:estado', array(':estado' => Persona::ESTADO_ACTIVO));
+                ->from('persona p')
+                ->join('ahorro_deposito ad', 'ad.socio_id=p.id')
+                ->join('sucursal s', 's.id=ad.sucursal_comprobante_id')
+                ->where('p.estado=:estado', array(':estado' => Persona::ESTADO_ACTIVO));
 
 
         if ($parametros['socio_id']) {
@@ -319,8 +301,7 @@ s.nombre')
         return $commad->queryAll();
     }
 
-    public function generateDataGridConsolidado($anio, $socio_id = null, $sucursal_id = null)
-    {
+    public function generateDataGridConsolidado($anio, $socio_id = null, $sucursal_id = null) {
         $data = $this->dataConsolidato($anio, $socio_id, $sucursal_id);
         $cedulas = array_unique(Util::array_column($data, 'cedula')); // Recojo todos las cedulas
         $meses = array(
@@ -349,7 +330,7 @@ s.nombre')
                 foreach ($mesesFalta as $mesFalta) {
                     self::$datat[] = array(
                         'id' => $registro['id'], 'saldo' => $registro['saldo'], 'nombres' => $registro['nombres'],
-                        'cedula' => $registro['cedula'], 'cantidad' => (float)0,
+                        'cedula' => $registro['cedula'], 'cantidad' => (float) 0,
                         'fecha' => $mesFalta,
                         'total' => $registro['total']
                     );
@@ -378,15 +359,14 @@ s.nombre')
         return self::$datarep;
     }
 
-    private function recursive_array_search($needle, $haystack)
-    {
+    private function recursive_array_search($needle, $haystack) {
         foreach ($haystack as $value) {
-            if ($needle === $value OR (is_array($value) && $this->recursive_array_search($needle, $value))) {
+            if ($needle === $value OR ( is_array($value) && $this->recursive_array_search($needle, $value))) {
                 self::$datat[] = array(
-                    'id' => $haystack['id'], 'sucursal' => $haystack['sucursal'], 'saldo' => (float)$haystack['saldo'], 'nombres' => $haystack['nombres'],
-                    'cedula' => $haystack['cedula'], 'cantidad' => (float)$haystack['cantidad'],
+                    'id' => $haystack['id'], 'sucursal' => $haystack['sucursal'], 'saldo' => (float) $haystack['saldo'], 'nombres' => $haystack['nombres'],
+                    'cedula' => $haystack['cedula'], 'cantidad' => (float) $haystack['cantidad'],
                     'fecha' => $haystack['fecha'],
-                    'total' => (float)$haystack['total']
+                    'total' => (float) $haystack['total']
                 );
             }
         }

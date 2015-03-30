@@ -14,7 +14,7 @@ Util::tsRegisterAssetJs('view.js');
     </div>
     <div class="span6">
         <!--        --><?php //$this->renderPartial('portlets/_ahorro_primer_pago', array('model' => $model));     ?>
-        <?php // $this->renderPartial('portlets/_ahorros_obligatorios', array('model' => $model)); ?>
+        <?php $this->renderPartial('portlets/_ahorros_obligatorios', array('model' => $model)); ?>
         <?php $this->renderPartial('portlets/depositos', array('model' => $model)); ?>
         <?php $this->renderPartial('portlets/_credito', array('model' => $model)); ?>
 

@@ -1,9 +1,7 @@
 <?php
 $ahorros = new AhorroDeposito;
-$ahorros = $ahorros->de_socio($model->id);
-$ahorrosDP = $ahorros->search();
-$ahorrosDP->setPagination(false);
-$validarDepositos = $ahorrosDP->itemCount;
+$ahorros = $ahorros->de_socio($model->id)->search();
+$validarDepositos = $ahorros->itemCount;
 ?>
 <div class="widget red">
     <div class="widget-title">
@@ -47,13 +45,14 @@ $validarDepositos = $ahorrosDP->itemCount;
             );
 //            }
             ?>       
-            <div style='overflow:auto; height: 200px ' id="wrapper_grid_deposito" <?php echo $validarDepositos > 0 ? '' : 'hidden' ?>> 
+            <div  class="row-fluid" style='overflow:auto; height: 200px ' id="wrapper_grid_deposito" <?php echo $validarDepositos > 0 ? '' : 'hidden' ?>> 
                 <?php
                 $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                     'id' => 'ahorro-deposito-grid',
                     'type' => 'striped bordered hover advance',
-                    'dataProvider' => $ahorrosDP,
-//                'enablePagination' => false,
+//                    'fixedHeader' => true,
+//                    'headerOffset' => 40,
+                    'dataProvider' => $ahorros,
                     'columns' => array(
                         array(
                             'header' => 'Cantidad',
