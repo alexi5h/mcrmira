@@ -58,7 +58,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         'icon' => 'ok',
         'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
         'htmlOptions' => array(
-            'onClick' => 'js:save("#ahorro-deposito-form")'
+//            'onClick' => 'js:save("#ahorro-deposito-form")'
+            'onClick' => 'js:AjaxAtualizacionInformacion("#ahorro-deposito-form")'
         ),
     ));
     ?>

@@ -76,8 +76,10 @@ $this->menu = array(
                 <div class="control-group ">
                     <label class="control-label" for="AhorroDeposito_fecha_comprobante_entidad">Fecha</label>
                     <div class="controls">
-<!--                        --><?php //echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha','style'=>'cursor:pointer;', 'readonly' => 'readonly',
-//                        )) ?>
+                        <!--                        --><?php
+                        //echo $form->textField($model, 'fecha_comprobante_entidad',array('placeholder'=>'Fecha','style'=>'cursor:pointer;', 'readonly' => 'readonly',
+//                        )) 
+                        ?>
                         <input type="text" style='cursor:pointer;' readonly='readonly' id="AhorroDeposito_fecha_comprobante_entidad"
                                name="AhorroDeposito[fecha_comprobante_entidad]" >
 
@@ -95,6 +97,8 @@ $this->menu = array(
             'id' => 'ahorro-deposito-grid',
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
+            'fixedHeader' => true,
+            'headerOffset' => 40,
             'columns' => array(
                 array(
                     'name' => 'socio_id',
