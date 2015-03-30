@@ -10,19 +10,19 @@ class Menu {
             array('label' => '<i class="icon-home"></i> Home', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="icon-briefcase"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
             array('label' => '<i class="icon-money"></i>  Ahorros', 'url' => '#', 'items' => array(
-                array('label' => 'Depositos', 'url' => array('/ahorro/ahorroDeposito/admin'),'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito','action'=>'admin')),
-                array('label' => 'Consolidado', 'url' => array('/ahorro/ahorroDeposito/consolidado'),'access' => 'action_ahorroDeposito_consolidado', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito','action'=>'consolidado')),
-            )),
-//            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorroDeposito/admin'), 'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito')),
-//            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
-            array('label' => '<i class="icon-shopping-cart"></i> ' . Credito::label(2), 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito')),
+                    array('label' => 'Depositos', 'url' => array('/ahorro/ahorroDeposito/admin'), 'access' => 'action_ahorroDeposito_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito', 'action' => 'admin')),
+                    array('label' => 'Consolidado', 'url' => array('/ahorro/ahorroDeposito/consolidado'), 'access' => 'action_ahorroDeposito_consolidado', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroDeposito', 'action' => 'consolidado')),
+                )),
+            array('label' => '<i class="icon-shopping-cart"></i> ' . Credito::label(2), 'url' => '#', 'items' => array(
+                    array('label' => 'Consolidado', 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito', 'action' => 'admin')),
+                    array('label' => 'Detalle Pagos', 'url' => array('/credito/creditoDeposito/admin'), 'access' => 'action_creditoDeposito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoDeposito', 'action' => 'admin')),
+                )),
             array('label' => '<i class="icon-exchange"></i> Retirar Ahorros', 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
             array('label' => '<i class="icon-share-alt"></i> Devolución Créditos', 'url' => array('/credito/creditoDevolucion/admin'), 'access' => 'action_creditoDevolucion_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'creditoDevolucion')),
 //            array('label' => '<i class="icon-book"></i>  Pagos', 'url' => '#', 'items' => array(
 //                array('label' => '<i class="icon-briefcase"></i> Pagos', 'url' => array('/pagos/pago/admin'), 'access' => 'action_pago_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'pago')),
 //                array('label' => '<i class="icon-briefcase"></i> Depositos', 'url' => array('/pagos/deposito/admin'), 'access' => 'action_deposito_admin', 'active_rules' => array('module' => 'pagos', 'controller' => 'deposito')),
 //            )),
-
 //            array('label' => '<i class="icon-fire-extinguisher"></i>Historial Incidencias', 'url' => array('/incidencias/incidencia/historial'), 'access' => 'action_incidencia_historial', 'active_rules' => array('module' => 'incidencias', 'controller' => 'incidencia', 'action' => 'historial'), 'visible' => (Yii::app()->user->checkAccess(Constants::ROL_ESPECIALISTA)) && !Yii::app()->user->checkAccess(Constants::ROL_ESPECIALISTA)),
 ////            array('label' => '<i class="icon-rocket"></i>  Gestiona Campaña', 'url' => array('/campanias/campania/gestionOperadorAcciones/idCampania/2/'), 'access' => 'action_campania_gestionOperadorAcciones', 'active_rules' => array('module' => 'campanias'),'visible'=>(!Yii::app()->user->isSuperAdmin)&&(Util::validarRol(Util::getRolUser(Yii::app()->user->id), array(Constants::ROL_OPERADOR)))),
 //            array('label' => '<i class="icon-rocket"></i>  Gestiona Campaña', 'url' => array('/campanias/campania/campaniasRoles'), 'access' => 'action_campania_campaniasRoles', 'active_rules' => array('module' => 'campanias'),'visible'=>(!Yii::app()->user->isSuperAdmin)&&(Util::validarRol(Util::getRolUser(Yii::app()->user->id), array(Constants::ROL_OPERADOR)))),
