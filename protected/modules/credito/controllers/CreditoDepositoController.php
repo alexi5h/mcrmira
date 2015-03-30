@@ -49,7 +49,7 @@ class CreditoDepositoController extends AweController {
                 $model->cod_comprobante_su = CreditoDeposito::model()->generarCodigoComprobante($model->credito->socio_id);
                 $result['cantidadExtra'] = 0;
                 $condicion_devolucion = false;
-                if ($model->cantidad+$model->interes <= $modelCredito->saldo_contra) {
+                if ($model->cantidad + $model->interes <= $modelCredito->saldo_contra) {
                     $modelCredito->saldo_contra-=$model->cantidad;
                     $modelCredito->saldo_favor+=$model->cantidad;
 //                    $cantidadTemp = $model->cantidad;
@@ -178,13 +178,22 @@ class CreditoDepositoController extends AweController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new CreditoDeposito('search');
-        $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['CreditoDeposito']))
-            $model->attributes = $_GET['CreditoDeposito'];
+        $model = new CreditoDeposito();
+        $anio = Util::FormatDate(Util::FechaActual(), 'Y');
+        $socio_id = null;
+        $sucursal_id = Util::getSucursal();
+        $model->sucursal_comprobante_id = $sucursal_id;
+        if (isset($_GET['CreditoDeposito'])) {
+            $anio = $_GET['CreditoDeposito']['anio'];
+            $socio_id = $_GET['CreditoDeposito']['socio_id'];
+            $sucursal_id = $_GET['CreditoDeposito']['sucursal_id'];
+        }
+        $data = $model->generarGridCreditoDepositos($socio_id, $sucursal_id, $anio);
 
         $this->render('admin', array(
             'model' => $model,
+            'data' => $data,
+            'anio' => $anio
         ));
     }
 
