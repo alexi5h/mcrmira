@@ -18,7 +18,7 @@ $anio_anterior = $anio_actual - 1;
 $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Exportar a Excel'), 'icon' => 'download-alt',
         'htmlOptions' => array(
-            'onclick' => 'exportCredito("#credito-form")',)
+            'onclick' => 'exportCredito("#credito-deposito-form")',)
 
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
