@@ -174,6 +174,16 @@ class Util {
         $datetime->setTimezone($tz_object);
         return $datetime->format('Y-m-d H:i:s');
     }
+     /**
+     * retona la fecha actual del sistema
+     * @return string
+     */
+    public static function AnioActual() {
+        $tz_object = new DateTimeZone('America/Guayaquil');
+        $datetime = new DateTime();
+        $datetime->setTimezone($tz_object);
+        return $datetime->format('Y');
+    }
 
     /**
      * @param type $fechaAt

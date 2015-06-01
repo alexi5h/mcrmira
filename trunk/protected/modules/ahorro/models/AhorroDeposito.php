@@ -205,6 +205,8 @@ class AhorroDeposito extends BaseAhorroDeposito {
         $socio_condicion = $socio_id ? "AND p.id  in({$socio_id})" : "";
         $sucursal_condicio = $sucursal_id ? "AND p.sucursal_id in ({$sucursal_id})" : "";
         $e = Persona::ESTADO_ACTIVO;
+        $anio_condicion=Util::AnioActual()==$anio ?"":" AND DATE_FORMAT(ahs.fecha_comprobante_entidad, '%Y') <= '{$anio}'";
+
         $estado = "AND p.estado='{$e}' ";
 
         $commad->setText("
@@ -221,7 +223,7 @@ class AhorroDeposito extends BaseAhorroDeposito {
            DATE_FORMAT(t.fecha_comprobante_entidad, '%Y-%m')                                                    AS fecha,
            ifnull((SELECT sum(ahs.cantidad)
                    FROM ahorro_deposito ahs
-                   WHERE ahs.socio_id = p.id), 0)                                                               AS total
+                   WHERE ahs.socio_id = p.id {$anio_condicion}), 0)                                                               AS total
          FROM ahorro_deposito t
            INNER JOIN persona p ON p.id = t.socio_id
            INNER JOIN sucursal s on s.id=p.sucursal_id
