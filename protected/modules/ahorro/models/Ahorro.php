@@ -290,8 +290,6 @@ class Ahorro extends BaseAhorro {
 //        select sum(a.saldo_contra) from ahorro a
 //        where a.tipo = 'OBLIGATORIO' or a.tipo = 'PRIMER_PAGO'
 //        and estado = 'DEUDA' and a.anulado='NO';
-
-
         $command = Yii::app()->db->createCommand()
                 ->select('sum(a.saldo_contra) as total')
                 ->from('ahorro a')
