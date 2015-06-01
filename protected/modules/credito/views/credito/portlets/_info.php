@@ -31,10 +31,10 @@
                     'name' => 'cantidad_total',
                     'value' => '$' . number_format($model->cantidad_total, 2),
                 ),
-                array(
-                    'name' => 'total_interes',
-                    'value' => '$' . number_format($model->total_interes, 2),
-                ),
+//                array(
+//                    'name' => 'total_interes',
+//                    'value' => '$' . number_format($model->total_interes, 2),
+//                ),
                 array(
                     'name' => 'total_pagar',
                     'value' => '$' . number_format($model->total_pagar, 2),

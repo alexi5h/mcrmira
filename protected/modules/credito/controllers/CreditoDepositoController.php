@@ -220,4 +220,141 @@ class CreditoDepositoController extends AweController {
         }
     }
 
+    public function actionExportarDetalle() {
+        $model = new CreditoDeposito;
+        $anio = Util::FormatDate(Util::FechaActual(), 'Y');
+        $socio_id = null;
+        $sucursal_id = Util::getSucursal();
+        $model->sucursal_comprobante_id = $sucursal_id;
+        if (isset($_POST['CreditoDeposito'])) {
+
+            $anio = $_POST['CreditoDeposito']['anio'];
+            $anio_anterior = $anio - 1;
+            $socio_id = $_POST['CreditoDeposito']['socio_id'];
+            $sucursal_id = $_POST['CreditoDeposito']['sucursal_comprobante_id'];
+            $reporte = $model->generarGridCreditoDepositos($socio_id, $sucursal_id, $anio);
+            //genera el reporte de excel
+            $objExcel = new PHPExcel();
+
+
+            //carga la consulta en la hoja 0 con el contenido de la busqueda, empezando desde la seguna fila
+//            $objExcel->setActiveSheetIndex(0)->fromArray($reporte, null, 'A2');
+            //agrega las cabeceras
+            $objExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', '#Cheque')
+                    ->setCellValue('B1', 'Nombres')
+                    ->setCellValue('C1', 'Fecha Crédito')
+                    ->setCellValue('D1', 'Cantón')
+                    ->setCellValue('E1', "Capital {$anio_anterior}")
+                    ->setCellValue('F1', "Interés {$anio_anterior}")
+                    ->setCellValue('G1', 'Capital Enero')
+                    ->setCellValue('H1', 'Interes Enero')
+                    ->setCellValue('I1', 'Multa Enero')
+                    ->setCellValue('J1', 'Capital Febrero')
+                    ->setCellValue('K1', 'Interes Febrero')
+                    ->setCellValue('L1', 'Multa Febrero')
+                    ->setCellValue('M1', 'Capital Marzo')
+                    ->setCellValue('N1', 'Interes Marzo')
+                    ->setCellValue('O1', 'Multa Marzo')
+                    ->setCellValue('P1', 'Capital Abril')
+                    ->setCellValue('Q1', 'Interes Abril')
+                    ->setCellValue('R1', 'Multa Abril')
+                    ->setCellValue('S1', 'Capital Mayo')
+                    ->setCellValue('T1', 'Interes Mayo')
+                    ->setCellValue('U1', 'Multa Mayo')
+                    ->setCellValue('V1', 'Capital Junio')
+                    ->setCellValue('W1', 'Interes Junio')
+                    ->setCellValue('X1', 'Multa Junio')
+                    ->setCellValue('Y1', 'Capital Julio')
+                    ->setCellValue('Z1', 'Interes Julio')
+                    ->setCellValue('AA1', 'Multa Julio')
+                    ->setCellValue('AB1', 'Capital Agosto')
+                    ->setCellValue('AC1', 'Interes Agosto')
+                    ->setCellValue('AD1', 'Multa Agosto')
+                    ->setCellValue('AE1', 'Capital Septiembre')
+                    ->setCellValue('AF1', 'Interes Septiembre')
+                    ->setCellValue('AG1', 'Multa Septiembre')
+                    ->setCellValue('AH1', 'Capital Octubre')
+                    ->setCellValue('AI1', 'Interes Octubre')
+                    ->setCellValue('AJ1', 'Multa Octubre')
+                    ->setCellValue('AK1', 'Capital Noviembre')
+                    ->setCellValue('AL1', 'Interes Noviembre')
+                    ->setCellValue('AM1', 'Multa Noviembre')
+                    ->setCellValue('AN1', 'Capital Diciembre')
+                    ->setCellValue('AO1', 'Interes Diciembre')
+                    ->setCellValue('AP1', 'Multa Diciembre');
+            $id = 2;
+            foreach ($reporte as $r) {
+                $objExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $id, $r['numero_cheque'])
+                        ->setCellValue('B' . $id, $r['Nombres'])//Titulo de las columnas
+                        ->setCellValue('C' . $id, $r['fecha_credito'])
+                        ->setCellValue('D' . $id, $r['Sucursal'])
+                        ->setCellValue('E' . $id, $r['pagos_ant'])
+                        ->setCellValue('F' . $id, $r['interes_ant'])
+                        ->setCellValue('G' . $id, $r['Enero'])
+                        ->setCellValue('H' . $id, $r[0]['Enero'])
+                        ->setCellValue('I' . $id, $r[1]['Enero'])
+                        ->setCellValue('J' . $id, $r['Febrero'])
+                        ->setCellValue('K' . $id, $r[0]['Febrero'])
+                        ->setCellValue('L' . $id, $r[1]['Febrero'])
+                        ->setCellValue('M' . $id, $r['Marzo'])
+                        ->setCellValue('N' . $id, $r[0]['Marzo'])
+                        ->setCellValue('O' . $id, $r[1]['Marzo'])
+                        ->setCellValue('P' . $id, $r['Abril'])
+                        ->setCellValue('Q' . $id, $r[0]['Abril'])
+                        ->setCellValue('R' . $id, $r[1]['Abril'])
+                        ->setCellValue('S' . $id, $r['Mayo'])
+                        ->setCellValue('T' . $id, $r[0]['Mayo'])
+                        ->setCellValue('U' . $id, $r[1]['Mayo'])
+                        ->setCellValue('V' . $id, $r['Junio'])
+                        ->setCellValue('W' . $id, $r[0]['Junio'])
+                        ->setCellValue('X' . $id, $r[1]['Junio'])
+                        ->setCellValue('Y' . $id, $r['Julio'])
+                        ->setCellValue('Z' . $id, $r[0]['Julio'])
+                        ->setCellValue('AA' . $id, $r[1]['Julio'])
+                        ->setCellValue('AB' . $id, $r['Agosto'])
+                        ->setCellValue('AC' . $id, $r[0]['Agosto'])
+                        ->setCellValue('AD' . $id, $r[1]['Agosto'])
+                        ->setCellValue('AE' . $id, $r['Septiembre'])
+                        ->setCellValue('AF' . $id, $r[0]['Septiembre'])
+                        ->setCellValue('AG' . $id, $r[1]['Septiembre'])
+                        ->setCellValue('AH' . $id, $r['Octubre'])
+                        ->setCellValue('AI' . $id, $r[0]['Octubre'])
+                        ->setCellValue('AJ' . $id, $r[1]['Octubre'])
+                        ->setCellValue('AK' . $id, $r['Noviembre'])
+                        ->setCellValue('AL' . $id, $r[0]['Noviembre'])
+                        ->setCellValue('AM' . $id, $r[1]['Noviembre'])
+                        ->setCellValue('AN' . $id, $r['Diciembre'])
+                        ->setCellValue('AO' . $id, $r[0]['Diciembre'])
+                        ->setCellValue('AP' . $id, $r[1]['Diciembre'])
+                ;
+                $id++;
+            }
+
+            for ($i = 'A'; $i <= 'Z'; $i++) {
+                $objExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
+            }
+//titulo de la hoja 0
+            $objExcel->getActiveSheet()->setTitle('Depositos');
+
+//// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
+            $objExcel->setActiveSheetIndex(0);
+//// Inmovilizar paneles
+            $objExcel->getActiveSheet(0)->freezePane('A2');
+//                $objExcel->getActiveSheet(0)->freezePaneByColumnAndRow(1, 2);
+// Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//crea el archivo con el siguiente formato: Incidencias <fecha inicial> hasta <fecha final>.xlsx
+            header('Content-Disposition: attachment;filename="Consolidado.xlsx"');
+            header('Cache-Control: max-age=0');
+//genera el archivo con formato excel 2007
+            $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+
+            $objWriter->save('php://output');
+
+//        exit();
+        }
+    }
+
 }

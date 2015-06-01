@@ -96,3 +96,14 @@ function getParamsSearch() {
     };
 
 }
+
+function exportCredito(Formulario) {
+    if (!isEmptyGrid("#credito-deposito-grid")) //Cuando no este vacio
+    {
+        $(Formulario).attr('target', "blank");
+        $(Formulario).attr('action', baseUrl + 'credito/creditoDeposito/exportarDetalle');
+        $(Formulario).submit();
+    } else {
+        bootbox.alert('No hay datos para exportar');
+    }
+}
