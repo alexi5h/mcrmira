@@ -133,9 +133,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ),
             'htmlOptions' => array(
                 'readonly' => 'readonly',
-                'style'=>'cursor:pointer;'
-
-
+                'style' => 'cursor:pointer;'
             )
                 )
         );
@@ -147,13 +145,13 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 'language' => 'es',
                 'format' => 'dd/mm/yyyy',
                 'autoclose' => true,
+                'endDate' => 'today',
 //                'startView' => 2,
                 'orientation' => 'bottom right',
             ),
             'htmlOptions' => array(
                 'readonly' => 'readonly',
-                'style'=>'cursor:pointer;'
-
+                'style' => 'cursor:pointer;'
             )
                 )
         );
@@ -174,12 +172,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         );
         ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')               ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_creacion_id')                ?>
 
-        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')               ?>
+        <?php // echo $form->textFieldRow($model, 'usuario_actualizacion_id')                 ?>
 
 
-        <?php // echo $form->textFieldRow($model, 'aprobado')                ?>
+        <?php // echo $form->textFieldRow($model, 'aprobado')                 ?>
         <?php
 //        $sucursales = Sucursal::model()->activos()->findAll();
 //        if (!empty($sucursales)) {
@@ -189,7 +187,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 //        }
         ?>
 
-        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                                                               ?>
+        <!--        --><?php //echo $form->dropDownListRow($model, 'sucursal_id', $sucursales, array('class' => 'span4',))                                                                                                                ?>
         <!--inicio direccion 1-->
         <?php
         if ($modelDireccion1->isNewRecord) {

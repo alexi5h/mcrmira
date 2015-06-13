@@ -284,15 +284,14 @@ class AhorroDepositoController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
+        $model->fecha_comprobante_entidad = Util::FormatDate($model->fecha_comprobante_entidad,"d-m-Y");
         $this->performAjaxValidation($model, 'ahorro-deposito-form');
 
         if (isset($_POST['AhorroDeposito'])) {
             $model->attributes = $_POST['AhorroDeposito'];
             $model->fecha_comprobante_entidad = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_entidad);
-            $model->fecha_comprobante_su = Yii::app()->dateFormatter->format("yyyy-MM-dd hh:mm:ss", $model->fecha_comprobante_su);
             if ($model->save()) {
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('admin', 'id' => $model->id));
             }
         }
 

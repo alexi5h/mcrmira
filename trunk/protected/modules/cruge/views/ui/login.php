@@ -41,7 +41,7 @@
         <?php echo $form->checkBox($model,'rememberMe'); ?> Recordarme más tarde
     </div>
     <div class="forgot-hint pull-right">
-        <?php echo Yii::app()->user->ui->passwordRecoveryLink; ?>
+        <?php // echo Yii::app()->user->ui->passwordRecoveryLink; ?>
     </div>
 </div>
 

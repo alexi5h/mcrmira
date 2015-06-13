@@ -68,7 +68,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             $this->widget('bootstrap.widgets.TbButton', array(
                 'buttonType' => 'submit',
                 'type' => 'success',
-                'label' => "Depositar",
+                'label' => $model->isNewRecord?"Depositar":"Guardar",
             ));
             ?>
             <?php
